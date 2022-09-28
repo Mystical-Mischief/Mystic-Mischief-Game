@@ -21,6 +21,9 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
+    
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -99,6 +102,5 @@ public class ThirdPersonController : MonoBehaviour
             forceDirection += Vector3.up * jumpForce;
         //}
     }
-
    
 }
