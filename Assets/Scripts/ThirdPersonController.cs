@@ -21,6 +21,11 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
+
+    public bool isGrounded = false;
+    public float groundCheckDisttance;
+    private float bufferCheckDistance = 0.1f;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,6 +55,18 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         LookAt();
+
+        groundCheckDisttance = (GetComponent<CapsuleCollider>().height/2)+bufferCheckDistance;
+
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position,-transform.up,out hit, groundCheckDisttance))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void LookAt()
@@ -94,10 +111,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-       // if(IsGrounded())
-        //{
-            forceDirection += Vector3.up * jumpForce;
-        //}
+        forceDirection += Vector3.up * jumpForce;
     }
 
    
