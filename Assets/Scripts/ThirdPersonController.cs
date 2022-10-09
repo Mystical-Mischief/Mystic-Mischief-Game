@@ -240,7 +240,7 @@ public class ThirdPersonController : MonoBehaviour
             if (Stamina > 0)
             {
                 forceDirection += Vector3.up * jumpForce;
-                Stamina -= 1;
+                //Stamina -= 1;
             }
         }
     }

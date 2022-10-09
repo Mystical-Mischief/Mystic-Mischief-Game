@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
         if (controls.Inv.Drop.triggered)
         {
             holdingItem = false;
-            //Physics.gravity = Physics.gravity - g.GetComponent<Item>().Weight;
+            rb.mass = rb.mass - g.GetComponent<Item>().Weight;
             g.transform.position = transform.position + PlayerPosition;
             g.SetActive(true);
             g.GetComponent<SphereCollider>().enabled = true;
@@ -141,7 +141,7 @@ public class Inventory : MonoBehaviour
             PickedUpItems.Add(g);
             g.SetActive(false);
             money = money + g.GetComponent<Item>().amount;
-            //Physics.gravity = Physics.gravity + g.GetComponent<Item>().Weight;
+            rb.mass = rb.mass + g.GetComponent<Item>().Weight;
         }
         if (other.gameObject.tag == "Gold" && PickUp)
         {
