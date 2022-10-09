@@ -23,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
-    public int Stamina;
+    public float Stamina;
     public float runSpeed;
     public float applySpeed;
     private bool flying;
@@ -31,6 +31,12 @@ public class ThirdPersonController : MonoBehaviour
     public Vector3 glideSpeed;
     public Vector3 diveSpeed;
     public float diveTim;
+    private bool canFly;
+
+    public bool isGrounded = false;
+    public float groundCheckDisttance;
+    private float bufferCheckDistance = 0.1f;
+    public bool triggered { get; }
     
 
 
@@ -49,7 +55,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
-
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
@@ -64,14 +69,21 @@ public class ThirdPersonController : MonoBehaviour
         {
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
         }
-
+        if (isGrounded == true)
+        {
+           moveForce = 5f;
+        }
+        if (isGrounded == false)
+        {
+            moveForce = 0f;
+        }
         // Gliding and Diving
         Vector3 Turn = new Vector3(0,0,0);
         Vector3 MaxRotation = new Vector3 (0,10,0);
         bool Left = controls.Actions.GlideLeft.ReadValue<float>() > 0.1f;
         bool Right = controls.Actions.GlideRight.ReadValue<float>() > 0.1f;
 
-        if (Left)
+        if (Left && canFly == true)
         {
             GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,-10,0);
         }
@@ -79,7 +91,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,0,0);
         }
-        if (Right)
+        if (Right && canFly == true)
         {
            GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,10,0);
         }
@@ -93,7 +105,7 @@ public class ThirdPersonController : MonoBehaviour
 
                 flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
                 bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
-                if(diving)
+                if(diving && canFly == true)
         {
             diveTim += Time.fixedDeltaTime;
             dive = true;
@@ -133,13 +145,38 @@ public class ThirdPersonController : MonoBehaviour
         {
             diveTim = 0;
         }
-                if (flying)
+                if (flying && canFly == true)
         {
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
         }
         else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
 
         LookAt();
+
+        groundCheckDisttance = (GetComponent<CapsuleCollider>().height/2)+bufferCheckDistance;
+
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position,-transform.up,out hit, groundCheckDisttance))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+        if (isGrounded == true)
+        {
+            Stamina += (Time.fixedDeltaTime * 2);
+            if (Stamina >= 6)
+            {
+                Stamina = 6;
+            }
+            canFly = false;
+        }
+        else 
+        {
+            canFly = true;
+        }
     }
 
     private void LookAt()
@@ -183,7 +220,7 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
     }
-    private void IsGrounded()
+    private void IsGroundeds()
     {
         //float extraHeight = 0.01f;
         //Physics.Raycast(CapsuleCollider.bounds.center, Vector2.down, CapsuleCollider.bounds.extents.y + extraHeight);
@@ -191,12 +228,19 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        //if()
+        if (isGrounded == true)
         {
             if (Stamina > 0)
             {
-            forceDirection += Vector3.up * jumpForce;
-            //Stamina -= 1;
+            forceDirection += new Vector3(0,2,0) * jumpForce;
+            Stamina -= 1;
+            }
+        }
+        else{
+            if (Stamina > 0)
+            {
+                forceDirection += Vector3.up * jumpForce;
+                Stamina -= 1;
             }
         }
     }
