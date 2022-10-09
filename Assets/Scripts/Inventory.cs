@@ -143,7 +143,7 @@ public class Inventory : MonoBehaviour
             money = money + g.GetComponent<Item>().amount;
             rb.mass = rb.mass + g.GetComponent<Item>().Weight;
         }
-        if (other.gameObject.tag == "Gold" && PickUp)
+        if (other.gameObject.tag == "Gold" && PickUp && holdingItem == false)
         {
             g = other.gameObject;
             g.GetComponent<SphereCollider>().enabled = false;
