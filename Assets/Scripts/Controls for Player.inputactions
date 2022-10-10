@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "Press,Hold",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HoldItem",
+                    "type": "Button",
+                    "id": "e3efaabd-f84c-4644-914b-028932e17948",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -64,6 +73,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PressPick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6d45c2d-d454-4498-bf21-9142a5e2efa1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HoldItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -110,22 +130,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivateHat",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "6c17a212-3d76-41d5-9ae8-652fad329c43",
+                    "id": "76884bb7-09ba-4323-a932-4b7fb3bddc23",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchHat",
-                    "type": "Button",
-                    "id": "9c9d96d4-3c91-49af-a09f-88044214b080",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Press(pressPoint=0.1)",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -175,23 +186,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ae1ca6ca-246b-44a2-bbab-a2f84706bb38",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
+                    "id": "0c464499-e9c0-47ea-8958-9a0e57b1061f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "ActivateHat",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "40e14eda-2213-43c2-a0eb-512397f8b8a9",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchHat",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
