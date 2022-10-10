@@ -108,6 +108,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActivateHat",
+                    "type": "Button",
+                    "id": "6c17a212-3d76-41d5-9ae8-652fad329c43",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchHat",
+                    "type": "Button",
+                    "id": "9c9d96d4-3c91-49af-a09f-88044214b080",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -152,6 +170,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "GlideRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae1ca6ca-246b-44a2-bbab-a2f84706bb38",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateHat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40e14eda-2213-43c2-a0eb-512397f8b8a9",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchHat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

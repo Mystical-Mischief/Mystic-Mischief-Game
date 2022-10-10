@@ -130,6 +130,24 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c17a212-3d76-41d5-9ae8-652fad329c43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c9d96d4-3c91-49af-a09f-88044214b080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -176,6 +194,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""GlideRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae1ca6ca-246b-44a2-bbab-a2f84706bb38"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40e14eda-2213-43c2-a0eb-512397f8b8a9"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -193,6 +233,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Dive = m_Actions.FindAction("Dive", throwIfNotFound: true);
         m_Actions_GlideLeft = m_Actions.FindAction("GlideLeft", throwIfNotFound: true);
         m_Actions_GlideRight = m_Actions.FindAction("GlideRight", throwIfNotFound: true);
+        m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
+        m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +347,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Dive;
     private readonly InputAction m_Actions_GlideLeft;
     private readonly InputAction m_Actions_GlideRight;
+    private readonly InputAction m_Actions_ActivateHat;
+    private readonly InputAction m_Actions_SwitchHat;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -313,6 +357,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Dive => m_Wrapper.m_Actions_Dive;
         public InputAction @GlideLeft => m_Wrapper.m_Actions_GlideLeft;
         public InputAction @GlideRight => m_Wrapper.m_Actions_GlideRight;
+        public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
+        public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +380,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @GlideRight.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
                 @GlideRight.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
                 @GlideRight.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
+                @ActivateHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @SwitchHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -350,6 +402,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @GlideRight.started += instance.OnGlideRight;
                 @GlideRight.performed += instance.OnGlideRight;
                 @GlideRight.canceled += instance.OnGlideRight;
+                @ActivateHat.started += instance.OnActivateHat;
+                @ActivateHat.performed += instance.OnActivateHat;
+                @ActivateHat.canceled += instance.OnActivateHat;
+                @SwitchHat.started += instance.OnSwitchHat;
+                @SwitchHat.performed += instance.OnSwitchHat;
+                @SwitchHat.canceled += instance.OnSwitchHat;
             }
         }
     }
@@ -366,5 +424,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnDive(InputAction.CallbackContext context);
         void OnGlideLeft(InputAction.CallbackContext context);
         void OnGlideRight(InputAction.CallbackContext context);
+        void OnActivateHat(InputAction.CallbackContext context);
+        void OnSwitchHat(InputAction.CallbackContext context);
     }
 }
