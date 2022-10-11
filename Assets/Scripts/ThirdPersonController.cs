@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
-    public float Stamina;
+    public int Stamina;
     public float runSpeed;
     public float applySpeed;
     private bool flying;
@@ -31,12 +32,10 @@ public class ThirdPersonController : MonoBehaviour
     public Vector3 glideSpeed;
     public Vector3 diveSpeed;
     public float diveTim;
-    private bool canFly;
 
-    public bool isGrounded = false;
-    public float groundCheckDisttance;
-    private float bufferCheckDistance = 0.1f;
-    public bool triggered { get; }
+    public bool isGrounded{get; set;}
+    [SerializeField] private CinemachineFreeLook camGround;
+    [SerializeField] private CinemachineFreeLook camFly;
     
 
 
@@ -48,6 +47,7 @@ public class ThirdPersonController : MonoBehaviour
         Stamina = 6;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
+        isGrounded = true;
     }
 
     // Update is called once per frame
@@ -55,6 +55,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
@@ -69,31 +70,27 @@ public class ThirdPersonController : MonoBehaviour
         {
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
         }
-        if (isGrounded == true)
-        {
-           moveForce = 5f;
-        }
-        if (isGrounded == false)
-        {
-            moveForce = 0f;
-        }
+
+        IsGrounded();
+        LookAt();
+
         // Gliding and Diving
         Vector3 Turn = new Vector3(0,0,0);
         Vector3 MaxRotation = new Vector3 (0,10,0);
         bool Left = controls.Actions.GlideLeft.ReadValue<float>() > 0.1f;
         bool Right = controls.Actions.GlideRight.ReadValue<float>() > 0.1f;
 
-        if (Left && canFly == true)
+        if (Left)
         {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,-10,0);
+       //    GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,-10,0);
         }
         else
         {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,0,0);
+        //    GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,0,0);
         }
-        if (Right && canFly == true)
+        if (Right)
         {
-           GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,10,0);
+        //   GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,10,0);
         }
                 Vector3 velocity = rb.velocity;
         Vector3 lastPosition = transform.position;
@@ -105,12 +102,12 @@ public class ThirdPersonController : MonoBehaviour
 
                 flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
                 bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
-                if(diving && canFly == true)
+                if(diving)
         {
             diveTim += Time.fixedDeltaTime;
             dive = true;
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            GetComponent<ConstantForce>().force = diveSpeed;
+            //GetComponent<ConstantForce>().force = diveSpeed;
         }
         else 
         {
@@ -138,45 +135,19 @@ public class ThirdPersonController : MonoBehaviour
                 glideSpeed.y = 8;
             }
             diveTim -= Time.fixedDeltaTime;
-            GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
+            //GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z) + oldHVelocity;
         }
         if (diveTim <= 0)
         {
             diveTim = 0;
         }
-                if (flying && canFly == true)
+                if (flying)
         {
-            GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
+            //GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
         }
-        else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
-
-        LookAt();
-
-        groundCheckDisttance = (GetComponent<CapsuleCollider>().height/2)+bufferCheckDistance;
-
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position,-transform.up,out hit, groundCheckDisttance))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-        if (isGrounded == true)
-        {
-            Stamina += (Time.fixedDeltaTime * 2);
-            if (Stamina >= 6)
-            {
-                Stamina = 6;
-            }
-            canFly = false;
-        }
-        else 
-        {
-            canFly = true;
-        }
+        //else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
+      
     }
 
     private void LookAt()
@@ -213,34 +184,54 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
+        CameraSwitch.Register(camGround);
+        CameraSwitch.Register(camFly);
+        CameraSwitch.SwitchCamera(camGround);
+
     }
     private void OnDisable()
     {
         playerInputs.PlayerOnGround.Jump.started -= DoJump;
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
+
+        CameraSwitch.Unregister(camGround);
+        CameraSwitch.Unregister(camFly);
     }
-    private void IsGroundeds()
+
+    private void IsGrounded()
     {
-        //float extraHeight = 0.01f;
-        //Physics.Raycast(CapsuleCollider.bounds.center, Vector2.down, CapsuleCollider.bounds.extents.y + extraHeight);
+        float bufferDistance = 0.1f;
+        float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
+        {
+            isGrounded=true;
+            if(CameraSwitch.IsActiveCamera(camFly))
+            {
+                CameraSwitch.SwitchCamera(camGround);
+                Debug.Log("Ground");
+            }
+        }
+        else
+        {
+            isGrounded = false;
+            if(CameraSwitch.IsActiveCamera(camGround))
+            {
+                CameraSwitch.SwitchCamera(camFly);
+                Debug.Log("Fly");
+            }
+        }
     }
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if (isGrounded == true)
+        //if()
         {
             if (Stamina > 0)
             {
-            forceDirection += new Vector3(0,2,0) * jumpForce;
-            Stamina -= 1;
-            }
-        }
-        else{
-            if (Stamina > 0)
-            {
-                forceDirection += Vector3.up * jumpForce;
-                //Stamina -= 1;
+            forceDirection += Vector3.up * jumpForce;
+            //Stamina -= 1;
             }
         }
     }
