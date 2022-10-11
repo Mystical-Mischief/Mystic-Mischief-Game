@@ -159,6 +159,24 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(pressPoint=0.1)"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SwitchHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""72f8dc6b-8a82-445e-92db-761c708e2da6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""740d3fcf-da47-42bd-a6e4-47e15688a7ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +234,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""751dfeb3-4ff1-4aa4-bb26-14ea9e2f36fe"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae0f4c6d-4ab1-4576-99c2-030cf45b3344"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -235,6 +275,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_GlideLeft = m_Actions.FindAction("GlideLeft", throwIfNotFound: true);
         m_Actions_GlideRight = m_Actions.FindAction("GlideRight", throwIfNotFound: true);
         m_Actions_Jump = m_Actions.FindAction("Jump", throwIfNotFound: true);
+        m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
+        m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -356,6 +398,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_GlideLeft;
     private readonly InputAction m_Actions_GlideRight;
     private readonly InputAction m_Actions_Jump;
+    private readonly InputAction m_Actions_SwitchHat;
+    private readonly InputAction m_Actions_ActivateHat;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -365,6 +409,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @GlideLeft => m_Wrapper.m_Actions_GlideLeft;
         public InputAction @GlideRight => m_Wrapper.m_Actions_GlideRight;
         public InputAction @Jump => m_Wrapper.m_Actions_Jump;
+        public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
+        public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,6 +435,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
+                @SwitchHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @ActivateHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -408,6 +460,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @SwitchHat.started += instance.OnSwitchHat;
+                @SwitchHat.performed += instance.OnSwitchHat;
+                @SwitchHat.canceled += instance.OnSwitchHat;
+                @ActivateHat.started += instance.OnActivateHat;
+                @ActivateHat.performed += instance.OnActivateHat;
+                @ActivateHat.canceled += instance.OnActivateHat;
             }
         }
     }
@@ -426,5 +484,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnGlideLeft(InputAction.CallbackContext context);
         void OnGlideRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSwitchHat(InputAction.CallbackContext context);
+        void OnActivateHat(InputAction.CallbackContext context);
     }
 }
