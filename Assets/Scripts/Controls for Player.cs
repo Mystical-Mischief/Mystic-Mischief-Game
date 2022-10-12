@@ -53,6 +53,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press,Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HoldItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3efaabd-f84c-4644-914b-028932e17948"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -86,6 +95,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6d45c2d-d454-4498-bf21-9142a5e2efa1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -126,6 +146,33 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": ""GlideRight"",
                     ""type"": ""Button"",
                     ""id"": ""2fca163b-c2dd-47df-ba3f-2bfd8aa1c8de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""76884bb7-09ba-4323-a932-4b7fb3bddc23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SwitchHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""72f8dc6b-8a82-445e-92db-761c708e2da6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActivateHat"",
+                    ""type"": ""Button"",
+                    ""id"": ""740d3fcf-da47-42bd-a6e4-47e15688a7ba"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -176,6 +223,39 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""GlideRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c464499-e9c0-47ea-8958-9a0e57b1061f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""751dfeb3-4ff1-4aa4-bb26-14ea9e2f36fe"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae0f4c6d-4ab1-4576-99c2-030cf45b3344"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,12 +267,16 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Inv_Fire1 = m_Inv.FindAction("Fire1", throwIfNotFound: true);
         m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
         m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
+        m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Glide = m_Actions.FindAction("Glide", throwIfNotFound: true);
         m_Actions_Dive = m_Actions.FindAction("Dive", throwIfNotFound: true);
         m_Actions_GlideLeft = m_Actions.FindAction("GlideLeft", throwIfNotFound: true);
         m_Actions_GlideRight = m_Actions.FindAction("GlideRight", throwIfNotFound: true);
+        m_Actions_Jump = m_Actions.FindAction("Jump", throwIfNotFound: true);
+        m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
+        m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -255,6 +339,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Inv_Fire1;
     private readonly InputAction m_Inv_Drop;
     private readonly InputAction m_Inv_PressPick;
+    private readonly InputAction m_Inv_HoldItem;
     public struct InvActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -262,6 +347,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Fire1 => m_Wrapper.m_Inv_Fire1;
         public InputAction @Drop => m_Wrapper.m_Inv_Drop;
         public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
+        public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
         public InputActionMap Get() { return m_Wrapper.m_Inv; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -280,6 +366,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PressPick.started -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
                 @PressPick.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
                 @PressPick.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
+                @HoldItem.started -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
+                @HoldItem.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
+                @HoldItem.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
             }
             m_Wrapper.m_InvActionsCallbackInterface = instance;
             if (instance != null)
@@ -293,6 +382,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PressPick.started += instance.OnPressPick;
                 @PressPick.performed += instance.OnPressPick;
                 @PressPick.canceled += instance.OnPressPick;
+                @HoldItem.started += instance.OnHoldItem;
+                @HoldItem.performed += instance.OnHoldItem;
+                @HoldItem.canceled += instance.OnHoldItem;
             }
         }
     }
@@ -305,6 +397,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Dive;
     private readonly InputAction m_Actions_GlideLeft;
     private readonly InputAction m_Actions_GlideRight;
+    private readonly InputAction m_Actions_Jump;
+    private readonly InputAction m_Actions_SwitchHat;
+    private readonly InputAction m_Actions_ActivateHat;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -313,6 +408,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Dive => m_Wrapper.m_Actions_Dive;
         public InputAction @GlideLeft => m_Wrapper.m_Actions_GlideLeft;
         public InputAction @GlideRight => m_Wrapper.m_Actions_GlideRight;
+        public InputAction @Jump => m_Wrapper.m_Actions_Jump;
+        public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
+        public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -334,6 +432,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @GlideRight.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
                 @GlideRight.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
                 @GlideRight.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGlideRight;
+                @Jump.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnJump;
+                @SwitchHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @SwitchHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @ActivateHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @ActivateHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -350,6 +457,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @GlideRight.started += instance.OnGlideRight;
                 @GlideRight.performed += instance.OnGlideRight;
                 @GlideRight.canceled += instance.OnGlideRight;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @SwitchHat.started += instance.OnSwitchHat;
+                @SwitchHat.performed += instance.OnSwitchHat;
+                @SwitchHat.canceled += instance.OnSwitchHat;
+                @ActivateHat.started += instance.OnActivateHat;
+                @ActivateHat.performed += instance.OnActivateHat;
+                @ActivateHat.canceled += instance.OnActivateHat;
             }
         }
     }
@@ -359,6 +475,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnFire1(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnPressPick(InputAction.CallbackContext context);
+        void OnHoldItem(InputAction.CallbackContext context);
     }
     public interface IActionsActions
     {
@@ -366,5 +483,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnDive(InputAction.CallbackContext context);
         void OnGlideLeft(InputAction.CallbackContext context);
         void OnGlideRight(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnSwitchHat(InputAction.CallbackContext context);
+        void OnActivateHat(InputAction.CallbackContext context);
     }
 }
