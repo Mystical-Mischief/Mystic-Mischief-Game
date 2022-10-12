@@ -12,5 +12,5 @@ public class Item : MonoBehaviour
 
     public ItemType itemType;
     public int amount;
-    public float Weight;
+    public Vector3 Weight;
 }
