@@ -6,11 +6,12 @@ public class Item : MonoBehaviour
 {
     public enum ItemType
     {
-        Gold,
-        Shoe,
+        KeyItem,
+        Collectable,
+        Currency,
     }
 
     public ItemType itemType;
-    public int amount;
     public float Weight;
+    
 }
