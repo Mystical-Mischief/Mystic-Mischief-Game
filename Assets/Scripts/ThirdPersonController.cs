@@ -152,7 +152,7 @@ public class ThirdPersonController : MonoBehaviour
         }
                 if (flying && isGrounded == false)
         {
-            Stamina += (Time.fixedDeltaTime);
+            Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 6)
             {
                 Stamina = 6;

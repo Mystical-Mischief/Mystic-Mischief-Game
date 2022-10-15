@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
     private bool holdingItem;
     public bool triggered { get; }
     private int holdButton;
+    private int tickets;
 
     void Awake()
     {
@@ -140,7 +141,14 @@ public class Inventory : MonoBehaviour
             index += 1;
             PickedUpItems.Add(g);
             g.SetActive(false);
+            if (g.GetComponent<Item>().isTradable == false)
+            {
             money = money + g.GetComponent<Item>().amount;
+            }
+            if (g.GetComponent<Item>().isTradable == true)
+            {
+                tickets = tickets + g.GetComponent<Item>().amount;
+            }
             //Physics.gravity = Physics.gravity + g.GetComponent<Item>().Weight;
         }
         if (other.gameObject.tag == "Gold" && PickUp && holdingItem == false)
@@ -161,6 +169,8 @@ public class Inventory : MonoBehaviour
             }
             money = 0;
             g = null;
+            totalMoney = totalMoney + tickets;
+            tickets = 0; 
         }
     }
     //private void PickUp(InputAction.CallbackContext obj)

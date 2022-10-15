@@ -8,9 +8,12 @@ public class Item : MonoBehaviour
     {
         Gold,
         Shoe,
+        Ticket,
     }
 
     public ItemType itemType;
     public int amount;
     public Vector3 Weight;
+    public bool isKey;
+    public bool isTradable;
 }
