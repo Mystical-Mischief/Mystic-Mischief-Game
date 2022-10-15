@@ -8,6 +8,7 @@ public class Snatching : MonoBehaviour
     public GameObject[] groundHitboxes;
     public GameObject airHitbox;
 
+    private bool isSnatching;
     ThirdPersonController TPController;
     ControlsforPlayer controls;
     private bool snatching;
@@ -22,33 +23,54 @@ public class Snatching : MonoBehaviour
     {
         snatching = controls.Actions.Snatch.IsPressed();
 
-        if (snatching)
+        if (snatching && !isSnatching)
         {
+            isSnatching = true;
             if (TPController.isGrounded)
             {
                 print("snatch em ground");
-                StartCoroutine(changeMultipleHitboxes(groundHitboxes));
+                StartCoroutine(snatchingHitboxLogic(groundHitboxes));
             }
             else
             {
                 print("snatch in air");
-                StartCoroutine(snatchingAttack(airHitbox, hixboxTime));
+                GameObject[] array = new GameObject[] { airHitbox };
+                StartCoroutine(snatchingHitboxLogic(array));
             }
-            
         }
     }
-    IEnumerator changeMultipleHitboxes(GameObject[] hitboxes)
+    private int hitboxNumber = 0;
+    IEnumerator snatchingHitboxLogic(GameObject[] hitboxes)
     {
         foreach(GameObject hitbox in hitboxes)
         {
-            StartCoroutine(snatchingAttack(hitbox, hixboxTime));
+            StartCoroutine(snatchingAttack(hitbox));
             yield return new WaitForSeconds(hixboxTime);
+            hitboxNumber++;
         }
+        hitboxNumber = 0;
+        isSnatching = false;
     }
-    IEnumerator snatchingAttack(GameObject hitbox, float time)
+    IEnumerator snatchingAttack(GameObject hitbox)
     {
         hitbox.GetComponent<BoxCollider>().enabled = true;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(hixboxTime);
         hitbox.GetComponent<BoxCollider>().enabled = false;
+    }
+    private void OnDrawGizmos()
+    {
+        if (isSnatching)
+        {
+            if (TPController.isGrounded)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawCube(groundHitboxes[hitboxNumber].transform.position, groundHitboxes[hitboxNumber].GetComponent<BoxCollider>().size);
+            }
+            else
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawCube(airHitbox.transform.position, airHitbox.GetComponent<BoxCollider>().size);
+            }
+        }
     }
 }

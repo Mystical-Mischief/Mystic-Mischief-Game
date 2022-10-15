@@ -30,7 +30,6 @@ public class Inventory : MonoBehaviour
     private bool holdingItem;
     public bool triggered { get; }
     private int holdButton;
-    private int tickets;
 
     void Awake()
     {
@@ -93,14 +92,14 @@ public class Inventory : MonoBehaviour
         if (controls.Inv.Drop.triggered)
         {
             holdingItem = false;
-            //Physics.gravity = Physics.gravity - g.GetComponent<Item>().Weight;
+            rb.mass = rb.mass - g.GetComponent<Item>().Weight;
             g.transform.position = transform.position + PlayerPosition;
             g.SetActive(true);
             g.GetComponent<SphereCollider>().enabled = true;
-            g.GetComponent<Item>().amount = 0;
+            //g.GetComponent<Item>().amount = 0;
             g = PickedUpItems[0];
             PickedUpItems.RemoveAt(PickedUpItems.Count - 1);
-            money = money - g.GetComponent<Item>().amount;
+            //money = money - g.GetComponent<Item>().amount;
         }
         if (controls.Inv.HoldItem.triggered)
         {
@@ -141,15 +140,8 @@ public class Inventory : MonoBehaviour
             index += 1;
             PickedUpItems.Add(g);
             g.SetActive(false);
-            if (g.GetComponent<Item>().isTradable == false)
-            {
-            money = money + g.GetComponent<Item>().amount;
-            }
-            if (g.GetComponent<Item>().isTradable == true)
-            {
-                tickets = tickets + g.GetComponent<Item>().amount;
-            }
-            //Physics.gravity = Physics.gravity + g.GetComponent<Item>().Weight;
+            //money = money + g.GetComponent<Item>().amount;
+            rb.mass = rb.mass + g.GetComponent<Item>().Weight;
         }
         if (other.gameObject.tag == "Gold" && PickUp && holdingItem == false)
         {
@@ -169,8 +161,6 @@ public class Inventory : MonoBehaviour
             }
             money = 0;
             g = null;
-            totalMoney = totalMoney + tickets;
-            tickets = 0; 
         }
     }
     //private void PickUp(InputAction.CallbackContext obj)
