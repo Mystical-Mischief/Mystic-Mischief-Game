@@ -36,6 +36,11 @@ public class ThirdPersonController : MonoBehaviour
     public bool isGrounded{get; set;}
     [SerializeField] private CinemachineFreeLook camGround;
     [SerializeField] private CinemachineFreeLook camFly;
+
+    public int maxHealth = 4;
+    public int currentHealth;
+
+    public HealthBar healthBar;
     
 
 
@@ -48,6 +53,9 @@ public class ThirdPersonController : MonoBehaviour
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
         isGrounded = true;
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -147,7 +155,21 @@ public class ThirdPersonController : MonoBehaviour
             //GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
         }
         //else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
-      
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TakeDamage(1);
+            Debug.Log("Taking Damage...");
+        }
+    }
+    
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 
     private void LookAt()
@@ -226,14 +248,15 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        //if()
-        {
+        
             if (Stamina > 0)
             {
             forceDirection += Vector3.up * jumpForce;
-            //Stamina -= 1;
+                //Stamina -= 1;
+                StaminaBar.instance.UseStamina(17);
+                Debug.Log("In DoJump Function");
             }
-        }
+        
     }
    
 }
