@@ -770,9 +770,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 4
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 4
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -874,9 +874,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.269
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -980,7 +980,6 @@ GameObject:
   - component: {fileID: 1071139693}
   - component: {fileID: 1071139692}
   - component: {fileID: 1071139695}
-  - component: {fileID: 1071139696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1097,7 +1096,8 @@ MonoBehaviour:
   camFly: {fileID: 0}
   maxHealth: 4
   currentHealth: 0
-  healthBar: {fileID: 725979375}
+  healthBar: {fileID: 725979373}
+  staminaBar: {fileID: 953463471}
 --- !u!136 &1071139693
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1141,19 +1141,6 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
---- !u!114 &1071139696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071139686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd14009deea26844eaf7add3282f93ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staminaBar: {fileID: 0}
 --- !u!1 &1120056804
 GameObject:
   m_ObjectHideFlags: 0

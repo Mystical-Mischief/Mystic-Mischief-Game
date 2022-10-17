@@ -40,7 +40,8 @@ public class ThirdPersonController : MonoBehaviour
     public int maxHealth = 4;
     public int currentHealth;
 
-    public HealthBar healthBar;
+    public GameObject healthBar;
+    public GameObject staminaBar;
     
 
 
@@ -54,8 +55,8 @@ public class ThirdPersonController : MonoBehaviour
         controls = new ControlsforPlayer();
         isGrounded = true;
 
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -157,19 +158,26 @@ public class ThirdPersonController : MonoBehaviour
         //else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
 
 
-        if (Input.GetKeyDown(KeyCode.P))
+    }
+
+    private void Update()
+    {
+        if (controls.Test.HealthTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
             Debug.Log("Taking Damage...");
         }
     }
-    
+
 
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth);
 
-        healthBar.SetHealth(currentHealth);
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+        Debug.Log("In TakeDamage");
+        
     }
 
     private void LookAt()
