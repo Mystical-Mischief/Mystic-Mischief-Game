@@ -3,7 +3,7 @@ Shader "Unlit/GooseGame"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _ShadowMapTexture ("Texture", 2D) = "white" {}
+        //_ShadowMapTexture ("Texture", 2D) = "white" {}
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
