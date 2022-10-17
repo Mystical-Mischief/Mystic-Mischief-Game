@@ -1038,6 +1038,7 @@ GameObject:
   - component: {fileID: 397449064}
   - component: {fileID: 397449063}
   - component: {fileID: 397449062}
+  - component: {fileID: 397449067}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1167,6 +1168,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397449060}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!75 &397449067
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397449060}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &400001883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1665,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505894912}
-  m_LocalRotation: {x: 0.1284598, y: 0.000000033043943, z: -0.0000000042802815, w: 0.9917147}
+  m_LocalRotation: {x: 0.12845978, y: -2.1295924e-15, z: 1.7432483e-16, w: 0.9917147}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
