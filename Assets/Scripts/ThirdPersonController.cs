@@ -24,7 +24,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
-    public float Stamina;
+    public int Stamina;
     public float runSpeed;
     public float applySpeed;
     private bool flying;
@@ -36,6 +36,12 @@ public class ThirdPersonController : MonoBehaviour
     public bool isGrounded{get; set;}
     [SerializeField] private CinemachineFreeLook camGround;
     [SerializeField] private CinemachineFreeLook camFly;
+
+    public int maxHealth = 4;
+    public int currentHealth;
+
+    public GameObject healthBar;
+    public GameObject staminaBar;
     
 
 
@@ -48,6 +54,9 @@ public class ThirdPersonController : MonoBehaviour
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
         isGrounded = true;
+
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -82,15 +91,15 @@ public class ThirdPersonController : MonoBehaviour
 
         if (Left)
         {
-           GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,-10,0);
+       //    GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,-10,0);
         }
         else
         {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,0,0);
+        //    GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,0,0);
         }
         if (Right)
         {
-           GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,10,0);
+        //   GetComponent<ConstantForce>().relativeTorque = new Vector3 (0,10,0);
         }
                 Vector3 velocity = rb.velocity;
         Vector3 lastPosition = transform.position;
@@ -99,23 +108,15 @@ public class ThirdPersonController : MonoBehaviour
         {
         oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
         }
-        if (isGrounded == true)
-        {
-            Stamina += Time.fixedDeltaTime;
-            if (Stamina >= 6)
-            {
-                Stamina = 6;
-            }
-        }
 
                 flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
                 bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
-                if(diving && isGrounded == false)
+                if(diving)
         {
             diveTim += Time.fixedDeltaTime;
             dive = true;
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            GetComponent<ConstantForce>().force = diveSpeed;
+            //GetComponent<ConstantForce>().force = diveSpeed;
         }
         else 
         {
@@ -143,24 +144,40 @@ public class ThirdPersonController : MonoBehaviour
                 glideSpeed.y = 8;
             }
             diveTim -= Time.fixedDeltaTime;
-            GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
+            //GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z) + oldHVelocity;
         }
         if (diveTim <= 0)
         {
             diveTim = 0;
         }
-                if (flying && isGrounded == false)
+                if (flying)
         {
-            Stamina += (Time.fixedDeltaTime * 0.5f);
-            if (Stamina >= 6)
-            {
-                Stamina = 6;
-            }
-            GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
+            //GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
         }
-        else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
-      
+        //else {GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);}
+
+
+    }
+
+    private void Update()
+    {
+        if (controls.Test.HealthTest.WasPerformedThisFrame())
+        {
+            TakeDamage(1);
+            Debug.Log("Taking Damage...");
+        }
+    }
+
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log(currentHealth);
+
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+        Debug.Log("In TakeDamage");
+        
     }
 
     private void LookAt()
@@ -239,21 +256,15 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if(isGrounded = true)
-        {
+        
             if (Stamina > 0)
             {
-            forceDirection += new Vector3(0,2,0) * jumpForce;
-            Stamina -= 1;
+            forceDirection += Vector3.up * jumpForce;
+                //Stamina -= 1;
+                StaminaBar.instance.UseStamina(17);
+                Debug.Log("In DoJump Function");
             }
-        }
-        else{
-            if (Stamina > 0)
-            {
-                forceDirection += Vector3.up * jumpForce;
-                Stamina -= 1;
-            }
-        }
+        
     }
    
 }
