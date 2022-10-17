@@ -96,10 +96,10 @@ public class Inventory : MonoBehaviour
             g.transform.position = transform.position + PlayerPosition;
             g.SetActive(true);
             g.GetComponent<SphereCollider>().enabled = true;
-            g.GetComponent<Item>().amount = 0;
+            //g.GetComponent<Item>().amount = 0;
             g = PickedUpItems[0];
             PickedUpItems.RemoveAt(PickedUpItems.Count - 1);
-            money = money - g.GetComponent<Item>().amount;
+            //money = money - g.GetComponent<Item>().amount;
         }
         if (controls.Inv.HoldItem.triggered)
         {
@@ -140,7 +140,7 @@ public class Inventory : MonoBehaviour
             index += 1;
             PickedUpItems.Add(g);
             g.SetActive(false);
-            money = money + g.GetComponent<Item>().amount;
+            //money = money + g.GetComponent<Item>().amount;
             rb.mass = rb.mass + g.GetComponent<Item>().Weight;
         }
         if (other.gameObject.tag == "Gold" && PickUp && holdingItem == false)
