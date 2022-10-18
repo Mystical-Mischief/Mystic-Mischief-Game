@@ -28,7 +28,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ""id"": ""fd34008b-80e7-426d-97d4-7c82c44f2dfd"",
             ""actions"": [
                 {
-                    ""name"": ""Fire1"",
+                    ""name"": ""Store"",
                     ""type"": ""Button"",
                     ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
                     ""expectedControlType"": ""Button"",
@@ -72,7 +72,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire1"",
+                    ""action"": ""Store"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -312,7 +312,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
 }");
         // Inv
         m_Inv = asset.FindActionMap("Inv", throwIfNotFound: true);
-        m_Inv_Fire1 = m_Inv.FindAction("Fire1", throwIfNotFound: true);
+        m_Inv_Store = m_Inv.FindAction("Store", throwIfNotFound: true);
         m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
         m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
         m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
@@ -388,7 +388,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     // Inv
     private readonly InputActionMap m_Inv;
     private IInvActions m_InvActionsCallbackInterface;
-    private readonly InputAction m_Inv_Fire1;
+    private readonly InputAction m_Inv_Store;
     private readonly InputAction m_Inv_Drop;
     private readonly InputAction m_Inv_PressPick;
     private readonly InputAction m_Inv_HoldItem;
@@ -396,7 +396,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     {
         private @ControlsforPlayer m_Wrapper;
         public InvActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Fire1 => m_Wrapper.m_Inv_Fire1;
+        public InputAction @Store => m_Wrapper.m_Inv_Store;
         public InputAction @Drop => m_Wrapper.m_Inv_Drop;
         public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
         public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
@@ -409,9 +409,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_InvActionsCallbackInterface != null)
             {
-                @Fire1.started -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
-                @Fire1.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
-                @Fire1.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
+                @Store.started -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
                 @Drop.started -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
@@ -425,9 +425,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             m_Wrapper.m_InvActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Fire1.started += instance.OnFire1;
-                @Fire1.performed += instance.OnFire1;
-                @Fire1.canceled += instance.OnFire1;
+                @Store.started += instance.OnStore;
+                @Store.performed += instance.OnStore;
+                @Store.canceled += instance.OnStore;
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
@@ -565,7 +565,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public TestActions @Test => new TestActions(this);
     public interface IInvActions
     {
-        void OnFire1(InputAction.CallbackContext context);
+        void OnStore(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnPressPick(InputAction.CallbackContext context);
         void OnHoldItem(InputAction.CallbackContext context);

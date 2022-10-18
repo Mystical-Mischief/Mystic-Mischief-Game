@@ -8,7 +8,7 @@ public class StaminaBar : MonoBehaviour
 {
     public Slider staminaBar;
 
-    private int maxStamina = 100;
+    private int maxStamina = 6;
     private int currentStamina = 0;
 
     public static StaminaBar instance;
@@ -37,5 +37,9 @@ public class StaminaBar : MonoBehaviour
         {
             Debug.Log("Not Enough Stamina");
         }
+    }
+    public void UpdateStamina(float value)
+    {
+        staminaBar.value = value;
     }
 }
