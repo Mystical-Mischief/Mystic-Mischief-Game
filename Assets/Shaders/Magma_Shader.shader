@@ -1,12 +1,13 @@
-Shader "Unlit/GooseGame"
+Shader "Unlit/Magma_Shader"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-      
+        _SecondTex("Texture", 2D) = "white" {}
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
+
     }
     SubShader
     {
@@ -74,6 +75,7 @@ Shader "Unlit/GooseGame"
             };
 
             sampler2D _MainTex;
+            sampler2D _SecondTex;
             sampler2D _ShadowMapTexture;
             float4 _MainTex_ST;
             float _LightInt;
@@ -124,19 +126,25 @@ Shader "Unlit/GooseGame"
             fixed4 frag(v2f i) : SV_Target
             {
             float2 uv = i.shadowCoord.xy / i.shadowCoord.w;
+            i.uv.x += _Time.y*0.1;
+            i.uv.y += _CosTime.x*0.1;
 
-            float3 normal = i.normal_world;
+            
+
+             float3 normal = i.normal_world;
              // sample the texture
              fixed4 col = tex2D(_MainTex, i.uv);
+             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x);
              fixed shadow = tex2D(_ShadowMapTexture, uv).a;
-            //This will be our lightdirection
-            float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
-            //This will be our light Color
-            fixed3 colorRefl = _LightColor0.rgb;
-            //This is the function for LambertShading
-            half3 diffuse = LambertShading( colorRefl , _LightInt, normal, lightDir);
+             //This will be our lightdirection
+             float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
+             //This will be our light Color
+             fixed3 colorRefl = _LightColor0.rgb;
+             //This is the function for LambertShading
+             half3 diffuse = LambertShading( colorRefl , _LightInt, normal, lightDir);
 
-            col.rgb *= diffuse * shadow;
+             col.rgb *= diffuse * shadow; //(col2*0.8);
+             col.rgb += col2;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
