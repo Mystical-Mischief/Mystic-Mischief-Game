@@ -138,14 +138,14 @@ Shader "Unlit/Cloud_Ground_Shader"
             {
             float2 uv = i.shadowCoord.xy / i.shadowCoord.w;
             i.uv.x += _Time.y*0.001;
-            i.uv.y += _CosTime.x*0.001;
+            i.uv.y += _CosTime.x*0.0001;
 
             
 
              float3 normal = i.normal_world;
              // sample the texture
              fixed4 col = tex2D(_MainTex, i.uv);
-             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x);
+             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x*0.2);
              fixed shadow = tex2D(_ShadowMapTexture, uv).a;
              //This will be our lightdirection
              float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
