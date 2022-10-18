@@ -6,165 +6,115 @@ using UnityEngine.InputSystem.Controls;
 
 public class Inventory : MonoBehaviour
 {
-
-    private ThirdPersonInputs playerInputs;
-    private InputAction move;
     ControlsforPlayer controls;
     private Rigidbody rb;
-    private Item item;
     public List<GameObject> PickedUpItems = new List<GameObject>();
-    public GameObject g;
-    private int index;
-    private GameObject Item;
-    private Vector3 PlayerPosition;
-    public int money;
-    public int totalMoney;
-    public GameObject Empty;
-    private InputAction buttonAction;
-    private bool Pickitem;
-    private InputAction dropAction;
+    public GameObject currentHeldItem;
+    public Transform HoldItemPosition;
+
     private bool PickUp;
     private bool Store;
-    private GameObject Socket;
-    private Vector3 SocketLocation;
     private bool holdingItem;
-    public bool triggered { get; }
-    private int holdButton;
 
     void Awake()
     {
-        rb = this.GetComponent<Rigidbody>();
-        //buttonAction = controls.FindAction("Fire1");
-        //buttonAction.Enable();
+        rb = GetComponentInParent<Rigidbody>();
         controls = new ControlsforPlayer();
 
     }
-
-        public void OnEnable()
+    public void OnEnable()
     {
-        //controls.Inv.Fire1.started += PickUp;
         controls.Enable();
-        move = controls.Inv.@Fire1;
     }
- public void OnDisable() {
-     controls.Disable();
-    //controls.Inv.Fire1.started -= PickUp;
+    public void OnDisable() 
+    {
+        controls.Disable();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        holdButton = 0;
         controls.Enable();
-        PlayerPosition = new Vector3(0,1,0);
-        index = PickedUpItems.Count;
-        totalMoney = 0;
-        buttonAction = new InputAction(
-        type: InputActionType.Button,
-        binding: "<KeyBoard>/1",
-        interactions: "press(behavior=1)");
-        buttonAction.Enable();
-        Socket = this.gameObject.transform.GetChild(0).gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {   
-        Store = controls.Inv.Fire1.ReadValue<float>() > 0.1f;
+        Store = controls.Inv.Store.ReadValue<float>() > 0.1f;
         PickUp = controls.Inv.PressPick.ReadValue<float>() > 0.1f;
-        if (controls.Inv.PressPick.ReadValue<float>() < 0.1f)
+
+        if (controls.Inv.PressPick.WasPerformedThisFrame())
         {
-            PickUp = false;
+            PickUp = true;
         }
-        if (controls.Inv.Fire1.ReadValue<float>() < 0.1f)
+        if (controls.Inv.Store.WasPerformedThisFrame())
         {
-            Store = false;
+            Store = true;
         }
-        if (holdingItem == true && Store)
-        {
-            g.SetActive(false);
-            holdingItem = false;
-        }
-        //var move = moveAction.ReadValue<Vector2>(); 
 
         //Drop the Current Item
         bool Drop = controls.Inv.Drop.ReadValue<float>() > 0.1f;
-        if (controls.Inv.Drop.triggered)
+        if (PickedUpItems.Count > 0 && controls.Inv.Drop.triggered)
         {
-            holdingItem = false;
-            rb.mass = rb.mass - g.GetComponent<Item>().Weight;
-            g.transform.position = transform.position + PlayerPosition;
-            g.SetActive(true);
-            g.GetComponent<SphereCollider>().enabled = true;
-            //g.GetComponent<Item>().amount = 0;
-            g = PickedUpItems[0];
-            PickedUpItems.RemoveAt(PickedUpItems.Count - 1);
-            //money = money - g.GetComponent<Item>().amount;
+            QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
         }
-        if (controls.Inv.HoldItem.triggered)
+        if(holdingItem && PickUp)
         {
-            holdingItem = true;
-            g.GetComponent<MeshRenderer>().enabled = true;
-        }
-
-        if (controls.Inv.Drop.ReadValue<float>() < 0.1f)
-        {
-
-        }
-        if (holdingItem == true)
-        {
-            g.transform.position = Socket.transform.position; 
-        }
-        
-        if (g == null)
-        {
-            PickedUpItems.Remove(g);
-        }
-        if (PickedUpItems.Count == 0)
-        {
-            g = null;
+            DropItem(currentHeldItem);
         }
     }
             
-    private void DropItems()
+    public void QuickDropStoredItem(GameObject Item)
     {
-
+        holdingItem = false;
+        rb.mass = rb.mass - Item.GetComponent<Item>().Weight;
+        Item.transform.position = transform.position;
+        PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
+        Item.SetActive(true);
+        Item.GetComponent<SphereCollider>().enabled = true;
+    }
+    public void StoreItem(GameObject item)
+    {
+        Debug.Log("Item Stored");
+        PickedUpItems.Add(item);
+        item.SetActive(false);
+        rb.mass = rb.mass + item.GetComponent<Item>().Weight;
+    }
+    public GameObject HoldItem(GameObject Item)
+    {
+        if (!holdingItem)
+        {
+            Item.GetComponent<SphereCollider>().enabled = false;
+            Item.GetComponent<BoxCollider>().enabled = false;
+            Item.transform.parent = gameObject.transform;
+            Item.transform.position = HoldItemPosition.position;
+            Item.GetComponent<Rigidbody>().isKinematic = true;
+            holdingItem = true;
+        }
+        return Item;
+    }
+    public void DropItem(GameObject Item)
+    {
+        Item.GetComponent<SphereCollider>().enabled = true;
+        Item.GetComponent<BoxCollider>().enabled = true;
+        Item.transform.parent = null;
+        Item.GetComponent<Rigidbody>().isKinematic = false;
+        holdingItem = false;
     }
     private void OnTriggerStay(Collider other)
     {
-        
-         if (other.gameObject.tag == "Gold" && Store && holdingItem == false)
+        if (other.gameObject.tag == "PickUp" && Store && holdingItem == false)
         {
-            g = other.gameObject;
-            Debug.Log("Pickup");
-            index += 1;
-            PickedUpItems.Add(g);
-            g.SetActive(false);
-            //money = money + g.GetComponent<Item>().amount;
-            rb.mass = rb.mass + g.GetComponent<Item>().Weight;
+            StoreItem(other.gameObject);
         }
-        if (other.gameObject.tag == "Gold" && PickUp && holdingItem == false)
+        if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false)
         {
-            g = other.gameObject;
-            g.GetComponent<SphereCollider>().enabled = false;
-            index += 1;
-            PickedUpItems.Add(g);
-            //money = money + g.GetComponent<Item>().amount;
-            holdingItem = true;
+            currentHeldItem = HoldItem(other.gameObject);
         }
         if (other.gameObject.tag == "Goal")
         {
-            totalMoney = totalMoney + money;
-             for (var i = 0; i < PickedUpItems.Count; i++)
+            for (var i = 0; i < PickedUpItems.Count; i++)
             {
                 PickedUpItems.RemoveAt(i);
             }
-            money = 0;
-            g = null;
         }
     }
-    //private void PickUp(InputAction.CallbackContext obj)
-    //{
-
-    //}
 }
