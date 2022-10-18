@@ -1,4 +1,4 @@
-Shader "Unlit/Magma_Shader"
+Shader "Unlit/Cloud_Ground_Shader"
 {
     Properties
     {
@@ -7,8 +7,10 @@ Shader "Unlit/Magma_Shader"
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
-        _MagmaColor ("MagmaColor", Color) = (1,1,1,1)
-
+        _MainTint("Main Tint",Color)=(1,1,1,1)
+        _2ndTint("2nd Tint",Color)=(1,1,1,1)
+        
+        
 
     }
     SubShader
@@ -84,7 +86,12 @@ Shader "Unlit/Magma_Shader"
             float4 _LightColor0;
             float _ShadowThreshold;
             float _ShadowIntensity;
-            float4 _MagmaColor;
+            float4 _MainTint;
+            float4 _2ndTint;
+            
+            
+            
+
 
             float4 NDC(float4 pos)
             {
@@ -104,6 +111,7 @@ Shader "Unlit/Magma_Shader"
             v2f vert (appdata v)
             {
                 v2f o;
+                
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -114,11 +122,10 @@ Shader "Unlit/Magma_Shader"
             }
             float3 LambertShading
             (
-                float3 colorRefl,
-                float lightInt,
-                float3 normal,
-                float3 lightDir
-                
+             float3 colorRefl,
+             float lightInt,
+             float3 normal,
+             float3 lightDir
             )
             {
                 return colorRefl * lightInt * max(_ShadowIntensity , step(_ShadowThreshold, dot(normal, lightDir)));
@@ -130,16 +137,15 @@ Shader "Unlit/Magma_Shader"
             fixed4 frag(v2f i) : SV_Target
             {
             float2 uv = i.shadowCoord.xy / i.shadowCoord.w;
-            i.uv.x += _Time.y*0.1;
-            i.uv.y += _CosTime.x*0.1;
+            i.uv.x += _Time.y*0.001;
+            i.uv.y += _CosTime.x*0.001;
 
             
 
              float3 normal = i.normal_world;
              // sample the texture
              fixed4 col = tex2D(_MainTex, i.uv);
-             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x)*clamp(0.1,cos((_Time.y*0.5)),0.5);
-             fixed4 col3 = tex2D(_SecondTex, i.uv += _Time.x) * cos((_Time.y * 0.5));
+             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x);
              fixed shadow = tex2D(_ShadowMapTexture, uv).a;
              //This will be our lightdirection
              float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
@@ -148,12 +154,8 @@ Shader "Unlit/Magma_Shader"
              //This is the function for LambertShading
              half3 diffuse = LambertShading( colorRefl , _LightInt, normal, lightDir);
 
-             col.rgb *= diffuse *_MagmaColor * shadow; //(col2*0.8);
-             col.rgb += clamp(-0.2,_MagmaColor*cos((_Time.y)),0.6);
-             col.rgb += col2 * _MagmaColor;
-             
-             
-             //col.rgb *= _MagmaColor + cos(_Time.y);
+             col.rgb *= diffuse*_MainTint * shadow; //(col2*0.8);
+             col.rgb += col2*_2ndTint;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
