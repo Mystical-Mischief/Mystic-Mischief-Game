@@ -7,6 +7,8 @@ Shader "Unlit/Magma_Shader"
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
+        _MagmaColor ("MagmaColor", Color) = (1,1,1,1)
+
 
     }
     SubShader
@@ -82,6 +84,7 @@ Shader "Unlit/Magma_Shader"
             float4 _LightColor0;
             float _ShadowThreshold;
             float _ShadowIntensity;
+            float4 _MagmaColor;
 
             float4 NDC(float4 pos)
             {
@@ -111,10 +114,11 @@ Shader "Unlit/Magma_Shader"
             }
             float3 LambertShading
             (
-             float3 colorRefl,
-             float lightInt,
-             float3 normal,
-             float3 lightDir
+                float3 colorRefl,
+                float lightInt,
+                float3 normal,
+                float3 lightDir
+                
             )
             {
                 return colorRefl * lightInt * max(_ShadowIntensity , step(_ShadowThreshold, dot(normal, lightDir)));
@@ -134,7 +138,8 @@ Shader "Unlit/Magma_Shader"
              float3 normal = i.normal_world;
              // sample the texture
              fixed4 col = tex2D(_MainTex, i.uv);
-             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x);
+             fixed4 col2 = tex2D(_SecondTex, i.uv -= _Time.x)*clamp(0.1,cos((_Time.y*0.5)),0.5);
+             fixed4 col3 = tex2D(_SecondTex, i.uv += _Time.x) * cos((_Time.y * 0.5));
              fixed shadow = tex2D(_ShadowMapTexture, uv).a;
              //This will be our lightdirection
              float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
@@ -143,8 +148,12 @@ Shader "Unlit/Magma_Shader"
              //This is the function for LambertShading
              half3 diffuse = LambertShading( colorRefl , _LightInt, normal, lightDir);
 
-             col.rgb *= diffuse * shadow; //(col2*0.8);
-             col.rgb += col2;
+             col.rgb *= diffuse *_MagmaColor * shadow; //(col2*0.8);
+             col.rgb += clamp(-0.2,_MagmaColor*cos((_Time.y)),0.6);
+             col.rgb += col2 * _MagmaColor;
+             
+             
+             //col.rgb *= _MagmaColor + cos(_Time.y);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
