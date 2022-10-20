@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     public bool triggered { get; }
     private int holdButton;
     private int tickets;
+    public GameObject Gold;
 
     void Awake()
     {
@@ -169,8 +170,15 @@ public class Inventory : MonoBehaviour
             }
             money = 0;
             g = null;
+            for (var i = 0; i < tickets; i++)
+            {
+                float offset = i * 0.1f;
+                Vector3 position = transform.position + Vector3.right * offset;
+                var troop = Instantiate(Gold, position, transform.rotation);
+            }
             totalMoney = totalMoney + tickets;
             tickets = 0; 
+
         }
     }
     //private void PickUp(InputAction.CallbackContext obj)

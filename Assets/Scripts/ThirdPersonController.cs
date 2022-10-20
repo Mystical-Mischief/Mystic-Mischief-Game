@@ -183,6 +183,14 @@ public class ThirdPersonController : MonoBehaviour
         return right.normalized;
     }
 
+        private Vector3 GetCameraUp(Camera playerCamera)
+    {
+        Vector3 up = playerCamera.transform.up;
+        up.x = 0;
+        up.z = 0;
+        return up.normalized;
+    }
+
     private Vector3 GetCameraForward(Camera playerCamera)
     {
         Vector3 forward = playerCamera.transform.forward;
