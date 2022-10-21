@@ -9,7 +9,9 @@ public class BaseEnemyAI : MonoBehaviour
     public bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
+    public string EnemyType;
 
+    public int enemyTypeNumber;
     private Transform target;
     private NavMeshAgent ai;
     
