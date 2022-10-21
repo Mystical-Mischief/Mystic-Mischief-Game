@@ -3,10 +3,14 @@ Shader "Unlit/Water_Shader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _SecondTex("Texture", 2D) = "white" {}
+        _SecondTex("2nd Texture", 2D) = "white" {}
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
+        _MainTint("Main Tint",Color)=(1,1,1,1)
+        _2ndTint("2nd Tint",Color)=(1,1,1,1)
+        
+        
 
     }
     SubShader
@@ -82,6 +86,12 @@ Shader "Unlit/Water_Shader"
             float4 _LightColor0;
             float _ShadowThreshold;
             float _ShadowIntensity;
+            float4 _MainTint;
+            float4 _2ndTint;
+            
+            
+            
+
 
             float4 NDC(float4 pos)
             {
@@ -101,6 +111,7 @@ Shader "Unlit/Water_Shader"
             v2f vert (appdata v)
             {
                 v2f o;
+                
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -143,8 +154,8 @@ Shader "Unlit/Water_Shader"
              //This is the function for LambertShading
              half3 diffuse = LambertShading( colorRefl , _LightInt, normal, lightDir);
 
-             col.rgb *= diffuse * shadow; //(col2*0.8);
-             col.rgb += col2;
+             col.rgb *= diffuse*_MainTint * shadow; //(col2*0.8);
+             col.rgb += col2*_2ndTint;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
