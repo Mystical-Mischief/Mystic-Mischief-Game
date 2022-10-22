@@ -78,6 +78,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1442667d-a526-4eb4-9b71-7e1666b28729"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
@@ -89,8 +100,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
+                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -121,7 +154,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""81c37c7b-46ca-44df-89ad-1757458b57c2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -202,8 +235,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e3f384f7-5b85-414e-9d19-d2cbe32beefc"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c984d088-ea9b-4b9b-9b66-f62508c13fdd"",
                     ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b58d955c-5a18-4026-a2c1-1c5a60bb0841"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -306,6 +361,34 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuActions"",
+            ""id"": ""a63f8fe0-889c-4137-8c17-e1bcc6f113c0"",
+            ""actions"": [
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4f45f2f-7dc5-4d03-a2b2-2608f83357d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d5c1561a-0d3d-4241-8e65-4ed34889849d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -329,6 +412,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_HealthTest = m_Test.FindAction("HealthTest", throwIfNotFound: true);
+        // MenuActions
+        m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
+        m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -563,6 +649,39 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         }
     }
     public TestActions @Test => new TestActions(this);
+
+    // MenuActions
+    private readonly InputActionMap m_MenuActions;
+    private IMenuActionsActions m_MenuActionsActionsCallbackInterface;
+    private readonly InputAction m_MenuActions_Quit;
+    public struct MenuActionsActions
+    {
+        private @ControlsforPlayer m_Wrapper;
+        public MenuActionsActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Quit => m_Wrapper.m_MenuActions_Quit;
+        public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsActionsCallbackInterface != null)
+            {
+                @Quit.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+            }
+            m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+            }
+        }
+    }
+    public MenuActionsActions @MenuActions => new MenuActionsActions(this);
     public interface IInvActions
     {
         void OnStore(InputAction.CallbackContext context);
@@ -584,5 +703,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface ITestActions
     {
         void OnHealthTest(InputAction.CallbackContext context);
+    }
+    public interface IMenuActionsActions
+    {
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

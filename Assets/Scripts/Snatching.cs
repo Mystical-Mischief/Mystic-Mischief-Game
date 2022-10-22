@@ -42,7 +42,7 @@ public class Snatching : MonoBehaviour
     private int hitboxNumber = 0;
     IEnumerator snatchingHitboxLogic(GameObject[] hitboxes)
     {
-        foreach(GameObject hitbox in hitboxes)
+        foreach (GameObject hitbox in hitboxes)
         {
             StartCoroutine(snatchingAttack(hitbox));
             yield return new WaitForSeconds(hixboxTime);
