@@ -78,6 +78,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1442667d-a526-4eb4-9b71-7e1666b28729"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
@@ -89,8 +100,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
+                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -121,7 +154,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""81c37c7b-46ca-44df-89ad-1757458b57c2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -202,8 +235,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e3f384f7-5b85-414e-9d19-d2cbe32beefc"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c984d088-ea9b-4b9b-9b66-f62508c13fdd"",
                     ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b58d955c-5a18-4026-a2c1-1c5a60bb0841"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
