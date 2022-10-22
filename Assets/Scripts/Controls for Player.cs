@@ -306,6 +306,34 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuActions"",
+            ""id"": ""a63f8fe0-889c-4137-8c17-e1bcc6f113c0"",
+            ""actions"": [
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4f45f2f-7dc5-4d03-a2b2-2608f83357d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d5c1561a-0d3d-4241-8e65-4ed34889849d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -329,6 +357,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_HealthTest = m_Test.FindAction("HealthTest", throwIfNotFound: true);
+        // MenuActions
+        m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
+        m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -563,6 +594,39 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         }
     }
     public TestActions @Test => new TestActions(this);
+
+    // MenuActions
+    private readonly InputActionMap m_MenuActions;
+    private IMenuActionsActions m_MenuActionsActionsCallbackInterface;
+    private readonly InputAction m_MenuActions_Quit;
+    public struct MenuActionsActions
+    {
+        private @ControlsforPlayer m_Wrapper;
+        public MenuActionsActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Quit => m_Wrapper.m_MenuActions_Quit;
+        public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsActionsCallbackInterface != null)
+            {
+                @Quit.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+            }
+            m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+            }
+        }
+    }
+    public MenuActionsActions @MenuActions => new MenuActionsActions(this);
     public interface IInvActions
     {
         void OnStore(InputAction.CallbackContext context);
@@ -584,5 +648,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface ITestActions
     {
         void OnHealthTest(InputAction.CallbackContext context);
+    }
+    public interface IMenuActionsActions
+    {
+        void OnQuit(InputAction.CallbackContext context);
     }
 }
