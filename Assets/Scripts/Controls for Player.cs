@@ -177,6 +177,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Snatch"",
+                    ""type"": ""Button"",
+                    ""id"": ""b40ae7e6-5c86-407a-b90e-eb9073176aa7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""ActivateHat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e384cb0-76c0-4b1a-98a4-167984a63b59"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Snatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -277,6 +297,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Jump = m_Actions.FindAction("Jump", throwIfNotFound: true);
         m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
         m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
+        m_Actions_Snatch = m_Actions.FindAction("Snatch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -400,6 +421,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Jump;
     private readonly InputAction m_Actions_SwitchHat;
     private readonly InputAction m_Actions_ActivateHat;
+    private readonly InputAction m_Actions_Snatch;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -411,6 +433,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Actions_Jump;
         public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
         public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
+        public InputAction @Snatch => m_Wrapper.m_Actions_Snatch;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -441,6 +464,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @ActivateHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
                 @ActivateHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
                 @ActivateHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
+                @Snatch.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
+                @Snatch.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
+                @Snatch.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -466,6 +492,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @ActivateHat.started += instance.OnActivateHat;
                 @ActivateHat.performed += instance.OnActivateHat;
                 @ActivateHat.canceled += instance.OnActivateHat;
+                @Snatch.started += instance.OnSnatch;
+                @Snatch.performed += instance.OnSnatch;
+                @Snatch.canceled += instance.OnSnatch;
             }
         }
     }
@@ -486,5 +515,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSwitchHat(InputAction.CallbackContext context);
         void OnActivateHat(InputAction.CallbackContext context);
+        void OnSnatch(InputAction.CallbackContext context);
     }
 }
