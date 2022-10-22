@@ -58,7 +58,7 @@ public class WaterDragonAi : BasicDragonAI
     }
     private void OnCollisionEnter(Collision other)
     {
-            if (other.gameObject.tag == "Player" && attacked == true)
+        if (other.gameObject.tag == "Player" && attacked == true)
         {  
             Debug.Log("DAMAGED!");
             attacked = false;
@@ -89,7 +89,7 @@ public class WaterDragonAi : BasicDragonAI
     //     }
     //     Invoke(nameof(ResetAttack), timeBetweenAttacks);
     // }
-        public virtual void ResetAttack()
+    public virtual void ResetAttack()
     {
         attacked = false;
         attackPos.SetActive(false);

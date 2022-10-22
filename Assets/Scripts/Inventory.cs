@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
 
     private bool PickUp;
     private bool Store;
-    private bool holdingItem;
+    public bool holdingItem;
 
     void Awake()
     {
@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
     {
         controls.Enable();
     }
-    public void OnDisable() 
+    public void OnDisable()
     {
         controls.Disable();
     }
@@ -37,18 +37,18 @@ public class Inventory : MonoBehaviour
     }
 
     void Update()
-    {   
-        Store = controls.Inv.Store.ReadValue<float>() > 0.1f;
-        PickUp = controls.Inv.PressPick.ReadValue<float>() > 0.1f;
+    {
+        Store = controls.Inv.Store.IsPressed();
+        PickUp = controls.Inv.PressPick.IsPressed();
 
-        if (controls.Inv.PressPick.WasPerformedThisFrame())
-        {
-            PickUp = true;
-        }
-        if (controls.Inv.Store.WasPerformedThisFrame())
-        {
-            Store = true;
-        }
+        /* if (controls.Inv.PressPick.WasPerformedThisFrame())
+         {
+             PickUp = true;
+         }
+         if (controls.Inv.Store.WasPerformedThisFrame())
+         {
+             Store = true;
+         }*/
 
         //Drop the Current Item
         bool Drop = controls.Inv.Drop.ReadValue<float>() > 0.1f;
@@ -56,40 +56,46 @@ public class Inventory : MonoBehaviour
         {
             QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
         }
-        if(holdingItem && PickUp)
+        if (holdingItem && PickUp && controls.Inv.PressPick.WasPressedThisFrame())
         {
             DropItem(currentHeldItem);
         }
+        if (holdingItem && Store && controls.Inv.Store.WasPressedThisFrame())
+        {
+            StoreItem(currentHeldItem);
+        }
     }
-            
+
     public void QuickDropStoredItem(GameObject Item)
     {
         holdingItem = false;
         rb.mass = rb.mass - Item.GetComponent<Item>().Weight;
         Item.transform.position = transform.position;
+        Item.transform.parent = null;
+        Item.GetComponent<Rigidbody>().isKinematic = false;
         PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
         Item.SetActive(true);
         Item.GetComponent<SphereCollider>().enabled = true;
+        Item.GetComponent<BoxCollider>().enabled = true;
     }
     public void StoreItem(GameObject item)
     {
         Debug.Log("Item Stored");
-        PickedUpItems.Add(item);
         item.SetActive(false);
+
+        PickedUpItems.Add(item);
         rb.mass = rb.mass + item.GetComponent<Item>().Weight;
+
     }
-    public GameObject HoldItem(GameObject Item)
+    public void HoldItem(GameObject Item)
     {
-        if (!holdingItem)
-        {
-            Item.GetComponent<SphereCollider>().enabled = false;
-            Item.GetComponent<BoxCollider>().enabled = false;
-            Item.transform.parent = gameObject.transform;
-            Item.transform.position = HoldItemPosition.position;
-            Item.GetComponent<Rigidbody>().isKinematic = true;
-            holdingItem = true;
-        }
-        return Item;
+        Item.GetComponent<SphereCollider>().enabled = false;
+        Item.GetComponent<BoxCollider>().enabled = false;
+        Item.transform.parent = gameObject.transform;
+        Item.transform.position = HoldItemPosition.position;
+        Item.GetComponent<Rigidbody>().isKinematic = true;
+        holdingItem = true;
+        currentHeldItem = Item;
     }
     public void DropItem(GameObject Item)
     {
@@ -97,7 +103,14 @@ public class Inventory : MonoBehaviour
         Item.GetComponent<BoxCollider>().enabled = true;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
-        holdingItem = false;
+        currentHeldItem = null;
+
+        StartCoroutine(dropTimer(0.5f, false));
+    }
+    IEnumerator dropTimer(float time, bool value)
+    {
+        yield return new WaitForSeconds(time);
+        holdingItem = value;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -107,7 +120,7 @@ public class Inventory : MonoBehaviour
         }
         if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false)
         {
-            currentHeldItem = HoldItem(other.gameObject);
+            HoldItem(other.gameObject);
         }
         if (other.gameObject.tag == "Goal")
         {
