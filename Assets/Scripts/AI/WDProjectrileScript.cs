@@ -5,10 +5,11 @@ using UnityEngine;
 public class WDProjectrileScript : MonoBehaviour
 {
     public GameObject particles;
+    public int TimeToDestroy = 2;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExecuteAfterTime(1));
+        StartCoroutine(ExecuteAfterTime(2));
 
     }
 
@@ -16,6 +17,6 @@ public class WDProjectrileScript : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Instantiate(particles, transform.position, transform.rotation);
-        Destroy(gameObject, 0);
+        Destroy(gameObject, TimeToDestroy);
     }
 }

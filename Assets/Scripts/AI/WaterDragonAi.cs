@@ -23,6 +23,8 @@ public class WaterDragonAi : BasicDragonAI
     private float jumpForce = 10f;
     private Vector3 forceDirection = Vector3.zero;
     private float bo;
+    private bool FoundPlayer;
+    public Transform Base;
 
     [HideInInspector]
     public bool attacked;
@@ -36,6 +38,7 @@ public class WaterDragonAi : BasicDragonAI
     // Start is called before the first frame update
     void Start()
     {
+
         HitPlayer = false;
         attackTimes = 0;
         attacked = false;
@@ -50,48 +53,71 @@ public class WaterDragonAi : BasicDragonAI
     // Update is called once per frame
     void Update()
     {
-        forceDirection += new Vector3(0,2,0) * jumpForce;
+        // base.ai.enabled = false;
+        // GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;   
+        //GetComponent<ConstantForce>().force = new Vector3(0, 10, 0);
         PlayerPos.x = Player.transform.position.x;
         PlayerPos.z = Player.transform.position.z;
         PlayerPos.y = 0;
         base.Update();
         float dist = Vector3.Distance(Player.transform.position, transform.position);
         //Debug.Log(dist);
-        // if (dist > 17f && dist <20f)
-        // {
-        //     if (Jumped == false)
-        //     {
-        //         Jumped = true;
-        //         //Jump();
-        //         //Jumped = true;
-        //     }
-        // }
+        if (Player.transform.position.y > transform.position.y && dist < 5f)
+        {
+            if (Jumped == false)
+            {
+                //Jumped = true;
+                //Jump();
+                //Jumped = true;
+            }
+        }
 
-        // if (Jumped == true)
-        // {
-        //         if (base.ai.enabled)
-        //     {
-        //         // set the agents target to where you are before the jump
-        //         // this stops her before she jumps. Alternatively, you could
-        //         // cache this value, and set it again once the jump is complete
-        //         // to continue the original move
-        //         base.ai.SetDestination(Player.transform.position);
-        //         // disable the agent
-        //         base.ai.updatePosition = false;
-        //         base.ai.updateRotation = false;
-        //         base.ai.isStopped = true;
-        //     }
+        if (Player.GetComponent<ThirdPersonController>().rbSpeed >= 9 && dist < 17f)
+        {
+            FoundPlayer = true;
+        }
+        else if (dist > 17f)
+        {
+            FoundPlayer = false;
+        }
 
-        //     // make the jump
-        //     base.PatrolPoints = null;
-        //     Debug.Log("Jump");
-        //     GetComponent<Rigidbody>().isKinematic = false;
-        //     GetComponent<Rigidbody>().useGravity = true;
-        //     GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;
-        //     transform.position = Vector3.MoveTowards(transform.position, (transform.position + new Vector3(0f, 1f, 1f)), speed * Time.deltaTime);
-        //     Invoke(nameof(ResetAttack3), 1f);
-        //     Jumped = false;
-        // }
+        if  (FoundPlayer == true && attackTimes < 4)
+        {
+            base.ai.enabled = false;
+        }
+        else if (FoundPlayer == false)
+        {
+            base.ai.enabled = true;
+        }
+        if (FoundPlayer == true && attackTimes >= 5)
+        {
+            base.ai.enabled = true;
+        }
+
+        //UNCOMENT THIS IF YOU WANT THE JUMP //
+        if (Jumped == true)
+        {
+                if (base.ai.enabled)
+            {
+                // set the agents target to where you are before the jump
+                // this stops her before she jumps. Alternatively, you could
+                // cache this value, and set it again once the jump is complete
+                // to continue the original move
+                base.ai.SetDestination(Player.transform.position);
+                // disable the agent
+                //base.ai = disabled;
+            }
+
+            // make the jump
+            base.PatrolPoints = null;
+            Debug.Log("Jump");
+            //GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;
+            base.rb.velocity = new Vector3( 0f, jumpForce, 0f);
+            Invoke(nameof(ResetAttack3), 1f);
+            Jumped = false;
+        }
 
          if (dist > 12f && dist <17f && attackTimes < 5)
         {

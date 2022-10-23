@@ -36,6 +36,9 @@ public class ThirdPersonController : MonoBehaviour
     public bool isGrounded{get; set;}
     [SerializeField] private CinemachineFreeLook camGround;
     [SerializeField] private CinemachineFreeLook camFly;
+
+    //[HideInInspector]
+    public float rbSpeed;
     
 
 
@@ -53,6 +56,7 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        rbSpeed = rb.velocity.magnitude ;
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
 

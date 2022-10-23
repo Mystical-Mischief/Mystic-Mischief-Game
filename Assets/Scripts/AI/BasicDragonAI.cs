@@ -154,6 +154,7 @@ public class BasicDragonAI : MonoBehaviour
 
         if (Physics.Raycast(transform.position, target.position - transform.position, out hit, SightDistance))
         {
+            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.green, 100, false);
             UpdateDestination(target.position);
             //if the ai cant see the player
             if (hit.transform.gameObject.tag != "Player")
@@ -189,7 +190,7 @@ public class BasicDragonAI : MonoBehaviour
             isGroundedD = false;
         }
     }
-    void NewRandomNumber()
+   public virtual void NewRandomNumber()
 {
     randomNumber = Random.Range(1, 3);
     if (randomNumber == lastNumber)
