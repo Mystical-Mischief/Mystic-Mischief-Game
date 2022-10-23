@@ -13,6 +13,7 @@ public class WDAttackScript : MonoBehaviour
             Debug.Log("DAMAGED!");
             gameObject.GetComponentInParent<WaterDragonAi>().attacked = false;
             HitPlayer = true;
+            gameObject.GetComponentInParent<WaterDragonAi>().HitPlayer = true;;
         }
 
     }
