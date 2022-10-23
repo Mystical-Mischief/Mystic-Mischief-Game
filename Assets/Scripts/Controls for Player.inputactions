@@ -6,7 +6,7 @@
             "id": "fd34008b-80e7-426d-97d4-7c82c44f2dfd",
             "actions": [
                 {
-                    "name": "Fire1",
+                    "name": "Store",
                     "type": "Button",
                     "id": "fd1e9d33-dc43-4419-b81d-74f46283fac0",
                     "expectedControlType": "Button",
@@ -50,7 +50,7 @@
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire1",
+                    "action": "Store",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -307,6 +307,62 @@
                     "processors": "",
                     "groups": "",
                     "action": "Snatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Test",
+            "id": "16c4472a-5611-435b-835b-4a121f3e8be4",
+            "actions": [
+                {
+                    "name": "HealthTest",
+                    "type": "Button",
+                    "id": "1036cb9b-5a91-4891-9e58-cf4c70636b63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a7e2700-2a7e-4bc0-a937-dd0c5b317dec",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HealthTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MenuActions",
+            "id": "a63f8fe0-889c-4137-8c17-e1bcc6f113c0",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "f4f45f2f-7dc5-4d03-a2b2-2608f83357d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d5c1561a-0d3d-4241-8e65-4ed34889849d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

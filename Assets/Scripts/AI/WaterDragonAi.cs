@@ -36,7 +36,7 @@ public class WaterDragonAi : BasicDragonAI
     public bool Jumped;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
 
         HitPlayer = false;
@@ -51,7 +51,7 @@ public class WaterDragonAi : BasicDragonAI
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         // base.ai.enabled = false;
         // GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;   
