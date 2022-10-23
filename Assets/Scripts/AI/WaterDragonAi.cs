@@ -34,7 +34,7 @@ public class WaterDragonAi : BasicDragonAI
     public bool Jumped;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         HitPlayer = false;
         attackTimes = 0;
@@ -48,7 +48,7 @@ public class WaterDragonAi : BasicDragonAI
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         forceDirection += new Vector3(0,2,0) * jumpForce;
         PlayerPos.x = Player.transform.position.x;
