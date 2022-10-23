@@ -10,7 +10,8 @@ Shader "Unlit/Ocean_Shader"
         _MainTint("Main Tint",Color)=(1,1,1,1)
         _2ndTint("2nd Tint",Color)=(1,1,1,1)
         //Stuff for the ocean
-        _Height("Wave Height",Range(0,4)) = 0
+        _Height("Height offset",Range(0,4)) = 0
+        _WaveHeight("Wave Height",Range(0.1,2)) = 1
         
         
 
@@ -92,6 +93,7 @@ Shader "Unlit/Ocean_Shader"
             float4 _2ndTint;
             //stuff for the ocean
             float  _Height;
+            float _WaveHeight;
             
             
 
@@ -118,7 +120,8 @@ Shader "Unlit/Ocean_Shader"
                 UNITY_INITIALIZE_OUTPUT(v2f, o);
                 //for the ocean
                 float3 disjoint = v.vertex.xyz;
-                disjoint.y = v.vertex.y - _Height + 0.3*abs(tan(sin(0.5*(v.vertex.x + _Time.y))));
+                disjoint.y = v.vertex.y - _Height + 0.3*abs(_WaveHeight*tan(sin(0.5*(v.vertex.x + v.vertex.z + _Time.y))));
+                
                 
                 v.vertex.xyz = disjoint;
                 //for the ocean
