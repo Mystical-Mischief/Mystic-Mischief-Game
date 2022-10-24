@@ -21,9 +21,13 @@ public class BasicDragonAI : MonoBehaviour
     public float SightDistance;
     private Transform start;
     public int lastPosition;
+    public bool isGroundedD{get; set;}
+    public Rigidbody rb;
 
-    private Transform target;
-    private UnityEngine.AI.NavMeshAgent ai;
+    public UnityEngine.AI.NavMeshAgent ai;
+
+        [HideInInspector]
+    public Transform target;
     
     //To not ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
@@ -32,7 +36,7 @@ public class BasicDragonAI : MonoBehaviour
         NewRandomNumber();
         ai = GetComponent<UnityEngine.AI.NavMeshAgent>();
         //start.position = transform.position;
-
+        rb = GetComponent<Rigidbody>();
         if(target == null)
         {
             target = PatrolPoints[0].transform;
@@ -170,6 +174,21 @@ public class BasicDragonAI : MonoBehaviour
         target = PatrolPoints[0];
     }
 
+
+    private void IsGrounded()
+    {
+        float bufferDistance = 0.1f;
+        float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
+        {
+            isGroundedD=true;
+        }
+        else
+        {
+            isGroundedD = false;
+        }
+    }
     void NewRandomNumber()
 {
     randomNumber = Random.Range(1, 3);
