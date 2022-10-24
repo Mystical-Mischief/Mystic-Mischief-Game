@@ -78,6 +78,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a7dcc67f-8f9d-469e-b173-75df97ff241e"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Store"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
                     ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
