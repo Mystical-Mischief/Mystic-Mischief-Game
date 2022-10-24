@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour
 {
-
+    public bool canMove;
     private ThirdPersonInputs playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
@@ -62,8 +62,11 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+        if(canMove)
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+        }
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -158,7 +161,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             diveTim = 0;
         }
-        if (flying && isGrounded == false)
+        if (isGrounded == false && canMove)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 6)
