@@ -28,7 +28,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ""id"": ""fd34008b-80e7-426d-97d4-7c82c44f2dfd"",
             ""actions"": [
                 {
-                    ""name"": ""Fire1"",
+                    ""name"": ""Store"",
                     ""type"": ""Button"",
                     ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
                     ""expectedControlType"": ""Button"",
@@ -72,6 +72,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Store"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7dcc67f-8f9d-469e-b173-75df97ff241e"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Store"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -89,8 +111,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
+                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -121,7 +165,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""81c37c7b-46ca-44df-89ad-1757458b57c2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -202,8 +246,30 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e3f384f7-5b85-414e-9d19-d2cbe32beefc"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c984d088-ea9b-4b9b-9b66-f62508c13fdd"",
                     ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b58d955c-5a18-4026-a2c1-1c5a60bb0841"",
+                    ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -278,13 +344,69 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Test"",
+            ""id"": ""16c4472a-5611-435b-835b-4a121f3e8be4"",
+            ""actions"": [
+                {
+                    ""name"": ""HealthTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""1036cb9b-5a91-4891-9e58-cf4c70636b63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1a7e2700-2a7e-4bc0-a937-dd0c5b317dec"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HealthTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MenuActions"",
+            ""id"": ""a63f8fe0-889c-4137-8c17-e1bcc6f113c0"",
+            ""actions"": [
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4f45f2f-7dc5-4d03-a2b2-2608f83357d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d5c1561a-0d3d-4241-8e65-4ed34889849d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
         // Inv
         m_Inv = asset.FindActionMap("Inv", throwIfNotFound: true);
-        m_Inv_Fire1 = m_Inv.FindAction("Fire1", throwIfNotFound: true);
+        m_Inv_Store = m_Inv.FindAction("Store", throwIfNotFound: true);
         m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
         m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
         m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
@@ -298,6 +420,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
         m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
         m_Actions_Snatch = m_Actions.FindAction("Snatch", throwIfNotFound: true);
+        // Test
+        m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
+        m_Test_HealthTest = m_Test.FindAction("HealthTest", throwIfNotFound: true);
+        // MenuActions
+        m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
+        m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,7 +485,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     // Inv
     private readonly InputActionMap m_Inv;
     private IInvActions m_InvActionsCallbackInterface;
-    private readonly InputAction m_Inv_Fire1;
+    private readonly InputAction m_Inv_Store;
     private readonly InputAction m_Inv_Drop;
     private readonly InputAction m_Inv_PressPick;
     private readonly InputAction m_Inv_HoldItem;
@@ -365,7 +493,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     {
         private @ControlsforPlayer m_Wrapper;
         public InvActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Fire1 => m_Wrapper.m_Inv_Fire1;
+        public InputAction @Store => m_Wrapper.m_Inv_Store;
         public InputAction @Drop => m_Wrapper.m_Inv_Drop;
         public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
         public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
@@ -378,9 +506,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_InvActionsCallbackInterface != null)
             {
-                @Fire1.started -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
-                @Fire1.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
-                @Fire1.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnFire1;
+                @Store.started -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
                 @Drop.started -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
@@ -394,9 +522,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             m_Wrapper.m_InvActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Fire1.started += instance.OnFire1;
-                @Fire1.performed += instance.OnFire1;
-                @Fire1.canceled += instance.OnFire1;
+                @Store.started += instance.OnStore;
+                @Store.performed += instance.OnStore;
+                @Store.canceled += instance.OnStore;
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
@@ -499,9 +627,75 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         }
     }
     public ActionsActions @Actions => new ActionsActions(this);
+
+    // Test
+    private readonly InputActionMap m_Test;
+    private ITestActions m_TestActionsCallbackInterface;
+    private readonly InputAction m_Test_HealthTest;
+    public struct TestActions
+    {
+        private @ControlsforPlayer m_Wrapper;
+        public TestActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HealthTest => m_Wrapper.m_Test_HealthTest;
+        public InputActionMap Get() { return m_Wrapper.m_Test; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestActions set) { return set.Get(); }
+        public void SetCallbacks(ITestActions instance)
+        {
+            if (m_Wrapper.m_TestActionsCallbackInterface != null)
+            {
+                @HealthTest.started -= m_Wrapper.m_TestActionsCallbackInterface.OnHealthTest;
+                @HealthTest.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnHealthTest;
+                @HealthTest.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnHealthTest;
+            }
+            m_Wrapper.m_TestActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @HealthTest.started += instance.OnHealthTest;
+                @HealthTest.performed += instance.OnHealthTest;
+                @HealthTest.canceled += instance.OnHealthTest;
+            }
+        }
+    }
+    public TestActions @Test => new TestActions(this);
+
+    // MenuActions
+    private readonly InputActionMap m_MenuActions;
+    private IMenuActionsActions m_MenuActionsActionsCallbackInterface;
+    private readonly InputAction m_MenuActions_Quit;
+    public struct MenuActionsActions
+    {
+        private @ControlsforPlayer m_Wrapper;
+        public MenuActionsActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Quit => m_Wrapper.m_MenuActions_Quit;
+        public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsActionsCallbackInterface != null)
+            {
+                @Quit.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+            }
+            m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Quit.started += instance.OnQuit;
+                @Quit.performed += instance.OnQuit;
+                @Quit.canceled += instance.OnQuit;
+            }
+        }
+    }
+    public MenuActionsActions @MenuActions => new MenuActionsActions(this);
     public interface IInvActions
     {
-        void OnFire1(InputAction.CallbackContext context);
+        void OnStore(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnPressPick(InputAction.CallbackContext context);
         void OnHoldItem(InputAction.CallbackContext context);
@@ -516,5 +710,13 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnSwitchHat(InputAction.CallbackContext context);
         void OnActivateHat(InputAction.CallbackContext context);
         void OnSnatch(InputAction.CallbackContext context);
+    }
+    public interface ITestActions
+    {
+        void OnHealthTest(InputAction.CallbackContext context);
+    }
+    public interface IMenuActionsActions
+    {
+        void OnQuit(InputAction.CallbackContext context);
     }
 }
