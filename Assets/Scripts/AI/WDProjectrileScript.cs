@@ -19,4 +19,12 @@ public class WDProjectrileScript : MonoBehaviour
         Instantiate(particles, transform.position, transform.rotation);
         Destroy(gameObject, TimeToDestroy);
     }
+
+        private void OnCollisionEnter(Collision other)
+    {
+            if (other.gameObject.tag == "Player" && gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked == true)
+        {  
+            other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+        }
+    }
 }

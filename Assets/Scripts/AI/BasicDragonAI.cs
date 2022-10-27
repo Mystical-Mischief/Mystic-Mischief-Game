@@ -21,7 +21,7 @@ public class BasicDragonAI : MonoBehaviour
     public float SightDistance;
     private Transform start;
     public int lastPosition;
-    public bool isGroundedD{get; set;}
+    public bool isGroundedD;
     public Rigidbody rb;
 
     public UnityEngine.AI.NavMeshAgent ai;
@@ -46,6 +46,7 @@ public class BasicDragonAI : MonoBehaviour
 
     public void Update()
     {
+        IsGrounded();
         if (patrolNum > lastPosition)
         {
             NewRandomNumber();
@@ -176,12 +177,12 @@ public class BasicDragonAI : MonoBehaviour
     }
 
 
-    private void IsGrounded()
+    public virtual void IsGrounded()
     {
-        float bufferDistance = 0.1f;
+        float bufferDistance = 5f;
         float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
         RaycastHit hit;
-        if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
+        if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.down), out hit,groundCheckDistance))
         {
             isGroundedD=true;
         }

@@ -15,11 +15,15 @@ public class Inventory : MonoBehaviour
     private bool PickUp;
     private bool Store;
     public bool holdingItem;
+    private int TicketAmount;
+    public GameObject Ticket;
+    private float startMass;
 
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
         controls = new ControlsforPlayer();
+        startMass = rb.mass;
 
     }
     public void OnEnable()
@@ -38,6 +42,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
+        TicketAmount = PickedUpItems.Count;
         Store = controls.Inv.Store.IsPressed();
         PickUp = controls.Inv.PressPick.IsPressed();
 
@@ -127,6 +132,16 @@ public class Inventory : MonoBehaviour
             for (var i = 0; i < PickedUpItems.Count; i++)
             {
                 PickedUpItems.RemoveAt(i);
+                rb.mass = startMass;
+            }
+        }
+                if (other.gameObject.tag == "GoldToTickets")
+        {
+            for (var i = 0; i < PickedUpItems.Count; i++)
+            {
+                PickedUpItems.RemoveAt(i);
+                Instantiate(Ticket, transform.position, Quaternion.identity);
+                rb.mass = startMass;
             }
         }
     }

@@ -72,10 +72,10 @@ public class ThirdPersonController : MonoBehaviour
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
-        if(rb.velocity.y < 0f)
-        {
-            rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-        }
+        // if(rb.velocity.y < 0f)
+        // {
+        //     rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+        // }
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
@@ -142,9 +142,9 @@ public class ThirdPersonController : MonoBehaviour
             {
                 glideSpeed.z = 100;
             }
-            if (glideSpeed.y <= 8)
+            if (glideSpeed.y <= 9.8f)
             {
-                glideSpeed.y = 8;
+                glideSpeed.y = 9.8f;
             }
             if (glideSpeed.z >= 130)
             {
@@ -152,7 +152,7 @@ public class ThirdPersonController : MonoBehaviour
             }
             if (glideSpeed.y >= 25)
             {
-                glideSpeed.y = 8;
+                glideSpeed.y = 9.8f;
             }
             diveTim -= Time.fixedDeltaTime;
             GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
@@ -162,7 +162,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             diveTim = 0;
         }
-        if (flying && isGrounded == false)
+        if (isGrounded == false)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 6)
@@ -186,7 +186,7 @@ public class ThirdPersonController : MonoBehaviour
     }
 
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log(currentHealth);

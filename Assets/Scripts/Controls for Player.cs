@@ -29,12 +29,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Store"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Drop"",
@@ -51,7 +51,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""137fa85d-f5ab-4b53-b7f3-1da9092e75c7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press,Hold"",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -69,6 +69,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""249f10df-dcd2-4d2a-b7a2-a5310ed10354"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Store"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2d68109-9b48-4f39-8328-bd265a513646"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
