@@ -179,11 +179,13 @@ public class BasicDragonAI : MonoBehaviour
 
     public virtual void IsGrounded()
     {
-        float bufferDistance = 5f;
+        float bufferDistance = 0.1f;
         float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
+        Debug.DrawLine(transform.position, Vector3.down, Color.green, groundCheckDistance);
         RaycastHit hit;
-        if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.down), out hit,groundCheckDistance))
+        if(Physics.Raycast(transform.position,Vector3.down, out hit,groundCheckDistance))
         {
+            Debug.Log(hit.transform.gameObject);
             isGroundedD=true;
         }
         else
