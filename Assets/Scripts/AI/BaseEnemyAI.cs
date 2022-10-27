@@ -15,7 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     private Transform target;
     private NavMeshAgent ai;
     
-    //To not ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
+    //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
