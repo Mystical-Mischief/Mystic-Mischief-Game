@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BaseEnemyAI : MonoBehaviour
 {
     public Transform[] PatrolPoints;
+    public Vector3 PlayerDirection;
     public bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
@@ -14,7 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     private Transform target;
     private NavMeshAgent ai;
     
-    //To not ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
+    //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
@@ -91,10 +92,12 @@ public class BaseEnemyAI : MonoBehaviour
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     public virtual void FoundPlayer()
     {
-        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
+        PlayerDirection = target.transform.position - transform.position;
+        Debug.DrawRay(transform.position, (PlayerDirection).normalized * SightDistance, Color.green);
         RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, target.position - transform.position, out hit, SightDistance))
+        
+        
+        if (Physics.Raycast(transform.position, PlayerDirection, out hit, SightDistance))
         {
             UpdateDestination(target.position);
             //if the ai cant see the player
