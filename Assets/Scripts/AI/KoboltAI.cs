@@ -11,6 +11,16 @@ public class KoboltAI : BaseEnemyAI
     bool attackedPlayer = false;
 
     ThirdPersonController player;
+
+    [SerializeField]
+    bool HoldingItem;
+
+    [SerializeField]
+    GameObject Item;
+
+    [SerializeField]
+    bool Protect;
+    
     new void Start()
     {
         base.Start();
@@ -30,6 +40,17 @@ public class KoboltAI : BaseEnemyAI
                 attackedPlayer = false;
             }
         }
+        if(Item != null)
+        {
+            if(Protect)
+            {
+                ProtectObject(Item);
+            }
+            else
+            {
+                Patrol();
+            }
+        }
 
     }
     // Start is called before the first frame update
@@ -43,5 +64,21 @@ public class KoboltAI : BaseEnemyAI
             print("HIt");
             
         }
+    }
+
+    private void OnTriggerEnter (Collider collider)
+    {
+        if(Protect && collider.gameObject.tag == "Gold")
+        {
+            Protect = false;
+            Destroy(collider.gameObject);
+        }
+    }
+
+    private void ProtectObject(GameObject obj)
+    {
+        Vector3 itemDirection = obj.transform.position;
+        UpdateDestination(itemDirection);
+        
     } 
 }
