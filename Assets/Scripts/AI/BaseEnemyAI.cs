@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class BaseEnemyAI : MonoBehaviour
 {
     public Transform[] PatrolPoints;
-    public Vector3 PlayerDirection;
+    private Vector3 PlayerDirection;
     public bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;

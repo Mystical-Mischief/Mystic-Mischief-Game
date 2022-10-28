@@ -54,9 +54,12 @@ public class ThirdPersonController : MonoBehaviour
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
         isGrounded = true;
-
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        if(healthBar != null)
+        {
+            healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        }
         currentHealth = maxHealth;
+        
     }
 
     // Update is called once per frame
@@ -181,7 +184,7 @@ public class ThirdPersonController : MonoBehaviour
             TakeDamage(1);
             Debug.Log("Taking Damage...");
         }
-        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        staminaBar?.GetComponent<StaminaBar>().UpdateStamina(Stamina);
     }
 
 
@@ -190,7 +193,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
         Debug.Log("In TakeDamage");
         
     }

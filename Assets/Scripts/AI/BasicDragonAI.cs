@@ -190,12 +190,12 @@ public class BasicDragonAI : MonoBehaviour
         }
     }
     void NewRandomNumber()
-{
-    randomNumber = Random.Range(1, 3);
-    if (randomNumber == lastNumber)
     {
         randomNumber = Random.Range(1, 3);
+        if (randomNumber == lastNumber)
+        {
+            randomNumber = Random.Range(1, 3);
+        }
+        lastNumber = randomNumber;
     }
-    lastNumber = randomNumber;
-}
 }
