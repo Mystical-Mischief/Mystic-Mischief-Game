@@ -88,7 +88,6 @@ public class CowboyHat : BaseHatScript
         {
             isObjAttached = true;
             obj = collider.gameObject;
-            Debug.Log("whip");
         }
     }
 
