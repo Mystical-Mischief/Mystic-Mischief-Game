@@ -5,21 +5,20 @@ using UnityEngine.AI;
 
 public class BaseEnemyAI : MonoBehaviour
 {
-    public Transform[] PatrolPoints;
-    private Vector3 PlayerDirection;
-    public bool spottedPlayer;
+    internal Transform[] PatrolPoints = new Transform[10];
+    internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
     public string EnemyType;
 
-    private Transform target;
-    private NavMeshAgent ai;
+    public Transform target;
+    internal NavMeshAgent ai;
     
     //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
-        ai = GetComponent<NavMeshAgent>();
+        ai = this.GetComponent<NavMeshAgent>();
 
         if(target == null)
         {
@@ -63,7 +62,7 @@ public class BaseEnemyAI : MonoBehaviour
             }
         }
     }
-    private bool atDestination;
+    internal bool atDestination;
     //if the ai doesnt see the player it will patrol between all the points
     public virtual void Patrol()
     {
