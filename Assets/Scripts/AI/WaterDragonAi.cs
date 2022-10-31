@@ -34,8 +34,7 @@ public class WaterDragonAi : BasicDragonAI
     private bool isRotatingRight = false;
     private int state;
 
-    [HideInInspector]
-    public bool attacked;
+
     [HideInInspector]
     public bool HitPlayer;
     [HideInInspector]
@@ -47,7 +46,7 @@ public class WaterDragonAi : BasicDragonAI
     new void Start()
     {
         state = 0;
-        RandomNumber();
+        NewRandomNumber();
         HitPlayer = false;
         attackTimes = 0;
         attacked = false;
@@ -103,7 +102,7 @@ public class WaterDragonAi : BasicDragonAI
             transform.Rotate(new Vector3(0,0,0));
         }
 
-        if (Player.GetComponent<ThirdPersonController>().rbSpeed >= 9 && dist < 17f)
+        if (Player.GetComponent<ThirdPersonController>().runSpeed >= 9 && dist < 17f)
         {
             detectedPlayer = true;
         }
