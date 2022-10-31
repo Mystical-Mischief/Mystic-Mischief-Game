@@ -221,7 +221,7 @@ Shader "Unlit/Dark_Environment_Shader"
              float3 lightDir
             )
             {
-                return colorRefl * lightInt * max(_ShadowIntensity , step(_ShadowThreshold, dot(normal, lightDir)));
+                return colorRefl * lightInt * max(_ShadowIntensity ,  floor(dot(normal/4, lightDir)));
 
             }
 
