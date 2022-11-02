@@ -8,7 +8,6 @@ public class BaseEnemyAI : MonoBehaviour
     internal Transform[] PatrolPoints = new Transform[10];
     internal bool spottedPlayer;
     public int patrolNum;
-    private Vector3 PlayerDirection;
     public float SightDistance;
     public string EnemyType;
 
