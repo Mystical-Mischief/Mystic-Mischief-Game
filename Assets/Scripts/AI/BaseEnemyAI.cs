@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BaseEnemyAI : MonoBehaviour
 {
+    [SerializeField]
     internal Transform[] PatrolPoints = new Transform[10];
     internal bool spottedPlayer;
     public int patrolNum;
