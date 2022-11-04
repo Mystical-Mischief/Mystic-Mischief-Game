@@ -29,17 +29,16 @@ public class WaterDragonAi : BasicDragonAI
     public Transform Base;
     public float randomWaitTime;
     float lastWaitTime;
-    public bool attacked;
+    private bool attacked;
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private int state;
-
+    private bool detectForGround = true;
 
     [HideInInspector]
     public bool HitPlayer;
     [HideInInspector]
     public bool meleeAttack;
-    [HideInInspector]
     public bool Jumped;
 
     // Start is called before the first frame update
@@ -68,13 +67,12 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(Player.transform.position, transform.position);
         //Debug.Log(dist);
-        if (Player.transform.position.y > transform.position.y)
+        if (detectedPlayer && Player.transform.position.y > transform.position.y)
         {
-            if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
+            if (Jumped == false && this.ai.enabled == true && isGroundedD)
             {
                 Jumped = true;
                 Jump();
-                //Jumped = true;
             }
         }
 
@@ -102,9 +100,10 @@ public class WaterDragonAi : BasicDragonAI
             transform.Rotate(new Vector3(0,0,0));
         }
 
-        if (Player.GetComponent<ThirdPersonController>().runSpeed >= 9 && dist < 17f)
+        if (dist < 17f)
         {
             detectedPlayer = true;
+            target = Player.transform;
         }
         else if (dist > 17f)
         {
@@ -146,15 +145,15 @@ public class WaterDragonAi : BasicDragonAI
         //     Invoke(nameof(ResetAttack3), 1f);
         //     Jumped = false;
         // }
-
-         if (dist > 12f && dist <17f && attackTimes < 5)
-        {
+         if (!Jumped && dist > 12f && dist <17f && attackTimes < 5)
+         {
+            target = Player.transform;
             transform.LookAt(PlayerPos);
             if (attacked == false)
             {Ranged();}
             ///attackTimes = attackTimes + 1;
             //Debug.Log("Ranged");
-        }
+         }
         // if (HitPlayer == true)
         // {
         //     Invoke(nameof(ResetAttack2), 0f);
@@ -166,7 +165,7 @@ public class WaterDragonAi : BasicDragonAI
         }
          if (dist > 2f && dist <12f)
          {
-            transform.LookAt(PlayerPos);
+            //transform.LookAt(PlayerPos);
             if (meleeAttack == false)
             {
                 attackPos.SetActive(true);
@@ -178,7 +177,13 @@ public class WaterDragonAi : BasicDragonAI
     }
     void Jump()
     {
-
+        detectForGround = false;
+        ai.enabled = false;
+        Vector3 jumpVec = Player.transform.position - transform.position;
+        print(jumpVec);
+        rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
+        StartCoroutine(jumpTimer());
     }
 
     private void OnCollisionEnter(Collision other)
@@ -196,17 +201,18 @@ public class WaterDragonAi : BasicDragonAI
         Rigidbody clone;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
         //projectile.LookAt(Player.transform);
+
         clone.velocity = transform.TransformDirection(Vector3.forward * 10);
         Invoke(nameof(ResetAttack), 1f);
         attacked = true;
     }
 
-    void resetJump()
-    {
-        if(base.isGroundedD == false){
-        transform.position = Vector3.MoveTowards(transform.position, (transform.position - new Vector3(0f, 2f, 0f) + Vector3.forward), speed * Time.deltaTime);
-        }
-    }
+   //void resetJump()
+   //{
+   //    if(base.isGroundedD == false){
+   //    transform.position = Vector3.MoveTowards(transform.position, (transform.position - new Vector3(0f, 2f, 0f) + Vector3.forward), speed * Time.deltaTime);
+   //    }
+   //}
     // void Jump()
     // {
     //             if (base.ai.enabled)
@@ -246,13 +252,18 @@ public class WaterDragonAi : BasicDragonAI
     }
     public override void IsGrounded()
     {
-        base.IsGrounded();
-        if (isGroundedD == true)
+        if (detectForGround)
         {
-            Jumped = false;
-            print("Touched Ground");
-            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            base.IsGrounded();
+            if (isGroundedD == true)
+            {
+                Jumped = false;
+                print("Touched Ground");
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+                rb.velocity = Vector3.zero;
+            }
         }
+       
     }
     public virtual void ResetAttack2()
     {
@@ -265,7 +276,12 @@ public class WaterDragonAi : BasicDragonAI
     }
     public virtual void ResetAttack3()
     {
-        resetJump();
+        //resetJump();
         Jumped = false;
+    }
+    IEnumerator jumpTimer()
+    {
+        yield return new WaitForSeconds(1);
+        detectForGround = true;
     }
 }
