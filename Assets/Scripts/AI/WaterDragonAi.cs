@@ -29,7 +29,7 @@ public class WaterDragonAi : BasicDragonAI
     public Transform Base;
     public float randomWaitTime;
     float lastWaitTime;
-    public bool attacked;
+    private bool attacked;
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private int state;
