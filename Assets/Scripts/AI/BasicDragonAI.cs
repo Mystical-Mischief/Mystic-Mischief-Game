@@ -29,13 +29,15 @@ public abstract class BasicDragonAI : BaseEnemyAI
 
     public new void Start()
     {
-        base.Start();
+        //base.Start();
         NewRandomNumber();
         rb = GetComponent<Rigidbody>();
-        foreach(Transform trans in AllPatrolPoints[randomNumber].WanderPoints)
+        ai = this.GetComponent<NavMeshAgent>();
+        foreach (Transform trans in AllPatrolPoints[randomNumber].WanderPoints)
         {
             PatrolPoints[0] = trans;
         }
+        target = PatrolPoints[0];
         UpdateDestination(PatrolPoints[0].position);
     }
 
@@ -57,8 +59,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
 
     public override void Patrol()
     {
-
-        if (ai.remainingDistance < 0.5f && atDestination == false)
+        if ( ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
         {
             atDestination = true;
             //if the player isnt at the last point
@@ -73,23 +74,28 @@ public abstract class BasicDragonAI : BaseEnemyAI
                 finishedPatrolling = true;
             }
             target = PatrolPoints[patrolNum];
-            UpdateDestination(target.position);
+            if(target != null)
+                UpdateDestination(target.position);
         }
         else
         {
             atDestination = false;
         }
     }
+    //public float groundCheckDistance;
     public virtual void IsGrounded()
     {
         float bufferDistance = 0.1f;
-        float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
-        Debug.DrawLine(transform.position, -gameObject.transform.up, Color.green, groundCheckDistance);
+        float groundCheckDistance = ((GetComponent<CapsuleCollider>().height/2)+bufferDistance) * 1.5f;
+        Debug.DrawRay(transform.position, -Vector3.up * (groundCheckDistance), Color.green);
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, -transform.up, out hit,groundCheckDistance))
+        if(Physics.Raycast(transform.position, -Vector3.up, out hit, groundCheckDistance))
         {
-            isGroundedD=true;
+            if (hit.collider)
+            {
+                isGroundedD=true;
+            }
         }
         else
         {
