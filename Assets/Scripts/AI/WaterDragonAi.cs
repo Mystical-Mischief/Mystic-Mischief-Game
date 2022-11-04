@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaterDragonAi : BasicDragonAI
 {
@@ -13,6 +14,7 @@ public class WaterDragonAi : BasicDragonAI
     private Vector3 PlayerPos;
     public float timeBetweenAttacks;
     public float attackRange;
+    public bool detectedPlayer;
     public Transform[] Enemy;
     public GameObject attackPos;
     public LayerMask whatIsEnemy;
@@ -23,9 +25,16 @@ public class WaterDragonAi : BasicDragonAI
     private float jumpForce = 10f;
     private Vector3 forceDirection = Vector3.zero;
     private float bo;
-
-    [HideInInspector]
+    //private bool FoundPlayer;
+    public Transform Base;
+    public float randomWaitTime;
+    float lastWaitTime;
     public bool attacked;
+    private bool isRotatingLeft = false;
+    private bool isRotatingRight = false;
+    private int state;
+
+
     [HideInInspector]
     public bool HitPlayer;
     [HideInInspector]
@@ -36,6 +45,8 @@ public class WaterDragonAi : BasicDragonAI
     // Start is called before the first frame update
     new void Start()
     {
+        state = 0;
+        NewRandomNumber();
         HitPlayer = false;
         attackTimes = 0;
         attacked = false;
@@ -57,7 +68,50 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(Player.transform.position, transform.position);
         //Debug.Log(dist);
-        // if (dist > 17f && dist <20f)
+        if (Player.transform.position.y > transform.position.y)
+        {
+            if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
+            {
+                Jumped = true;
+                Jump();
+                //Jumped = true;
+            }
+        }
+
+        if (attacked == false)
+        {
+            randomWaitTime -= Time.deltaTime;
+        }
+        if (randomWaitTime <= 0 &&  isRotatingLeft==false)
+        {
+            state = 3;
+        }
+
+        if (state == 2) 
+        {
+            transform.Rotate(new Vector3(0,10,0));
+            state = state-1;
+        } 
+        else if (state == 1) 
+        {
+            transform.Rotate(new Vector3(0,-10,0));
+            state = state-1;
+        } 
+        else 
+        { // state is zero
+            transform.Rotate(new Vector3(0,0,0));
+        }
+
+        if (Player.GetComponent<ThirdPersonController>().runSpeed >= 9 && dist < 17f)
+        {
+            detectedPlayer = true;
+        }
+        else if (dist > 17f)
+        {
+            detectedPlayer = false;
+        }
+
+        // if  (FoundPlayer == true && attackTimes < 4)
         // {
         //     if (Jumped == false)
         //     {
@@ -107,33 +161,29 @@ public class WaterDragonAi : BasicDragonAI
         // }
         if (attackTimes >= 5)
         {
-            base.target = Player.transform;
-            base.UpdateDestination(target.position);
+            target = Player.transform;
+            UpdateDestination(target.position);
         }
          if (dist > 2f && dist <12f)
          {
             transform.LookAt(PlayerPos);
             if (meleeAttack == false)
             {
-            attackPos.SetActive(true);
-            meleeAttack = true;
-         }
+                attackPos.SetActive(true);
+                meleeAttack = true;
+                attacked = true;
+            }
          }
 
     }
-    void FixedUpdate()
-    {
-        GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, 0), ForceMode.Impulse);
-    }
-
-    void BaseLostPlayer()
+    void Jump()
     {
 
     }
 
     private void OnCollisionEnter(Collision other)
     {
-            if (other.gameObject.tag == "Player" && meleeAttack == true)
+        if (other.gameObject.tag == "Player" && meleeAttack == true)
         {  
             Debug.Log("DAMAGED!");
             meleeAttack = false;
@@ -189,27 +239,29 @@ public class WaterDragonAi : BasicDragonAI
     //     transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
     //     Collider[] hitObjects = Physics.OverlapSphere(attackPos.position, attackRange, whatIsEnemy);
 
-    //     foreach (Collider enemy in hitObjects)
-    //     {
-    //         if(enemy.gameObject.tag == "Player"){
-    //             Debug.Log("DAMAGED!");
-    //         }
-    //     }
-    //     Invoke(nameof(ResetAttack), timeBetweenAttacks);
-    // }
-        public virtual void ResetAttack()
+    public virtual void ResetAttack()
     {
         attacked = false;
         attackTimes += 1;
     }
-            public virtual void ResetAttack2()
+    public override void IsGrounded()
+    {
+        base.IsGrounded();
+        if (isGroundedD == true)
+        {
+            Jumped = false;
+            print("Touched Ground");
+            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        }
+    }
+    public virtual void ResetAttack2()
     {
         meleeAttack = false;
         attackPos.SetActive(false);
         attackTimes = 0;
-        base.LostPlayer();
+        LostPlayer();
         HitPlayer = false;
-        base.target = base.PatrolPoints[0];
+        target = PatrolPoints[0];
     }
     public virtual void ResetAttack3()
     {
