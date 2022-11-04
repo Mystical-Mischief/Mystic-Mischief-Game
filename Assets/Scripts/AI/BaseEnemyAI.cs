@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BaseEnemyAI : MonoBehaviour
 {
+    [SerializeField]
     internal Transform[] PatrolPoints = new Transform[10];
     internal bool spottedPlayer;
     public int patrolNum;
@@ -89,6 +90,7 @@ public class BaseEnemyAI : MonoBehaviour
         }
     }
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
+    private Vector3 PlayerDirection;
     public virtual void FoundPlayer()
     {
         PlayerDirection = target.transform.position - transform.position;
