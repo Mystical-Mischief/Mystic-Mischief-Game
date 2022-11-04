@@ -469,7 +469,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143404452}
-  m_LocalRotation: {x: 0.14391507, y: -0.47681987, z: 0.07946997, w: 0.8634905}
+  m_LocalRotation: {x: 0.14391509, y: -0.47681987, z: 0.07946998, w: 0.8634905}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1559,11 +1559,15 @@ PrefabInstance:
     - target: {fileID: 8535833215094066386, guid: 51cc3e9efd812e14fa88198b8fa165cc, type: 3}
       propertyPath: camFly
       value: 
-      objectReference: {fileID: 545916970}
+      objectReference: {fileID: 1936335548}
+    - target: {fileID: 8535833215094066386, guid: 51cc3e9efd812e14fa88198b8fa165cc, type: 3}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8535833215094066386, guid: 51cc3e9efd812e14fa88198b8fa165cc, type: 3}
       propertyPath: camGround
       value: 
-      objectReference: {fileID: 1936335550}
+      objectReference: {fileID: 545916968}
     - target: {fileID: 8535833215094066386, guid: 51cc3e9efd812e14fa88198b8fa165cc, type: 3}
       propertyPath: playerCamera
       value: 
@@ -1936,27 +1940,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PatrolPoints:
-  - {fileID: 1839509709}
-  PatrolPoints1:
-  - {fileID: 1839509709}
-  PatrolPoints2:
-  - {fileID: 1839509709}
-  PatrolPoints3:
-  - {fileID: 1839509709}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  patrolNum: 0
+  SightDistance: 0
+  EnemyType: 
+  target: {fileID: 0}
+  AllPatrolPoints: []
   waypointFollowing: 0
   waypointDistance: 3
   randomNumber: 0
-  spottedPlayer: 0
-  patrolNum: 0
-  SightDistance: 0
   lastPosition: 1
-  rb: {fileID: 0}
-  ai: {fileID: 0}
-  target: {fileID: 0}
+  isGroundedD: 0
   Player: {fileID: 0}
   projectile: {fileID: 8596426487253530810, guid: baa3978789289474c8fe461a09577f65, type: 3}
   timeBetweenAttacks: 5
   attackRange: 0
+  detectedPlayer: 0
   Enemy:
   - {fileID: 0}
   attackPos: {fileID: 1379522673}
@@ -1966,6 +1974,8 @@ MonoBehaviour:
   attackTimes: 0
   jumpAttackHieght: 2
   jumpHieght: {x: 0, y: 2, z: 3}
+  Base: {fileID: 0}
+  randomWaitTime: 0
   attacked: 0
   HitPlayer: 0
   meleeAttack: 0
@@ -2023,11 +2033,10 @@ MonoBehaviour:
   PatrolPoints:
   - {fileID: 910799362}
   - {fileID: 1326977256}
-  PlayerDirection: {x: 0, y: 0, z: 0}
-  spottedPlayer: 0
   patrolNum: 0
   SightDistance: 20
   EnemyType: 
+  target: {fileID: 0}
   attackedPlayer: 0
   HoldingItem: 0
   Item: {fileID: 864859169}
@@ -2543,12 +2552,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PatrolPoints:
-  - {fileID: 371395643}
-  PlayerDirection: {x: 0, y: 0, z: 0}
-  spottedPlayer: 0
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   patrolNum: 0
   SightDistance: 5
   EnemyType: 
+  target: {fileID: 0}
   attackedPlayer: 0
   isAggressive: 0
 --- !u!195 &1605578502
@@ -2958,7 +2975,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930123483}
-  m_LocalRotation: {x: 0.1284598, y: -0.000000033043943, z: 0.0000000042802815, w: 0.9917147}
+  m_LocalRotation: {x: 0.12845978, y: -2.1295924e-15, z: 1.7432483e-16, w: 0.9917147}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
