@@ -34,8 +34,8 @@ public class ThirdPersonController : MonoBehaviour
     public float diveTim;
 
     public bool isGrounded{get; set;}
-    [SerializeField] private CinemachineFreeLook camGround;
-    [SerializeField] private CinemachineFreeLook camFly;
+    [SerializeField] private GameObject camGround;
+    [SerializeField] private GameObject camFly;
 
     public int maxHealth = 4;
     public int currentHealth;
@@ -54,9 +54,12 @@ public class ThirdPersonController : MonoBehaviour
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
         isGrounded = true;
-
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        if(healthBar != null)
+        {
+            healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        }
         currentHealth = maxHealth;
+        
     }
 
     // Update is called once per frame
@@ -181,7 +184,7 @@ public class ThirdPersonController : MonoBehaviour
             TakeDamage(1);
             Debug.Log("Taking Damage...");
         }
-        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        staminaBar?.GetComponent<StaminaBar>().UpdateStamina(Stamina);
     }
 
 
@@ -190,7 +193,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
         Debug.Log("In TakeDamage");
         
     }
@@ -229,9 +232,8 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
-        CameraSwitch.Register(camGround);
-        CameraSwitch.Register(camFly);
-        CameraSwitch.SwitchCamera(camGround);
+        camGround.SetActive(true);
+        camFly.SetActive(false);
 
     }
     private void OnDisable()
@@ -240,8 +242,8 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
-        CameraSwitch.Unregister(camGround);
-        CameraSwitch.Unregister(camFly);
+        camGround.SetActive(false);
+        camFly.SetActive(false);
     }
 
     private void IsGrounded()
@@ -252,20 +254,14 @@ public class ThirdPersonController : MonoBehaviour
         if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
         {
             isGrounded=true;
-            if(CameraSwitch.IsActiveCamera(camFly))
-            {
-                CameraSwitch.SwitchCamera(camGround);
-                Debug.Log("Ground");
-            }
+            camGround.SetActive(true);
+            camFly.SetActive(false);
         }
         else
         {
             isGrounded = false;
-            if(CameraSwitch.IsActiveCamera(camGround))
-            {
-                CameraSwitch.SwitchCamera(camFly);
-                Debug.Log("Fly");
-            }
+            camGround.SetActive(false);
+            camFly.SetActive(true);
         }
     }
 
