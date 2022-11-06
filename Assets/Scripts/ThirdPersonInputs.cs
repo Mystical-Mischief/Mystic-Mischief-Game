@@ -53,6 +53,15 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Caw"",
+                    ""type"": ""Button"",
+                    ""id"": ""af14e047-b3b9-45a6-bf42-9159866a02a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,28 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dec1776d-c63a-4dc2-ad01-a201d97b7945"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78d1ff46-ca1d-470c-93e3-92e16d397570"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -204,6 +235,7 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
         m_PlayerOnGround_Movement = m_PlayerOnGround.FindAction("Movement", throwIfNotFound: true);
         m_PlayerOnGround_Look = m_PlayerOnGround.FindAction("Look", throwIfNotFound: true);
         m_PlayerOnGround_Jump = m_PlayerOnGround.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerOnGround_Caw = m_PlayerOnGround.FindAction("Caw", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_UnlockMouse = m_Test.FindAction("UnlockMouse", throwIfNotFound: true);
@@ -269,6 +301,7 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerOnGround_Movement;
     private readonly InputAction m_PlayerOnGround_Look;
     private readonly InputAction m_PlayerOnGround_Jump;
+    private readonly InputAction m_PlayerOnGround_Caw;
     public struct PlayerOnGroundActions
     {
         private @ThirdPersonInputs m_Wrapper;
@@ -276,6 +309,7 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerOnGround_Movement;
         public InputAction @Look => m_Wrapper.m_PlayerOnGround_Look;
         public InputAction @Jump => m_Wrapper.m_PlayerOnGround_Jump;
+        public InputAction @Caw => m_Wrapper.m_PlayerOnGround_Caw;
         public InputActionMap Get() { return m_Wrapper.m_PlayerOnGround; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -294,6 +328,9 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnJump;
+                @Caw.started -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnCaw;
+                @Caw.performed -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnCaw;
+                @Caw.canceled -= m_Wrapper.m_PlayerOnGroundActionsCallbackInterface.OnCaw;
             }
             m_Wrapper.m_PlayerOnGroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -307,6 +344,9 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Caw.started += instance.OnCaw;
+                @Caw.performed += instance.OnCaw;
+                @Caw.canceled += instance.OnCaw;
             }
         }
     }
@@ -349,6 +389,7 @@ public partial class @ThirdPersonInputs : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCaw(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {
