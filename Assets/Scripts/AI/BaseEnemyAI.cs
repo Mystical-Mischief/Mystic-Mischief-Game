@@ -5,19 +5,28 @@ using UnityEngine.AI;
 
 public class BaseEnemyAI : MonoBehaviour
 {
+    // private GameViewController _gameviewcontroller;
+    // public GameViewController GameViewController => _gameviewcontroller;
     public Transform[] PatrolPoints;
     public bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
     public string EnemyType;
+    private int Health;
+    // ControlsforPlayer controls;
+    public GameObject Player;
+    private bool Saved;
+    public Vector3 targetPosition;
 
-    private Transform target;
+    public Transform target;
     private NavMeshAgent ai;
     
     //To not ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
+        Saved = false;
+        // controls = new ControlsforPlayer();
         ai = GetComponent<NavMeshAgent>();
 
         if(target == null)
@@ -29,6 +38,17 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        targetPosition = target.transform.position;
+        if ( Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+        {
+            SaveEnemy();
+            Saved = true;
+        }
+        if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+        {
+            Saved = false;
+            LoadEnemy();
+        }
         //if the ai doesnt see the player then it will patrol and look for it
         if (!spottedPlayer)
         {
@@ -115,4 +135,34 @@ public class BaseEnemyAI : MonoBehaviour
         spottedPlayer = false;
         target = PatrolPoints[0];
     }
+
+    //     private void OnEnable()
+    // {
+    //     controls.Enable();
+    // }
+    // private void OnDisable()
+    // {
+    //     controls.Disable();
+    // }
+
+            public void SaveEnemy ()
+    {
+        SaveSystem.SaveEnemy(this);
+        Debug.Log("Saved");
+    }
+    public void LoadEnemy ()
+    {
+        EnemyData data = SaveSystem.LoadEnemy(this);
+        patrolNum = data.patrolNum;
+        target = PatrolPoints[patrolNum];
+        UpdateDestination(target.position);
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        spottedPlayer = data.spottedPlayer;
+    }
+
 }

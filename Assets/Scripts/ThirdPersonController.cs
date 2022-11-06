@@ -32,6 +32,11 @@ public class ThirdPersonController : MonoBehaviour
     public Vector3 glideSpeed;
     public Vector3 diveSpeed;
     public float diveTim;
+    [HideInInspector]
+    public bool Saved;
+    [HideInInspector]
+    public bool Loaded;
+    public float powerValue;
 
     public bool isGrounded{get; set;}
     [SerializeField] private CinemachineFreeLook camGround;
@@ -183,6 +188,11 @@ public class ThirdPersonController : MonoBehaviour
             Debug.Log("Taking Damage...");
         }
         staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        if (currentHealth <= 0)
+        {
+            LoadCheckpoint();
+            currentHealth = maxHealth;
+        }
     }
 
 
@@ -270,6 +280,32 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("wall")){
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+            if(other.gameObject.CompareTag("Water")){
+                moveForce = 1f;
+        }
+    }
+    void OnCollisionExit(Collision other)
+    {
+            if(other.gameObject.CompareTag("Water")){
+                moveForce = 5f;
+        } 
+    }
+
+        private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Checkpoint")
+        {
+            Checkpoint();
+        }
+    }
+
     private void DoJump(InputAction.CallbackContext obj)
     {
         
@@ -282,5 +318,37 @@ public class ThirdPersonController : MonoBehaviour
             }
         
     }
-   
+        public void SavePlayer ()
+    {
+        SaveSystem.SavePlayer(this);
+        Saved = true;
+    }
+    public void LoadPlayer ()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+    }
+
+            public void Checkpoint ()
+    {
+        SaveSystem.Checkpoint(this);
+        Saved = true;
+    }
+    public void LoadCheckpoint ()
+    {
+        PlayerData data = SaveSystem.LoadCheckpoint();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+    }
 }

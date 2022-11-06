@@ -181,7 +181,7 @@ public class BasicDragonAI : MonoBehaviour
     {
         float bufferDistance = 0.1f;
         float groundCheckDistance = (GetComponent<CapsuleCollider>().height/2)+bufferDistance;
-        Debug.DrawLine(transform.position, Vector3.down, Color.green, groundCheckDistance);
+        Debug.DrawLine(transform.position, -transform.up, Color.green, groundCheckDistance);
         RaycastHit hit;
         if(Physics.Raycast(transform.position,Vector3.down, out hit,groundCheckDistance))
         {
