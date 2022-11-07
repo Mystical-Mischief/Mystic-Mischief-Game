@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Sound : MonoBehaviour
 {
 
     [SerializeField] Slider volumeSlider;
+    public AudioMixerGroup audioMixerGroup;
+    // public AudioMixerGroup[] FindMatchingGroups(string BGM);
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +23,26 @@ public class Sound : MonoBehaviour
             Load();
         }
     }
-
+     public AudioMixer mixer;
+     public string parameterName = "SE";
+ 
+     protected float Parameter
+     {
+         get
+         {
+             float parameter;
+             mixer.GetFloat(parameterName, out parameter);
+             return parameter;
+         }
+         set
+         {
+             mixer.SetFloat(parameterName, value);
+         }
+     }
     public void ChangeVolume(){
-        AudioListener.volume = volumeSlider.value;
+        Parameter = volumeSlider.value;
+        // audioMixerGroup.SetFloat(volumeSlider.value);
+        // audioMixerGroup.MyExposedParam = volumeSlider.value;
         Save();
     }
 
