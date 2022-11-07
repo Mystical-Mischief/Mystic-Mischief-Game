@@ -12,6 +12,9 @@ public class SnakeAI : BaseEnemyAI
     bool isAggressive;
     float attackCooldown = 1f;
     float currentAttack = 1f;
+
+    [SerializeField]
+    private float knockbackForce = 250;
     // Start is called before the first frame update
     new void Start()
     {
@@ -23,13 +26,9 @@ public class SnakeAI : BaseEnemyAI
    new void Update()
     {
         base.Update();
-        base.Update();
         if(attackedPlayer)
         {
-            if(!isAggressive)
-            {
-                LostPlayer();
-            }
+            LostPlayer();
             
             currentAttack-=Time.deltaTime;
             if(currentAttack <= 0)
@@ -45,6 +44,8 @@ public class SnakeAI : BaseEnemyAI
         {
             attackedPlayer = true;
             player.currentHealth--;
+            //Knockback
+            collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
             print($"Player Health: {player.currentHealth}");
             print("HIt");
             

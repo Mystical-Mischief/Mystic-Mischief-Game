@@ -34,14 +34,16 @@ public class ThirdPersonController : MonoBehaviour
     public float diveTim;
 
     public bool isGrounded{get; set;}
-    [SerializeField] private CinemachineFreeLook camGround;
-    [SerializeField] private CinemachineFreeLook camFly;
+    [SerializeField] private GameObject camGround;
+    [SerializeField] private GameObject camFly;
 
     public int maxHealth = 4;
     public int currentHealth;
 
     public GameObject healthBar;
     public GameObject staminaBar;
+
+    private AudioSource caw;
     
 
 
@@ -59,6 +61,8 @@ public class ThirdPersonController : MonoBehaviour
             healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
         }
         currentHealth = maxHealth;
+
+        caw = GetComponent<AudioSource>();
         
     }
 
@@ -228,23 +232,24 @@ public class ThirdPersonController : MonoBehaviour
     private void OnEnable()
     {
         playerInputs.PlayerOnGround.Jump.started += DoJump;
+        playerInputs.PlayerOnGround.Caw.started += Caw;
         move = playerInputs.PlayerOnGround.Movement;
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
-        CameraSwitch.Register(camGround);
-        CameraSwitch.Register(camFly);
-        CameraSwitch.SwitchCamera(camGround);
+        camGround.SetActive(true);
+        camFly.SetActive(false);
 
     }
     private void OnDisable()
     {
         playerInputs.PlayerOnGround.Jump.started -= DoJump;
+        playerInputs.PlayerOnGround.Caw.started -= Caw;
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
-        CameraSwitch.Unregister(camGround);
-        CameraSwitch.Unregister(camFly);
+        camGround.SetActive(false);
+        camFly.SetActive(false);
     }
 
     private void IsGrounded()
@@ -255,20 +260,14 @@ public class ThirdPersonController : MonoBehaviour
         if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
         {
             isGrounded=true;
-            if(CameraSwitch.IsActiveCamera(camFly))
-            {
-                CameraSwitch.SwitchCamera(camGround);
-                Debug.Log("Ground");
-            }
+            camGround.SetActive(true);
+            camFly.SetActive(false);
         }
         else
         {
             isGrounded = false;
-            if(CameraSwitch.IsActiveCamera(camGround))
-            {
-                CameraSwitch.SwitchCamera(camFly);
-                Debug.Log("Fly");
-            }
+            camGround.SetActive(false);
+            camFly.SetActive(true);
         }
     }
 
@@ -283,6 +282,11 @@ public class ThirdPersonController : MonoBehaviour
                 Debug.Log("In DoJump Function");
             }
         
+    }
+
+    private void Caw(InputAction.CallbackContext obj)
+    {
+        caw.Play();
     }
    
 }
