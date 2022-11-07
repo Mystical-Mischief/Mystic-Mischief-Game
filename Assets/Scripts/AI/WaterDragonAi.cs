@@ -145,6 +145,11 @@ public class WaterDragonAi : BasicDragonAI
             attacked = true;
          }
          }
+         if (Player.GetComponent<ThirdPersonController>().inWater == true)
+         {
+            attackTimes = 5;
+         }
+         else {}
 
     }
         void Jump()
@@ -161,7 +166,18 @@ public class WaterDragonAi : BasicDragonAI
             meleeAttack = false;
             Invoke(nameof(ResetAttack2), 0f);
         }
+        if(other.gameObject.CompareTag("Water")){
+                base.ai.speed = 10f;
+                base.Speed = 10f;
+        }
 
+    }
+    void OnCollisionExit(Collision other)
+    {
+            if(other.gameObject.CompareTag("Water")){
+                base.ai.speed = 3.5f;
+                base.Speed = 3.5f;
+        } 
     }
     void Ranged()
     {

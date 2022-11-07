@@ -37,6 +37,8 @@ public class ThirdPersonController : MonoBehaviour
     [HideInInspector]
     public bool Loaded;
     public float powerValue;
+    public bool Targeted;
+    public bool inWater;
 
     public bool isGrounded{get; set;}
     [SerializeField] private CinemachineFreeLook camGround;
@@ -288,14 +290,15 @@ public class ThirdPersonController : MonoBehaviour
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
             if(other.gameObject.CompareTag("Water")){
-                moveForce = 1f;
+                isGrounded = false;
+                inWater = true;
         }
     }
     void OnCollisionExit(Collision other)
     {
-            if(other.gameObject.CompareTag("Water")){
-                moveForce = 5f;
-        } 
+        if(other.gameObject.CompareTag("Water")){
+            inWater = false;
+        }
     }
 
         private void OnTriggerStay(Collider other)

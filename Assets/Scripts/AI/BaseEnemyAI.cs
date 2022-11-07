@@ -38,6 +38,10 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        if (target == Player)
+        {
+            Player.GetComponent<ThirdPersonController>().Targeted = true;
+        }
         targetPosition = target.transform.position;
         if ( Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
         {

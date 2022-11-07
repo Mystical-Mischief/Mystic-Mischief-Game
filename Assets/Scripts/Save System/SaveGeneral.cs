@@ -31,7 +31,7 @@ public class SaveGeneral : MonoBehaviour
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
-        if (Save)
+        if (Save && Player.GetComponent<ThirdPersonController>().Targeted == false)
         {
             SaveEnemy();
         }
@@ -75,3 +75,84 @@ public class SaveGeneral : MonoBehaviour
         LoadMenu = true;
     }
 }
+
+    //     public void SavePlayer ()
+    // {
+    //     SaveSystem.SavePlayer(this);
+    //     Saved = true;
+    // }
+    // public void LoadPlayer ()
+    // {
+    //     PlayerData data = SaveSystem.LoadPlayer();
+    //     currentHealth = data.health;
+    //     Vector3 position;
+    //     position.x = data.position[0];
+    //     position.y = data.position[1];
+    //     position.z = data.position[2];
+    //     transform.position = position;
+    //     Stamina = data.Stamina;
+    // }
+
+    //         public void Checkpoint ()
+    // {
+    //     SaveSystem.Checkpoint(this);
+    //     Saved = true;
+    // }
+    // public void LoadCheckpoint ()
+    // {
+    //     PlayerData data = SaveSystem.LoadCheckpoint();
+    //     currentHealth = data.health;
+    //     Vector3 position;
+    //     position.x = data.position[0];
+    //     position.y = data.position[1];
+    //     position.z = data.position[2];
+    //     transform.position = position;
+    //     Stamina = data.Stamina;
+    // }
+
+    //     void OnCollisionEnter(Collision other)
+    // {
+    //     if(other.gameObject.CompareTag("wall")){
+    //         Vector3 direction = other.contacts[0].point - transform.position;
+    //         direction = -direction.normalized;
+    //         rb.AddForce((-transform.forward * 1000) * powerValue);
+    //     }
+    //         if(other.gameObject.CompareTag("Water")){
+    //             moveForce = 1f;
+    //     }
+    // }
+    // void OnCollisionExit(Collision other)
+    // {
+    //         if(other.gameObject.CompareTag("Water")){
+    //             moveForce = 5f;
+    //     } 
+    // }
+
+    //     private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.gameObject.tag == "Checkpoint")
+    //     {
+    //         Checkpoint();
+    //     }
+    // }
+
+//SAVE ENEMY
+    //         public void SaveEnemy ()
+    // {
+    //     SaveSystem.SaveEnemy(this);
+    //     Debug.Log("Saved");
+    // }
+    // public void LoadEnemy ()
+    // {
+    //     EnemyData data = SaveSystem.LoadEnemy(this);
+    //     patrolNum = data.patrolNum;
+    //     target = PatrolPoints[patrolNum];
+    //     UpdateDestination(target.position);
+
+    //     Vector3 position;
+    //     position.x = data.position[0];
+    //     position.y = data.position[1];
+    //     position.z = data.position[2];
+    //     transform.position = position;
+    //     spottedPlayer = data.spottedPlayer;
+    // }
