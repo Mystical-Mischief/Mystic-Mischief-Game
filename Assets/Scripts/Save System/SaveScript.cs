@@ -42,7 +42,20 @@ public static class SaveSystem
 
     }
 
-            public static void SaveInventory (Inventory inv)
+    public static void SaveItem(Item item)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + item.name;
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        ItemData data = new ItemData(item);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+
+    }
+
+    public static void SaveInventory (Inventory inv)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Inventory.fun";
@@ -111,7 +124,28 @@ public static class SaveSystem
             return null;
         }
     }
-                public static InventoryData LoadInventory ()
+
+
+    public static ItemData LoadItem(Item item)
+    {
+        string path = Application.persistentDataPath + item.name;
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            ItemData data = formatter.Deserialize(stream) as ItemData;
+            stream.Close();
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+    public static InventoryData LoadInventory ()
     {
         string path = Application.persistentDataPath + "/Inventory.fun";
         if (File.Exists(path))

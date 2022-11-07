@@ -9,6 +9,7 @@ public class SaveGeneral : MonoBehaviour
     public GameObject Player;
     public List<GameObject> PickedUpItems = new List<GameObject>();
     public static bool LoadMenu;
+    public List<GameObject> Items = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +50,17 @@ public class SaveGeneral : MonoBehaviour
 
     public void SaveEnemy ()
     {
+        foreach (GameObject items in Items)
+        {
+            items.GetComponent<Item>().SaveItem();
+        }
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
         }
-        foreach (GameObject item in PickedUpItems)
+        foreach (GameObject Inv in PickedUpItems)
         {
-            item.GetComponent<Item>().inInventory = true;
+            Inv.GetComponent<Item>().inInventory = true;
         }
         Player.GetComponent<ThirdPersonController>().SavePlayer();
     }
@@ -65,9 +70,9 @@ public class SaveGeneral : MonoBehaviour
         {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
         }
-        foreach (GameObject item in PickedUpItems)
+        foreach (GameObject Inv in PickedUpItems)
         {
-            item.GetComponent<Item>().inInventory = true;
+            Inv.GetComponent<Item>().inInventory = true;
         }
         Player.GetComponent<ThirdPersonController>().SavePlayer();
     }
@@ -77,9 +82,14 @@ public class SaveGeneral : MonoBehaviour
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
-        foreach (GameObject item in PickedUpItems)
+        foreach (GameObject Inv in PickedUpItems)
         {
-            item.SetActive(false);
+            Inv.SetActive(false);
+        }
+        foreach (GameObject items in Items)
+        {
+            items.GetComponent<Item>().LoadItem();
+            items.SetActive()
         }
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
     }
