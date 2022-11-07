@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,6 +38,18 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
+        {
+            if (hit.transform.gameObject.tag == "Player")
+            {
+                spottedPlayer = true;
+                target = hit.transform;
+
+            }
+        }
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;

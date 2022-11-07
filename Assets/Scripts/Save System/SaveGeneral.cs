@@ -13,6 +13,7 @@ public class SaveGeneral : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveEnemyCheckPoint();
         controls = new ControlsforPlayer();
         controls.Enable();
     }
@@ -47,6 +48,18 @@ public class SaveGeneral : MonoBehaviour
     }
 
     public void SaveEnemy ()
+    {
+        foreach (GameObject enemy in Enemies)
+        {
+            enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
+        }
+        foreach (GameObject item in PickedUpItems)
+        {
+            item.GetComponent<Item>().inInventory = true;
+        }
+        Player.GetComponent<ThirdPersonController>().SavePlayer();
+    }
+    public void SaveEnemyCheckPoint()
     {
         foreach (GameObject enemy in Enemies)
         {

@@ -58,6 +58,7 @@ public class ThirdPersonController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonInputs();
         Stamina = 6;
@@ -290,6 +291,7 @@ public class ThirdPersonController : MonoBehaviour
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
             if(other.gameObject.CompareTag("Water")){
+            moveForce = 0.5f;
                 isGrounded = false;
                 inWater = true;
         }
@@ -298,6 +300,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Water")){
             inWater = false;
+            moveForce = 5f;
         }
     }
 
