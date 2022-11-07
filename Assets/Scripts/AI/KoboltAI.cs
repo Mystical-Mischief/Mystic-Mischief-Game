@@ -24,6 +24,9 @@ public class KoboltAI : BaseEnemyAI
 
     [SerializeField]
     private Transform fleeLocation;
+
+    [SerializeField]
+    private float knockbackForce;
     
     new void Start()
     {
@@ -65,6 +68,8 @@ public class KoboltAI : BaseEnemyAI
         {
             attackedPlayer = true;
             player.currentHealth--;
+            //Knockback
+            collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
             print($"Player Health: {player.currentHealth}");
             print("HIt");
             
