@@ -12,7 +12,7 @@ public class BasicDragonAI : MonoBehaviour
     private int currentWaypoint = 0;
     public int waypointFollowing = 0;
     public float waypointDistance = 3f;
-    private float Speed = 15f;
+    public float Speed = 15f;
     public int randomNumber;
     int lastNumber;
     bool lastItem;
