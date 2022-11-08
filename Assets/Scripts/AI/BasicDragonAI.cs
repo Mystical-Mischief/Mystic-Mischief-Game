@@ -17,7 +17,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
     //private int currentWaypoint = 0;
     public int waypointFollowing = 0;
     public float waypointDistance = 3f;
-    //private float Speed = 15f;
+    public float Speed = 15f;
     public int randomNumber;
     int lastNumber;
     //bool lastItem;
@@ -59,7 +59,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
 
     public override void Patrol()
     {
-        if ( ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
+        if (ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
         {
             atDestination = true;
             //if the player isnt at the last point
@@ -74,12 +74,54 @@ public abstract class BasicDragonAI : BaseEnemyAI
                 finishedPatrolling = true;
             }
             target = PatrolPoints[patrolNum];
-            if(target != null)
+            if (target != null)
                 UpdateDestination(target.position);
         }
         else
         {
             atDestination = false;
+        }
+    }
+    //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
+    public virtual void FoundPlayer()
+    {
+        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, target.position - transform.position, out hit, SightDistance))
+        {
+            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.green, 100, false);
+            UpdateDestination(target.position);
+            //if the ai cant see the player
+            if (hit.transform.gameObject.tag != "Player")
+            {
+                LostPlayer();
+            }
+        }
+        //if the ai cant see the player
+        else
+        {
+            LostPlayer();
+        }
+    }
+    //this runs when the player is lost by the ai. some basic logic.
+    public virtual void LostPlayer()
+    {
+        spottedPlayer = false;
+        target = PatrolPoints[0];
+    }
+
+
+    public virtual void IsGrounded()
+    {
+        float bufferDistance = 0.1f;
+        float groundCheckDistance = (GetComponent<CapsuleCollider>().height / 2) + bufferDistance;
+        Debug.DrawLine(transform.position, -transform.up, Color.green, groundCheckDistance);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance))
+        {
+            Debug.Log(hit.transform.gameObject);
+            isGroundedD = true;
         }
     }
     //public float groundCheckDistance;
@@ -102,13 +144,17 @@ public abstract class BasicDragonAI : BaseEnemyAI
             isGroundedD = false;
         }
     }
-   public virtual void NewRandomNumber()
+    public virtual void NewRandomNumber()
     {
-        randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
+        randomNumber = Random.Range(1, 3);
         if (randomNumber == lastNumber)
         {
             randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
+            if (randomNumber == lastNumber)
+            {
+                randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
+            }
+            lastNumber = randomNumber;
         }
-        lastNumber = randomNumber;
     }
 }
