@@ -13,7 +13,7 @@ Shader "Unlit/Dark_Environment_Shader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {"LightMode" = "Deffered" "RenderType"="Opaque" }
         LOD 100
         Pass
        {
@@ -153,7 +153,7 @@ Shader "Unlit/Dark_Environment_Shader"
         Pass
         {
             Name "Second Pass"
-            Tags{"LightMode" = "ForwardAdd" "RenderType" = "Opaque"}
+            Tags{"LightMode" = "ForwardAdd"}
             ZWrite On
             CGPROGRAM
             #pragma vertex vert
