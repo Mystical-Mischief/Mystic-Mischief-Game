@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class ThirdPersonController : MonoBehaviour
 {
-
+    public bool canMove;
     private ThirdPersonInputs playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
@@ -41,8 +41,8 @@ public class ThirdPersonController : MonoBehaviour
     public bool inWater;
 
     public bool isGrounded{get; set;}
-    [SerializeField] private CinemachineFreeLook camGround;
-    [SerializeField] private CinemachineFreeLook camFly;
+    [SerializeField] private GameObject camGround;
+    [SerializeField] private GameObject camFly;
 
 
     //[HideInInspector]
@@ -65,17 +65,22 @@ public class ThirdPersonController : MonoBehaviour
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
         isGrounded = true;
-
-        healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        if(healthBar != null)
+        {
+            healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        }
         currentHealth = maxHealth;
+        
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        rbSpeed = rb.velocity.magnitude ;
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+        if(canMove)
+        {
+            forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
+            forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
+        }
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -170,7 +175,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             diveTim = 0;
         }
-        if (isGrounded == false)
+        if (isGrounded == false && canMove)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 6)
@@ -190,12 +195,12 @@ public class ThirdPersonController : MonoBehaviour
             TakeDamage(1);
             Debug.Log("Taking Damage...");
         }
-        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         if (currentHealth <= 0)
         {
             LoadCheckpoint();
             currentHealth = maxHealth;
         }
+        staminaBar?.GetComponent<StaminaBar>().UpdateStamina(Stamina);
     }
 
 
@@ -204,7 +209,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
         Debug.Log("In TakeDamage");
         
     }
@@ -243,9 +248,8 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
-        CameraSwitch.Register(camGround);
-        CameraSwitch.Register(camFly);
-        CameraSwitch.SwitchCamera(camGround);
+        camGround.SetActive(true);
+        camFly.SetActive(false);
 
     }
     private void OnDisable()
@@ -254,8 +258,8 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
-        CameraSwitch.Unregister(camGround);
-        CameraSwitch.Unregister(camFly);
+        camGround.SetActive(false);
+        camFly.SetActive(false);
     }
 
     private void IsGrounded()
@@ -266,20 +270,14 @@ public class ThirdPersonController : MonoBehaviour
         if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
         {
             isGrounded=true;
-            if(CameraSwitch.IsActiveCamera(camFly))
-            {
-                CameraSwitch.SwitchCamera(camGround);
-                Debug.Log("Ground");
-            }
+            camGround.SetActive(true);
+            camFly.SetActive(false);
         }
         else
         {
             isGrounded = false;
-            if(CameraSwitch.IsActiveCamera(camGround))
-            {
-                CameraSwitch.SwitchCamera(camFly);
-                Debug.Log("Fly");
-            }
+            camGround.SetActive(false);
+            camFly.SetActive(true);
         }
     }
 
@@ -290,10 +288,10 @@ public class ThirdPersonController : MonoBehaviour
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
-            if(other.gameObject.CompareTag("Water")){
-            moveForce = 0.5f;
-                isGrounded = false;
-                inWater = true;
+        if(other.gameObject.CompareTag("Water")){
+        moveForce = 0.5f;
+            isGrounded = false;
+            inWater = true;
         }
     }
     void OnCollisionExit(Collision other)
@@ -304,7 +302,7 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-        private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Checkpoint")
         {
@@ -324,7 +322,7 @@ public class ThirdPersonController : MonoBehaviour
             }
         
     }
-        public void SavePlayer ()
+    public void SavePlayer ()
     {
         SaveSystem.SavePlayer(this);
         Saved = true;
@@ -341,7 +339,7 @@ public class ThirdPersonController : MonoBehaviour
         Stamina = data.Stamina;
     }
 
-            public void Checkpoint ()
+    public void Checkpoint ()
     {
         SaveSystem.Checkpoint(this);
         Saved = true;

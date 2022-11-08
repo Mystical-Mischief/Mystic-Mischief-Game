@@ -5,10 +5,11 @@ using UnityEngine.AI;
 
 public class BaseEnemyAI : MonoBehaviour
 {
-    // private GameViewController _gameviewcontroller;
-    // public GameViewController GameViewController => _gameviewcontroller;
     public Transform[] PatrolPoints;
     public bool spottedPlayer;
+    [SerializeField]
+    internal Transform[] PatrolPoints = new Transform[10];
+    internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
     public string EnemyType;
@@ -19,9 +20,9 @@ public class BaseEnemyAI : MonoBehaviour
     public Vector3 targetPosition;
 
     public Transform target;
-    private NavMeshAgent ai;
+    internal NavMeshAgent ai;
     
-    //To not ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
+    //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
@@ -55,7 +56,7 @@ public class BaseEnemyAI : MonoBehaviour
             Player.GetComponent<ThirdPersonController>().Targeted = true;
         }
         targetPosition = target.transform.position;
-        if ( Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+        if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
         {
             SaveEnemy();
             Saved = true;
@@ -98,7 +99,7 @@ public class BaseEnemyAI : MonoBehaviour
             }
         }
     }
-    private bool atDestination;
+    internal bool atDestination;
     //if the ai doesnt see the player it will patrol between all the points
     public virtual void Patrol()
     {
@@ -125,12 +126,15 @@ public class BaseEnemyAI : MonoBehaviour
         }
     }
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
+    private Vector3 PlayerDirection;
     public virtual void FoundPlayer()
     {
-        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
+        PlayerDirection = target.transform.position - transform.position;
+        Debug.DrawRay(transform.position, (PlayerDirection).normalized * SightDistance, Color.green);
         RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, target.position - transform.position, out hit, SightDistance))
+        
+        
+        if (Physics.Raycast(transform.position, PlayerDirection, out hit, SightDistance))
         {
             UpdateDestination(target.position);
             //if the ai cant see the player
@@ -161,7 +165,7 @@ public class BaseEnemyAI : MonoBehaviour
     //     controls.Disable();
     // }
 
-            public void SaveEnemy ()
+    public void SaveEnemy ()
     {
         SaveSystem.SaveEnemy(this);
         Debug.Log("Saved");
