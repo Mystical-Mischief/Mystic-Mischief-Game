@@ -5,6 +5,7 @@ using UnityEngine;
 public class Web : MonoBehaviour
 {
     public float speed;
+    public float stun = 3f;
 
     private Transform player;
     private Vector3 target;
@@ -36,7 +37,7 @@ public class Web : MonoBehaviour
     {
         print("player stunned");
         player.GetComponent<ThirdPersonController>().canMove = false;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(stun);
         player.GetComponent<ThirdPersonController>().canMove = true;
         DestroyProjectile();
 
