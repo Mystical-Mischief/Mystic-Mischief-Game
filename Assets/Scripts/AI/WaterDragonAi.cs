@@ -8,7 +8,6 @@ public class WaterDragonAi : BasicDragonAI
     //private CapsuleCollider Ranged;
     private SphereCollider jump;
     //private BoxCollider Melee;
-    public GameObject Player;
     public Rigidbody  projectile;
     private bool ranged;
     private Vector3 PlayerPos;
@@ -25,7 +24,7 @@ public class WaterDragonAi : BasicDragonAI
     private float jumpForce = 10f;
     private Vector3 forceDirection = Vector3.zero;
     private float bo;
-    private bool FoundPlayer;
+    private new bool FoundPlayer;
     public Transform Base;
     public float randomWaitTime;
     float lastWaitTime;
