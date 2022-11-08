@@ -83,7 +83,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
         }
     }
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
-    public virtual void FoundPlayer()
+    public override void FoundPlayer()
     {
         Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
         RaycastHit hit;
@@ -104,26 +104,8 @@ public abstract class BasicDragonAI : BaseEnemyAI
             LostPlayer();
         }
     }
-    //this runs when the player is lost by the ai. some basic logic.
-    public virtual void LostPlayer()
-    {
-        spottedPlayer = false;
-        target = PatrolPoints[0];
-    }
 
 
-    public virtual void IsGrounded()
-    {
-        float bufferDistance = 0.1f;
-        float groundCheckDistance = (GetComponent<CapsuleCollider>().height / 2) + bufferDistance;
-        Debug.DrawLine(transform.position, -transform.up, Color.green, groundCheckDistance);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance))
-        {
-            Debug.Log(hit.transform.gameObject);
-            isGroundedD = true;
-        }
-    }
     //public float groundCheckDistance;
     public virtual void IsGrounded()
     {
@@ -146,15 +128,11 @@ public abstract class BasicDragonAI : BaseEnemyAI
     }
     public virtual void NewRandomNumber()
     {
-        randomNumber = Random.Range(1, 3);
+        randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
         if (randomNumber == lastNumber)
         {
             randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
-            if (randomNumber == lastNumber)
-            {
-                randomNumber = UnityEngine.Random.Range(0, AllPatrolPoints.Length);
-            }
-            lastNumber = randomNumber;
         }
+        lastNumber = randomNumber;
     }
 }

@@ -36,13 +36,6 @@ public class WaterDragonAi : BasicDragonAI
 
     [HideInInspector]
     public bool rangedAttacked;
-    public Transform Base;
-    public float randomWaitTime;
-    float lastWaitTime;
-    public bool attacked;
-    private bool isRotatingLeft = false;
-    private bool isRotatingRight = false;
-    private int state;
     private bool detectForGround = true;
 
     [HideInInspector]
