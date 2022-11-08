@@ -7,6 +7,7 @@ Shader "Unlit/Dark_Environment_Shader"
         _ShadowMapTexture ("Texture", 2D) = "white" {}
         _LightInt("Light Intensity", Range(0,1)) = 1
         _ShadowThreshold("Shadow Threshold", Range(-1,1)) = 0.2
+        _ShadowThreshold2("Shadow Threshold Arealight", Range(-1,1)) = 0.2
         _ShadowIntensity("Shadow Color Intensity", Range(0,1)) = 0
         
     }
@@ -56,6 +57,7 @@ Shader "Unlit/Dark_Environment_Shader"
             #pragma fragment frag
             // make fog work
             #pragma multi_compile_fog
+            
 
             #include "UnityCG.cginc"
 
@@ -118,7 +120,7 @@ Shader "Unlit/Dark_Environment_Shader"
              float3 lightDir
             )
             {
-                return colorRefl * lightInt * max(_ShadowIntensity , step(_ShadowThreshold, dot(normal, lightDir)));
+                return colorRefl * lightInt * max(_ShadowIntensity ,  dot(normal, lightDir));
 
             }
             
@@ -133,7 +135,7 @@ Shader "Unlit/Dark_Environment_Shader"
              fixed4 col = tex2D(_MainTex, i.uv);
              fixed shadow = tex2D(_ShadowMapTexture, uv).a;
             //This will be our lightdirection
-            float3 lightDir = normalize(_WorldSpaceLightPos0);
+            float3 lightDir = normalize(unity_4LightAtten0);
             float4 lightPos = normalize(_WorldSpaceLightPos0);
             //This will be our light Color
             fixed3 colorRefl = _LightColor0.rgb;
@@ -183,7 +185,7 @@ Shader "Unlit/Dark_Environment_Shader"
             float4 _TexColor;
             float _LightInt;
             float4 _LightColor0;
-            float _ShadowThreshold;
+            float _ShadowThreshold2;
             float _ShadowIntensity;
             float _2ndThreshold;
 
@@ -221,7 +223,7 @@ Shader "Unlit/Dark_Environment_Shader"
              float3 lightDir
             )
             {
-                return colorRefl * lightInt * max(_ShadowIntensity ,  floor(dot(normal/4, lightDir)));
+                return colorRefl * lightInt * max(_ShadowIntensity , dot(normal, lightDir));
 
             }
 
@@ -236,7 +238,7 @@ Shader "Unlit/Dark_Environment_Shader"
             fixed4 col = tex2D(_MainTex, i.uv);
             fixed shadow = tex2D(_ShadowMapTexture, uv).a;
             //This will be our lightdirection
-            float3 lightDir = (_WorldSpaceLightPos0);
+            float lightDir = (unity_4LightAtten0);
             //This will be our light Color
             fixed3 colorRefl = _LightColor0.rgb;
             //This is the function for LambertShading
