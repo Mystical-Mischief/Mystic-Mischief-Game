@@ -13,13 +13,20 @@ public class KoboltAI : BaseEnemyAI
     ThirdPersonController player;
 
     [SerializeField]
-    bool HoldingItem;
-
-    [SerializeField]
     GameObject Item;
 
     [SerializeField]
     bool Protect;
+
+    public bool holdingItem;
+
+    public GameObject HeldItem;
+
+    [SerializeField]
+    private Transform fleeLocation;
+
+    [SerializeField]
+    private float knockbackForce;
     
     new void Start()
     {
@@ -51,6 +58,7 @@ public class KoboltAI : BaseEnemyAI
                 Patrol();
             }
         }
+        Flee();
 
     }
     // Start is called before the first frame update
@@ -60,6 +68,8 @@ public class KoboltAI : BaseEnemyAI
         {
             attackedPlayer = true;
             player.currentHealth--;
+            //Knockback
+            collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
             print($"Player Health: {player.currentHealth}");
             print("HIt");
             
@@ -71,7 +81,9 @@ public class KoboltAI : BaseEnemyAI
         if(Protect && collider.gameObject.tag == "Gold")
         {
             Protect = false;
-            Destroy(collider.gameObject);
+            HeldItem = collider.gameObject;
+            HeldItem.transform.SetParent(this.transform,true);
+            holdingItem =true;
         }
     }
 
@@ -80,5 +92,13 @@ public class KoboltAI : BaseEnemyAI
         Vector3 itemDirection = obj.transform.position;
         UpdateDestination(itemDirection);
         
+    }
+
+    private void Flee()
+    {
+        if(holdingItem)
+        {
+            UpdateDestination(fleeLocation.position);
+        }
     } 
 }
