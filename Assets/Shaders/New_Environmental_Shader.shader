@@ -1,4 +1,4 @@
-Shader "Example/Toon Shading" {
+Shader "Example/Environment_Shader" {
     Properties{
         _MainTex("Texture", 2D) = "white" {}
         _RampTex("Ramp", 2D) = "white" {}
@@ -20,7 +20,7 @@ Shader "Example/Toon Shading" {
                 half NdotL = dot(s.Normal, lightDir);
                 NdotL = tex2D(_RampTex, fixed2(NdotL, 0.5));
                 fixed4 c;
-                c.rgb = s.Albedo * _LightColor0.rgb * step(0.2,NdotL) * atten * 2;
+                c.rgb = s.Albedo * _LightColor0.rgb * NdotL * step(0.2,atten) * 2;
                 c.a = s.Alpha;
                 return c;
             }
