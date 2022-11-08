@@ -29,12 +29,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Store"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Drop"",
@@ -51,7 +51,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""137fa85d-f5ab-4b53-b7f3-1da9092e75c7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press,Hold"",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -78,9 +78,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+<<<<<<< HEAD
+                    ""id"": ""c2d68109-9b48-4f39-8328-bd265a513646"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": ""Hold"",
+=======
                     ""id"": ""a7dcc67f-8f9d-469e-b173-75df97ff241e"",
                     ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
+>>>>>>> code
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Store"",
@@ -385,6 +391,24 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d5e2f9a-d6a5-4805-80d9-2b40e0a9e814"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""5419be73-8de7-4cb5-a789-c1075c3ff696"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -396,6 +420,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6665efec-9ac3-4b69-97b0-1935fcf43bc4"",
+                    ""path"": ""<Keyboard>/leftBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fae1183-4b34-49fd-9969-063e9ed8b138"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -426,6 +472,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
+        m_MenuActions_Save = m_MenuActions.FindAction("Save", throwIfNotFound: true);
+        m_MenuActions_Load = m_MenuActions.FindAction("Load", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -665,11 +713,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MenuActions;
     private IMenuActionsActions m_MenuActionsActionsCallbackInterface;
     private readonly InputAction m_MenuActions_Quit;
+    private readonly InputAction m_MenuActions_Save;
+    private readonly InputAction m_MenuActions_Load;
     public struct MenuActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
         public MenuActionsActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_MenuActions_Quit;
+        public InputAction @Save => m_Wrapper.m_MenuActions_Save;
+        public InputAction @Load => m_Wrapper.m_MenuActions_Load;
         public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -682,6 +734,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @Save.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
+                @Save.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
+                @Save.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
+                @Load.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
+                @Load.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
+                @Load.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
             }
             m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -689,6 +747,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
+                @Load.started += instance.OnLoad;
+                @Load.performed += instance.OnLoad;
+                @Load.canceled += instance.OnLoad;
             }
         }
     }
@@ -718,5 +782,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface IMenuActionsActions
     {
         void OnQuit(InputAction.CallbackContext context);
+        void OnSave(InputAction.CallbackContext context);
+        void OnLoad(InputAction.CallbackContext context);
     }
 }

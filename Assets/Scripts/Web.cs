@@ -19,27 +19,28 @@ public class Web : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
+    }
 
-        if (transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
+
+   
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.tag == "Player")
         {
-            StunPlayer();
-            DestroyProjectile();
+            
+            StartCoroutine(StunTimer(col.gameObject));
+            
         }
     }
-
-    void StunPlayer()
+    IEnumerator StunTimer(GameObject player)
     {
+        print("player stunned");
+        player.GetComponent<ThirdPersonController>().canMove = false;
+        yield return new WaitForSeconds(5);
+        player.GetComponent<ThirdPersonController>().canMove = true;
+        DestroyProjectile();
 
     }
-
-    void OnTriggerEnter3D(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            DestroyProjectile();
-        }
-    }
-
     void DestroyProjectile()
     {
         Destroy(gameObject);
