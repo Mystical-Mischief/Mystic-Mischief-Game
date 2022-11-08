@@ -7,11 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cave
-  m_Shader: {fileID: 4800000, guid: a2db92a241e14fc40a82ec6ae88609c4, type: 3}
+  m_Name: Leaves
+  m_Shader: {fileID: 4800000, guid: df576a58cb29a1746a652e4563ca9374, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -42,8 +41,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5db21a7ccc0e7f147a902e99a6ae4c07, type: 3}
-        m_Scale: {x: 4, y: 2}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -57,10 +56,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _RampTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ShadowMapTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,26 +65,24 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Division: 0.1
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.14142135
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _LightInt: 1
     - _Metallic: 0
-    - _Mode: 3
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ShadowIntensity: 0.241
-    - _ShadowThreshold: 0.81
-    - _ShadowThreshold2: -1
+    - _ShadowIntensity: 0.4
+    - _ShadowThreshold: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.27516788, g: 0, b: 0.66518503, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TexColor: {r: 1, g: 1, b: 1, a: 0}
+    - _TexColor: {r: 0.6313726, g: 0.54901963, b: 0.22352943, a: 1}
   m_BuildTextureStacks: []
