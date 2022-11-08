@@ -52,6 +52,8 @@ public class ThirdPersonController : MonoBehaviour
 
     public GameObject healthBar;
     public GameObject staminaBar;
+
+    private AudioSource caw;
     
 
 
@@ -70,6 +72,8 @@ public class ThirdPersonController : MonoBehaviour
             healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
         }
         currentHealth = maxHealth;
+
+        caw = GetComponent<AudioSource>();
         
     }
 
@@ -244,6 +248,7 @@ public class ThirdPersonController : MonoBehaviour
     private void OnEnable()
     {
         playerInputs.PlayerOnGround.Jump.started += DoJump;
+        playerInputs.PlayerOnGround.Caw.started += Caw;
         move = playerInputs.PlayerOnGround.Movement;
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
@@ -255,6 +260,7 @@ public class ThirdPersonController : MonoBehaviour
     private void OnDisable()
     {
         playerInputs.PlayerOnGround.Jump.started -= DoJump;
+        playerInputs.PlayerOnGround.Caw.started -= Caw;
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
@@ -355,4 +361,9 @@ public class ThirdPersonController : MonoBehaviour
         transform.position = position;
         Stamina = data.Stamina;
     }
+    private void Caw(InputAction.CallbackContext obj)
+    {
+        caw.Play();
+    }
+
 }
