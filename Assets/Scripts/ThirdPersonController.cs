@@ -14,7 +14,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private Rigidbody rb;
     [SerializeField]
-    private float moveForce = 5f;
+    private float moveForce = 3.5f;
     
     public float jumpForce = 10f;
     [SerializeField]
@@ -311,7 +311,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Water")){
             inWater = false;
-            moveForce = 5f;
+            moveForce = 3.5f;
         }
     }
 

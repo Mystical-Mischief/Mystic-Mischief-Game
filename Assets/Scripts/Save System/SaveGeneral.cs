@@ -89,7 +89,10 @@ public class SaveGeneral : MonoBehaviour
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().LoadItem();
-            items.SetActive(false);
+            if (items.GetComponent<Item>().inInventory == false)
+            {
+                    items.SetActive(true);
+            }
         }
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
     }
