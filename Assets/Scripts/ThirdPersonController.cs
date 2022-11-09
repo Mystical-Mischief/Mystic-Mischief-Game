@@ -7,7 +7,7 @@ using Cinemachine;
 public class ThirdPersonController : MonoBehaviour
 {
     public bool canMove;
-    private ThirdPersonInputs playerInputs;
+    private ThirdPersonControl playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
     private CapsuleCollider CapsuleCollider;
@@ -62,7 +62,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         Checkpoint();
         rb = this.GetComponent<Rigidbody>();
-        playerInputs = new ThirdPersonInputs();
+        playerInputs = new ThirdPersonControl();
         playerInputs.Enable();
         move = playerInputs.PlayerOnGround.Movement;
         Stamina = 6;
@@ -82,23 +82,27 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(canMove)
+        if (canMove)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
         }
 
-        // if(rb.velocity.y < 0f)
-        // {
-        //     rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-        // }
+        rb.AddForce(forceDirection, ForceMode.Impulse);
+        forceDirection = Vector3.zero;
+
+         if(rb.velocity.y < 0f)
+         {
+             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+         }
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
-        if(horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
+        if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
         {
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
         }
+
 
         IsGrounded();
         LookAt();
