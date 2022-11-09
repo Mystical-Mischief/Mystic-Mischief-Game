@@ -82,11 +82,16 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(canMove)
+        if (isGrounded == true)
         {
+            canMove = true;
+        }
+        if (isGrounded == false)
+        {
+            canMove = false;
+        }
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
-        }
 
         // if(rb.velocity.y < 0f)
         // {

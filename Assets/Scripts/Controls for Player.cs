@@ -412,7 +412,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""0d5e2f9a-d6a5-4805-80d9-2b40e0a9e814"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -450,7 +450,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6665efec-9ac3-4b69-97b0-1935fcf43bc4"",
                     ""path"": ""<Keyboard>/leftBracket"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Save"",
