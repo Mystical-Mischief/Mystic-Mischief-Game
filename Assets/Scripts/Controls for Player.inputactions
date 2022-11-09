@@ -56,15 +56,9 @@
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
                     "id": "c2d68109-9b48-4f39-8328-bd265a513646",
                     "path": "<XInputController>/buttonWest",
                     "interactions": "Hold",
-=======
-                    "id": "a7dcc67f-8f9d-469e-b173-75df97ff241e",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
->>>>>>> code
                     "processors": "",
                     "groups": "",
                     "action": "Store",
@@ -214,6 +208,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "b2dd8f3f-2ec0-48a1-b9e3-50040a35f977",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -324,6 +327,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Snatch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e95f57e2-35ba-4c42-83e3-2277ae946b9b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

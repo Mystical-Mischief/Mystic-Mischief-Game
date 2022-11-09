@@ -63,6 +63,8 @@ public class ThirdPersonController : MonoBehaviour
         Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonInputs();
+        playerInputs.Enable();
+        move = playerInputs.PlayerOnGround.Movement;
         Stamina = 6;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
@@ -85,9 +87,6 @@ public class ThirdPersonController : MonoBehaviour
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
         }
-
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-        forceDirection = Vector3.zero;
 
         // if(rb.velocity.y < 0f)
         // {
@@ -204,7 +203,10 @@ public class ThirdPersonController : MonoBehaviour
             LoadCheckpoint();
             currentHealth = maxHealth;
         }
-        staminaBar?.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        if(staminaBar != null)
+        {
+            staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        }
     }
 
 

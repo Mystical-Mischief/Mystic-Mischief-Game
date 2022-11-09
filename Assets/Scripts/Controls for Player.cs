@@ -78,15 +78,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-<<<<<<< HEAD
                     ""id"": ""c2d68109-9b48-4f39-8328-bd265a513646"",
                     ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": ""Hold"",
-=======
-                    ""id"": ""a7dcc67f-8f9d-469e-b173-75df97ff241e"",
-                    ""path"": ""<XInputController>/buttonWest"",
-                    ""interactions"": """",
->>>>>>> code
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Store"",
@@ -236,6 +230,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2dd8f3f-2ec0-48a1-b9e3-50040a35f977"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +349,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Snatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e95f57e2-35ba-4c42-83e3-2277ae946b9b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -508,6 +522,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
         m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
         m_Actions_Snatch = m_Actions.FindAction("Snatch", throwIfNotFound: true);
+        m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_HealthTest = m_Test.FindAction("HealthTest", throwIfNotFound: true);
@@ -641,6 +656,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_SwitchHat;
     private readonly InputAction m_Actions_ActivateHat;
     private readonly InputAction m_Actions_Snatch;
+    private readonly InputAction m_Actions_Interact;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -653,6 +669,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
         public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
         public InputAction @Snatch => m_Wrapper.m_Actions_Snatch;
+        public InputAction @Interact => m_Wrapper.m_Actions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -686,6 +703,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Snatch.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
                 @Snatch.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
                 @Snatch.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSnatch;
+                @Interact.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -714,6 +734,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Snatch.started += instance.OnSnatch;
                 @Snatch.performed += instance.OnSnatch;
                 @Snatch.canceled += instance.OnSnatch;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -825,6 +848,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnSwitchHat(InputAction.CallbackContext context);
         void OnActivateHat(InputAction.CallbackContext context);
         void OnSnatch(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {
