@@ -8,13 +8,13 @@ public class CameraLogic : MonoBehaviour
     public bool isFlying;
     public float sensitivity;
     public float groundMaxYRotation, groundMinYRotation, airMaxXRotation, airMinXRotation;
-    private ThirdPersonInputs inputs;
+    private ThirdPersonControl inputs;
     private GameObject player;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Cursor.lockState = CursorLockMode.Locked;
-        inputs = new ThirdPersonInputs();
+        inputs = new ThirdPersonControl();
         inputs.Enable();
         turn = inputs.PlayerOnGround.Look.ReadValue<Vector2>();
     }

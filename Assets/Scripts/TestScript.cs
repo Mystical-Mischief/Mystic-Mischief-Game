@@ -17,7 +17,7 @@ public class TestScript : MonoBehaviour
     void Update()
     {
         //transform.position = Vector3.MoveTowards(transform.position, Vector3.up, speed * Time.deltaTime);
-        rigidbody.velocity = new Vector3( 0f, jumpForce, 0f);
+        rigidbody.velocity = new Vector3( jumpForce, 0f, 0f);
     }
 }
 
