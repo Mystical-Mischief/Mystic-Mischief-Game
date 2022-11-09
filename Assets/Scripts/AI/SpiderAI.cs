@@ -35,4 +35,14 @@ public class SpiderAI : BaseEnemyAI
             }
         }
     }
+
+    new public virtual void FoundPlayer(GameObject player)
+    {
+        base.FoundPlayer();
+
+        if (player.GetComponent<ThirdPersonController>().canMove == false)
+        {
+            LostPlayer();
+        }
+    }
 }
