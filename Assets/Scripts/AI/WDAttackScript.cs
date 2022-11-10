@@ -10,6 +10,7 @@ public class WDAttackScript : MonoBehaviour
     {
             if (other.gameObject.tag == "Player" && gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked == true)
         {  
+            other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
             float force = 100;
             Debug.Log("DAMAGED!");
             gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked = false;

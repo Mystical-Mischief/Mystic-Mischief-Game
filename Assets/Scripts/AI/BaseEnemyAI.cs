@@ -108,6 +108,9 @@ public class BaseEnemyAI : MonoBehaviour
             if (patrolNum < PatrolPoints.Count - 1)
             {
                 patrolNum++;
+                target = PatrolPoints[patrolNum];
+                UpdateDestination(target.position);
+
             }
             //if the player is at the last point go to the first one
             else

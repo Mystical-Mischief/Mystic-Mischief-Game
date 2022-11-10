@@ -49,6 +49,7 @@ public class ThirdPersonController : MonoBehaviour
     public float rbSpeed;
     public int maxHealth = 4;
     public int currentHealth;
+    public Animator animator;
 
     public GameObject healthBar;
     public GameObject staminaBar;
@@ -190,6 +191,7 @@ public class ThirdPersonController : MonoBehaviour
                 Stamina = 6;
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
+            // animator.SetTrigger("glide");
         }
         else { GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); }
 
@@ -197,6 +199,30 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+                if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0)
+        {
+            animator.SetTrigger("Jump");
+        }
+        if (rb.velocity.magnitude >= 8 && isGrounded == true)
+        {
+            animator.SetFloat("RunSpeed", 2f);
+        // animator.SetTrigger("Launch");
+        }
+                if (rb.velocity.magnitude >= 6 && rb.velocity.magnitude < 8 &&isGrounded == true)
+        {
+            animator.SetFloat("RunSpeed", 1f);
+        // animator.SetTrigger("Launch");
+        }
+            if (rb.velocity.magnitude < 6 && isGrounded == true)
+        {
+            animator.SetFloat("RunSpeed", 0f);
+        // animator.SetTrigger("Launch");
+        }
+            if (isGrounded == false)
+        {
+            animator.SetFloat("RunSpeed", 0f);
+        // animator.SetTrigger("Launch");
+        }
         if (controls.Test.HealthTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
@@ -332,6 +358,8 @@ public class ThirdPersonController : MonoBehaviour
         
             if (Stamina > 0)
             {
+                    
+                    Invoke(nameof(ResetJump), 0.1f);
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
                 StaminaBar.instance.UseStamina(1);
@@ -354,6 +382,10 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+    }
+    public void ResetJump()
+    {
+        // animator.SetBool("glide", false);
     }
 
     public void Checkpoint ()

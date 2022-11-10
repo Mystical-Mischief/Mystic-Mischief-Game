@@ -9,7 +9,7 @@ public class WDProjectrileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExecuteAfterTime(2));
+        StartCoroutine(ExecuteAfterTime(5));
 
     }
 
