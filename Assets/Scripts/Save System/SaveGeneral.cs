@@ -33,8 +33,9 @@ public class SaveGeneral : MonoBehaviour
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
-        if (Save && Player.GetComponent<ThirdPersonController>().Targeted == false)
+        if (Save)
         {
+            Debug.Log("Saved");
             SaveEnemy();
         }
         if (Load)

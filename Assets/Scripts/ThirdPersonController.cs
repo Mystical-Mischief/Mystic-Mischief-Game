@@ -91,10 +91,10 @@ public class ThirdPersonController : MonoBehaviour
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
-         if(rb.velocity.y < 0f)
-         {
-             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-         }
+        //  if(rb.velocity.y < 0f)
+        //  {
+        //      rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+        //  }
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
@@ -296,6 +296,11 @@ public class ThirdPersonController : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.CompareTag("wall")){
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+        if(other.gameObject.CompareTag("enemy")){
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
