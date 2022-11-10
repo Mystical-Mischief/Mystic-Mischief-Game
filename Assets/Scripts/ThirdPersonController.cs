@@ -14,7 +14,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private Rigidbody rb;
     [SerializeField]
-    private float moveForce = 5f;
+    private float moveForce = 3.5f;
     
     public float jumpForce = 10f;
     [SerializeField]
@@ -91,10 +91,10 @@ public class ThirdPersonController : MonoBehaviour
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
-         if(rb.velocity.y < 0f)
-         {
-             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-         }
+        //  if(rb.velocity.y < 0f)
+        //  {
+        //      rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+        //  }
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
@@ -300,6 +300,11 @@ public class ThirdPersonController : MonoBehaviour
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
+        if(other.gameObject.CompareTag("enemy")){
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
         if(other.gameObject.CompareTag("Water")){
         moveForce = 0.5f;
             isGrounded = false;
@@ -310,7 +315,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Water")){
             inWater = false;
-            moveForce = 5f;
+            moveForce = 3.5f;
         }
     }
 
