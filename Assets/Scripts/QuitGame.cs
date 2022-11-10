@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuitGame : MonoBehaviour
 {
     ControlsforPlayer controls;
+    public GameObject Saves;
     private void Start()
     {
         controls = new ControlsforPlayer();
@@ -14,6 +15,7 @@ public class QuitGame : MonoBehaviour
     {
         if (controls.MenuActions.Quit.WasPerformedThisFrame())
         {
+            Saves.GetComponent<SaveGeneral>().SaveEnemy();
             print("quitting game");
             Application.Quit();
         }

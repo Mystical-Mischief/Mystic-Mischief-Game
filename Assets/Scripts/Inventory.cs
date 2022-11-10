@@ -15,11 +15,15 @@ public class Inventory : MonoBehaviour
     private bool PickUp;
     private bool Store;
     public bool holdingItem;
+    private int TicketAmount;
+    public GameObject Ticket;
+    private float startMass;
 
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
         controls = new ControlsforPlayer();
+        startMass = rb.mass;
 
     }
     public void OnEnable()
@@ -38,8 +42,22 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
+
+        bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
+        bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
+        // if (Save)
+        // {
+        //     SaveInventory();
+        // }
+        // if (Load)
+        // {
+        //     LoadInventory();
+        // }
+        TicketAmount = PickedUpItems.Count;
         Store = controls.Inv.Store.IsPressed();
         PickUp = controls.Inv.PressPick.IsPressed();
+        // Save = controls.MenuActions.Save.IsPressed();
+        // Load = controls.MenuActions.Load.IsPressed();
 
         /* if (controls.Inv.PressPick.WasPerformedThisFrame())
          {
@@ -64,6 +82,10 @@ public class Inventory : MonoBehaviour
         {
             StoreItem(currentHeldItem);
         }
+        // if (controls.MenuActions.Save.WasPressedThisFrame())
+        // {
+        //     SaveManager.SaveJsonData();
+        // }
     }
 
     public void QuickDropStoredItem(GameObject Item)
@@ -104,6 +126,7 @@ public class Inventory : MonoBehaviour
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
         currentHeldItem = null;
+        Item.GetComponent<Item>().inInventory = false;
 
         StartCoroutine(dropTimer(0.5f, false));
     }
@@ -127,7 +150,27 @@ public class Inventory : MonoBehaviour
             for (var i = 0; i < PickedUpItems.Count; i++)
             {
                 PickedUpItems.RemoveAt(i);
+                rb.mass = startMass;
             }
         }
+                if (other.gameObject.tag == "GoldToTickets")
+        {
+            for (var i = 0; i < PickedUpItems.Count; i++)
+            {
+                PickedUpItems.RemoveAt(i);
+                Instantiate(Ticket, transform.position, Quaternion.identity);
+                rb.mass = startMass;
+            }
+        }
+    }
+
+            public void SaveInventory ()
+    {
+        SaveSystem.SaveInventory(this);
+    }
+    public void LoadInventory ()
+    {
+        InventoryData data = SaveSystem.LoadInventory();
+        PickedUpItems = data.PickedUpItems;
     }
 }
