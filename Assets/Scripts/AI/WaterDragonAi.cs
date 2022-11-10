@@ -32,6 +32,7 @@ public class WaterDragonAi : BasicDragonAI
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private int state;
+    private bool WaterChase;
 
     [HideInInspector]
     public bool rangedAttacked;
@@ -67,24 +68,24 @@ public class WaterDragonAi : BasicDragonAI
         PlayerPos.z = Player.transform.position.z;
         PlayerPos.y = 0;
         base.Update();
-        float dist = Vector3.Distance(Player.transform.position, transform.position);
-        //Debug.Log(dist);
+        float dist = Vector3.Distance(base.Player.transform.position, transform.position);
+        // Debug.Log(dist);
         if (Player.transform.position.y > transform.position.y)
         {
             if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
                 Jumped = true;
-                Jump();
+                //Jump();
             }
         }
-        if (detectedPlayer && Player.transform.position.y > transform.position.y)
-        {
-            if (Jumped == false && this.ai.enabled == true && isGroundedD)
-            {
-                Jumped = true;
-                Jump();
-            }
-        }
+        // if (FoundPlayer && Player.transform.position.y > transform.position.y)
+        // {
+        //     if (Jumped == false && this.ai.enabled == true && isGroundedD)
+        //     {
+        //         Jumped = true;
+        //         Jump();
+        //     }
+        // }
 
         if (attacked == false)
         {
@@ -126,11 +127,10 @@ public class WaterDragonAi : BasicDragonAI
         // {
         //     base.ai.enabled = true;
         // }
-         if (!Jumped && dist > 12f && dist <17f && attackTimes < 5)
+         if (!Jumped && dist > 8f && dist <25f && attackTimes < 5)
          {
-            target = Player.transform;
             transform.LookAt(PlayerPos);
-            if (rangedAttacked == false)
+            if (rangedAttacked == false && WaterChase == false)
             {Ranged();}
             ///attackTimes = attackTimes + 1;
             //Debug.Log("Ranged");
@@ -141,8 +141,7 @@ public class WaterDragonAi : BasicDragonAI
         // }
         if (attackTimes >= 5)
         {
-            target = Player.transform;
-            UpdateDestination(target.position);
+            ChasePlayer();
         }
          if (dist > 2f && dist <12f)
          {
@@ -154,17 +153,33 @@ public class WaterDragonAi : BasicDragonAI
             attacked = true;
             }
          }
-         if (Player.GetComponent<ThirdPersonController>().inWater == true)
+         if (Player.GetComponent<ThirdPersonController>().inWater == true && dist < 25f)
          {
-            attackTimes = 5;
+            ChasePlayerWater();
          }
          else {}
 
     }
     void Jump()
     {
-        gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+        detectForGround = false;
+        base.ai.enabled = false;
+        Vector3 jumpVec = Player.transform.position - transform.position;
+        print(jumpVec);
+        rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
+        StartCoroutine(jumpTimer());
+    }
+    void ChasePlayer()
+    {
+        target = Player.transform;
+        UpdateDestination(target.position);  
+    }
+        void ChasePlayerWater()
+    {
+        WaterChase = true;
+        target = Player.transform;
+        UpdateDestination(target.position);  
     }
 
     private void OnCollisionEnter(Collision other)
@@ -192,6 +207,7 @@ public class WaterDragonAi : BasicDragonAI
     {
         Rigidbody clone;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
+        base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
 
         clone.velocity = transform.TransformDirection(Vector3.forward * 10);
@@ -206,6 +222,7 @@ public class WaterDragonAi : BasicDragonAI
         rangedAttacked = false;
         attacked = false;
         attackTimes += 1;
+        base.ai.speed = Speed;
     }
     public override void IsGrounded()
     {
