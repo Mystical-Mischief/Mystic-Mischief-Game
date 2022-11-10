@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CowboyHat : BaseHatScript
 {
+    public Vector3 offset;
     private GameObject player;
     private GameObject obj;
 
@@ -16,10 +17,6 @@ public class CowboyHat : BaseHatScript
 
     float whipSpeed = 1000f;
     float maxWhipDis = 15f;
-    float x_Offset = -0.7701938f;
-    float y_Offset = 0.62326f;
-
-    float z_Offset = 0.03f;
 
     float objectDis = 2f;
 
@@ -36,14 +33,14 @@ public class CowboyHat : BaseHatScript
         isObjAttached = false;
         whipDis = 0f;
 
-        originalPos = new Vector3(player.transform.position.x + x_Offset, player.transform.position.y + y_Offset, player.transform.position.z + z_Offset);
+        originalPos = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y, player.transform.position.z + offset.z);
 
         rb = GetComponent<Rigidbody>();
     }
 
     new void Update()
     {
-        originalPos = new Vector3(player.transform.position.x + x_Offset, player.transform.position.y + y_Offset, player.transform.position.z + z_Offset);
+        originalPos = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y, player.transform.position.z + offset.z);
         lineRenderer.SetPosition(0, originalPos);
         lineRenderer.SetPosition(1,transform.position);
         base.Update();
@@ -95,7 +92,8 @@ public class CowboyHat : BaseHatScript
     {
         if(isObjAttached)
         {
-            Vector3 finalPos = new Vector3(originalPos.x,obj.transform.position.y,originalPos.z + z_Offset - objectDis); 
+            Vector3 finalPos = new Vector3(originalPos.x,obj.transform.position.y,originalPos.z + offset.z - objectDis); 
+
             obj.transform.position = Vector3.MoveTowards(obj.transform.position,finalPos, maxWhipDis);
             isObjAttached = false;
         }

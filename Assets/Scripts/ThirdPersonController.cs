@@ -7,14 +7,14 @@ using Cinemachine;
 public class ThirdPersonController : MonoBehaviour
 {
     public bool canMove;
-    private ThirdPersonInputs playerInputs;
+    private ThirdPersonControl playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
     private CapsuleCollider CapsuleCollider;
 
     private Rigidbody rb;
     [SerializeField]
-    private float moveForce = 5f;
+    private float moveForce = 3.5f;
     
     public float jumpForce = 10f;
     [SerializeField]
@@ -32,24 +32,39 @@ public class ThirdPersonController : MonoBehaviour
     public Vector3 glideSpeed;
     public Vector3 diveSpeed;
     public float diveTim;
+    [HideInInspector]
+    public bool Saved;
+    [HideInInspector]
+    public bool Loaded;
+    public float powerValue;
+    public bool Targeted;
+    public bool inWater;
 
     public bool isGrounded{get; set;}
-    [SerializeField] private CinemachineFreeLook camGround;
-    [SerializeField] private CinemachineFreeLook camFly;
+    [SerializeField] private GameObject camGround;
+    [SerializeField] private GameObject camFly;
 
+
+    //[HideInInspector]
+    public float rbSpeed;
     public int maxHealth = 4;
     public int currentHealth;
 
     public GameObject healthBar;
     public GameObject staminaBar;
+
+    private AudioSource caw;
     
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        Checkpoint();
         rb = this.GetComponent<Rigidbody>();
-        playerInputs = new ThirdPersonInputs();
+        playerInputs = new ThirdPersonControl();
+        playerInputs.Enable();
+        move = playerInputs.PlayerOnGround.Movement;
         Stamina = 6;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         controls = new ControlsforPlayer();
@@ -59,13 +74,15 @@ public class ThirdPersonController : MonoBehaviour
             healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
         }
         currentHealth = maxHealth;
+
+        caw = GetComponent<AudioSource>();
         
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(canMove)
+        if (canMove)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * moveForce;
@@ -74,17 +91,18 @@ public class ThirdPersonController : MonoBehaviour
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
-        if(rb.velocity.y < 0f)
-        {
-            rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
-        }
+        //  if(rb.velocity.y < 0f)
+        //  {
+        //      rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+        //  }
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
-        if(horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
+        if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
         {
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
         }
+
 
         IsGrounded();
         LookAt();
@@ -144,9 +162,9 @@ public class ThirdPersonController : MonoBehaviour
             {
                 glideSpeed.z = 100;
             }
-            if (glideSpeed.y <= 8)
+            if (glideSpeed.y <= 9.8f)
             {
-                glideSpeed.y = 8;
+                glideSpeed.y = 9.8f;
             }
             if (glideSpeed.z >= 130)
             {
@@ -154,7 +172,7 @@ public class ThirdPersonController : MonoBehaviour
             }
             if (glideSpeed.y >= 25)
             {
-                glideSpeed.y = 8;
+                glideSpeed.y = 9.8f;
             }
             diveTim -= Time.fixedDeltaTime;
             GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
@@ -184,11 +202,19 @@ public class ThirdPersonController : MonoBehaviour
             TakeDamage(1);
             Debug.Log("Taking Damage...");
         }
-        staminaBar?.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        if (currentHealth <= 0)
+        {
+            LoadCheckpoint();
+            currentHealth = maxHealth;
+        }
+        if(staminaBar != null)
+        {
+            staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        }
     }
 
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log(currentHealth);
@@ -228,23 +254,24 @@ public class ThirdPersonController : MonoBehaviour
     private void OnEnable()
     {
         playerInputs.PlayerOnGround.Jump.started += DoJump;
+        playerInputs.PlayerOnGround.Caw.started += Caw;
         move = playerInputs.PlayerOnGround.Movement;
         playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
-        CameraSwitch.Register(camGround);
-        CameraSwitch.Register(camFly);
-        CameraSwitch.SwitchCamera(camGround);
+        camGround.SetActive(true);
+        camFly.SetActive(false);
 
     }
     private void OnDisable()
     {
         playerInputs.PlayerOnGround.Jump.started -= DoJump;
+        playerInputs.PlayerOnGround.Caw.started -= Caw;
         playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
-        CameraSwitch.Unregister(camGround);
-        CameraSwitch.Unregister(camFly);
+        camGround.SetActive(false);
+        camFly.SetActive(false);
     }
 
     private void IsGrounded()
@@ -255,20 +282,48 @@ public class ThirdPersonController : MonoBehaviour
         if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
         {
             isGrounded=true;
-            if(CameraSwitch.IsActiveCamera(camFly))
-            {
-                CameraSwitch.SwitchCamera(camGround);
-                Debug.Log("Ground");
-            }
+            camGround.SetActive(true);
+            camFly.SetActive(false);
         }
         else
         {
             isGrounded = false;
-            if(CameraSwitch.IsActiveCamera(camGround))
-            {
-                CameraSwitch.SwitchCamera(camFly);
-                Debug.Log("Fly");
-            }
+            camGround.SetActive(false);
+            camFly.SetActive(true);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("wall")){
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+        if(other.gameObject.CompareTag("enemy")){
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+        if(other.gameObject.CompareTag("Water")){
+        moveForce = 0.5f;
+            isGrounded = false;
+            inWater = true;
+        }
+    }
+    void OnCollisionExit(Collision other)
+    {
+        if(other.gameObject.CompareTag("Water")){
+            inWater = false;
+            moveForce = 3.5f;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Checkpoint")
+        {
+            Checkpoint();
         }
     }
 
@@ -284,5 +339,42 @@ public class ThirdPersonController : MonoBehaviour
             }
         
     }
-   
+    public void SavePlayer ()
+    {
+        SaveSystem.SavePlayer(this);
+        Saved = true;
+    }
+    public void LoadPlayer ()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+    }
+
+    public void Checkpoint ()
+    {
+        SaveSystem.Checkpoint(this);
+        Saved = true;
+    }
+    public void LoadCheckpoint ()
+    {
+        PlayerData data = SaveSystem.LoadCheckpoint();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+    }
+    private void Caw(InputAction.CallbackContext obj)
+    {
+        caw.Play();
+    }
+
 }
