@@ -13,19 +13,6 @@ public class KoboltAI : BaseEnemyAI
     ThirdPersonController player;
 
     [SerializeField]
-    GameObject Item;
-
-    [SerializeField]
-    bool Protect;
-
-    public bool holdingItem;
-
-    public GameObject HeldItem;
-
-    [SerializeField]
-    private Transform fleeLocation;
-
-    [SerializeField]
     private float knockbackForce;
     
     new void Start()
@@ -47,19 +34,6 @@ public class KoboltAI : BaseEnemyAI
                 attackedPlayer = false;
             }
         }
-        if(Item != null)
-        {
-            if(Protect)
-            {
-                ProtectObject(Item);
-            }
-            else
-            {
-                Patrol();
-            }
-        }
-        Flee();
-
     }
     // Start is called before the first frame update
     private void OnCollisionEnter (Collision collision)
@@ -76,29 +50,4 @@ public class KoboltAI : BaseEnemyAI
         }
     }
 
-    private void OnTriggerEnter (Collider collider)
-    {
-        if(Protect && collider.gameObject.tag == "Gold")
-        {
-            Protect = false;
-            HeldItem = collider.gameObject;
-            HeldItem.transform.SetParent(this.transform,true);
-            holdingItem =true;
-        }
-    }
-
-    private void ProtectObject(GameObject obj)
-    {
-        Vector3 itemDirection = obj.transform.position;
-        UpdateDestination(itemDirection);
-        
-    }
-
-    private void Flee()
-    {
-        if(holdingItem)
-        {
-            UpdateDestination(fleeLocation.position);
-        }
-    } 
 }

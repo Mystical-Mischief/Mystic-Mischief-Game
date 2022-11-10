@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,11 +6,16 @@ using UnityEngine.AI;
 public class BaseEnemyAI : MonoBehaviour
 {
     [SerializeField]
-    internal Transform[] PatrolPoints = new Transform[10];
+    public List<Transform> PatrolPoints = new List<Transform>();
     internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
     public string EnemyType;
+    private int Health;
+    // ControlsforPlayer controls;
+    public GameObject Player;
+    private bool Saved;
+    public Vector3 targetPosition;
 
     public Transform target;
     internal NavMeshAgent ai;
@@ -19,7 +24,9 @@ public class BaseEnemyAI : MonoBehaviour
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
-        ai = this.GetComponent<NavMeshAgent>();
+        Saved = false;
+        // controls = new ControlsforPlayer();
+        ai = GetComponent<NavMeshAgent>();
 
         if(target == null)
         {
@@ -30,6 +37,33 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
+        {
+            if (hit.transform.gameObject.tag == "Player")
+            {
+                spottedPlayer = true;
+                target = hit.transform;
+
+            }
+        }
+        if (target == Player)
+        {
+            Player.GetComponent<ThirdPersonController>().Targeted = true;
+        }
+        targetPosition = target.transform.position;
+        if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+        {
+            SaveEnemy();
+            Saved = true;
+        }
+        if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+        {
+            Saved = false;
+            LoadEnemy();
+        }
         //if the ai doesnt see the player then it will patrol and look for it
         if (!spottedPlayer)
         {
@@ -71,7 +105,7 @@ public class BaseEnemyAI : MonoBehaviour
         {
             atDestination = true;
             //if the player isnt at the last point
-            if (patrolNum < PatrolPoints.Length - 1)
+            if (patrolNum < PatrolPoints.Count - 1)
             {
                 patrolNum++;
             }
@@ -119,4 +153,34 @@ public class BaseEnemyAI : MonoBehaviour
         spottedPlayer = false;
         target = PatrolPoints[0];
     }
+
+    //     private void OnEnable()
+    // {
+    //     controls.Enable();
+    // }
+    // private void OnDisable()
+    // {
+    //     controls.Disable();
+    // }
+
+    public void SaveEnemy ()
+    {
+        SaveSystem.SaveEnemy(this);
+        Debug.Log("Saved");
+    }
+    public void LoadEnemy ()
+    {
+        EnemyData data = SaveSystem.LoadEnemy(this);
+        patrolNum = data.patrolNum;
+        target = PatrolPoints[patrolNum];
+        UpdateDestination(target.position);
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        spottedPlayer = data.spottedPlayer;
+    }
+
 }

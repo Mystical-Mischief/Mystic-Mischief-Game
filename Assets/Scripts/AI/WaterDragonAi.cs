@@ -8,7 +8,6 @@ public class WaterDragonAi : BasicDragonAI
     //private CapsuleCollider Ranged;
     private SphereCollider jump;
     //private BoxCollider Melee;
-    public GameObject Player;
     public Rigidbody  projectile;
     private bool ranged;
     private Vector3 PlayerPos;
@@ -25,14 +24,18 @@ public class WaterDragonAi : BasicDragonAI
     private float jumpForce = 10f;
     private Vector3 forceDirection = Vector3.zero;
     private float bo;
-    //private bool FoundPlayer;
+    private new bool FoundPlayer;
     public Transform Base;
     public float randomWaitTime;
     float lastWaitTime;
-    public bool attacked;
+    private bool attacked;
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private int state;
+    private bool WaterChase;
+
+    [HideInInspector]
+    public bool rangedAttacked;
     private bool detectForGround = true;
 
     [HideInInspector]
@@ -41,9 +44,14 @@ public class WaterDragonAi : BasicDragonAI
     public bool meleeAttack;
     public bool Jumped;
 
+    private UnityEngine.AI.NavMeshAgent ai2;
+
     // Start is called before the first frame update
     new void Start()
     {
+        ai2 = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        state = 0;
+        RandomNumber();
         state = 0;
         NewRandomNumber();
         HitPlayer = false;
@@ -51,30 +59,33 @@ public class WaterDragonAi : BasicDragonAI
         attacked = false;
         meleeAttack = false;
         base.Start();
-        //Ranged = gameObject.GetComponent<CapsuleCollider>();
-        jump = gameObject.GetComponent<SphereCollider>();
-        bo = GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset;
-        //Melee = gameObject.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
     new void Update()
     {
-        forceDirection += new Vector3(0,2,0) * jumpForce;
         PlayerPos.x = Player.transform.position.x;
         PlayerPos.z = Player.transform.position.z;
         PlayerPos.y = 0;
         base.Update();
-        float dist = Vector3.Distance(Player.transform.position, transform.position);
-        //Debug.Log(dist);
-        if (detectedPlayer && Player.transform.position.y > transform.position.y)
+        float dist = Vector3.Distance(base.Player.transform.position, transform.position);
+        // Debug.Log(dist);
+        if (Player.transform.position.y > transform.position.y)
         {
-            if (Jumped == false && this.ai.enabled == true && isGroundedD)
+            if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
                 Jumped = true;
-                Jump();
+                //Jump();
             }
         }
+        // if (FoundPlayer && Player.transform.position.y > transform.position.y)
+        // {
+        //     if (Jumped == false && this.ai.enabled == true && isGroundedD)
+        //     {
+        //         Jumped = true;
+        //         Jump();
+        //     }
+        // }
 
         if (attacked == false)
         {
@@ -85,71 +96,41 @@ public class WaterDragonAi : BasicDragonAI
             state = 3;
         }
 
-        if (state == 2) 
-        {
-            transform.Rotate(new Vector3(0,10,0));
-            state = state-1;
-        } 
-        else if (state == 1) 
-        {
-            transform.Rotate(new Vector3(0,-10,0));
-            state = state-1;
-        } 
-        else 
-        { // state is zero
-            transform.Rotate(new Vector3(0,0,0));
-        }
+        if (state == 2) {
+        transform.Rotate(new Vector3(0,10,0));
+        state = state-1;
+    } else if (state == 1) {
+        transform.Rotate(new Vector3(0,-10,0));
+        state = state-1;
+    } else { // state is zero
+        transform.Rotate(new Vector3(0,0,0));
+    }
 
-        if (dist < 17f)
+        if (Player.GetComponent<ThirdPersonController>().rbSpeed >= 9 && dist < 17f)
         {
-            detectedPlayer = true;
-            target = Player.transform;
+            FoundPlayer = true;
         }
         else if (dist > 17f)
         {
-            detectedPlayer = false;
+            FoundPlayer = false;
         }
 
         // if  (FoundPlayer == true && attackTimes < 4)
         // {
-        //     if (Jumped == false)
-        //     {
-        //         Jumped = true;
-        //         //Jump();
-        //         //Jumped = true;
-        //     }
+        //     base.ai.enabled = false;
         // }
-
-        // if (Jumped == true)
+        // else if (FoundPlayer == false)
         // {
-        //         if (base.ai.enabled)
-        //     {
-        //         // set the agents target to where you are before the jump
-        //         // this stops her before she jumps. Alternatively, you could
-        //         // cache this value, and set it again once the jump is complete
-        //         // to continue the original move
-        //         base.ai.SetDestination(Player.transform.position);
-        //         // disable the agent
-        //         base.ai.updatePosition = false;
-        //         base.ai.updateRotation = false;
-        //         base.ai.isStopped = true;
-        //     }
-
-        //     // make the jump
-        //     base.PatrolPoints = null;
-        //     Debug.Log("Jump");
-        //     GetComponent<Rigidbody>().isKinematic = false;
-        //     GetComponent<Rigidbody>().useGravity = true;
-        //     GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;
-        //     transform.position = Vector3.MoveTowards(transform.position, (transform.position + new Vector3(0f, 1f, 1f)), speed * Time.deltaTime);
-        //     Invoke(nameof(ResetAttack3), 1f);
-        //     Jumped = false;
+        //     base.ai.enabled = true;
         // }
-         if (!Jumped && dist > 12f && dist <17f && attackTimes < 5)
+        // if (FoundPlayer == true && attackTimes >= 5)
+        // {
+        //     base.ai.enabled = true;
+        // }
+         if (!Jumped && dist > 8f && dist <25f && attackTimes < 5)
          {
-            target = Player.transform;
             transform.LookAt(PlayerPos);
-            if (attacked == false)
+            if (rangedAttacked == false && WaterChase == false)
             {Ranged();}
             ///attackTimes = attackTimes + 1;
             //Debug.Log("Ranged");
@@ -160,30 +141,44 @@ public class WaterDragonAi : BasicDragonAI
         // }
         if (attackTimes >= 5)
         {
-            target = Player.transform;
-            UpdateDestination(target.position);
+            ChasePlayer();
         }
          if (dist > 2f && dist <12f)
          {
             //transform.LookAt(PlayerPos);
             if (meleeAttack == false)
             {
-                attackPos.SetActive(true);
-                meleeAttack = true;
-                attacked = true;
+            attackPos.SetActive(true);
+            meleeAttack = true;
+            attacked = true;
             }
+         }
+         if (Player.GetComponent<ThirdPersonController>().inWater == true && dist < 25f)
+         {
+            ChasePlayerWater();
          }
 
     }
     void Jump()
     {
         detectForGround = false;
-        ai.enabled = false;
+        base.ai.enabled = false;
         Vector3 jumpVec = Player.transform.position - transform.position;
         print(jumpVec);
         rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
         rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
+    }
+    void ChasePlayer()
+    {
+        target = Player.transform;
+        UpdateDestination(target.position);  
+    }
+        void ChasePlayerWater()
+    {
+        WaterChase = true;
+        target = Player.transform;
+        UpdateDestination(target.position);  
     }
 
     private void OnCollisionEnter(Collision other)
@@ -194,90 +189,68 @@ public class WaterDragonAi : BasicDragonAI
             meleeAttack = false;
             Invoke(nameof(ResetAttack2), 0f);
         }
+        if(other.gameObject.CompareTag("Water")){
+                base.ai.speed = 10f;
+                base.Speed = 10f;
+        }
 
+    }
+    void OnCollisionExit(Collision other)
+    {
+            if(other.gameObject.CompareTag("Water")){
+                base.ai.speed = 3.5f;
+                base.Speed = 3.5f;
+        } 
     }
     void Ranged()
     {
         Rigidbody clone;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
+        base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
 
         clone.velocity = transform.TransformDirection(Vector3.forward * 10);
         Invoke(nameof(ResetAttack), 1f);
+        rangedAttacked = true;
         attacked = true;
     }
 
-   //void resetJump()
-   //{
-   //    if(base.isGroundedD == false){
-   //    transform.position = Vector3.MoveTowards(transform.position, (transform.position - new Vector3(0f, 2f, 0f) + Vector3.forward), speed * Time.deltaTime);
-   //    }
-   //}
-    // void Jump()
-    // {
-    //             if (base.ai.enabled)
-    //         {
-    //             // set the agents target to where you are before the jump
-    //             // this stops her before she jumps. Alternatively, you could
-    //             // cache this value, and set it again once the jump is complete
-    //             // to continue the original move
-    //             base.ai.SetDestination(Player.transform.position);
-    //             // disable the agent
-    //             base.ai.updatePosition = false;
-    //             base.ai.updateRotation = false;
-    //             base.ai.isStopped = true;
-    //         }
-
-    //         // make the jump
-    //         base.PatrolPoints = null;
-    //         Debug.Log("Jump");
-    //         GetComponent<Rigidbody>().isKinematic = false;
-    //         GetComponent<Rigidbody>().useGravity = true;
-    //         GetComponent<UnityEngine.AI.NavMeshAgent>().baseOffset = -5;
-    //         transform.position = Vector3.MoveTowards(transform.position, (transform.position + Vector3.up), speed * Time.deltaTime);
-            
-    // }
-
-
-    // void Melee()
-    // {
-    //     float step =  speed * Time.deltaTime;
-    //     transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
-    //     Collider[] hitObjects = Physics.OverlapSphere(attackPos.position, attackRange, whatIsEnemy);
 
     public virtual void ResetAttack()
     {
+        rangedAttacked = false;
         attacked = false;
         attackTimes += 1;
+        base.ai.speed = Speed;
     }
     public override void IsGrounded()
     {
-        if (detectForGround)
+        base.IsGrounded();
+        if (isGroundedD == true)
         {
-            base.IsGrounded();
-            if (isGroundedD == true)
-            {
-                Jumped = false;
-                print("Touched Ground");
-                gameObject.GetComponent<NavMeshAgent>().enabled = true;
-                rb.velocity = Vector3.zero;
-            }
+            Jumped = false;
+            print("Touched Ground");
+            gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         }
-       
     }
     public virtual void ResetAttack2()
     {
         meleeAttack = false;
+        attacked = false;
         attackPos.SetActive(false);
         attackTimes = 0;
         LostPlayer();
         HitPlayer = false;
         target = PatrolPoints[0];
     }
-    public virtual void ResetAttack3()
+    public virtual void RandomNumber()
     {
-        //resetJump();
-        Jumped = false;
+        randomWaitTime = Random.Range(1, 3);
+        if (randomWaitTime == lastWaitTime)
+        {
+            randomWaitTime = Random.Range(1, 3);
+        }
+        lastWaitTime = randomWaitTime;
     }
     IEnumerator jumpTimer()
     {
