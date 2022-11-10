@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class BaseEnemyAI : MonoBehaviour
 {
     [SerializeField]
-    internal Transform[] PatrolPoints = new Transform[10];
+    public List<Transform> PatrolPoints = new List<Transform>();
     internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
@@ -105,7 +105,7 @@ public class BaseEnemyAI : MonoBehaviour
         {
             atDestination = true;
             //if the player isnt at the last point
-            if (patrolNum < PatrolPoints.Length - 1)
+            if (patrolNum < PatrolPoints.Count - 1)
             {
                 patrolNum++;
             }
