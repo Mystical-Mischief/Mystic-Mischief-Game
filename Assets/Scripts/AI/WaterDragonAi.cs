@@ -158,7 +158,6 @@ public class WaterDragonAi : BasicDragonAI
          {
             attackTimes = 5;
          }
-         else {}
 
     }
     void Jump()
