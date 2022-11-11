@@ -8,13 +8,13 @@ public class CameraLogic : MonoBehaviour
     public bool isFlying;
     public float sensitivity;
     public float groundMaxYRotation, groundMinYRotation, airMaxXRotation, airMinXRotation;
-    private ThirdPersonInputs inputs;
+    private ThirdPersonControl inputs;
     private GameObject player;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         Cursor.lockState = CursorLockMode.Locked;
-        inputs = new ThirdPersonInputs();
+        inputs = new ThirdPersonControl();
         inputs.Enable();
         turn = inputs.PlayerOnGround.Look.ReadValue<Vector2>();
     }
@@ -23,12 +23,11 @@ public class CameraLogic : MonoBehaviour
         isFlying = !player.GetComponent<ThirdPersonController>().isGrounded;
         if (isFlying)
         {
-            turn.x = player.transform.rotation.y * 100 + (inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity);
+            turn.x = player.transform.rotation.x * 1000 + (inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity);
             turn.y = 0;
-            if (!isFlying)
-            {
-                turn.y = player.transform.rotation.x * 100;
-            }
+
+            Quaternion newRotation = Quaternion.Euler(turn.y, -turn.x, 0);
+            transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 2);
         }
         else
         {
@@ -42,10 +41,20 @@ public class CameraLogic : MonoBehaviour
             {
                 turn.y = groundMinYRotation;
             }
+            if (turn.x > 360)
+            {
+                turn.x -= 360;
+            }
+            if (turn.x < -360)
+            {
+                turn.x += 360;
+            }
+            Quaternion newRotation = Quaternion.Euler(turn.y, turn.x, 0);
+            transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
+
         }
         
-        Quaternion newRotation = Quaternion.Euler(turn.y, -turn.x, 0);
-        transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 2);
+
         if (inputs.Test.UnlockMouse.WasPerformedThisFrame())
         {
             Cursor.lockState = CursorLockMode.None;
