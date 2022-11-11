@@ -407,27 +407,27 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Save"",
+                    ""name"": ""BUP"",
                     ""type"": ""Button"",
-                    ""id"": ""0d5e2f9a-d6a5-4805-80d9-2b40e0a9e814"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Load"",
-                    ""type"": ""Button"",
-                    ""id"": ""5419be73-8de7-4cb5-a789-c1075c3ff696"",
+                    ""id"": ""a6a1b694-e58e-4df9-ba9e-4ff83a8cb57d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BUP"",
+                    ""name"": ""Save"",
                     ""type"": ""Button"",
-                    ""id"": ""a6a1b694-e58e-4df9-ba9e-4ff83a8cb57d"",
+                    ""id"": ""fc38f95b-fff9-4b09-925b-c27caf6797ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d0722f9-78ad-4f30-8d2e-30c0107e778b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -443,28 +443,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6665efec-9ac3-4b69-97b0-1935fcf43bc4"",
-                    ""path"": ""<Keyboard>/leftBracket"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Save"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5fae1183-4b34-49fd-9969-063e9ed8b138"",
-                    ""path"": ""<Keyboard>/slash"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Load"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -500,6 +478,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""BUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efce5173-e47d-4184-b69d-93b31547fe12"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff51ceeb-3726-493a-bb1d-5f3ac4d0fee4"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -529,9 +529,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
+        m_MenuActions_BUP = m_MenuActions.FindAction("BUP", throwIfNotFound: true);
         m_MenuActions_Save = m_MenuActions.FindAction("Save", throwIfNotFound: true);
         m_MenuActions_Load = m_MenuActions.FindAction("Load", throwIfNotFound: true);
-        m_MenuActions_BUP = m_MenuActions.FindAction("BUP", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -779,17 +779,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MenuActions;
     private IMenuActionsActions m_MenuActionsActionsCallbackInterface;
     private readonly InputAction m_MenuActions_Quit;
+    private readonly InputAction m_MenuActions_BUP;
     private readonly InputAction m_MenuActions_Save;
     private readonly InputAction m_MenuActions_Load;
-    private readonly InputAction m_MenuActions_BUP;
     public struct MenuActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
         public MenuActionsActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Quit => m_Wrapper.m_MenuActions_Quit;
+        public InputAction @BUP => m_Wrapper.m_MenuActions_BUP;
         public InputAction @Save => m_Wrapper.m_MenuActions_Save;
         public InputAction @Load => m_Wrapper.m_MenuActions_Load;
-        public InputAction @BUP => m_Wrapper.m_MenuActions_BUP;
         public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -802,15 +802,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Quit.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
                 @Quit.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
                 @Quit.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnQuit;
+                @BUP.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
+                @BUP.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
+                @BUP.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
                 @Save.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
                 @Save.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
                 @Save.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSave;
                 @Load.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
                 @Load.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
                 @Load.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
-                @BUP.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
-                @BUP.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
-                @BUP.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnBUP;
             }
             m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -818,15 +818,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Quit.started += instance.OnQuit;
                 @Quit.performed += instance.OnQuit;
                 @Quit.canceled += instance.OnQuit;
+                @BUP.started += instance.OnBUP;
+                @BUP.performed += instance.OnBUP;
+                @BUP.canceled += instance.OnBUP;
                 @Save.started += instance.OnSave;
                 @Save.performed += instance.OnSave;
                 @Save.canceled += instance.OnSave;
                 @Load.started += instance.OnLoad;
                 @Load.performed += instance.OnLoad;
                 @Load.canceled += instance.OnLoad;
-                @BUP.started += instance.OnBUP;
-                @BUP.performed += instance.OnBUP;
-                @BUP.canceled += instance.OnBUP;
             }
         }
     }
@@ -857,8 +857,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface IMenuActionsActions
     {
         void OnQuit(InputAction.CallbackContext context);
+        void OnBUP(InputAction.CallbackContext context);
         void OnSave(InputAction.CallbackContext context);
         void OnLoad(InputAction.CallbackContext context);
-        void OnBUP(InputAction.CallbackContext context);
     }
 }
