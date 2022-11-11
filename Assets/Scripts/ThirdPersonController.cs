@@ -336,6 +336,14 @@ public class ThirdPersonController : MonoBehaviour
             isGrounded = false;
             inWater = true;
         }
+        if (other.gameObject.CompareTag("Attackpos"))
+        {
+            TakeDamage(1);
+        }
+        if (other.gameObject.CompareTag("Projectile"))
+        {
+            TakeDamage(1);
+        }
     }
     void OnCollisionExit(Collision other)
     {
@@ -382,6 +390,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
     public void ResetJump()
     {
@@ -403,6 +413,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
     private void Caw(InputAction.CallbackContext obj)
     {

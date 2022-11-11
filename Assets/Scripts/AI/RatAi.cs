@@ -50,7 +50,7 @@ public class RatAi : BaseEnemyAI
         {
             Attacked = false;
             Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
-            Saves.GetComponent<SaveGeneral>().LoadEnemy();
+            Saves.GetComponent<SaveGeneral>().LoadCheckpoint();
         }
     }
 
