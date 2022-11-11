@@ -9,7 +9,7 @@ public class WDProjectrileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExecuteAfterTime(2));
+        StartCoroutine(ExecuteAfterTime(5));
 
     }
 
@@ -22,9 +22,10 @@ public class WDProjectrileScript : MonoBehaviour
 
         private void OnCollisionEnter(Collision other)
     {
-            if (other.gameObject.tag == "Player" && gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked == true)
+            if (other.gameObject.tag == "Player")
         {  
-            other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+            // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+            Destroy(gameObject);
         }
     }
 }
