@@ -93,6 +93,7 @@ public class CowboyHat : BaseHatScript
         if(isObjAttached)
         {
             Vector3 finalPos = new Vector3(originalPos.x,obj.transform.position.y,originalPos.z + offset.z - objectDis); 
+
             obj.transform.position = Vector3.MoveTowards(obj.transform.position,finalPos, maxWhipDis);
             isObjAttached = false;
         }
