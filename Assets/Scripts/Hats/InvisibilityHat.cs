@@ -37,7 +37,16 @@ public class InvisibilityHat : BaseHatScript
     {
         print("invisible hat poof!");
         isInvisible = !isInvisible;
-        if(isInvisible ? Player.GetComponent<MeshRenderer>().material = InvisMaterial : Player.GetComponent<MeshRenderer>().material = NormalMaterial)
+        if (isInvisible)
+        {
+            Player.GetComponent<MeshRenderer>().material = InvisMaterial;
+            Player.transform.tag = "Untagged";
+        }
+        else
+        {
+            Player.GetComponent<MeshRenderer>().material = NormalMaterial;
+            Player.transform.tag = "Player";
+        }
         base.HatAbility();
     }
 }
