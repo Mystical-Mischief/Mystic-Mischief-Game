@@ -157,7 +157,6 @@ public class WaterDragonAi : BasicDragonAI
          {
             ChasePlayerWater();
          }
-         else {}
 
     }
     void Jump()

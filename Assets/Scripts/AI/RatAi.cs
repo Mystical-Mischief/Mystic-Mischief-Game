@@ -50,7 +50,7 @@ public class RatAi : BaseEnemyAI
         {
             Attacked = false;
             Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
-            Saves.GetComponent<SaveGeneral>().LoadEnemy();
+            Saves.GetComponent<SaveGeneral>().LoadCheckpoint();
         }
     }
 
@@ -59,7 +59,7 @@ public class RatAi : BaseEnemyAI
         randomNumber = Random.Range(0, base.Player.GetComponent<Inventory>().PickedUpItems.Count);
         if (randomNumber == lastWaitTime)
         {
-            randomNumber = Random.Range(1, 3);
+            randomNumber = Random.Range(0, base.Player.GetComponent<Inventory>().PickedUpItems.Count);
         }
         lastWaitTime = randomNumber;
     }

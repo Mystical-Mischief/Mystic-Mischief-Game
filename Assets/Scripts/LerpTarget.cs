@@ -22,7 +22,7 @@ public class LerpTarget : MonoBehaviour
         }
         else
         {
-            Vector3 tempTrans = new Vector3(Target.transform.position.x, Target.transform.position.y + 1, Target.transform.position.z);
+            Vector3 tempTrans = new Vector3(Target.transform.position.x, Target.transform.position.y + 2, Target.transform.position.z);
             transform.position = Vector3.Lerp(transform.position, tempTrans, Time.deltaTime * CamSpeed);
         }
     }
