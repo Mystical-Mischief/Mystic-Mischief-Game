@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 105670770}
   m_Layer: 0
   m_Name: Water (1)
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3829,8 +3829,7 @@ MonoBehaviour:
   - {fileID: 208512475}
   - {fileID: 1318551255}
   Player: {fileID: 1577527059}
-  PickedUpItems:
-  - {fileID: 0}
+  PickedUpItems: []
   Items:
   - {fileID: 3114266207231585267}
 --- !u!4 &1096242136
@@ -4864,11 +4863,13 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
+  waterSpeed: 3000
   attackTimes: 0
   jumpAttackHieght: 100
   jumpHieght: {x: 0, y: 0, z: 0}
   Base: {fileID: 0}
   randomWaitTime: 0
+  chaseWaterDistance: 25
   rangedAttacked: 0
   HitPlayer: 0
   meleeAttack: 0
@@ -6065,7 +6066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698651008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.55, y: 0, z: 8.35}
+  m_LocalPosition: {x: -2.55, y: 1.254, z: 8.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

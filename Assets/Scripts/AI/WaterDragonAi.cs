@@ -18,6 +18,7 @@ public class WaterDragonAi : BasicDragonAI
     public GameObject attackPos;
     public LayerMask whatIsEnemy;
     private int speed = 5;
+    public float waterSpeed;
     public int attackTimes;
     public float jumpAttackHieght;
     public Vector3 jumpHieght;
@@ -33,6 +34,8 @@ public class WaterDragonAi : BasicDragonAI
     private bool isRotatingRight = false;
     private int state;
     private bool WaterChase;
+    public float chaseWaterDistance;
+    private bool inWater;
 
     [HideInInspector]
     public bool rangedAttacked;
@@ -70,7 +73,7 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
-        if (Player.transform.position.y > transform.position.y)
+        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f)
         {
             if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
@@ -177,9 +180,11 @@ public class WaterDragonAi : BasicDragonAI
     }
         void ChasePlayerWater()
     {
+        if (inWater == true){
         WaterChase = true;
         target = Player.transform;
-        UpdateDestination(target.position);  
+        UpdateDestination(target.position);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -191,8 +196,9 @@ public class WaterDragonAi : BasicDragonAI
             Invoke(nameof(ResetAttack2), 0f);
         }
         if(other.gameObject.CompareTag("Water")){
-                base.ai.speed = 10f;
-                base.Speed = 10f;
+                base.ai.speed = waterSpeed;
+                base.Speed = waterSpeed;
+                inWater = true;
         }
 
     }
@@ -224,6 +230,7 @@ public class WaterDragonAi : BasicDragonAI
         attackTimes += 1;
         base.ai.speed = Speed;
     }
+
     public override void IsGrounded()
     {
         base.IsGrounded();
