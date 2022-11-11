@@ -75,7 +75,7 @@ public class WaterDragonAi : BasicDragonAI
             if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
                 Jumped = true;
-                Jump();
+                //Jump();
             }
         }
         // if (FoundPlayer && Player.transform.position.y > transform.position.y)
@@ -157,7 +157,6 @@ public class WaterDragonAi : BasicDragonAI
          {
             ChasePlayerWater();
          }
-         else {}
 
     }
     void Jump()

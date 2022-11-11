@@ -191,7 +191,7 @@ public partial class @ThirdPersonControl : IInputActionCollection2, IDisposable
                     ""id"": ""8213d428-8053-48ed-8829-0a089a56c9f1"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
