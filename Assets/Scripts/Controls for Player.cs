@@ -395,12 +395,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""MenuActions"",
-            ""id"": ""a63f8fe0-889c-4137-8c17-e1bcc6f113c0"",
+            ""id"": ""033a98fd-97d0-48f6-aba5-6ad5f991a052"",
             ""actions"": [
                 {
                     ""name"": ""Quit"",
                     ""type"": ""Button"",
-                    ""id"": ""f4f45f2f-7dc5-4d03-a2b2-2608f83357d7"",
+                    ""id"": ""d4df9596-e6ab-4ecf-8613-ee9555f85dfe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -409,7 +409,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""BUP"",
                     ""type"": ""Button"",
-                    ""id"": ""a6a1b694-e58e-4df9-ba9e-4ff83a8cb57d"",
+                    ""id"": ""e5cf7d82-6e22-4bef-bd3c-a67ff6fb080e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -418,26 +418,26 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Save"",
                     ""type"": ""Button"",
-                    ""id"": ""fc38f95b-fff9-4b09-925b-c27caf6797ac"",
+                    ""id"": ""e796dbce-18b6-4091-8783-849563fbebf1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Load"",
                     ""type"": ""Button"",
-                    ""id"": ""0d0722f9-78ad-4f30-8d2e-30c0107e778b"",
+                    ""id"": ""874e1851-98cb-4966-a34b-b08da2093f63"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d5c1561a-0d3d-4241-8e65-4ed34889849d"",
+                    ""id"": ""35a6f03f-7da8-412f-88a9-bd061af772ba"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -447,42 +447,20 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""86969fa9-e0a6-4793-b1d5-c56051c5df54"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": ""Press"",
+                    ""name"": """",
+                    ""id"": ""27f43b57-b020-44b8-b96f-3e5df32ee060"",
+                    ""path"": """",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BUP"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""b3bccd23-766b-449f-bd24-90bb0f7efd85"",
-                    ""path"": ""<Keyboard>/equals"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""BUP"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""458b7d76-4bc1-4f91-856b-a4a1e5cd2838"",
-                    ""path"": ""<Keyboard>/minus"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""BUP"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""efce5173-e47d-4184-b69d-93b31547fe12"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""id"": ""5ac72827-41d7-40a4-a2dc-f92f9f129fb3"",
+                    ""path"": ""<Keyboard>/leftBracket"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -492,8 +470,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ff51ceeb-3726-493a-bb1d-5f3ac4d0fee4"",
-                    ""path"": ""<Keyboard>/n"",
+                    ""id"": ""c4fb72fe-9cad-4239-9331-ddd2eb3fe9df"",
+                    ""path"": ""<Keyboard>/slash"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -54,16 +54,16 @@ public class BaseEnemyAI : MonoBehaviour
             Player.GetComponent<ThirdPersonController>().Targeted = true;
         }
         targetPosition = target.transform.position;
-        if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
-        {
-            SaveEnemy();
-            Saved = true;
-        }
-        if (Player.GetComponent<ThirdPersonController>().Loaded == true)
-        {
-            Saved = false;
-            LoadEnemy();
-        }
+        // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+        // {
+        //     SaveEnemy();
+        //     Saved = true;
+        // }
+        // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+        // {
+        //     Saved = false;
+        //     LoadEnemy();
+        // }
         //if the ai doesnt see the player then it will patrol and look for it
         if (!spottedPlayer)
         {
@@ -172,8 +172,7 @@ public class BaseEnemyAI : MonoBehaviour
     {
         EnemyData data = SaveSystem.LoadEnemy(this);
         patrolNum = data.patrolNum;
-        target = PatrolPoints[patrolNum];
-        UpdateDestination(target.position);
+        Patrol();
 
         Vector3 position;
         position.x = data.position[0];
