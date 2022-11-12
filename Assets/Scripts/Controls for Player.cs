@@ -425,6 +425,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""076b3051-9ae7-4873-92c8-247a2fafe591"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Snatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e95f57e2-35ba-4c42-83e3-2277ae946b9b"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
