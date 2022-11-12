@@ -62,5 +62,22 @@ public class PlayerAnimation : MonoBehaviour
         {
             Debug.Log("Diving");
         }
+        if (controls.Actions.Snatch.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Pick");
+        }
+        if (controls.Inv.PressPick.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Pick");
+        }
+
+        if (controls.Inv.Drop.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Drop");
+        }
+        if (controls.Inv.Store.WasPerformedThisFrame())
+        {
+            animator.SetTrigger("Store");
+        }
     }
 }
