@@ -26,6 +26,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerInputs = new ThirdPersonControl();
         animator = GetComponent<Animator>();
+        controls = new ControlsforPlayer();
+        controls.Enable();
+        playerInputs.Enable();
     }
 
     // Update is called once per frame
