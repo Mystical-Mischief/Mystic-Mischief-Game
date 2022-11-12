@@ -77,7 +77,7 @@ public class WaterDragonAi : BasicDragonAI
         {
             if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
-                Jumped = true;
+               // Jumped = true;
                 Jump();
             }
         }
