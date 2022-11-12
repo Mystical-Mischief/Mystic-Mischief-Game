@@ -75,11 +75,11 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
-        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f && Jumping == false)
+        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f)
         {
-            if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
+            if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
             {
-               // Jumped = true;
+                Jumped = true;
                 Jump();
             }
         }
@@ -174,7 +174,7 @@ public class WaterDragonAi : BasicDragonAI
         rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
         StartCoroutine(jumpReseterTimer());
-        Jumping = true;
+        // Jumping = true;
         // Invoke(nameof(ResetJump), 10f);
     }
     public void ResetJump()
