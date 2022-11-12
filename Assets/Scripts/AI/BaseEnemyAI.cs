@@ -1,5 +1,6 @@
  using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,8 @@ public class BaseEnemyAI : MonoBehaviour
     private bool Saved;
     public Vector3 targetPosition;
 
+    public GameObject attackHitbox;
+
     public Transform target;
     internal NavMeshAgent ai;
     
@@ -24,6 +27,7 @@ public class BaseEnemyAI : MonoBehaviour
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
+        //attackHitbox.SetActive(false);
         Saved = false;
         // controls = new ControlsforPlayer();
         ai = GetComponent<NavMeshAgent>();
@@ -45,6 +49,7 @@ public class BaseEnemyAI : MonoBehaviour
             if (hit.transform.gameObject.tag == "Player")
             {
                 spottedPlayer = true;
+                
                 target = hit.transform;
 
             }
@@ -95,6 +100,7 @@ public class BaseEnemyAI : MonoBehaviour
                 target = hit.transform;
                 
             }
+            attackHitbox.SetActive(true);
         }
     }
     internal bool atDestination;
@@ -151,6 +157,7 @@ public class BaseEnemyAI : MonoBehaviour
     public virtual void LostPlayer()
     {
         spottedPlayer = false;
+        attackHitbox.SetActive(false);
         target = PatrolPoints[0];
     }
 
