@@ -74,6 +74,7 @@ public class PlayerAnimation : MonoBehaviour
         if (controls.Inv.Drop.WasPressedThisFrame())
         {
             animator.SetTrigger("Drop");
+            animator.SetTrigger("Jump");
         }
         if (controls.Inv.Store.WasPerformedThisFrame())
         {
