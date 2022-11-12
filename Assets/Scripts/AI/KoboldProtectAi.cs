@@ -62,6 +62,7 @@ public class KoboldProtectAi : BaseEnemyAI
         Flee();
 
     }
+
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
@@ -69,8 +70,7 @@ public class KoboldProtectAi : BaseEnemyAI
         {
             attackedPlayer = true;
             player.currentHealth--;
-            //Knockback
-            collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+            
             print($"Player Health: {player.currentHealth}");
             print("HIt");
 
