@@ -11,13 +11,6 @@ public class SaveGeneral : MonoBehaviour
     public static bool LoadMenu;
     public List<GameObject> Items = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SaveEnemyCheckPoint();
-        controls = new ControlsforPlayer();
-        controls.Enable();
-    }
     public void OnEnable()
     {
         controls.Enable();
@@ -26,19 +19,26 @@ public class SaveGeneral : MonoBehaviour
     {
         controls.Disable();
     }
+    // Start is called before the first frame update
+    void Start()
+    {
+        SaveEnemyCheckPoint();
+        controls = new ControlsforPlayer();
+        controls.Enable();
+    }
 
     // Update is called once per frame
     void Update()
     {
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
-        bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
-        bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
-        if (Save)
+        // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
+        // bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
+        if (controls.MenuActions.Save.triggered)
         {
             Debug.Log("Saved");
             SaveEnemy();
         }
-        if (Load)
+        if (controls.MenuActions.Load.triggered)
         {
             LoadEnemy();
         }
@@ -96,6 +96,26 @@ public class SaveGeneral : MonoBehaviour
             }
         }
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
+    }
+        public void LoadCheckpoint ()
+    {
+        foreach (GameObject enemy in Enemies)
+        {
+            enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
+        }
+        foreach (GameObject Inv in PickedUpItems)
+        {
+            Inv.SetActive(false);
+        }
+        foreach (GameObject items in Items)
+        {
+            items.GetComponent<Item>().LoadItem();
+            if (items.GetComponent<Item>().inInventory == false)
+            {
+                    items.SetActive(true);
+            }
+        }
+        Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
     }
     public virtual void Loadmenu()
     {
