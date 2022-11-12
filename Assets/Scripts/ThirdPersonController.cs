@@ -199,30 +199,20 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
-        //         if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0)
-        // {
-        //     animator.SetTrigger("Jump");
-        // }
-        // if (rb.velocity.magnitude >= 8 && isGrounded == true)
-        // {
-        //     animator.SetFloat("RunSpeed", 2f);
-        // // animator.SetTrigger("Launch");
-        // }
-        //         if (rb.velocity.magnitude >= 6 && rb.velocity.magnitude < 8 &&isGrounded == true)
-        // {
-        //     animator.SetFloat("RunSpeed", 1f);
-        // // animator.SetTrigger("Launch");
-        // }
-        //     if (rb.velocity.magnitude < 6 && isGrounded == true)
-        // {
-        //     animator.SetFloat("RunSpeed", 0f);
-        // // animator.SetTrigger("Launch");
-        // }
-        //     if (isGrounded == false)
-        // {
-        //     animator.SetFloat("RunSpeed", 0f);
-        // // animator.SetTrigger("Launch");
-        // }
+        bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
+            if (diving && isGrounded == false)
+        {
+            animator.SetTrigger("Diving");
+        }
+                if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
+        {
+            animator.SetTrigger("Jump");
+        }
+        if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
+        {
+            animator.SetTrigger("JumpAir");
+        }
+
         if (controls.Test.HealthTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
@@ -310,10 +300,12 @@ public class ThirdPersonController : MonoBehaviour
             isGrounded=true;
             camGround.SetActive(true);
             camFly.SetActive(false);
+            animator.SetBool("Grounded", true);
         }
         else
         {
             isGrounded = false;
+            animator.SetBool("Grounded", false);
             camGround.SetActive(false);
             camFly.SetActive(true);
         }

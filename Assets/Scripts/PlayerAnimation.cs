@@ -7,15 +7,18 @@ public class PlayerAnimation : MonoBehaviour
     public Rigidbody rb;
     Animator animator;
     private ThirdPersonControl playerInputs;
+    ControlsforPlayer controls;
     public GameObject Player;
 
         public void OnEnable()
     {
         playerInputs.Enable();
+        controls.Enable();
     }
     public void OnDisable()
     {
         playerInputs.Disable();
+        controls.Enable();
     }
 
     // Start is called before the first frame update
@@ -51,6 +54,10 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetFloat("RunSpeed", 0f);
         // animator.SetTrigger("Launch");
+        }
+        if (controls.Actions.Dive.WasPressedThisFrame())
+        {
+            Debug.Log("Diving");
         }
     }
 }
