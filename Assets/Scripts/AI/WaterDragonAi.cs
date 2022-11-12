@@ -36,6 +36,7 @@ public class WaterDragonAi : BasicDragonAI
     private bool WaterChase;
     public float chaseWaterDistance;
     private bool inWater;
+    public bool Jumping;
 
     [HideInInspector]
     public bool rangedAttacked;
@@ -52,6 +53,7 @@ public class WaterDragonAi : BasicDragonAI
     // Start is called before the first frame update
     new void Start()
     {
+        Jumping = false;
         ai2 = GetComponent<UnityEngine.AI.NavMeshAgent>();
         state = 0;
         RandomNumber();
@@ -73,11 +75,11 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
-        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f)
+        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f && Jumping == false)
         {
             if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
             {
-                Jumped = true;
+               // Jumped = true;
                 Jump();
             }
         }
@@ -171,6 +173,13 @@ public class WaterDragonAi : BasicDragonAI
         rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
         rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
+        StartCoroutine(jumpReseterTimer());
+        Jumping = true;
+        // Invoke(nameof(ResetJump), 10f);
+    }
+    public void ResetJump()
+    {
+        Jumping = false;
     }
     void ChasePlayer()
     {
@@ -263,5 +272,10 @@ public class WaterDragonAi : BasicDragonAI
     {
         yield return new WaitForSeconds(1);
         detectForGround = true;
+    }
+        IEnumerator jumpReseterTimer()
+    {
+        yield return new WaitForSeconds(10);
+        Jumping = false;
     }
 }
