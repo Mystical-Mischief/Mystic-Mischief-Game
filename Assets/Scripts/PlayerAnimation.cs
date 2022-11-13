@@ -10,17 +10,6 @@ public class PlayerAnimation : MonoBehaviour
     ControlsforPlayer controls;
     public GameObject Player;
 
-        public void OnEnable()
-    {
-        playerInputs.Enable();
-        controls.Enable();
-    }
-    public void OnDisable()
-    {
-        playerInputs.Disable();
-        controls.Enable();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +19,28 @@ public class PlayerAnimation : MonoBehaviour
         controls.Enable();
         playerInputs.Enable();
     }
+    public void OnEnable()
+    {
+        if(playerInputs != null)
+        {
+            playerInputs.Enable();
+        }
+        if (controls != null)
+        {
+            controls.Enable();
+        }
+    }
+    public void OnDisable()
+    {
+        playerInputs.Disable();
+        controls.Enable();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-                if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Player.GetComponent<ThirdPersonController>().Stamina > 0)
+        if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Player.GetComponent<ThirdPersonController>().Stamina > 0)
         {
             animator.SetTrigger("Jump");
         }
