@@ -15,7 +15,8 @@ public class WDAttackScript : MonoBehaviour
             Debug.Log("DAMAGED!");
             gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked = false;
             HitPlayer = true;
-            gameObject.GetComponentInParent<WaterDragonAi>().HitPlayer = true;;
+            Base.GetComponent<WaterDragonAi>().HitPlayer = true;
+            Base.GetComponent<WaterDragonAi>().attacked = true;
         // Vector3 dir = other.contacts[0].point - transform.position;
         // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(2);
         //  // We then get the opposite (-Vector3) and normalize it

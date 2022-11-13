@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656770939021569581}
+  - component: {fileID: 1792518140464523061}
   - component: {fileID: 1656770939021569586}
   m_Layer: 0
   m_Name: AttackPos
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 1257824917164401492}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792518140464523061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656770939021569580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501f2abd716e3c741a9f14a74f1d9b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Base: {fileID: 1891337800876849646}
+  HitPlayer: 0
 --- !u!135 &1656770939021569586
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -133,10 +148,13 @@ MonoBehaviour:
   Base: {fileID: 0}
   randomWaitTime: 0
   chaseWaterDistance: 25
+  Jumping: 0
   rangedAttacked: 0
   HitPlayer: 0
   meleeAttack: 0
   Jumped: 0
+  rangedDist: 0
+  meleeDist: 0
 --- !u!33 &2799948744332094705
 MeshFilter:
   m_ObjectHideFlags: 0
