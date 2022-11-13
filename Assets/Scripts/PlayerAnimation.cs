@@ -7,15 +7,18 @@ public class PlayerAnimation : MonoBehaviour
     public Rigidbody rb;
     Animator animator;
     private ThirdPersonControl playerInputs;
+    ControlsforPlayer controls;
     public GameObject Player;
 
         public void OnEnable()
     {
         playerInputs.Enable();
+        controls.Enable();
     }
     public void OnDisable()
     {
         playerInputs.Disable();
+        controls.Enable();
     }
 
     // Start is called before the first frame update
@@ -23,6 +26,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerInputs = new ThirdPersonControl();
         animator = GetComponent<Animator>();
+        controls = new ControlsforPlayer();
+        controls.Enable();
+        playerInputs.Enable();
     }
 
     // Update is called once per frame
@@ -51,6 +57,28 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetFloat("RunSpeed", 0f);
         // animator.SetTrigger("Launch");
+        }
+        if (controls.Actions.Dive.WasPressedThisFrame())
+        {
+            Debug.Log("Diving");
+        }
+        if (controls.Actions.Snatch.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Pick");
+        }
+        if (controls.Inv.PressPick.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Pick");
+        }
+
+        if (controls.Inv.Drop.WasPressedThisFrame())
+        {
+            animator.SetTrigger("Drop");
+            animator.SetTrigger("Jump");
+        }
+        if (controls.Inv.Store.WasPerformedThisFrame())
+        {
+            animator.SetTrigger("Store");
         }
     }
 }
