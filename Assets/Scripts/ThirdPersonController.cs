@@ -7,7 +7,7 @@ using Cinemachine;
 public class ThirdPersonController : MonoBehaviour
 {
     public bool canMove;
-    private ThirdPersonControl playerInputs;
+    //private ThirdPersonControl playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
     private CapsuleCollider CapsuleCollider;
@@ -63,12 +63,13 @@ public class ThirdPersonController : MonoBehaviour
     {
         Checkpoint();
         rb = this.GetComponent<Rigidbody>();
-        playerInputs = new ThirdPersonControl();
-        playerInputs.Enable();
-        move = playerInputs.PlayerOnGround.Movement;
+        //playerInputs = new ThirdPersonControl();
+        //playerInputs.Enable();
+        controls = new ControlsforPlayer();
+        controls.Enable();
+        move = controls.Actions.Movement;
         Stamina = 6;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
-        controls = new ControlsforPlayer();
         isGrounded = true;
         if(healthBar != null)
         {
@@ -204,11 +205,11 @@ public class ThirdPersonController : MonoBehaviour
         {
             animator.SetTrigger("Diving");
         }
-                if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
+                if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
         {
             animator.SetTrigger("Jump");
         }
-        if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
+        if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
         {
             animator.SetTrigger("JumpAir");
         }
@@ -269,10 +270,10 @@ public class ThirdPersonController : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputs.PlayerOnGround.Jump.started += DoJump;
-        playerInputs.PlayerOnGround.Caw.started += Caw;
-        move = playerInputs.PlayerOnGround.Movement;
-        playerInputs.PlayerOnGround.Enable();
+        controls.Actions.Jump.started += DoJump;
+        controls.Actions.Caw.started += Caw;
+        move = controls.Actions.Movement;
+        //playerInputs.PlayerOnGround.Enable();
         controls.Enable();
 
         camGround.SetActive(true);
@@ -281,9 +282,9 @@ public class ThirdPersonController : MonoBehaviour
     }
     private void OnDisable()
     {
-        playerInputs.PlayerOnGround.Jump.started -= DoJump;
-        playerInputs.PlayerOnGround.Caw.started -= Caw;
-        playerInputs.PlayerOnGround.Disable();
+        controls.Actions.Jump.started -= DoJump;
+        controls.Actions.Caw.started -= Caw;
+        //playerInputs.PlayerOnGround.Disable();
         controls.Disable();
 
         camGround.SetActive(false);
@@ -359,7 +360,7 @@ public class ThirdPersonController : MonoBehaviour
             if (Stamina > 0)
             {
                     
-                    Invoke(nameof(ResetJump), 0.1f);
+                Invoke(nameof(ResetJump), 0.1f);
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
                 StaminaBar.instance.UseStamina(1);

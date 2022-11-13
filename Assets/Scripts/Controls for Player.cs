@@ -79,7 +79,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c2d68109-9b48-4f39-8328-bd265a513646"",
-                    ""path"": ""<XInputController>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
@@ -112,7 +112,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
-                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,7 +134,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
-                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -239,6 +239,33 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""71e81f2c-3933-4966-a5fb-df139a732b30"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Caw"",
+                    ""type"": ""Button"",
+                    ""id"": ""b23de163-1f1b-429e-981b-9d0b7862ed4d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7cb96b94-00d4-4947-940c-65f3191e53c8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,7 +283,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3f384f7-5b85-414e-9d19-d2cbe32beefc"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -278,7 +305,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b58d955c-5a18-4026-a2c1-1c5a60bb0841"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -321,6 +348,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""121eff01-9e0c-4dba-a137-c457a43b42da"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""751dfeb3-4ff1-4aa4-bb26-14ea9e2f36fe"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -332,7 +370,40 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""17d7afcf-e839-4b7b-b83b-51936af557fa"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dc3e473-1bf9-49f7-95a9-800093297476"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ae0f4c6d-4ab1-4576-99c2-030cf45b3344"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActivateHat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cabec8a-5100-4c8f-b87d-fc9b55725ce2"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -354,12 +425,144 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""076b3051-9ae7-4873-92c8-247a2fafe591"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Snatch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e95f57e2-35ba-4c42-83e3-2277ae946b9b"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1a70630-02a0-482b-8c5b-6da5e16849de"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21a0669d-970e-45a9-b0b9-d127fffb81d1"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""3faa527c-1dae-49be-b207-0e769e8a9afb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""26b63381-11fb-4493-a4e6-af728203de35"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""aed86146-832f-4dd9-b298-c7c3fe0dba7f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4070cd5d-a80b-4514-9bd7-4aab022b6507"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""147260c0-1955-49cb-8306-0a2b9c5f4485"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0db52d4e-9687-44a3-a22e-5cd7b81cb042"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a135c2dd-936c-4b34-838c-222b7dbfa41c"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de7bf59d-9d89-48a3-a2a1-58a22ca149c8"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1abb31ac-61da-4bba-8b5a-33f78beaec89"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -501,6 +704,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
         m_Actions_Snatch = m_Actions.FindAction("Snatch", throwIfNotFound: true);
         m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
+        m_Actions_Movement = m_Actions.FindAction("Movement", throwIfNotFound: true);
+        m_Actions_Caw = m_Actions.FindAction("Caw", throwIfNotFound: true);
+        m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_HealthTest = m_Test.FindAction("HealthTest", throwIfNotFound: true);
@@ -635,6 +841,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_ActivateHat;
     private readonly InputAction m_Actions_Snatch;
     private readonly InputAction m_Actions_Interact;
+    private readonly InputAction m_Actions_Movement;
+    private readonly InputAction m_Actions_Caw;
+    private readonly InputAction m_Actions_Look;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -648,6 +857,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
         public InputAction @Snatch => m_Wrapper.m_Actions_Snatch;
         public InputAction @Interact => m_Wrapper.m_Actions_Interact;
+        public InputAction @Movement => m_Wrapper.m_Actions_Movement;
+        public InputAction @Caw => m_Wrapper.m_Actions_Caw;
+        public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -684,6 +896,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnInteract;
+                @Movement.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnMovement;
+                @Caw.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCaw;
+                @Caw.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCaw;
+                @Caw.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCaw;
+                @Look.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -715,6 +936,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Caw.started += instance.OnCaw;
+                @Caw.performed += instance.OnCaw;
+                @Caw.canceled += instance.OnCaw;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
             }
         }
     }
@@ -827,6 +1057,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnActivateHat(InputAction.CallbackContext context);
         void OnSnatch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnCaw(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {
