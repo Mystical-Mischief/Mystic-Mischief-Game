@@ -53,6 +53,8 @@ public class WaterDragonAi : BasicDragonAI
     public float rangedDist;
     public float meleeDist;
     public float jumpDist;
+    public float chaseTime;
+    public float chaseWaterTimer;
 
     private UnityEngine.AI.NavMeshAgent ai2;
 
@@ -193,7 +195,8 @@ public class WaterDragonAi : BasicDragonAI
     void ChasePlayer()
     {
         target = Player.transform;
-        UpdateDestination(target.position);  
+        UpdateDestination(target.position); 
+        Invoke(nameof(ResetAttack2), chaseTime); 
     }
         void ChasePlayerWater()
     {
@@ -201,6 +204,7 @@ public class WaterDragonAi : BasicDragonAI
         WaterChase = true;
         target = Player.transform;
         UpdateDestination(target.position);
+        Invoke(nameof(ResetAttack2), chaseWaterTimer); 
         }
     }
 
