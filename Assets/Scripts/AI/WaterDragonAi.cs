@@ -21,15 +21,19 @@ public class WaterDragonAi : BasicDragonAI
     public float waterSpeed;
     public int attackTimes;
     public float jumpAttackHieght;
+    [HideInInspector]
     public Vector3 jumpHieght;
     private float jumpForce = 10f;
     private Vector3 forceDirection = Vector3.zero;
     private float bo;
+    [HideInInspector]
     private new bool FoundPlayer;
+    [HideInInspector]
     public Transform Base;
+    [HideInInspector]
     public float randomWaitTime;
     float lastWaitTime;
-    private bool attacked;
+    public bool attacked;
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private int state;
@@ -42,11 +46,15 @@ public class WaterDragonAi : BasicDragonAI
     public bool rangedAttacked;
     private bool detectForGround = true;
 
-    [HideInInspector]
     public bool HitPlayer;
     [HideInInspector]
     public bool meleeAttack;
     public bool Jumped;
+    public float rangedDist;
+    public float meleeDist;
+    public float jumpDist;
+    public float chaseTime;
+    public float chaseWaterTimer;
 
     private UnityEngine.AI.NavMeshAgent ai2;
 
@@ -75,11 +83,11 @@ public class WaterDragonAi : BasicDragonAI
         base.Update();
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
-        if (Player.transform.position.y > transform.position.y && dist <= chaseWaterDistance && dist > 17f && Jumping == false)
+        if (Player.transform.position.y > (transform.position.y + jumpDist) && dist <= chaseWaterDistance && dist > 17f)
         {
-            if (Jumped == false && gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true)
+            if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
             {
-               // Jumped = true;
+                Jumped = true;
                 Jump();
             }
         }
@@ -132,23 +140,26 @@ public class WaterDragonAi : BasicDragonAI
         // {
         //     base.ai.enabled = true;
         // }
-         if (!Jumped && dist > 8f && dist <25f && attackTimes < 5)
+         if (!Jumped && dist > meleeDist && dist < rangedDist && attackTimes < 5)
          {
             transform.LookAt(PlayerPos);
-            if (rangedAttacked == false && WaterChase == false)
+            if (rangedAttacked == false && WaterChase == false && attacked == false)
             {Ranged();}
             ///attackTimes = attackTimes + 1;
             //Debug.Log("Ranged");
          }
-        // if (HitPlayer == true)
-        // {
-        //     Invoke(nameof(ResetAttack2), 0f);
-        // }
+        if (HitPlayer == true)
+        {
+            attackTimes = 0;
+            base.target = base.PatrolPoints[0].transform;
+            UpdateDestination(base.target.position);
+            Invoke(nameof(ResetAttack2), 5f);
+        }
         if (attackTimes >= 5)
         {
             ChasePlayer();
         }
-         if (dist > 2f && dist <12f)
+         if (dist > 2f && dist < meleeDist)
          {
             //transform.LookAt(PlayerPos);
             if (meleeAttack == false)
@@ -169,13 +180,13 @@ public class WaterDragonAi : BasicDragonAI
         detectForGround = false;
         base.ai.enabled = false;
         Vector3 jumpVec = Player.transform.position - transform.position;
-        print(jumpVec);
+        //print(jumpVec);
         rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
         rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
         StartCoroutine(jumpReseterTimer());
-        Jumping = true;
-        // Invoke(nameof(ResetJump), 10f);
+        // Jumping = true;
+        // Invoke(nameof(ResetAttack), 10f);
     }
     public void ResetJump()
     {
@@ -184,7 +195,8 @@ public class WaterDragonAi : BasicDragonAI
     void ChasePlayer()
     {
         target = Player.transform;
-        UpdateDestination(target.position);  
+        UpdateDestination(target.position); 
+        Invoke(nameof(ResetAttack2), chaseTime); 
     }
         void ChasePlayerWater()
     {
@@ -192,6 +204,7 @@ public class WaterDragonAi : BasicDragonAI
         WaterChase = true;
         target = Player.transform;
         UpdateDestination(target.position);
+        Invoke(nameof(ResetAttack2), chaseWaterTimer); 
         }
     }
 
@@ -255,9 +268,7 @@ public class WaterDragonAi : BasicDragonAI
         attacked = false;
         attackPos.SetActive(false);
         attackTimes = 0;
-        LostPlayer();
         HitPlayer = false;
-        target = PatrolPoints[0];
     }
     public virtual void RandomNumber()
     {

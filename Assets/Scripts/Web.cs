@@ -35,7 +35,6 @@ public class Web : MonoBehaviour
     }
     IEnumerator StunTimer(GameObject player)
     {
-        player.GetComponent<ThirdPersonController>().TakeDamage(1);
         print("player stunned");
         player.GetComponent<ThirdPersonController>().canMove = false;
         yield return new WaitForSeconds(stun);
