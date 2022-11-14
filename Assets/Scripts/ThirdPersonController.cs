@@ -201,11 +201,11 @@ public class ThirdPersonController : MonoBehaviour
     private void Update()
     {
         bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
-            if (diving && isGrounded == false)
+        if (diving && isGrounded == false)
         {
             animator.SetTrigger("Diving");
         }
-                if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
+        if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
         {
             animator.SetTrigger("Jump");
         }
@@ -356,7 +356,6 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        
             if (Stamina > 0)
             {
                     
@@ -366,7 +365,6 @@ public class ThirdPersonController : MonoBehaviour
                 StaminaBar.instance.UseStamina(1);
                 Debug.Log("In DoJump Function");
             }
-        
     }
     public void SavePlayer ()
     {
