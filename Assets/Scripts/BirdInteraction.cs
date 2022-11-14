@@ -25,6 +25,13 @@ public class BirdInteraction : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            inRange = true;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Player")
