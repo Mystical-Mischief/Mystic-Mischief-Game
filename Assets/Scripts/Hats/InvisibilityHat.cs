@@ -14,12 +14,6 @@ public class InvisibilityHat : BaseHatScript
         Player = GameObject.FindGameObjectWithTag("Player");
         base.Start();
     }
-
-    // Update is called once per frame
-    new void Update()
-    {
-        base.Update();
-    }
     new void OnEnable()
     {
         base.OnEnable();
