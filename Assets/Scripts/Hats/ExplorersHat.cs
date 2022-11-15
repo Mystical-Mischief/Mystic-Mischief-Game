@@ -5,11 +5,18 @@ using UnityEngine;
 public class ExplorersHat : BaseHatScript
 {
     public GameObject[] currentDestinationItems;
-    private GameObject closestDestination;
+    public GameObject cameraForward;
+    [SerializeField]
+    private GameObject circleTool;
+    [SerializeField]
+    private Vector3 offsetHeight;
+    [HideInInspector]
+    public GameObject closestItem;
+    private GameObject nextClosestItem;
     private bool findCloseItem;
     new void Start()
     {
-        if (closestDestination == null)
+        if (closestItem == null)
         {
             findCloseItem = true;
         }
@@ -18,23 +25,65 @@ public class ExplorersHat : BaseHatScript
 
     new void Update()
     {
+        if (!activateHat)
+        {
+            circleTool.SetActive(false);
+        }
         if (findCloseItem)
         {
             foreach(GameObject gO in currentDestinationItems)
             {
-                if(Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(closestDestination.transform.position, transform.position))
+                if(closestItem == null)
                 {
-                    closestDestination = gO;
+                    closestItem = gO;
+                    continue;
                 }
-                findCloseItem = false;
+                if(Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
+                {
+                    closestItem = gO;
+                }
             }
+            findCloseItem = false;
+        }
+        else
+        {
+            detectNextClosestItem();
         }
         base.Update();
     }
+    void detectNextClosestItem()
+    {
+        foreach (GameObject gO in currentDestinationItems)
+        {
+            if(nextClosestItem == closestItem)
+            {
+                nextClosestItem = null;
+            }
+            if(nextClosestItem == null)
+            {
+                nextClosestItem = gO;
+                continue;
+            }
+            if (gO == closestItem)
+            {
+                continue;
+            }
+            if(Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestItem.transform.position, transform.position))
+            {
+                nextClosestItem = gO;
+            }
+        }
+        if(Vector3.Distance(nextClosestItem.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
+        {
+            findCloseItem = true;
+        }
+    }
     public override void HatAbility()
     {
-
+        cameraForward.transform.forward = closestItem.transform.position - (transform.position + offsetHeight);
+        circleTool.SetActive(true);
         base.HatAbility();
+
     }
 
 }
