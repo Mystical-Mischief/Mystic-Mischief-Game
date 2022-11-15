@@ -11,9 +11,17 @@ public class HitboxLogic : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PickUp" && !inventory.holdingItem)
+        if((other.gameObject.tag == "PickUp" || other.gameObject.tag == "Ticket") && !inventory.holdingItem)
         {
-            snatchItem(other.gameObject);
+            if(other.gameObject.tag == "PickUp")
+            {
+                snatchItem(other.gameObject);
+            }
+            if(other.gameObject.tag == "Ticket")
+            {
+                GameObject.Find("TicketTracker").GetComponent<TicketTrackerTemp>().currTicketNum++;
+                other.gameObject.SetActive(false);
+            }
         }
         if(other.gameObject.tag == "Enemy")
         {

@@ -55,6 +55,7 @@ public class WaterDragonAi : BasicDragonAI
     public float jumpDist;
     public float chaseTime;
     public float chaseWaterTimer;
+    public float projectileSpeed;
 
     private UnityEngine.AI.NavMeshAgent ai2;
 
@@ -233,11 +234,13 @@ public class WaterDragonAi : BasicDragonAI
     void Ranged()
     {
         Rigidbody clone;
+        Vector3 jumpVec = Player.transform.position - transform.position;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
         base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
+        var step =  speed * Time.deltaTime; // calculate distance to move
 
-        clone.velocity = transform.TransformDirection(Vector3.forward * 10);
+        clone.velocity = (Player.transform.position - clone.position).normalized * projectileSpeed;
         Invoke(nameof(ResetAttack), 1f);
         rangedAttacked = true;
         attacked = true;
