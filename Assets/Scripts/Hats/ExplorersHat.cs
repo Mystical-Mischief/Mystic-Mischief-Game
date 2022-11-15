@@ -80,7 +80,9 @@ public class ExplorersHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        cameraForward.transform.forward = closestItem.transform.position - (transform.position + offsetHeight);
+        cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), 1);
+        cameraForward.GetComponent<CameraLogic>().turn.x = (cameraForward.transform.rotation.eulerAngles.y);
+        cameraForward.GetComponent<CameraLogic>().turn.y = (cameraForward.transform.rotation.eulerAngles.x);
         circleTool.SetActive(true);
         base.HatAbility();
 

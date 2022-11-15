@@ -4,98 +4,54 @@ using UnityEngine;
 
 public class CowboyHat : BaseHatScript
 {
-    public Vector3 offset;
-    private GameObject player;
-    private GameObject obj;
-
-    LineRenderer lineRenderer;
-
-    bool isWhipping;
-    bool isObjAttached;
-
-    float whipDis;
-
-    float whipSpeed = 1000f;
-    float maxWhipDis = 15f;
-
-    float objectDis = 2f;
-
-    Vector3 originalPos;
-
+    [SerializeField]
+    private float maxWhipDistance;
+    [SerializeField]
+    private float whipStrength;
+    private List<GameObject> allObjects = new List<GameObject>();
+    Vector3 originalLocalPosition;
+    Vector3 originalWorldPosition;
     Rigidbody rb;
-
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player");
-        lineRenderer = GetComponent<LineRenderer>();
-        isWhipping = false;
-        isObjAttached = false;
-        whipDis = 0f;
-
-        originalPos = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y, player.transform.position.z + offset.z);
-
+        originalLocalPosition = transform.localPosition;
         rb = GetComponent<Rigidbody>();
-    }
-
-    new void Update()
-    {
-        originalPos = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y, player.transform.position.z + offset.z);
-        lineRenderer.SetPosition(0, originalPos);
-        lineRenderer.SetPosition(1,transform.position);
-        base.Update();
-        ReturnWhip();
-        BringObject();
-    }
-    public override void HatAbility()
-    {
-        
-        if(!isWhipping && !isObjAttached)
+        foreach(GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         {
-            StartWhip();
-        }
-        
-        base.HatAbility();
-    }
-
-    private void StartWhip()
-    {
-        isWhipping = true;
-        GetComponent<Rigidbody>().isKinematic = false;
-        rb.AddForce(transform.forward * whipSpeed);
-    }
-
-    private void ReturnWhip()
-    {
-        if(isWhipping)
-        {
-            whipDis = Vector3.Distance(transform.position,originalPos);
-            if(whipDis > maxWhipDis || isObjAttached)
+            if(gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
             {
-                rb.isKinematic = true;
-                transform.position = originalPos;
-                isWhipping = false;
+                print(gO.name);
+                allObjects.Add(gO);
             }
         }
     }
-
-    void OnTriggerEnter (Collider collider)
+    new void Update()
     {
-        if(collider.gameObject.tag.Equals("Object"))
+        base.Update();
+        if(Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
         {
-            isObjAttached = true;
-            obj = collider.gameObject;
+            ResetHat();
         }
     }
-
-    private void BringObject()
+    public override void HatAbility()
     {
-        if(isObjAttached)
+        originalWorldPosition = transform.position;
+        rb.isKinematic = false;
+        rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
+        base.HatAbility();
+    }
+    void ResetHat()
+    {
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+        transform.localPosition = originalLocalPosition;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PickUp")
         {
-            Vector3 finalPos = new Vector3(originalPos.x,obj.transform.position.y,originalPos.z + offset.z - objectDis); 
 
-            obj.transform.position = Vector3.MoveTowards(obj.transform.position,finalPos, maxWhipDis);
-            isObjAttached = false;
         }
     }
 }
