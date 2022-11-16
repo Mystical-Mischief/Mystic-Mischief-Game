@@ -23,11 +23,10 @@ public class CameraLogic : MonoBehaviour
         isFlying = !player.GetComponent<ThirdPersonController>().isGrounded;
         if (isFlying)
         {
-            turn.x = player.transform.rotation.x * 1000 + (inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity);
+            turn.x = 0;
             turn.y = 0;
 
-            Quaternion newRotation = Quaternion.Euler(turn.y, -turn.x, 0);
-            transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 2);
+            transform.rotation = Quaternion.Euler(Vector3.zero);
         }
         else
         {
@@ -53,7 +52,7 @@ public class CameraLogic : MonoBehaviour
             transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
 
         }
-        
+
 
         if (inputs.Test.UnlockMouse.WasPerformedThisFrame())
         {
