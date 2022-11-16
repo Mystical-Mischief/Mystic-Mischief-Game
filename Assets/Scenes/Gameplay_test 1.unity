@@ -3050,6 +3050,11 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0.037411503, z: -0.0000009536743}
+--- !u!95 &784512473 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 675834742, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+  m_PrefabInstance: {fileID: 1656770938902328610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &818522356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e01a85033edad2e4c97ed5adfd0f7cb0, type: 3}
@@ -7480,19 +7485,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.75931174
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.65072703
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7500,7 +7505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -278.807
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1257824917164401492, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -7511,27 +7516,35 @@ PrefabInstance:
       value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 784512473}
+    - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1577527059}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: jumpDist
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: chaseTime
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: meleeDist
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: rangedDist
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: waterSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: ResetJumpTime
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
@@ -7541,6 +7554,14 @@ PrefabInstance:
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: projectileSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: jumpAttackHieght
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: chaseWaterDistance
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: PatrolPoints1.Array.data[0]
@@ -7566,13 +7587,17 @@ PrefabInstance:
       propertyPath: PatrolPoints3.Array.data[1]
       value: 
       objectReference: {fileID: 463631323}
+    - target: {fileID: 1656770939696214241, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1891337800876849646, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_Name
       value: Water_Dragon_Finished
       objectReference: {fileID: 0}
     - target: {fileID: 1891337800876849646, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
