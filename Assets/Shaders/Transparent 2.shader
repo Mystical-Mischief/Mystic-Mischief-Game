@@ -9,6 +9,8 @@ Shader "Unlit/Light_Shader"
     {
         Tags {"Queue"="Transparent" "RenderType"="Transparent"  }
         Blend SrcAlpha OneMinusSrcAlpha
+        AlphaToMask On
+        ColorMask R
         LOD 100
 
         Pass
