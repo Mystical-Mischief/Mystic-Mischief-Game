@@ -204,6 +204,11 @@ public class ThirdPersonController : MonoBehaviour
         if (diving && isGrounded == false)
         {
             animator.SetTrigger("Diving");
+            animator.SetBool("jump", true);
+        }
+        if (diving == false && isGrounded == false)
+        {
+            animator.SetBool("jump", false);
         }
         if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
         {
