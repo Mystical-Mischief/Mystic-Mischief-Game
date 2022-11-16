@@ -23,10 +23,13 @@ public class WizardHat : BaseHatScript
         print("wizard hat ability wooosh");
         GameObject thisBomb = Instantiate(smokeBomb, transform.position, Quaternion.identity);
         thisBomb.transform.forward = transform.forward;
-        //add this to the smoke bomb itself and collision logic to make a smoke field
-
-        //thisBomb.GetComponent<Rigidbody>().AddForce(new Vector3(transform.forward.x, 1, transform.forward.z).normalized * 10, ForceMode.Impulse);
+        thisBomb.GetComponent<SphereCollider>().isTrigger = true;
+        StartCoroutine(activateSmokeBomb(thisBomb));
         base.HatAbility();
     }
-
+    IEnumerator activateSmokeBomb(GameObject bomb)
+    {
+        yield return new WaitForSeconds(0.5f);
+        bomb.GetComponent<SphereCollider>().isTrigger = false;
+    }
 }

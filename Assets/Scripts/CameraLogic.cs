@@ -7,7 +7,7 @@ public class CameraLogic : MonoBehaviour
     public Vector2 turn;
     public bool isFlying;
     public float sensitivity;
-    public float groundMaxYRotation, groundMinYRotation, airMaxXRotation, airMinXRotation;
+    public float groundMaxYRotation, groundMinYRotation;
     private ThirdPersonControl inputs;
     private GameObject player;
     private void Start()
@@ -50,7 +50,6 @@ public class CameraLogic : MonoBehaviour
             }
             Quaternion newRotation = Quaternion.Euler(turn.y, turn.x, 0);
             transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
-
         }
 
 
