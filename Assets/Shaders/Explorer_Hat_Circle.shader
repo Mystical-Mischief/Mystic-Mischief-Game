@@ -1,4 +1,4 @@
-Shader "Unlit/IconShader"
+Shader "Unlit/Explorers_Hat_Icons"
 {
     Properties
     {
@@ -8,6 +8,9 @@ Shader "Unlit/IconShader"
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+        AlphaToMask On
+        ZWrite On
+        ZTest Always
 
         Pass
         {
