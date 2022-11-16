@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1656770939021569581}
   - component: {fileID: 1792518140464523061}
   - component: {fileID: 1656770939021569586}
+  - component: {fileID: 1920318369}
   m_Layer: 0
   m_Name: AttackPos
   m_TagString: Attackpos
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656770939021569580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: -0.1, z: 2.07}
+  m_LocalPosition: {x: 0.32, y: -0.43, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60,6 +61,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.26
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1920318369
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656770939021569580}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1891337800876849646
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +92,7 @@ GameObject:
   - component: {fileID: 1656770939696214241}
   - component: {fileID: 1656770939696214240}
   - component: {fileID: 2799948744332094710}
+  - component: {fileID: 1229688713}
   m_Layer: 0
   m_Name: Water_Dragon_Finished
   m_TagString: enemy
@@ -89,12 +107,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891337800876849646}
-  m_LocalRotation: {x: -0, y: -0.65072703, z: -0, w: -0.75931174}
+  m_LocalRotation: {x: -0, y: -0.65072787, z: 0, w: -0.7593111}
   m_LocalPosition: {x: -111.5, y: 3.88, z: -0.79}
   m_LocalScale: {x: 2.6706, y: 2.6706, z: 2.6706}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1656770939021569581}
+  - {fileID: 1257824917539998337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -278.807, z: 0}
@@ -141,20 +160,25 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
-  waterSpeed: 3000
+  waterSpeed: 10
   attackTimes: 0
   jumpAttackHieght: 100
   jumpHieght: {x: 0, y: 0, z: 0}
   Base: {fileID: 0}
   randomWaitTime: 0
+  attacked: 0
   chaseWaterDistance: 25
   Jumping: 0
   rangedAttacked: 0
   HitPlayer: 0
   meleeAttack: 0
   Jumped: 0
-  rangedDist: 0
-  meleeDist: 0
+  rangedDist: 100
+  meleeDist: 15
+  jumpDist: 15
+  chaseTime: 10
+  chaseWaterTimer: 100
+  projectileSpeed: 20
 --- !u!33 &2799948744332094705
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -170,7 +194,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891337800876849646}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -260,3 +284,122 @@ CapsuleCollider:
   m_Height: 4.7792215
   m_Direction: 1
   m_Center: {x: -0.0000000036455639, y: 1.0704908, z: -0.9353756}
+--- !u!95 &1229688713
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891337800876849646}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5cde7e050131514bb52bf9756d38b93, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &1656770940004347242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1257824917164401492}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99965733
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.026176924
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+      propertyPath: m_Name
+      value: Water_Dragon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+--- !u!4 &1257824917539998337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+  m_PrefabInstance: {fileID: 1656770940004347242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1891337801709588539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9f72d861f3b8a7e48beea56fdd981169, type: 3}
+  m_PrefabInstance: {fileID: 1656770940004347242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &675834742
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891337801709588539}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5cde7e050131514bb52bf9756d38b93, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
