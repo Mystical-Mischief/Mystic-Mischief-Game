@@ -25,7 +25,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
     int lastNumber;
     //bool lastItem;
     private Transform start;
-    public int lastPosition;
+    private int lastPosition;
     public bool isGroundedD;
     internal Rigidbody rb;
     private bool finishedPatrolling;
