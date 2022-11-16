@@ -6,9 +6,8 @@ public class Item : MonoBehaviour
 {
     public enum ItemType
     {
-        KeyItem,
+        Objective,
         Collectable,
-        Currency,
     }
 
     public ItemType itemType;
