@@ -10,11 +10,13 @@ public class BaseEnemyAI : MonoBehaviour
     internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
+    [HideInInspector]
     public string EnemyType;
     private int Health;
     // ControlsforPlayer controls;
     public GameObject Player;
     private bool Saved;
+    [HideInInspector]
     public Vector3 targetPosition;
 
     public Transform target;
