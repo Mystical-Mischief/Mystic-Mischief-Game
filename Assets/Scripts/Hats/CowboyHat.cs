@@ -9,6 +9,9 @@ public class CowboyHat : BaseHatScript
     [SerializeField]
     private float whipStrength;
     private List<GameObject> allObjects = new List<GameObject>();
+    GameObject closestItem;
+    GameObject nextClosestItem;
+    bool findCloseItem = true;
     Vector3 originalLocalPosition;
     Vector3 originalWorldPosition;
     Rigidbody rb;
@@ -29,9 +32,71 @@ public class CowboyHat : BaseHatScript
     new void Update()
     {
         base.Update();
-        if(Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
+        
+        if (Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
         {
             ResetHat();
+        }
+        if (findCloseItem)
+        {
+            foreach (GameObject gO in allObjects)
+            {
+                if (gO.GetComponent<Item>().inInventory)
+                {
+                    continue;
+                }
+                if (closestItem == null)
+                {
+                    closestItem = gO;
+                    continue;
+                }
+                if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
+                {
+                    closestItem = gO;
+                }
+            }
+            findCloseItem = false;
+        }
+        if (!findCloseItem)
+        {
+            detectNextClosestItem();
+        }
+        if (closestItem.GetComponent<Item>().inInventory)
+        {
+            findCloseItem = true;
+            closestItem = null;
+        }
+        transform.forward = closestItem.transform.position - transform.position;
+    }
+    void detectNextClosestItem()
+    {
+        foreach (GameObject gO in allObjects)
+        {
+            if (gO.GetComponent<Item>().inInventory)
+            {
+                continue;
+            }
+            if (nextClosestItem == closestItem)
+            {
+                nextClosestItem = null;
+            }
+            if (nextClosestItem == null)
+            {
+                nextClosestItem = gO;
+                continue;
+            }
+            if (gO == closestItem)
+            {
+                continue;
+            }
+            if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestItem.transform.position, transform.position))
+            {
+                nextClosestItem = gO;
+            }
+        }
+        if (Vector3.Distance(nextClosestItem.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
+        {
+            findCloseItem = true;
         }
     }
     public override void HatAbility()
@@ -39,6 +104,7 @@ public class CowboyHat : BaseHatScript
         originalWorldPosition = transform.position;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
+
         base.HatAbility();
     }
     void ResetHat()
@@ -51,7 +117,8 @@ public class CowboyHat : BaseHatScript
     {
         if(other.gameObject.tag == "PickUp")
         {
-
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
+            ResetHat();
         }
     }
 }
