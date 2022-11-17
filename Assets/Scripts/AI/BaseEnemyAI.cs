@@ -12,10 +12,12 @@ public class BaseEnemyAI : MonoBehaviour
     public float SightDistance;
     public string EnemyType;
     private int Health;
-    // ControlsforPlayer controls;
+    
     public GameObject Player;
     private bool Saved;
     public Vector3 targetPosition;
+
+    internal EnemyVision EnemyVision;
 
     public Transform target;
     internal NavMeshAgent ai;
@@ -24,11 +26,12 @@ public class BaseEnemyAI : MonoBehaviour
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
+        EnemyVision = GetComponent<EnemyVision>();
         Saved = false;
         // controls = new ControlsforPlayer();
         ai = GetComponent<NavMeshAgent>();
-
-        if(target == null)
+        spottedPlayer = EnemyVision.PlayerDetected;
+        if (target == null)
         {
             target = PatrolPoints[0].transform;
             UpdateDestination(target.position);
@@ -37,18 +40,18 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
-        {
-            if (hit.transform.gameObject.tag == "Player")
-            {
-                spottedPlayer = true;
-                target = hit.transform;
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
+        //{
+        //    if (hit.transform.gameObject.tag == "Player")
+        //    {
+        //        spottedPlayer = true;
+        //        target = hit.transform;
 
-            }
-        }
+        //    }
+        //}
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
@@ -84,17 +87,23 @@ public class BaseEnemyAI : MonoBehaviour
     //uses raycasts to look for the player. if the player touches the raycast the player it will update it to where the player is found
     public virtual void EnemyDetection()
     {
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
+        //{
+        //    if (hit.transform.gameObject.tag == "Player")
+        //    {
+        //        spottedPlayer = true;
+        //        target = hit.transform;
+        //        
+        //    }
+        //}
+        EnemyVision.FieldOfView();
+        spottedPlayer = EnemyVision.PlayerDetected; //checks if the ai saw the player
+        if(spottedPlayer)
         {
-            if (hit.transform.gameObject.tag == "Player")
-            {
-                spottedPlayer = true;
-                target = hit.transform;
-                
-            }
+            target = EnemyVision.LocationTarget; //the ai would move towards the player, and the target would be also the current player location
         }
     }
     internal bool atDestination;
@@ -127,21 +136,35 @@ public class BaseEnemyAI : MonoBehaviour
     private Vector3 PlayerDirection;
     public virtual void FoundPlayer()
     {
-        PlayerDirection = target.transform.position - transform.position;
-        Debug.DrawRay(transform.position, (PlayerDirection).normalized * SightDistance, Color.green);
-        RaycastHit hit;
+        //PlayerDirection = target.transform.position - transform.position;
+        //Debug.DrawRay(transform.position, (PlayerDirection).normalized * SightDistance, Color.green);
+        //RaycastHit hit;
+
+
+        //if (Physics.Raycast(transform.position, PlayerDirection, out hit, SightDistance))
+        //{
+        //    UpdateDestination(target.position);
+        //if the ai cant see the player
+        //    if (hit.transform.gameObject.tag != "Player")
+        //    {
+        //        LostPlayer();
+        //    }
+        //}
         
-        
-        if (Physics.Raycast(transform.position, PlayerDirection, out hit, SightDistance))
+        EnemyVision.FieldOfView();
+        spottedPlayer = EnemyVision.PlayerDetected;
+        if(spottedPlayer)
         {
             UpdateDestination(target.position);
-            //if the ai cant see the player
-            if (hit.transform.gameObject.tag != "Player")
+            //checks if the ai can see the player
+            EnemyVision.FieldOfView();
+            spottedPlayer = EnemyVision.PlayerDetected;
+            //This would happen if the player goes out of range while the ai was targeting the player
+            if(!spottedPlayer)
             {
                 LostPlayer();
             }
         }
-        //if the ai cant see the player
         else
         {
             LostPlayer();
