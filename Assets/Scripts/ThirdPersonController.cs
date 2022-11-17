@@ -132,6 +132,7 @@ public class ThirdPersonController : MonoBehaviour
         if (dive == false)
         {
             oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
+            animator.SetBool("IsDiving", false);
         }
         if (isGrounded == true)
         {
