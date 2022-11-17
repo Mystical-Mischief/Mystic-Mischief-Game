@@ -81,7 +81,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger("Drop");
         }
-        if (controls.Inv.Store.WasPerformedThisFrame())
+        if (controls.Inv.Store.WasPressedThisFrame())
         {
             animator.SetTrigger("Store");
         }
