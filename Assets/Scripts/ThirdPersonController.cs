@@ -203,21 +203,24 @@ public class ThirdPersonController : MonoBehaviour
         bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
         if (diving && isGrounded == false)
         {
-            animator.SetTrigger("Diving");
-            animator.SetBool("jump", true);
+            animator.SetBool("IsDiving", true);
         }
         if (diving == false && isGrounded == false)
         {
-            animator.SetBool("jump", false);
+            animator.SetBool("IsDiving", false);
         }
-        if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
-        {
-            animator.SetTrigger("Jump");
-        }
-        if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
-        {
-            animator.SetTrigger("JumpAir");
-        }
+
+        //Code commented below can be deleted: 
+
+        //if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
+        //{
+        //    
+        //}
+        //if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
+        //{
+        //    animator.SetTrigger("JumpAir");
+        //}
+        // End of delete code
 
         if (controls.Test.HealthTest.WasPerformedThisFrame())
         {
@@ -363,7 +366,7 @@ public class ThirdPersonController : MonoBehaviour
     {
             if (Stamina > 0)
             {
-                    
+                animator.SetTrigger("Jump");    
                 Invoke(nameof(ResetJump), 0.1f);
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
