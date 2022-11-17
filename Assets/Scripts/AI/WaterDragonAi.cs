@@ -59,7 +59,7 @@ public class WaterDragonAi : BasicDragonAI
     public float chaseWaterTimer;
     public float projectileSpeed;
     public float ResetAttackTime;
-    public float ResetJumpTime;
+    public int ResetJumpTime;
     public bool CanAttack;
 
     private UnityEngine.AI.NavMeshAgent ai2;
@@ -99,6 +99,16 @@ public class WaterDragonAi : BasicDragonAI
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
 
+        // This will make the dragon jump if the player is higher than jumpDist and in the chaseWaterDistance.
+        if (Player.transform.position.y > transform.position.y && dist < jumpDist)
+        {
+            if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
+            {
+                Jumped = true;
+                Jump();
+            }
+        }
+
         // This will make the dragon jump if the player is higher than jumpDist and in the JumpDistance.
         // if (CanJump == false && CanAttack == false && dist > rangedDist)
         // {
@@ -118,15 +128,6 @@ public class WaterDragonAi : BasicDragonAI
         //         // Invoke(nameof(ResetAttack), 1f);
                 
         //     }
-        // }
-        // if (FoundPlayer && Player.transform.position.y > transform.position.y)
-        // {
-        //     if (Jumped == false && this.ai.enabled == true && isGroundedD)
-        //     {
-        //         Jumped = true;
-        //         Jump();
-        //     }
-        // }
 
         if (attacked == false)
         {
@@ -135,6 +136,10 @@ public class WaterDragonAi : BasicDragonAI
         if (randomWaitTime <= 0 &&  isRotatingLeft==false)
         {
             state = 3;
+        }
+        if (Jumping == false)
+        {
+        IsGrounded();
         }
 
         if (state == 2) {
@@ -216,22 +221,9 @@ public class WaterDragonAi : BasicDragonAI
             anim.SetBool("HeadAboveWater", true);
          }
          else {anim.SetBool("HeadAboveWater", false);}
-
-
-                 if (Player.transform.position.y > (transform.position.y + heightDist) && dist <= jumpDist)
-        {
-            // if (CanJump == true)
-            // {
-            if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
-            {
-                Jumped = true;
-                Jump();
-                transform.LookAt(PlayerPos);
-            }
-            // }
-        }
         if (isGroundedD == true)
         {
+            // Jumped = false;
             // if (CanJump == false)
             // {
             //     Invoke(nameof(ResetJump), ResetJumpTime);
@@ -240,30 +232,24 @@ public class WaterDragonAi : BasicDragonAI
     }
     void Jump()
     {
-        // rb.mass = 1;
         anim.SetTrigger("Jump");
-        // if (detectForGround == true){
-        // detectForGround = false;
+        if (detectForGround == true){
+        detectForGround = false;
         base.ai.enabled = false;
         Vector3 jumpVec = Player.transform.position - transform.position;
         //print(jumpVec);
-        rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
-        // rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
-        // CanJump = false;
-        Invoke(nameof(ResetJump), ResetJumpTime); 
+        rb.AddForce(jumpVec * jumpAttackHieght, ForceMode.Impulse);
         // rb.AddForce(Vector3.forward * jumpAttackHieght, ForceMode.Impulse);
-        // StartCoroutine(jumpTimer());
-        // Jumping = true;
-        // Invoke(nameof(ResetAttack), 10f);
-        // }
+        StartCoroutine(jumpTimer());
+        Jumping = true;
+        // Invoke(nameof(ResetJump), ResetJumpTime);
+        }
     }
     // public void ResetJump1() { Invoke(nameof(ResetJump), ResetJumpTime); }
-    public void ResetJump()
-    {
-        Jumped = false;
-        // CanJump = true;
-        // detectForGround = true;
-    }
+    // public void ResetJump()
+    // {
+    //     Jumping = false;
+    // }
     //This is for chasing the player on land.
     void ChasePlayer()
     {
@@ -338,7 +324,7 @@ public class WaterDragonAi : BasicDragonAI
         base.IsGrounded();
         if (isGroundedD == true)
         {
-            // Jumped = false;
+            Jumped = false;
             print("Touched Ground");
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         }
@@ -372,8 +358,8 @@ public class WaterDragonAi : BasicDragonAI
     IEnumerator jumpTimer()
     {
         yield return new WaitForSeconds(ResetJumpTime);
-        CanJump = true;
         detectForGround = true;
+        Jumping = false;
     }
     //     IEnumerator jumpReseterTimer()
     // {
