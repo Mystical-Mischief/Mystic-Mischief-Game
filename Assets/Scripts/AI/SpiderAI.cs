@@ -36,7 +36,7 @@ public class SpiderAI : BaseEnemyAI
         }
     }
 
-    new public virtual void FoundPlayer(GameObject player)
+    public virtual void FoundPlayer(GameObject player)
     {
         base.FoundPlayer();
 

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1027322425337115469}
   - component: {fileID: 1027322425337115460}
   - component: {fileID: 1027322425337115459}
+  - component: {fileID: 5904533983049128167}
   m_Layer: 0
   m_Name: Kobold
   m_TagString: Untagged
@@ -268,8 +269,30 @@ MonoBehaviour:
   Player: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
-  attackedPlayer: 1
-  knockbackForce: 1
+  attackedPlayer: 0
+  knockbackForce: 5
+--- !u!114 &5904533983049128167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180321677418964012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 90
+  Player: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  PlayerDetected: 0
 --- !u!1 &7046439213022788227
 GameObject:
   m_ObjectHideFlags: 0
