@@ -14,7 +14,7 @@ public class SnakeAI : BaseEnemyAI
     float currentAttack = 1f;
 
     [SerializeField]
-    private float knockbackForce = 250;
+    private float knockbackForce;
     // Start is called before the first frame update
     new void Start()
     {
