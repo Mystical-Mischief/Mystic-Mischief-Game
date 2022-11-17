@@ -7,6 +7,19 @@ public class WDAttackScript : MonoBehaviour
     public GameObject Base;
     public bool HitPlayer = false;
     public Animator anim;
+    public float maxHeight;
+    private Vector3 height;
+
+    void Update()
+    {
+        height =  new Vector3 (transform.position.x, Base.GetComponent<WaterDragonAi>().Player.transform.position.y, transform.position.z);
+        transform.position = height;
+        if (transform.position.y >= maxHeight)
+        {
+            transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
+        }
+    }
+    
     private void OnCollisionEnter(Collision other)
     {
             if (other.gameObject.tag == "Player")
