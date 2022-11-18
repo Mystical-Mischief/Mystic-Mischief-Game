@@ -22,6 +22,7 @@ public class SaveGeneral : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Saves the checkpoint when the level starts.
         SaveEnemyCheckPoint();
         controls = new ControlsforPlayer();
         controls.Enable();
@@ -33,15 +34,18 @@ public class SaveGeneral : MonoBehaviour
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
         // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         // bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
+        //Saves everything on button press.
         if (controls.MenuActions.Save.triggered)
         {
             Debug.Log("Saved");
             SaveEnemy();
         }
+        //Loads everything on button press.
         if (controls.MenuActions.Load.triggered)
         {
             LoadEnemy();
         }
+        //If the player selects Load from the menu it loads the save.
         if (LoadMenu == true)
         {
             LoadEnemy();
@@ -49,44 +53,57 @@ public class SaveGeneral : MonoBehaviour
         }
     }
 
+    //Saves everything.
     public void SaveEnemy ()
     {
+        //Saves the items.
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().SaveItem();
         }
+        //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
         }
+        //Saves the players inventory.
         foreach (GameObject Inv in PickedUpItems)
         {
             Inv.GetComponent<Item>().inInventory = true;
         }
+        //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
     }
+    //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
     {
+        //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
         }
+        //Saves the players inventory.
         foreach (GameObject Inv in PickedUpItems)
         {
             Inv.GetComponent<Item>().inInventory = true;
         }
+        //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
     }
+    //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
+        //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
+        //Loads the items
         foreach (GameObject Inv in PickedUpItems)
         {
             Inv.SetActive(false);
         }
+        //Loads the players inventory.
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().LoadItem();
@@ -95,18 +112,23 @@ public class SaveGeneral : MonoBehaviour
                     items.SetActive(true);
             }
         }
+        // Loads the player usings the players load function
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
     }
+    //Loads the last checkpoint.
         public void LoadCheckpoint ()
     {
+        //Loads the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
+        // loads the players inventory.
         foreach (GameObject Inv in PickedUpItems)
         {
             Inv.SetActive(false);
         }
+        //Loads the items.
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().LoadItem();
@@ -115,6 +137,7 @@ public class SaveGeneral : MonoBehaviour
                     items.SetActive(true);
             }
         }
+        //Loads the player from the players load function.
         Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
     }
     public virtual void Loadmenu()
@@ -122,84 +145,3 @@ public class SaveGeneral : MonoBehaviour
         LoadMenu = true;
     }
 }
-
-    //     public void SavePlayer ()
-    // {
-    //     SaveSystem.SavePlayer(this);
-    //     Saved = true;
-    // }
-    // public void LoadPlayer ()
-    // {
-    //     PlayerData data = SaveSystem.LoadPlayer();
-    //     currentHealth = data.health;
-    //     Vector3 position;
-    //     position.x = data.position[0];
-    //     position.y = data.position[1];
-    //     position.z = data.position[2];
-    //     transform.position = position;
-    //     Stamina = data.Stamina;
-    // }
-
-    //         public void Checkpoint ()
-    // {
-    //     SaveSystem.Checkpoint(this);
-    //     Saved = true;
-    // }
-    // public void LoadCheckpoint ()
-    // {
-    //     PlayerData data = SaveSystem.LoadCheckpoint();
-    //     currentHealth = data.health;
-    //     Vector3 position;
-    //     position.x = data.position[0];
-    //     position.y = data.position[1];
-    //     position.z = data.position[2];
-    //     transform.position = position;
-    //     Stamina = data.Stamina;
-    // }
-
-    //     void OnCollisionEnter(Collision other)
-    // {
-    //     if(other.gameObject.CompareTag("wall")){
-    //         Vector3 direction = other.contacts[0].point - transform.position;
-    //         direction = -direction.normalized;
-    //         rb.AddForce((-transform.forward * 1000) * powerValue);
-    //     }
-    //         if(other.gameObject.CompareTag("Water")){
-    //             moveForce = 1f;
-    //     }
-    // }
-    // void OnCollisionExit(Collision other)
-    // {
-    //         if(other.gameObject.CompareTag("Water")){
-    //             moveForce = 5f;
-    //     } 
-    // }
-
-    //     private void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.tag == "Checkpoint")
-    //     {
-    //         Checkpoint();
-    //     }
-    // }
-
-//SAVE ENEMY
-    //         public void SaveEnemy ()
-    // {
-    //     SaveSystem.SaveEnemy(this);
-    //     Debug.Log("Saved");
-    // }
-    // public void LoadEnemy ()
-    // {
-    //     EnemyData data = SaveSystem.LoadEnemy(this);
-    //     patrolNum = data.patrolNum;
-    //     target = PatrolPoints[patrolNum];
-    //     UpdateDestination(target.position);
-
-    //     Vector3 position;
-    //     position.x = data.position[0];
-    //     position.y = data.position[1];
-    //     position.z = data.position[2];
-    //     transform.position = position;
-    //     spottedPlayer = data.spottedPlayer;
-    // }

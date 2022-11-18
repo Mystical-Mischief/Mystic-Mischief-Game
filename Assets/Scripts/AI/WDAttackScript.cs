@@ -6,6 +6,20 @@ public class WDAttackScript : MonoBehaviour
 {
     public GameObject Base;
     public bool HitPlayer = false;
+    public Animator anim;
+    public float maxHeight;
+    private Vector3 height;
+
+    void Update()
+    {
+        height =  new Vector3 (transform.position.x, Base.GetComponent<WaterDragonAi>().Player.transform.position.y, transform.position.z);
+        transform.position = height;
+        if (transform.position.y >= maxHeight)
+        {
+            transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
+        }
+    }
+    
     private void OnCollisionEnter(Collision other)
     {
             if (other.gameObject.tag == "Player")
@@ -17,6 +31,7 @@ public class WDAttackScript : MonoBehaviour
             HitPlayer = true;
             Base.GetComponent<WaterDragonAi>().HitPlayer = true;
             Base.GetComponent<WaterDragonAi>().attacked = true;
+            anim.SetTrigger("Bite");
         // Vector3 dir = other.contacts[0].point - transform.position;
         // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(2);
         //  // We then get the opposite (-Vector3) and normalize it

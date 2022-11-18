@@ -14,6 +14,7 @@ public class PlayerHatLogic : MonoBehaviour
 
     void Start()
     {
+        //sets up all the boring stuff like controls what hat the player is using and disables all but the first hat
         controls = new ControlsforPlayer();
         controls.Enable();
         currentHatNum = 0;
@@ -26,6 +27,7 @@ public class PlayerHatLogic : MonoBehaviour
 
     void Update()
     {
+        //if the player switches their hat run the hat change corotine so the players cant spam it
         switchHat = controls.Actions.SwitchHat.IsPressed();
         if (switchHat && canSwitchHat)
         {
@@ -33,6 +35,7 @@ public class PlayerHatLogic : MonoBehaviour
             StartCoroutine(ChangeHatCooldown());
         }
     }
+    //changes the hat to the next listed hat. if its the last hat in the list it goes to the first hat. 
     void ChangeHat()
     {
         hats[currentHatNum].SetActive(false);
@@ -43,6 +46,7 @@ public class PlayerHatLogic : MonoBehaviour
         }
         hats[currentHatNum].SetActive(true);
     }
+    //changes hat and starts a short cooldown so hat changing is easier to use
     IEnumerator ChangeHatCooldown()
     {
         ChangeHat();

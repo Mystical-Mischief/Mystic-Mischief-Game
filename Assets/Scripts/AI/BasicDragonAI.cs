@@ -25,7 +25,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
     int lastNumber;
     //bool lastItem;
     private Transform start;
-    public int lastPosition;
+    private int lastPosition;
     public bool isGroundedD;
     internal Rigidbody rb;
     private bool finishedPatrolling;
@@ -36,11 +36,12 @@ public abstract class BasicDragonAI : BaseEnemyAI
         NewRandomNumber();
         rb = GetComponent<Rigidbody>();
         ai = this.GetComponent<NavMeshAgent>();
-        if(target == null)
-        {
-            target = base.PatrolPoints[0].transform;
-            UpdateDestination(target.position);
-        }
+        // if(target == null)
+        // {
+        //     target = base.PatrolPoints[0].transform;
+        //     UpdateDestination(target.position);
+        // }
+        base.Start();
     }
 
     public new void Update()
@@ -82,7 +83,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
             patrolNum = 0;
             finishedPatrolling = false;
         }
-        //base.Update();
+        base.Update();
     }
 
     public override void Patrol()
@@ -156,10 +157,10 @@ public abstract class BasicDragonAI : BaseEnemyAI
     }
     public virtual void NewRandomNumber()
     {
-        randomNumber = UnityEngine.Random.Range(0, 3);
+        randomNumber = UnityEngine.Random.Range(1, 3);
         if (randomNumber == lastNumber)
         {
-            randomNumber = UnityEngine.Random.Range(0, 3);
+            randomNumber = UnityEngine.Random.Range(1, 3);
         }
         lastNumber = randomNumber;
     }

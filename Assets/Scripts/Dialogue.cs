@@ -43,6 +43,7 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
+        //if you press the interact button run the dialogue 
         if (Input.GetMouseButtonDown(0))
         {
             DialogueLines[] currentConversation = AllDialogues[convoNumber-1].Interaction;
@@ -59,7 +60,7 @@ public class Dialogue : MonoBehaviour
             }
         }
     }
-
+    //choses the proper dialogue option out of the list. if its random it will choose a random option. if its not then it will go to the next conversation listed
     void StartDialogue()
     {
         index = 0;
@@ -80,7 +81,7 @@ public class Dialogue : MonoBehaviour
         characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
     }
-
+    //types the lines letter by letter to look nice
     IEnumerator TypeLine(DialogueLines[] currentConversation)
     {
         textComponent.text = $"{Characters[currentConversation[index].TalkingCharacter - 1].CharacterName}: ";
@@ -91,7 +92,7 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
-
+    //goes to the next line by clearing the current line and typing the next line
     void NextLine(DialogueLines[] currentConversation)
     {
         if (index < currentConversation.Length - 1)
@@ -108,6 +109,7 @@ public class Dialogue : MonoBehaviour
             this.enabled = false;
         }
     }
+    //delays the dialogue so you can walk away from it without activating it again by accident. 
     IEnumerator delayDialogueBox()
     {
         yield return new WaitForSeconds(0.5f);

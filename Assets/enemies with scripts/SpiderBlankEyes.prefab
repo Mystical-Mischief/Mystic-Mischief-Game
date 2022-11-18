@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2714867981466484252}
   - component: {fileID: 2714867981466484257}
   - component: {fileID: 2714867981466484258}
+  - component: {fileID: 3574687051190256644}
   m_Layer: 0
   m_Name: SpiderBlankEyes
   m_TagString: Untagged
@@ -29,9 +30,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2984848451847148898}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 965.06, y: 65.47, z: 559.18}
-  m_LocalScale: {x: 34.388443, y: 34.388443, z: 34.388443}
+  m_LocalScale: {x: 22.838053, y: 22.838053, z: 22.838053}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,7 +146,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.11029377
-  m_BaseOffset: 0.055146884
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!65 &2714867981466484258
@@ -161,3 +162,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15995587, y: 0.055392772, z: 0.1373292}
   m_Center: {x: 0, y: 0.027450498, z: 0}
+--- !u!114 &3574687051190256644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984848451847148898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 90
+  Player: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  PlayerDetected: 0

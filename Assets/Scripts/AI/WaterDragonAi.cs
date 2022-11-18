@@ -12,11 +12,11 @@ public class WaterDragonAi : BasicDragonAI
     private bool ranged;
     private Vector3 PlayerPos;
     public float timeBetweenAttacks;
-    public float attackRange;
+    // public float attackRange;
     public bool detectedPlayer;
     public Transform[] Enemy;
     public GameObject attackPos;
-    public LayerMask whatIsEnemy;
+    // public LayerMask whatIsEnemy;
     private int speed = 5;
     public float waterSpeed;
     public int attackTimes;
@@ -38,13 +38,15 @@ public class WaterDragonAi : BasicDragonAI
     private bool isRotatingRight = false;
     private int state;
     private bool WaterChase;
-    public float chaseWaterDistance;
-    private bool inWater;
+    public float jumpDist;
+    public bool inWater;
     public bool Jumping;
+    public Animator anim;
 
     [HideInInspector]
     public bool rangedAttacked;
-    private bool detectForGround = true;
+    public bool detectForGround = true;
+    public bool CanJump;
 
     public bool HitPlayer;
     [HideInInspector]
@@ -52,10 +54,13 @@ public class WaterDragonAi : BasicDragonAI
     public bool Jumped;
     public float rangedDist;
     public float meleeDist;
-    public float jumpDist;
+    public float heightDist;
     public float chaseTime;
     public float chaseWaterTimer;
     public float projectileSpeed;
+    public float ResetAttackTime;
+    public int ResetJumpTime;
+    public bool CanAttack;
 
     private UnityEngine.AI.NavMeshAgent ai2;
 
@@ -72,34 +77,58 @@ public class WaterDragonAi : BasicDragonAI
         attackTimes = 0;
         attacked = false;
         meleeAttack = false;
+        // anim = GetComponent<Animator>();
         base.Start();
+        CanAttack = true;
+        CanJump = true;
     }
 
     // Update is called once per frame
     new void Update()
     {
+        if (isGroundedD == true)
+        {
+            anim.SetBool("Grounded", true);
+        }
+        else {anim.SetBool("Grounded", false);}
+
         PlayerPos.x = Player.transform.position.x;
         PlayerPos.z = Player.transform.position.z;
-        PlayerPos.y = 0;
+        PlayerPos.y = transform.position.y;
         base.Update();
         float dist = Vector3.Distance(base.Player.transform.position, transform.position);
         // Debug.Log(dist);
-        if (Player.transform.position.y > (transform.position.y + jumpDist) && dist <= chaseWaterDistance && dist > 17f)
+
+        // This will make the dragon jump if the player is higher than jumpDist and in the chaseWaterDistance.
+        if (Player.transform.position.y > transform.position.y && dist <= jumpDist)
         {
             if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
             {
+                        base.ai.enabled = false;
                 Jumped = true;
                 Jump();
             }
         }
-        // if (FoundPlayer && Player.transform.position.y > transform.position.y)
+
+        // This will make the dragon jump if the player is higher than jumpDist and in the JumpDistance.
+        // if (CanJump == false && CanAttack == false && dist > rangedDist)
         // {
-        //     if (Jumped == false && this.ai.enabled == true && isGroundedD)
-        //     {
-        //         Jumped = true;
-        //         Jump();
-        //     }
+        //     transform.LookAt(base.target);
         // }
+        if (CanJump == true)
+        {
+            // Jumped = false;
+        }
+        //If the player is in jump distance which should be the farthest distance and is lower than the dragon
+        //       if (Player.transform.position.y < (transform.position.y + jumpDist) && dist <= chaseWaterDistance && dist > meleeDist)
+        // {
+        //     if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
+        //     {
+        //         // ai.speed = 0;
+        //         anim.SetTrigger("Scream");
+        //         // Invoke(nameof(ResetAttack), 1f);
+                
+        //     }
 
         if (attacked == false)
         {
@@ -108,6 +137,10 @@ public class WaterDragonAi : BasicDragonAI
         if (randomWaitTime <= 0 &&  isRotatingLeft==false)
         {
             state = 3;
+        }
+        if (Jumping == false)
+        {
+        IsGrounded();
         }
 
         if (state == 2) {
@@ -119,7 +152,7 @@ public class WaterDragonAi : BasicDragonAI
     } else { // state is zero
         transform.Rotate(new Vector3(0,0,0));
     }
-
+        // If the player moves to fast and is close enough to the dragon it has found the player.
         if (Player.GetComponent<ThirdPersonController>().rbSpeed >= 9 && dist < 17f)
         {
             FoundPlayer = true;
@@ -141,14 +174,21 @@ public class WaterDragonAi : BasicDragonAI
         // {
         //     base.ai.enabled = true;
         // }
-         if (!Jumped && dist > meleeDist && dist < rangedDist && attackTimes < 5)
+
+
+        // If the dragon has not jumped and is less than the rangedDist away than it looks at the player and does the Ranged attack function.
+         if (!Jumped && dist > meleeDist && dist <= rangedDist && attackTimes < 5)
          {
+            if (CanAttack == true)
+            {
             transform.LookAt(PlayerPos);
             if (rangedAttacked == false && WaterChase == false && attacked == false)
             {Ranged();}
             ///attackTimes = attackTimes + 1;
             //Debug.Log("Ranged");
+            }
          }
+         // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
         if (HitPlayer == true)
         {
             attackTimes = 0;
@@ -156,10 +196,12 @@ public class WaterDragonAi : BasicDragonAI
             UpdateDestination(base.target.position);
             Invoke(nameof(ResetAttack2), 5f);
         }
+        //If the dragon has done 5 ranged attacks than it chases the player.
         if (attackTimes >= 5)
         {
             ChasePlayer();
         }
+        // If it is close to the dragon it sets the attack to true.
          if (dist > 2f && dist < meleeDist)
          {
             //transform.LookAt(PlayerPos);
@@ -170,35 +212,53 @@ public class WaterDragonAi : BasicDragonAI
             attacked = true;
             }
          }
-         if (Player.GetComponent<ThirdPersonController>().inWater == true && dist < 25f)
+         if (Player.GetComponent<ThirdPersonController>().inWater == true && dist <= rangedDist)
          {
             ChasePlayerWater();
          }
-
+         // If the dragon can do a ranged attack and it is in the water than it plays an animation for the HeadAboveWater.
+         if (inWater == true && dist <= rangedDist && dist > meleeDist)
+         {
+            anim.SetBool("HeadAboveWater", true);
+         }
+         else {anim.SetBool("HeadAboveWater", false);}
+        if (isGroundedD == true)
+        {
+            // Jumped = false;
+            // if (CanJump == false)
+            // {
+            //     Invoke(nameof(ResetJump), ResetJumpTime);
+            // }
+        }
     }
     void Jump()
     {
+        anim.SetTrigger("Jump");
+        if (detectForGround == true){
         detectForGround = false;
-        base.ai.enabled = false;
         Vector3 jumpVec = Player.transform.position - transform.position;
+        Vector3 JumpDistance = new Vector3 (jumpVec.x, jumpDist, jumpVec.z);
         //print(jumpVec);
-        rb.AddForce(jumpVec.normalized * jumpAttackHieght, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * jumpAttackHieght, ForceMode.Impulse);
+        // rb.AddForce((jumpVec * 100) * jumpAttackHieght, ForceMode.Impulse);
+        rb.AddForce(JumpDistance * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
-        StartCoroutine(jumpReseterTimer());
-        // Jumping = true;
-        // Invoke(nameof(ResetAttack), 10f);
+        Jumping = true;
+        // Invoke(nameof(ResetJump), ResetJumpTime);
+        }
     }
-    public void ResetJump()
-    {
-        Jumping = false;
-    }
+    // public void ResetJump1() { Invoke(nameof(ResetJump), ResetJumpTime); }
+    // public void ResetJump()
+    // {
+    //     Jumping = false;
+    // }
+    //This is for chasing the player on land.
     void ChasePlayer()
     {
         target = Player.transform;
         UpdateDestination(target.position); 
         Invoke(nameof(ResetAttack2), chaseTime); 
     }
+    //This is for chasing the plyer in water.
         void ChasePlayerWater()
     {
         if (inWater == true){
@@ -211,28 +271,33 @@ public class WaterDragonAi : BasicDragonAI
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player" && meleeAttack == true)
-        {  
-            Debug.Log("DAMAGED!");
-            meleeAttack = false;
-            Invoke(nameof(ResetAttack2), 0f);
-        }
+        // if (other.gameObject.tag == "Player" && meleeAttack == true)
+        // {  
+        //     Debug.Log("DAMAGED!");
+        //     meleeAttack = false;
+        //     Invoke(nameof(ResetAttack2), 0f);
+        // }
+
+        //This raises the speed of the dragon when it is in water and sets the animation bool for when it is in water.
         if(other.gameObject.CompareTag("Water")){
                 base.ai.speed = waterSpeed;
-                base.Speed = waterSpeed;
                 inWater = true;
+                anim.SetBool("InWater", true);
         }
 
     }
+    //This resets the water variables when it leaves the water.
     void OnCollisionExit(Collision other)
     {
             if(other.gameObject.CompareTag("Water")){
                 base.ai.speed = 3.5f;
                 base.Speed = 3.5f;
+                anim.SetBool("InWater", false);
         } 
     }
     void Ranged()
     {
+        anim.SetTrigger("Spit");
         Rigidbody clone;
         Vector3 jumpVec = Player.transform.position - transform.position;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
@@ -246,7 +311,7 @@ public class WaterDragonAi : BasicDragonAI
         attacked = true;
     }
 
-
+    //This is for reseting the ranged attack and it rasies the attack counter.
     public virtual void ResetAttack()
     {
         rangedAttacked = false;
@@ -265,13 +330,25 @@ public class WaterDragonAi : BasicDragonAI
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         }
     }
+    //This is for reseting the melee attack.
     public virtual void ResetAttack2()
     {
+        Invoke(nameof(ResetAttacks), ResetAttackTime);
+        CanAttack = false;
         meleeAttack = false;
         attacked = false;
         attackPos.SetActive(false);
         attackTimes = 0;
         HitPlayer = false;
+        NewRandomNumber();
+            base.target = base.PatrolPoints[0].transform;
+            UpdateDestination(base.target.position);
+        
+    }
+    //This is a timer to not let the dragon instantly chase the player.
+    public virtual void ResetAttacks()
+    {
+        CanAttack = true;
     }
     public virtual void RandomNumber()
     {
@@ -284,12 +361,13 @@ public class WaterDragonAi : BasicDragonAI
     }
     IEnumerator jumpTimer()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(ResetJumpTime);
         detectForGround = true;
-    }
-        IEnumerator jumpReseterTimer()
-    {
-        yield return new WaitForSeconds(10);
         Jumping = false;
     }
+    //     IEnumerator jumpReseterTimer()
+    // {
+    //     yield return new WaitForSeconds(10);
+    //     Jumping = false;
+    // }
 }
