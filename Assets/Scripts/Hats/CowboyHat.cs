@@ -33,6 +33,7 @@ public class CowboyHat : BaseHatScript
             }
         }
     }
+    //enables and disables the circle object tool when the object is activated or disabled
     new void OnEnable()
     {
         base.OnEnable();
@@ -45,11 +46,12 @@ public class CowboyHat : BaseHatScript
     new void Update()
     {
         base.Update();
-
+        //checks to see if the hat has moved too far for the whip distance. if it did reset the hat
         if (Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
         {
             ResetHat();
         }
+        //finds the closest item to whip that the hat can whip
         if (findCloseItem)
         {
             foreach (GameObject gO in allObjects)
@@ -70,21 +72,25 @@ public class CowboyHat : BaseHatScript
             }
             findCloseItem = false;
         }
+        //after finding the closest item it will find the next closest item.
         if (!findCloseItem)
         {
             detectNextClosestItem();
         }
+        //if the closest item has been grabbed or stored in the inventory clear the closest item
         if (closestItem != null && closestItem.GetComponent<Item>().inInventory)
         {
             findCloseItem = true;
             closestItem = null;
         }
+        //if there is a closest item make the whip face the closest item
         if (closestItem != null)
         {
             transform.forward = closestItem.transform.position - transform.position;
         }
         
     }
+    //finds the 2nd closest item out of the list and updates it while the player moves around
     void detectNextClosestItem()
     {
         foreach (GameObject gO in allObjects)
@@ -116,13 +122,12 @@ public class CowboyHat : BaseHatScript
             findCloseItem = true;
         }
     }
-    //makes whip able to move and moves it forward
+    //makes whip able to move and moves it forward based off whip strength
     public override void HatAbility()
     {
         originalWorldPosition = transform.position;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
-
         base.HatAbility();
     }
     //sets it to where it cant move and moves it back to the original position
@@ -132,7 +137,7 @@ public class CowboyHat : BaseHatScript
         rb.velocity = Vector3.zero;
         transform.localPosition = originalLocalPosition;
     }
-    //trigger logic for when it hits an object
+    //trigger logic for when it hits an object to pick up the item
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "PickUp")

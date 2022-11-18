@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeletionTimer : MonoBehaviour
 {
+    //general script for when you want something deleted after a certian amount of time after spawning in. 
     public float time;
     void Start()
     {

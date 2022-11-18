@@ -21,6 +21,7 @@ public class CameraLogic : MonoBehaviour
     void Update()
     {
         isFlying = !player.GetComponent<ThirdPersonController>().isGrounded;
+        //if the player is flying use the fly camera
         if (isFlying)
         {
             turn.x = 0;
@@ -28,6 +29,7 @@ public class CameraLogic : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(Vector3.zero);
         }
+        //if the player is grounded use the ground camera
         else
         {
             turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity;
@@ -51,8 +53,7 @@ public class CameraLogic : MonoBehaviour
             Quaternion newRotation = Quaternion.Euler(turn.y, turn.x, 0);
             transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
         }
-
-
+        //unlocks the mouse when the button is pressed
         if (inputs.Test.UnlockMouse.WasPerformedThisFrame())
         {
             Cursor.lockState = CursorLockMode.None;
