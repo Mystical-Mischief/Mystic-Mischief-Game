@@ -237,9 +237,10 @@ public class WaterDragonAi : BasicDragonAI
         detectForGround = false;
         base.ai.enabled = false;
         Vector3 jumpVec = Player.transform.position - transform.position;
+        Vector3 JumpDistance = new Vector3 (jumpVec.x, jumpDist, jumpVec.z);
         //print(jumpVec);
-        rb.AddForce(jumpVec * jumpAttackHieght, ForceMode.Impulse);
-        // rb.AddForce(Vector3.forward * jumpAttackHieght, ForceMode.Impulse);
+        // rb.AddForce((jumpVec * 100) * jumpAttackHieght, ForceMode.Impulse);
+        rb.AddForce(JumpDistance * jumpAttackHieght, ForceMode.Impulse);
         StartCoroutine(jumpTimer());
         Jumping = true;
         // Invoke(nameof(ResetJump), ResetJumpTime);
