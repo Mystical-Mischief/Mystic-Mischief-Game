@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Base: {fileID: 1891337800876849646}
   HitPlayer: 0
+  anim: {fileID: 0}
 --- !u!135 &1656770939021569586
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -86,6 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1257824917164401492}
+  - component: {fileID: 5644899848339536680}
   - component: {fileID: 1656770939696214175}
   - component: {fileID: 2799948744332094705}
   - component: {fileID: 89963990178322491}
@@ -117,6 +119,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -278.807, z: 0}
+--- !u!114 &5644899848339536680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891337800876849646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 0
+  viewAngle: 0
+  Player: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  PlayerDetected: 0
 --- !u!114 &1656770939696214175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,17 +173,12 @@ MonoBehaviour:
   waypointDistance: 3
   Speed: 15
   randomNumber: 0
-  lastPosition: 0
   isGroundedD: 1
   projectile: {fileID: 8596426487253530810, guid: baa3978789289474c8fe461a09577f65, type: 3}
   timeBetweenAttacks: 2
-  attackRange: 0
   detectedPlayer: 0
   Enemy: []
   attackPos: {fileID: 1656770939021569580}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 512
   waterSpeed: 10
   attackTimes: 0
   jumpAttackHieght: 100
@@ -169,7 +188,9 @@ MonoBehaviour:
   attacked: 0
   chaseWaterDistance: 25
   Jumping: 0
+  anim: {fileID: 0}
   rangedAttacked: 0
+  detectForGround: 1
   HitPlayer: 0
   meleeAttack: 0
   Jumped: 0
@@ -179,6 +200,8 @@ MonoBehaviour:
   chaseTime: 10
   chaseWaterTimer: 100
   projectileSpeed: 20
+  ResetAttackTime: 0
+  ResetJumpTime: 0
 --- !u!33 &2799948744332094705
 MeshFilter:
   m_ObjectHideFlags: 0

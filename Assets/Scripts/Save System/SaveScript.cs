@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem 
 {
+    //Saves the player.
     public static void SavePlayer (ThirdPersonController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -16,6 +17,7 @@ public static class SaveSystem
         stream.Close();
 
     }
+    //Saves a checkpoint.
         public static void Checkpoint (ThirdPersonController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -29,6 +31,7 @@ public static class SaveSystem
 
     }
 
+        //Saves the enemies.
         public static void SaveEnemy (BaseEnemyAI enemy)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -42,6 +45,7 @@ public static class SaveSystem
 
     }
 
+    //Saves the items.
     public static void SaveItem(Item item)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -55,6 +59,7 @@ public static class SaveSystem
 
     }
 
+    //Saves the inventory.
     public static void SaveInventory (Inventory inv)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -68,6 +73,7 @@ public static class SaveSystem
 
     }
 
+    //Loads the player.
     public static PlayerData LoadPlayer ()
     {
         string path = Application.persistentDataPath + "/player.fun";
@@ -87,6 +93,7 @@ public static class SaveSystem
         }
     }
 
+    //Loads a checkpoint.
         public static PlayerData LoadCheckpoint ()
     {
         string path = Application.persistentDataPath + "/player.checkpoint";
@@ -106,6 +113,7 @@ public static class SaveSystem
         }
     }
 
+    //Loads the enemies.
         public static EnemyData LoadEnemy (BaseEnemyAI enemy)
     {
         string path = Application.persistentDataPath + enemy.name;
@@ -125,7 +133,7 @@ public static class SaveSystem
         }
     }
 
-
+    //Loads the items.
     public static ItemData LoadItem(Item item)
     {
         string path = Application.persistentDataPath + item.name;
@@ -145,6 +153,7 @@ public static class SaveSystem
         }
     }
 
+    //Loads the inventory.
     public static InventoryData LoadInventory ()
     {
         string path = Application.persistentDataPath + "/Inventory.fun";

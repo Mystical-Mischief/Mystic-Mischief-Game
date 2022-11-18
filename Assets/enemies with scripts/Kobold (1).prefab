@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3979271316681735592}
   - component: {fileID: 3979271316681735633}
   - component: {fileID: 3979271316681735638}
+  - component: {fileID: 6305652691193643692}
   m_Layer: 0
   m_Name: Kobold (1)
   m_TagString: Untagged
@@ -276,6 +277,28 @@ NavMeshAgent:
   m_BaseOffset: 1.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6305652691193643692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321309379170904511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 0
+  viewAngle: 0
+  Player: {fileID: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  PlayerDetected: 0
 --- !u!1 &4742727790221570912
 GameObject:
   m_ObjectHideFlags: 0
