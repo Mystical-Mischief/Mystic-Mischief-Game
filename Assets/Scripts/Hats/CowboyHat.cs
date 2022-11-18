@@ -20,6 +20,7 @@ public class CowboyHat : BaseHatScript
         base.Start();
         originalLocalPosition = transform.localPosition;
         rb = GetComponent<Rigidbody>();
+        //adds all objects the player can use the whip on in a list for later
         foreach(GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         {
             if(gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
@@ -32,7 +33,7 @@ public class CowboyHat : BaseHatScript
     new void Update()
     {
         base.Update();
-        
+
         if (Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
         {
             ResetHat();
@@ -61,12 +62,16 @@ public class CowboyHat : BaseHatScript
         {
             detectNextClosestItem();
         }
-        if (closestItem.GetComponent<Item>().inInventory)
+        if (closestItem != null && closestItem.GetComponent<Item>().inInventory)
         {
             findCloseItem = true;
             closestItem = null;
         }
-        transform.forward = closestItem.transform.position - transform.position;
+        if (closestItem != null)
+        {
+            transform.forward = closestItem.transform.position - transform.position;
+        }
+        
     }
     void detectNextClosestItem()
     {
@@ -99,6 +104,7 @@ public class CowboyHat : BaseHatScript
             findCloseItem = true;
         }
     }
+    //makes whip able to move and moves it forward
     public override void HatAbility()
     {
         originalWorldPosition = transform.position;
@@ -107,12 +113,14 @@ public class CowboyHat : BaseHatScript
 
         base.HatAbility();
     }
+    //sets it to where it cant move and moves it back to the original position
     void ResetHat()
     {
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         transform.localPosition = originalLocalPosition;
     }
+    //trigger logic for when it hits an object
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "PickUp")
