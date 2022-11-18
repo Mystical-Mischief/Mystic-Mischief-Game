@@ -95,6 +95,7 @@ public class Inventory : MonoBehaviour
         Item.transform.position = transform.position;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
+        Item.GetComponent<Item>().inInventory = false;
         PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
         Item.SetActive(true);
         Item.GetComponent<SphereCollider>().enabled = true;
@@ -113,6 +114,7 @@ public class Inventory : MonoBehaviour
     {
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
+        Item.GetComponent<Item>().inInventory = true;
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
         Item.GetComponent<Rigidbody>().isKinematic = true;
