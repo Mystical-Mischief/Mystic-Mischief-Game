@@ -15,6 +15,7 @@ public class SpiderAI : BaseEnemyAI
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
 
+        //Essentially starts a cooldown for how often the spider can fire its web projectile
         timeBetweenShots = startTimeBetweenShots;
     }
 
@@ -26,6 +27,7 @@ public class SpiderAI : BaseEnemyAI
         {
             if (timeBetweenShots <= 0)
             {
+                //fires projectile at the location the player was located at when the spider first shot. It does not follow player
                 Instantiate(projectile, transform.position, Quaternion.identity);
                 timeBetweenShots = startTimeBetweenShots;
             }
