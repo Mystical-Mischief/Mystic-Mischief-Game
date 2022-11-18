@@ -8,8 +8,11 @@ public class CowboyHat : BaseHatScript
     private float maxWhipDistance;
     [SerializeField]
     private float whipStrength;
+    [SerializeField]
+    private GameObject circleObject;
     private List<GameObject> allObjects = new List<GameObject>();
-    GameObject closestItem;
+    [HideInInspector]
+    public GameObject closestItem;
     GameObject nextClosestItem;
     bool findCloseItem = true;
     Vector3 originalLocalPosition;
@@ -29,6 +32,15 @@ public class CowboyHat : BaseHatScript
                 allObjects.Add(gO);
             }
         }
+    }
+    new void OnEnable()
+    {
+        base.OnEnable();
+        circleObject.SetActive(true);
+    }
+    void OnDisable()
+    {
+        circleObject.SetActive(false);
     }
     new void Update()
     {

@@ -10,7 +10,6 @@ public class ExplorersHat : BaseHatScript
     private GameObject circleTool;
     [SerializeField]
     private Vector3 offsetHeight;
-    [HideInInspector]
     public GameObject closestItem;
     private GameObject nextClosestItem;
     private bool findCloseItem;
@@ -29,6 +28,10 @@ public class ExplorersHat : BaseHatScript
         if (!activateHat)
         {
             circleTool.SetActive(false);
+        }
+        if (activateHat)
+        {
+            circleTool.SetActive(true);
         }
         //finds the closest item out of the objectives so when you use the ability it will guide the player to the nearest object
         if (findCloseItem)
@@ -50,7 +53,10 @@ public class ExplorersHat : BaseHatScript
         }
         else
         {
-            detectNextClosestItem();
+            if (!activateHat)
+            {
+                detectNextClosestItem();
+            }
         }
         base.Update();
     }
@@ -89,7 +95,6 @@ public class ExplorersHat : BaseHatScript
         cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), 1);
         cameraForward.GetComponent<CameraLogic>().turn.x = (cameraForward.transform.rotation.eulerAngles.y);
         cameraForward.GetComponent<CameraLogic>().turn.y = (cameraForward.transform.rotation.eulerAngles.x);
-        circleTool.SetActive(true);
         base.HatAbility();
     }
 

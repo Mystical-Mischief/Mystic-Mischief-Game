@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exploreHat: {fileID: 272579631}
+  cowboyHat: {fileID: 6414350665073808571}
 --- !u!1 &1445379487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,6 +2044,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6074320311539765451, guid: 661a8b82ad1feea41990bb8417afa332, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6353756795304387492, guid: 661a8b82ad1feea41990bb8417afa332, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -2110,6 +2115,8 @@ MonoBehaviour:
   activateHat: 0
   maxWhipDistance: 5
   whipStrength: 10
+  circleObject: {fileID: 1038546936}
+  closestItem: {fileID: 0}
 --- !u!1001 &4689899370995393020
 PrefabInstance:
   m_ObjectHideFlags: 0
