@@ -56,6 +56,7 @@ public class InvisibilityHat : BaseHatScript
         models[0].GetComponent<SkinnedMeshRenderer>().materials = mats;
         models[1].GetComponent<MeshRenderer>().material = InvisMaterials[1];
         Player.transform.tag = "Untagged";
+        Player.layer = 0;
     }
     //changes materials to look visible and changes tag so enemies can see player again
     void becomeVisible()
@@ -64,5 +65,6 @@ public class InvisibilityHat : BaseHatScript
         models[0].GetComponent<SkinnedMeshRenderer>().materials = mats;
         models[1].GetComponent<MeshRenderer>().material = NormalMaterials[1];
         Player.transform.tag = "Player";
+        Player.layer = 8;
     }
 }
