@@ -12,12 +12,12 @@ public class WDAttackScript : MonoBehaviour
 
     void Update()
     {
-        height =  new Vector3 (transform.position.x, Base.GetComponent<WaterDragonAi>().Player.transform.position.y, transform.position.z);
-        transform.position = height;
-        if (transform.position.y >= maxHeight)
-        {
-            transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
-        }
+        // height =  new Vector3 (transform.position.x, Base.GetComponent<WaterDragonAi>().Player.transform.position.y, transform.position.z);
+        // transform.position = height;
+        // if (transform.position.y >= maxHeight)
+        // {
+        //     transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
+        // }
     }
     
     private void OnCollisionEnter(Collision other)
