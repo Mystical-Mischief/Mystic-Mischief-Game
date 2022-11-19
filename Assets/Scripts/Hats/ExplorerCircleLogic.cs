@@ -19,7 +19,7 @@ public class ExplorerCircleLogic : MonoBehaviour
             transform.position = exploreHat.closestItem.transform.position;
         }
         //if the cowboy hat is active go to the closest cowboy hat item
-        if (cowboyHat.gameObject.transform.parent.gameObject.activeSelf) 
+        if (cowboyHat.gameObject.transform.parent.gameObject.activeSelf && cowboyHat.closestItem != null) 
         {
             transform.position = cowboyHat.closestItem.transform.position;
         }

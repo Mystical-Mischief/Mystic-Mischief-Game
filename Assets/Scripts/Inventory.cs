@@ -105,7 +105,7 @@ public class Inventory : MonoBehaviour
     {
         Debug.Log("Item Stored");
         item.SetActive(false);
-
+        holdingItem = false;
         PickedUpItems.Add(item);
         rb.mass = rb.mass + item.GetComponent<Item>().Weight;
 
