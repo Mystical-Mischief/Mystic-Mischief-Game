@@ -16,7 +16,7 @@ public class WDProjectrileScript : MonoBehaviour
         IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Instantiate(particles, transform.position, transform.rotation);
+        // Instantiate(particles, transform.position, transform.rotation);
         Destroy(gameObject, TimeToDestroy);
     }
 

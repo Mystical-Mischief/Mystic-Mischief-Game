@@ -100,7 +100,7 @@ public class WaterDragonAi : BasicDragonAI
         // Debug.Log(dist);
 
         // This will make the dragon jump if the player is higher than jumpDist and in the chaseWaterDistance.
-        if (Player.transform.position.y > transform.position.y && dist <= jumpDist)
+        if (Player.transform.position.y > (transform.position.y + heightDist) && dist <= jumpDist)
         {
             if (gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled == true && Jumped == false)
             {
