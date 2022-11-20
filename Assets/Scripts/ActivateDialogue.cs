@@ -16,6 +16,7 @@ public class ActivateDialogue : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {  
+        //if the player is in the range and they press the interact buttion activate the dialouge part of the canvas and enable the script.
         if (collision.gameObject.tag == "Player" && controls.Actions.Interact.WasPressedThisFrame())
         {
             dialogueCanvas.SetActive(true);
@@ -24,6 +25,7 @@ public class ActivateDialogue : MonoBehaviour
     }
     private void OnTriggerStay(Collider collision)
     {
+        //if the player is in the range and they press the interact buttion activate the dialouge part of the canvas and enable the script.
         if (collision.gameObject.tag == "Player" && controls.Actions.Interact.WasPressedThisFrame())
         {
             dialogueCanvas.SetActive(true);

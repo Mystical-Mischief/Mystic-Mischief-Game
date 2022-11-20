@@ -14,6 +14,7 @@ public class Web : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        //grabs the location of the target
         target = new Vector3(player.position.x, player.position.y, player.position.z);
     }
 
@@ -33,6 +34,8 @@ public class Web : MonoBehaviour
             
         }
     }
+
+    //stuns player
     IEnumerator StunTimer(GameObject player)
     {
         print("player stunned");
