@@ -7,6 +7,7 @@ public class BirdInteraction : MonoBehaviour
 {
     private bool inRange;
     private ControlsforPlayer control;
+    public Animator anim;
 
     private void Start()
     {
@@ -23,7 +24,8 @@ public class BirdInteraction : MonoBehaviour
 
     void BirdAction()
     {
-        SceneManager.LoadScene("MainMenu");
+        anim.SetBool("Talking", true);
+        // SceneManager.LoadScene("MainMenu");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +46,7 @@ public class BirdInteraction : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inRange = false;
+            anim.SetBool("Talking", false);
         }
     }
 }

@@ -340,7 +340,7 @@ public class ThirdPersonController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Attackpos"))
         {
-            TakeDamage(1);
+            TakeDamage(4);
         }
         if (other.gameObject.CompareTag("Projectile"))
         {
