@@ -6,40 +6,22 @@ using System;
 
 public class StaminaBar : MonoBehaviour
 {
-    public Slider staminaBar;
+    private Image Stamina;
+    public float CurrentStamina;
+    private float MaxStamina = 6;
+    ThirdPersonController Player;
 
-    private int maxStamina = 6;
-    private int currentStamina = 0;
-
-    public static StaminaBar instance;
-
-    private void Awake()
+    private void Start()
     {
-        instance = this;
+        Stamina = GetComponent<Image>();
+        Player = FindObjectOfType<ThirdPersonController>();
+        CurrentStamina = MaxStamina;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        currentStamina = maxStamina;
-        staminaBar.maxValue = maxStamina;
-        staminaBar.value = maxStamina;
-    }
+        CurrentStamina = Player.Stamina;
+        Stamina.fillAmount = CurrentStamina/MaxStamina; //updates the amount of stamina the player has in the UI
 
-    public void UseStamina(int amount)
-    {
-        if(currentStamina - amount >= 0)
-        {
-            currentStamina -= amount;
-            staminaBar.value = currentStamina;
-        }
-        else
-        {
-            Debug.Log("Not Enough Stamina");
-        }
-    }
-    public void UpdateStamina(float value)
-    {
-        staminaBar.value = value;
     }
 }
