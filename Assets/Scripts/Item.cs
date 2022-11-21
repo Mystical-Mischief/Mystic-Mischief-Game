@@ -20,13 +20,6 @@ public class Item : MonoBehaviour
         Player = GameObject.Find("Player");
     }
     
-    void Update()
-    {
-        if (inInventory == true)
-        {
-            Player.GetComponent<Inventory>().StoreItem(this.gameObject);
-        }
-    }
     public void SaveItem()
     {
         SaveSystem.SaveItem(this);
