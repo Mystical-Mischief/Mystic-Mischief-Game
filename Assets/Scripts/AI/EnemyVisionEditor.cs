@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if false
 [CustomEditor(typeof(EnemyVision))]
 public class EnemyVisionEditor : Editor
 {
@@ -32,3 +33,4 @@ public class EnemyVisionEditor : Editor
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
+#endif
