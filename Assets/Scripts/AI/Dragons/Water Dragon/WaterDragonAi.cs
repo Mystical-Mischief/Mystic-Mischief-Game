@@ -26,7 +26,6 @@ public class WaterDragonAi : BasicDragonAI
     // private float jumpForce = 10f;
     // private Vector3 forceDirection = Vector3.zero;
     // private float bo;
-    [HideInInspector]
     private new bool FoundPlayer;
     [HideInInspector]
     public Transform Base;
@@ -221,6 +220,7 @@ public class WaterDragonAi : BasicDragonAI
          // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
         if (HitPlayer == true)
         {
+            anim.SetTrigger("Bite");
             attackTimes = 0;
             base.target = base.PatrolPoints[0].transform;
             UpdateDestination(base.target.position);
