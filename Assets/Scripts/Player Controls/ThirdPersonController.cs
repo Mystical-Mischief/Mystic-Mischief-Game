@@ -51,8 +51,8 @@ public class ThirdPersonController : MonoBehaviour
     public int currentHealth;
     public Animator animator;
 
-    public GameObject healthBar;
-    public GameObject staminaBar;
+    //public GameObject healthBar;
+    //public GameObject staminaBar;
 
     private AudioSource caw;
     
@@ -71,10 +71,10 @@ public class ThirdPersonController : MonoBehaviour
         Stamina = 6;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         isGrounded = true;
-        if(healthBar != null)
-        {
-            healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
-        }
+        //if(healthBar != null)
+        //{
+        //    healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
+        //}
         currentHealth = maxHealth;
 
         caw = GetComponent<AudioSource>();
@@ -233,10 +233,10 @@ public class ThirdPersonController : MonoBehaviour
             LoadCheckpoint();
             currentHealth = maxHealth;
         }
-        if(staminaBar != null)
-        {
-            staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
-        }
+        //if(staminaBar != null)
+        //{
+        //    staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //}
     }
 
 
@@ -245,7 +245,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
-        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
         Debug.Log("In TakeDamage");
         
     }
@@ -340,7 +340,7 @@ public class ThirdPersonController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Attackpos"))
         {
-            TakeDamage(1);
+            TakeDamage(4);
         }
         if (other.gameObject.CompareTag("Projectile"))
         {
@@ -371,7 +371,7 @@ public class ThirdPersonController : MonoBehaviour
                 Invoke(nameof(ResetJump), 0.1f);
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
-                StaminaBar.instance.UseStamina(1);
+                //StaminaBar.instance.UseStamina(1);
                 Debug.Log("In DoJump Function");
             }
     }
@@ -390,8 +390,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
-        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
-        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
     public void ResetJump()
     {
@@ -413,8 +413,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
-        staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
-        healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
     private void Caw(InputAction.CallbackContext obj)
     {
