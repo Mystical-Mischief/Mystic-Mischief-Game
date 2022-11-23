@@ -220,7 +220,6 @@ public class WaterDragonAi : BasicDragonAI
          // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
         if (HitPlayer == true)
         {
-            anim.SetTrigger("Bite");
             attackTimes = 0;
             base.target = base.PatrolPoints[0].transform;
             UpdateDestination(base.target.position);
@@ -232,8 +231,9 @@ public class WaterDragonAi : BasicDragonAI
             ChasePlayer();
         }
         // If it is close to the dragon it sets the attack to true.
-         if (dist > 2f && dist < meleeDist)
+         if (dist > 2f && dist <= meleeDist)
          {
+            anim.SetBool("Biting", true);
             //transform.LookAt(PlayerPos);
             if (meleeAttack == false)
             {
@@ -241,7 +241,9 @@ public class WaterDragonAi : BasicDragonAI
             meleeAttack = true;
             attacked = true;
             }
+            // else {anim.SetBool("Bite 0", false);}
          }
+         else {anim.SetBool("Biting", false);}
          if (Player.GetComponent<ThirdPersonController>().inWater == true && dist <= rangedDist)
          {
             ChasePlayerWater();
