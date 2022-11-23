@@ -39,6 +39,8 @@ public class ThirdPersonController : MonoBehaviour
     public float powerValue;
     public bool Targeted;
     public bool inWater;
+    public PlayerAnimation playerAnimation;
+            public AudioClip HurtClip;
 
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
@@ -242,6 +244,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        playerAnimation.PlaySound(HurtClip);
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
