@@ -31,7 +31,7 @@ public class WDAttackScript : MonoBehaviour
             HitPlayer = true;
             Base.GetComponent<WaterDragonAi>().HitPlayer = true;
             Base.GetComponent<WaterDragonAi>().attacked = true;
-            anim.SetTrigger("Bite");
+            // anim.SetTrigger("Bite");
         // Vector3 dir = other.contacts[0].point - transform.position;
         // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(2);
         //  // We then get the opposite (-Vector3) and normalize it

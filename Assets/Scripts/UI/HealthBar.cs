@@ -5,16 +5,23 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider slider;
+    private Image Health;
+    public float CurrentHealth;
+    private float MaxHealth;
+    ThirdPersonController Player;
 
-    public void SetMaxHealth(int health)
+    private void Start()
     {
-        slider.maxValue = health;
-        slider.value = health;
+        Health = GetComponent<Image>();
+        Player = FindObjectOfType<ThirdPersonController>();
+        MaxHealth = Player.maxHealth;
+        CurrentHealth = MaxHealth;
     }
 
-    public void SetHealth(int health)
+    private void Update()
     {
-        slider.value = health;
+        CurrentHealth = Player.currentHealth; 
+        Health.fillAmount = CurrentHealth / MaxHealth; //updates the amount of health the player has in the UI
+
     }
 }
