@@ -20,6 +20,7 @@ public class CowboyHat : BaseHatScript
     Rigidbody rb;
     new void Start()
     {
+        GetComponent<SphereCollider>().enabled = false;
         base.Start();
         originalLocalPosition = transform.localPosition;
         rb = GetComponent<Rigidbody>();
@@ -56,6 +57,10 @@ public class CowboyHat : BaseHatScript
         {
             foreach (GameObject gO in allObjects)
             {
+                if (!gO.activeInHierarchy)
+                {
+                    continue;
+                }
                 if (gO.GetComponent<Item>().inInventory)
                 {
                     continue;
@@ -78,7 +83,7 @@ public class CowboyHat : BaseHatScript
             detectNextClosestItem();
         }
         //if the closest item has been grabbed or stored in the inventory clear the closest item
-        if (closestItem != null && closestItem.GetComponent<Item>().inInventory)
+        if (closestItem != null && (closestItem.GetComponent<Item>().inInventory || !closestItem.activeInHierarchy))
         {
             findCloseItem = true;
             closestItem = null;
@@ -95,6 +100,10 @@ public class CowboyHat : BaseHatScript
     {
         foreach (GameObject gO in allObjects)
         {
+            if (!gO.activeInHierarchy)
+            {
+                continue;
+            }
             if (gO.GetComponent<Item>().inInventory)
             {
                 continue;
@@ -125,6 +134,7 @@ public class CowboyHat : BaseHatScript
     //makes whip able to move and moves it forward based off whip strength
     public override void HatAbility()
     {
+        GetComponent<SphereCollider>().enabled = true;
         originalWorldPosition = transform.position;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
@@ -133,6 +143,7 @@ public class CowboyHat : BaseHatScript
     //sets it to where it cant move and moves it back to the original position
     void ResetHat()
     {
+        GetComponent<SphereCollider>().enabled = false;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         transform.localPosition = originalLocalPosition;
@@ -140,7 +151,7 @@ public class CowboyHat : BaseHatScript
     //trigger logic for when it hits an object to pick up the item
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PickUp")
+        if(other.gameObject.tag == "PickUp" && !GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
             ResetHat();
