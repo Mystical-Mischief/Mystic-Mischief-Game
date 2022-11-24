@@ -547,11 +547,11 @@
             ]
         },
         {
-            "name": "Test",
+            "name": "Pause",
             "id": "16c4472a-5611-435b-835b-4a121f3e8be4",
             "actions": [
                 {
-                    "name": "HealthTest",
+                    "name": "PauseGame",
                     "type": "Button",
                     "id": "1036cb9b-5a91-4891-9e58-cf4c70636b63",
                     "expectedControlType": "Button",
@@ -568,7 +568,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HealthTest",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b797ba8-50c2-41a4-9d7f-69700f101236",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -657,6 +668,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Test",
+            "id": "5c7a099f-3500-40a0-b5fa-c51413a09621",
+            "actions": [
+                {
+                    "name": "HeathTest",
+                    "type": "Button",
+                    "id": "91898a4a-2695-4aac-b89f-88d2e42f1e9d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "14d750c1-37c9-4ba3-8a30-8300bc25076c",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeathTest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

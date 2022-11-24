@@ -225,7 +225,7 @@ public class ThirdPersonController : MonoBehaviour
         //}
         // End of delete code
 
-        if (controls.Test.HealthTest.WasPerformedThisFrame())
+        if (controls.Test.HeathTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
             Debug.Log("Taking Damage...");
