@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     public float Weight;
     public bool inInventory;
     private GameObject Player;
+    public Sprite sprite;
 
     void Start()
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -18,6 +20,14 @@ public class Inventory : MonoBehaviour
     private int TicketAmount;
     public GameObject Ticket;
     private float startMass;
+    public GameObject hat1;
+    public GameObject hat2;
+    public GameObject hat3;
+    public Text Weight;
+    public GameObject InventorySlot;
+    public GameObject InventoryUI;
+    public bool showinventory;
+    public List<GameObject> InventorySlots = new List<GameObject>();
 
     void Awake()
     {
@@ -42,7 +52,16 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-
+        if (showinventory == true)
+        {
+            InventoryUI.SetActive(true);
+            foreach (GameObject item in PickedUpItems)
+            {
+                GameObject InventorySlot = Instantiate(InventorySlots[0]);
+            }
+        }
+        // float Mass = rb.mass.ToString();
+        Weight.text = rb.mass.ToString("F1");
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         // if (Save)
@@ -137,11 +156,30 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(time);
         holdingItem = value;
     }
+    public PlayerHatLogic playerHatLogic;
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "PickUp" && Store && holdingItem == false)
         {
             StoreItem(other.gameObject);
+        }
+        if (other.gameObject.tag == "Hat" && Store && holdingItem == false)
+        {
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.first)
+            {
+            playerHatLogic.hats[0] = hat1;
+            other.gameObject.SetActive(false);
+            }
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.second)
+            {
+            playerHatLogic.hats[1] = hat2;
+            other.gameObject.SetActive(false);
+            }
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.third)
+            {
+            playerHatLogic.hats[2] = hat3;
+            other.gameObject.SetActive(false);
+            }
         }
         if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false)
         {
