@@ -52,12 +52,12 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger("Jump");
         }
-        if (rb.velocity.magnitude >= 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
-        {
-            animator.SetFloat("RunSpeed", 2f);
-        // animator.SetTrigger("Launch");
-        }
-                if (rb.velocity.magnitude >= 6 && rb.velocity.magnitude < 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        // if (rb.velocity.magnitude >= 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        // {
+        //     animator.SetFloat("RunSpeed", 2f);
+        // // animator.SetTrigger("Launch");
+        // }
+                if (rb.velocity.magnitude >=1 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
         {
             animator.SetFloat("RunSpeed", 1f);
         // animator.SetTrigger("Launch");
