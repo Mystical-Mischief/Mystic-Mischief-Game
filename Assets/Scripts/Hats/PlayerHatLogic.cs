@@ -9,7 +9,7 @@ public class PlayerHatLogic : MonoBehaviour
     ControlsforPlayer controls;
     private bool switchHat;
     private int currentHatNum;
-    private GameObject currentHatObject;
+    public GameObject currentHatObject;
     private bool canSwitchHat = true;
 
     void Start()
