@@ -45,7 +45,7 @@ public class Quest : MonoBehaviour
     private void Start()
     {
         //currentColor = questItem.color;
-        ActivateQuest("Escort Shy Bird");
+        ActivateQuest("Collect Tickets");
         text.text = activeQuest.questName;
     }
     public void ActivateQuest(string nameOfQuest)
@@ -108,10 +108,10 @@ public class Quest : MonoBehaviour
     }
     public void FinishQuest()
     {
+        /*
         questItem.GetComponent<Button>().interactable = false;
         currentColor = completedColor;
-        questItem.color = completedColor;
-
+        questItem.color = completedColor;*/
     }
 
     //rework this

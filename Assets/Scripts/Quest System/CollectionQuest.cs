@@ -8,13 +8,13 @@ public class CollectionQuest : MonoBehaviour
     public int totalNumberOfItems;
     public int currentNumberOfItems = 0;
     public List<GameObject> allItems;
-    public bool allItemsCollected;
+    public bool updateList;
     Quest questScript;
     Inventory inv;
 
     public void startQuest(QuestInfo quest, Quest questScr)
     {
-        Inventory inv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        inv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         questScript = questScr;
         totalNumberOfItems = quest.objectiveItems.Length;
         foreach(GameObject gO in quest.objectiveItems)
@@ -24,8 +24,19 @@ public class CollectionQuest : MonoBehaviour
     }
     private void Update()
     {
-
-        if (allItemsCollected)
+        if (updateList)
+        {
+            currentNumberOfItems = 0;
+            foreach(GameObject gO in allItems)
+            {
+                if (inv.PickedUpItems.Contains(gO))
+                {
+                    currentNumberOfItems++;
+                }
+            }
+            updateList = false;
+        }
+        if (currentNumberOfItems >= totalNumberOfItems)
         {
             questComplete();
         }
@@ -35,7 +46,6 @@ public class CollectionQuest : MonoBehaviour
         questScript.NextQuest();
         totalNumberOfItems = 0;
         currentNumberOfItems = 0;
-        allItemsCollected = false;
         allItems.Clear();
     }
 }
