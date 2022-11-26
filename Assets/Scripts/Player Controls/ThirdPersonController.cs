@@ -39,6 +39,8 @@ public class ThirdPersonController : MonoBehaviour
     public float powerValue;
     public bool Targeted;
     public bool inWater;
+    public PlayerAnimation playerAnimation;
+            public AudioClip HurtClip;
 
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
@@ -141,6 +143,7 @@ public class ThirdPersonController : MonoBehaviour
             {
                 Stamina = 6;
             }
+            animator.SetBool("IsDiving", false);
         }
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
@@ -223,7 +226,7 @@ public class ThirdPersonController : MonoBehaviour
         //}
         // End of delete code
 
-        if (controls.Test.HealthTest.WasPerformedThisFrame())
+        if (controls.Test.HeathTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
             Debug.Log("Taking Damage...");
@@ -242,6 +245,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        playerAnimation.PlaySound(HurtClip);
         currentHealth -= damage;
         Debug.Log(currentHealth);
 
