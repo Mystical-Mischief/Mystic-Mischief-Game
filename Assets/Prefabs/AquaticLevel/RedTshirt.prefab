@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2644373201503908071
+--- !u!1 &8526567870115990948
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3456903891231418973}
-  - component: {fileID: 1753791772830246392}
-  - component: {fileID: 4589817946143740210}
-  - component: {fileID: 546922873935363006}
-  - component: {fileID: 517691307321428040}
-  - component: {fileID: 4224428474195424718}
+  - component: {fileID: 9016106268535133982}
+  - component: {fileID: 5381941693169440955}
+  - component: {fileID: 7878071445583719537}
+  - component: {fileID: 6156922424647862013}
   m_Layer: 0
-  m_Name: ToyChest
+  m_Name: RedTshirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3456903891231418973
+--- !u!4 &9016106268535133982
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
+  m_GameObject: {fileID: 8526567870115990948}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -56.000248, y: 0, z: -53.149254}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 1346.3325, y: 44.93, z: 684.0104}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1753791772830246392
+--- !u!33 &5381941693169440955
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
-  m_Mesh: {fileID: -4560171675107362568, guid: d11887e4050c304489e38bbfa8344586, type: 3}
---- !u!23 &4589817946143740210
+  m_GameObject: {fileID: 8526567870115990948}
+  m_Mesh: {fileID: 7870561040409792893, guid: 99d924f1511251e4ba6343468ca3ed5b, type: 3}
+--- !u!23 &7878071445583719537
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
+  m_GameObject: {fileID: 8526567870115990948}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9f6414438c8969469bc62204aa2e60c, type: 2}
+  - {fileID: 2100000, guid: cca8e569def7a6b45a419e1b791fec65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,46 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &546922873935363006
+--- !u!64 &6156922424647862013
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
+  m_GameObject: {fileID: 8526567870115990948}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -4560171675107362568, guid: d11887e4050c304489e38bbfa8344586, type: 3}
---- !u!54 &517691307321428040
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &4224428474195424718
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2644373201503908071}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.65169907, y: 0.3607713, z: 0.3555714}
-  m_Center: {x: 0, y: 0.18038559, z: 0}
+  m_Mesh: {fileID: 7870561040409792893, guid: 99d924f1511251e4ba6343468ca3ed5b, type: 3}
