@@ -9,10 +9,14 @@ public class PlayerAnimation : MonoBehaviour
     private ThirdPersonControl playerInputs;
     ControlsforPlayer controls;
     public GameObject Player;
+    AudioSource audioSource;
+    public AudioClip collectClip;
+        public AudioClip DropClip;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource= GetComponent<AudioSource>();
         playerInputs = new ThirdPersonControl();
         animator = GetComponent<Animator>();
         controls = new ControlsforPlayer();
@@ -36,6 +40,10 @@ public class PlayerAnimation : MonoBehaviour
         controls.Enable();
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,12 +52,12 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger("Jump");
         }
-        if (rb.velocity.magnitude >= 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
-        {
-            animator.SetFloat("RunSpeed", 2f);
-        // animator.SetTrigger("Launch");
-        }
-                if (rb.velocity.magnitude >= 6 && rb.velocity.magnitude < 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        // if (rb.velocity.magnitude >= 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        // {
+        //     animator.SetFloat("RunSpeed", 2f);
+        // // animator.SetTrigger("Launch");
+        // }
+                if (rb.velocity.magnitude >=1 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
         {
             animator.SetFloat("RunSpeed", 1f);
         // animator.SetTrigger("Launch");
@@ -79,10 +87,12 @@ public class PlayerAnimation : MonoBehaviour
 
         if (controls.Inv.Drop.WasPressedThisFrame())
         {
+            PlaySound(DropClip);
             animator.SetTrigger("Drop");
         }
         if (controls.Inv.Store.WasPressedThisFrame())
         {
+            PlaySound(collectClip);
             animator.SetTrigger("Store");
         }
     }
