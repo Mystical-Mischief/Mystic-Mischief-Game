@@ -12,7 +12,6 @@ public class PlayerAnimation : MonoBehaviour
     AudioSource audioSource;
     public AudioClip collectClip;
         public AudioClip DropClip;
-    public Inventory inv;
 
     // Start is called before the first frame update
     void Start()
