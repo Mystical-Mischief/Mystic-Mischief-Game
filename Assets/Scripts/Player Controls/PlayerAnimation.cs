@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     AudioSource audioSource;
     public AudioClip collectClip;
         public AudioClip DropClip;
+    public Inventory inv;
 
     // Start is called before the first frame update
     void Start()
@@ -85,7 +86,7 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetTrigger("Pick");
         }
 
-        if (controls.Inv.Drop.WasPressedThisFrame())
+        if (controls.Inv.Drop.WasPerformedThisFrame())
         {
             PlaySound(DropClip);
             animator.SetTrigger("Drop");
