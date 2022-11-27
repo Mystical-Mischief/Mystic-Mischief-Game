@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4322965945282056463
+--- !u!1 &1157556259139233592
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4322965945282056450}
-  - component: {fileID: 4322965945282056449}
-  - component: {fileID: 4322965945282056448}
-  - component: {fileID: 4322965945282056454}
-  - component: {fileID: 4322965945282056453}
-  - component: {fileID: 4322965945282056452}
-  - component: {fileID: 4322965945282056451}
-  - component: {fileID: 7744924840121354504}
+  - component: {fileID: 1157556259139233589}
+  - component: {fileID: 1157556259139233590}
+  - component: {fileID: 1157556259139233591}
+  - component: {fileID: 1157556259139233586}
+  - component: {fileID: 1157556259139233587}
+  - component: {fileID: 1157556259139233588}
+  - component: {fileID: 1157556259139233611}
+  - component: {fileID: 1157556259139233610}
   m_Layer: 0
-  m_Name: Snake
+  m_Name: Snake Variant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4322965945282056450
+--- !u!4 &1157556259139233589
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 949.75, y: 67.76, z: 560.33}
+  m_LocalPosition: {x: 13.85, y: 2.4382482, z: 21.84}
   m_LocalScale: {x: 58.347065, y: 58.347065, z: 58.347065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4322965945282056449
+--- !u!33 &1157556259139233590
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Mesh: {fileID: 7092809594980942416, guid: 22858ffd0ff4f7945b4e920d98e11d0f, type: 3}
---- !u!23 &4322965945282056448
+--- !u!23 &1157556259139233591
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,33 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4322965945282056454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c3355843d9a57a42af36af979ac0aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PatrolPoints: []
-  patrolNum: 1
-  SightDistance: 10
-  EnemyType: 
-  Player: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
-  knockbackForce: 300
---- !u!136 &4322965945282056453
+--- !u!136 &1157556259139233586
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -122,26 +102,26 @@ CapsuleCollider:
   m_Height: 0.0668375
   m_Direction: 1
   m_Center: {x: 0, y: -0.008369955, z: -0.027648345}
---- !u!65 &4322965945282056452
+--- !u!65 &1157556259139233587
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.034842297, y: 0.0668375, z: 0.09259774}
   m_Center: {x: 0, y: -0.008369955, z: -0.027648345}
---- !u!195 &4322965945282056451
+--- !u!195 &1157556259139233588
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.07
@@ -157,25 +137,52 @@ NavMeshAgent:
   m_BaseOffset: 0.025048792
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7744924840121354504
+--- !u!114 &1157556259139233611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4322965945282056463}
+  m_GameObject: {fileID: 1157556259139233592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83dcd7d6a4da0541aee9507807294ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  patrolNum: 0
+  SightDistance: 0
+  EnemyType: 
+  Player: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  knockbackForce: 300
+--- !u!114 &1157556259139233610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157556259139233592}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 4
-  viewAngle: 360
+  viewRadius: 8
+  viewAngle: 140
   Player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
   playerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   PlayerDetected: 0
