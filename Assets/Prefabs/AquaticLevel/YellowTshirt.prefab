@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5969114507160735004}
   - component: {fileID: 7706730345732630416}
   - component: {fileID: 4116221429545662659}
+  - component: {fileID: 3187808162998655919}
   m_Layer: 0
   m_Name: YellowTshirt
-  m_TagString: Untagged
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,3 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.082438365, y: 1.1399411, z: 1.5944688}
   m_Center: {x: -0.0000006817281, y: -0.004229307, z: 0.0053124726}
+--- !u!114 &3187808162998655919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320565854614449353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  Weight: 0.01
+  inInventory: 0
+  sprite: {fileID: 0}
