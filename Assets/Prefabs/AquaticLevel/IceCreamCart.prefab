@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7624310302730191671}
   - component: {fileID: 5632325944170870781}
   - component: {fileID: 8507100636086197617}
+  - component: {fileID: 5461779974269331869}
   m_Layer: 0
   m_Name: IceCreamCart
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 6136988931141064232}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4824814363881013562, guid: f86dfba468a6a1346ae8bc186935389b, type: 3}
+--- !u!65 &5461779974269331869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136988931141064232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2898376, y: 5.5255346, z: 4.2901883}
+  m_Center: {x: 0, y: 2.7627673, z: 0}

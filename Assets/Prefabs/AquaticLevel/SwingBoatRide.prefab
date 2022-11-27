@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5322905603621727917}
   - component: {fileID: 7942719408107936359}
   - component: {fileID: 6205807824928272619}
+  - component: {fileID: 8957820051045645401}
   m_Layer: 0
   m_Name: SwingBoatRide
   m_TagString: Untagged
@@ -94,8 +95,21 @@ MeshCollider:
   m_GameObject: {fileID: 8447285362437422002}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2567503797508995133, guid: 69a3eef6a53339041b788eb27ee7093b, type: 3}
+--- !u!65 &8957820051045645401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447285362437422002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.684523, y: 24.183975, z: 35.02717}
+  m_Center: {x: 0, y: 12.078932, z: 0}
