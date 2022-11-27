@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7878071445583719537}
   - component: {fileID: 6156922424647862013}
   - component: {fileID: 6211014193947721525}
+  - component: {fileID: -6359109859585670319}
   m_Layer: 0
   m_Name: RedTshirt
-  m_TagString: Untagged
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,3 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.082438365, y: 1.1399411, z: 1.5944688}
   m_Center: {x: -0.0000006817281, y: -0.004229307, z: 0.0053124726}
+--- !u!114 &-6359109859585670319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526567870115990948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  Weight: 0.01
+  inInventory: 0
+  sprite: {fileID: 0}
