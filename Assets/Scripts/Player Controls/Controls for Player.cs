@@ -152,6 +152,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""HoldItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6f69ac1-3d95-4cd8-aee7-4a3689525784"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
