@@ -5,9 +5,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using System;
+using TMPro; 
 
 public class Inventory : MonoBehaviour
 {
+
+
+
+    public TextMeshProUGUI Weight;
     ControlsforPlayer controls;
     private Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
@@ -24,7 +29,7 @@ public class Inventory : MonoBehaviour
     public GameObject hat1;
     public GameObject hat2;
     public GameObject hat3;
-    public Text Weight;
+    // public Text Weight;
     // public GameObject InventorySlot;
     public GameObject InventoryUI;
     public GameObject InventoryImages;
@@ -72,7 +77,7 @@ public class Inventory : MonoBehaviour
         //     }
         // }
         // float Mass = rb.mass.ToString();
-        Weight.text = ("Weight: " + rb.mass.ToString("F1"));
+        Weight.text = ("Weight: " + rb.mass.ToString("F2"));
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         // if (Save)

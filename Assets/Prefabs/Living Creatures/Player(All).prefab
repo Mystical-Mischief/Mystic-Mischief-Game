@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5d6416be803cf4497ed34a804da05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: {fileID: 3336821575548782778}
   PickedUpItems: []
   currentHeldItem: {fileID: 0}
   currentObject: {fileID: 0}
@@ -554,7 +555,6 @@ MonoBehaviour:
   hat1: {fileID: 0}
   hat2: {fileID: 0}
   hat3: {fileID: 0}
-  Weight: {fileID: 0}
   InventoryUI: {fileID: 0}
   InventoryImages: {fileID: 0}
   HoldTime: 0
@@ -1772,6 +1772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4035553603425632550, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4035553603425632551, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1887,6 +1891,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4035553603425632551, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
   m_PrefabInstance: {fileID: 2021215294367537212}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3336821575548782778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3621467026531078278, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
+  m_PrefabInstance: {fileID: 2021215294367537212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3276953355677261002
 PrefabInstance:
   m_ObjectHideFlags: 0
