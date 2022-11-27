@@ -143,6 +143,7 @@ public class ThirdPersonController : MonoBehaviour
             {
                 Stamina = 6;
             }
+            animator.SetBool("IsDiving", false);
         }
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
