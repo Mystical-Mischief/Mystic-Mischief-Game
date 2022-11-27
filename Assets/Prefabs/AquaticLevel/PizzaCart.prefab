@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3699726613491126036}
   - component: {fileID: 1494322653155195870}
   - component: {fileID: 3213783321428218194}
+  - component: {fileID: 5709297845010288481}
   m_Layer: 0
   m_Name: PizzaCart
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 1133810863469091339}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8949559286667905681, guid: cd5bc0447e6ae6b479f0f08d8a5892e8, type: 3}
+--- !u!65 &5709297845010288481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133810863469091339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2898376, y: 5.4631877, z: 4.2901883}
+  m_Center: {x: 0, y: 2.7315938, z: 0}

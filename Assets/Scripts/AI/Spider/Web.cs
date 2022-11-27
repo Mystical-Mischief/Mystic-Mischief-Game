@@ -6,6 +6,7 @@ public class Web : MonoBehaviour
 {
     public float speed;
     public float stun = 3f;
+    public bool isStun;
 
     private Transform player;
     private Vector3 target;
@@ -33,16 +34,22 @@ public class Web : MonoBehaviour
             StartCoroutine(StunTimer(col.gameObject));
             
         }
+        else
+        {
+            DestroyProjectile();
+        }
     }
 
     //stuns player
     IEnumerator StunTimer(GameObject player)
     {
         print("player stunned");
+        isStun = true;
         player.GetComponent<ThirdPersonController>().canMove = false;
         yield return new WaitForSeconds(stun);
         player.GetComponent<ThirdPersonController>().canMove = true;
         DestroyProjectile();
+        isStun = false;
 
     }
     void DestroyProjectile()

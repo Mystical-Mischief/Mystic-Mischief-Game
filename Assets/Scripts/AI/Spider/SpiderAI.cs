@@ -42,9 +42,14 @@ public class SpiderAI : BaseEnemyAI
     {
         base.FoundPlayer();
 
-        if (player.GetComponent<ThirdPersonController>().canMove == false)
+        if (player.GetComponent<Web>().isStun == true)
         {
             LostPlayer();
         }
+    }
+
+    new public virtual void LostPlayer()
+    {
+        base.LostPlayer();
     }
 }
