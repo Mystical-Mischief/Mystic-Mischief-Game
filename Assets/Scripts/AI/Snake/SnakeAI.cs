@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class SnakeAI : BaseEnemyAI
 {
-    [SerializeField]
+    
     bool attackedPlayer = false;
 
     ThirdPersonController player;
-    [SerializeField]
-    bool isAggressive;
-    float attackCooldown = 1f;
-    float currentAttack = 1f;
+    
+    float attackCooldown = 3f;
+    float currentAttack;
 
     [SerializeField]
     private float knockbackForce;
@@ -20,6 +19,7 @@ public class SnakeAI : BaseEnemyAI
     {
         base.Start();
         player =  GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        currentAttack = attackCooldown;
     }
 
     // Update is called once per frame
@@ -42,12 +42,11 @@ public class SnakeAI : BaseEnemyAI
     {
         if(!attackedPlayer && collision.gameObject.tag == "Player")
         {
+            LostPlayer();
             attackedPlayer = true;
             player.currentHealth--;
             //Knockback
             collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
-            print($"Player Health: {player.currentHealth}");
-            print("HIt");
             
         }
     } 

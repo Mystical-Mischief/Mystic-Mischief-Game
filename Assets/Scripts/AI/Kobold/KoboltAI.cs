@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KoboltAI : BaseEnemyAI
 {
-    float attackCooldown = 1f;
-    float currentAttack = 1f;
+    float attackCooldown = 3f;
+    float currentAttack;
 
     [SerializeField]
     bool attackedPlayer = false;
@@ -19,6 +19,7 @@ public class KoboltAI : BaseEnemyAI
     {
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        currentAttack = attackCooldown;
     } 
 
     new void Update()
@@ -41,11 +42,10 @@ public class KoboltAI : BaseEnemyAI
         if(!attackedPlayer && collision.gameObject.tag == "Player")
         {
             attackedPlayer = true;
+            LostPlayer();
             player.currentHealth--;
             //Knockback
             collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
-            print($"Player Health: {player.currentHealth}");
-            print("HIt");
             
         }
     }
