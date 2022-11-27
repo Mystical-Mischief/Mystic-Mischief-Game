@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    static bool GameIsPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Button defaultBtn;
 
-    // Update is called once per frame
+    private ControlsforPlayer playerControls;
+
+    private void Awake()
+    {
+        playerControls = new ControlsforPlayer();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerControls.Pause.PauseGame.triggered)
         {
             if (GameIsPaused)
             {
@@ -50,5 +58,30 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    public void Focus() 
+    {
+        defaultBtn.Select();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        Focus();
+    }
+
+
+    public void ChangeDefaultBtn(Button button)
+    {
+        defaultBtn = button;
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 }
