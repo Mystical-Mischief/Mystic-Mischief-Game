@@ -3223,6 +3223,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e01a85033edad2e4c97ed5adfd0f7cb0, type: 3}
   m_PrefabInstance: {fileID: 2021034732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &845870924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4163009624411825313, guid: 2257b23b8b0aac04892c65d75ee59c13, type: 3}
+  m_PrefabInstance: {fileID: 8911063496155483364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &873707484
 GameObject:
   m_ObjectHideFlags: 0
@@ -3527,17 +3538,6 @@ Transform:
   m_Father: {fileID: 425680829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &931151601 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8911063495375352341, guid: 2257b23b8b0aac04892c65d75ee59c13, type: 3}
-  m_PrefabInstance: {fileID: 8911063496155483364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &989780415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9582,6 +9582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5d6416be803cf4497ed34a804da05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: {fileID: 845870924}
   PickedUpItems: []
   currentHeldItem: {fileID: 0}
   currentObject: {fileID: 0}
@@ -9591,7 +9592,6 @@ MonoBehaviour:
   hat1: {fileID: 1402024273}
   hat2: {fileID: 4689899370093769668}
   hat3: {fileID: 4548586840390678632}
-  Weight: {fileID: 931151601}
   InventoryUI: {fileID: 558337341}
   InventoryImages: {fileID: 1586225666}
   HoldTime: 0
