@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
 
 
     public TextMeshProUGUI Weight;
+    public float MassText;
+    public float weightFloat;
     ControlsforPlayer controls;
     private Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
@@ -77,7 +79,8 @@ public class Inventory : MonoBehaviour
         //     }
         // }
         // float Mass = rb.mass.ToString();
-        Weight.text = ("Weight: " + rb.mass.ToString("F2"));
+        Weight.text = ("Weight: " + MassText.ToString("F2")+"lb");
+        weightFloat = rb.mass;
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         // if (Save)
@@ -183,7 +186,8 @@ public class Inventory : MonoBehaviour
         holdingItem = false;
         item.GetComponent<Item>().inInventory = true;
         PickedUpItems.Add(item);
-        rb.mass = rb.mass + item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
+        MassText = MassText + item.GetComponent<Item>().Weight;
 
     }
     public void HoldItem(GameObject Item)
@@ -246,8 +250,14 @@ public class Inventory : MonoBehaviour
         {
             for (var i = 0; i < PickedUpItems.Count; i++)
             {
+                other.gameObject.GetComponent<Goal>().StoredItems.Add(PickedUpItems[i]);
+                InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+                // Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
                 PickedUpItems.RemoveAt(i);
                 rb.mass = startMass;
+            }
+            if (PickedUpItems.Count <= 0 && other.gameObject.GetComponent<Goal>().TurnsOff == true){
+            other.gameObject.GetComponent<Goal>().goal.enabled=false;
             }
         }
                 if (other.gameObject.tag == "GoldToTickets")
