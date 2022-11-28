@@ -246,6 +246,7 @@ public class Inventory : MonoBehaviour
         {
             for (var i = 0; i < PickedUpItems.Count; i++)
             {
+                other.gameObject.GetComponent<Goal>().StoredItems.Add(PickedUpItems[i]);
                 PickedUpItems.RemoveAt(i);
                 rb.mass = startMass;
             }
