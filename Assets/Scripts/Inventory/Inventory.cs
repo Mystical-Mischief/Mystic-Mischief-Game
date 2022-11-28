@@ -251,8 +251,13 @@ public class Inventory : MonoBehaviour
             for (var i = 0; i < PickedUpItems.Count; i++)
             {
                 other.gameObject.GetComponent<Goal>().StoredItems.Add(PickedUpItems[i]);
+                InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+                // Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
                 PickedUpItems.RemoveAt(i);
                 rb.mass = startMass;
+            }
+            if (PickedUpItems.Count <= 0 && other.gameObject.GetComponent<Goal>().TurnsOff == true){
+            other.gameObject.GetComponent<Goal>().goal.enabled=false;
             }
         }
                 if (other.gameObject.tag == "GoldToTickets")
