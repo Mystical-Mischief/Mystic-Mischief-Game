@@ -85,7 +85,7 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetTrigger("Pick");
         }
 
-        if (controls.Inv.Drop.WasPressedThisFrame())
+        if (controls.Inv.Drop.WasPerformedThisFrame())
         {
             PlaySound(DropClip);
             animator.SetTrigger("Drop");

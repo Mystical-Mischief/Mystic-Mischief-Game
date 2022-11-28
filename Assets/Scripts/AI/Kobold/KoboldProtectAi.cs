@@ -18,7 +18,7 @@ public class KoboldProtectAi : BaseEnemyAI
 
     public bool Protect;
 
-    public bool holdingItem;
+    private bool holdingItem;
 
     public GameObject HeldItem;
 
@@ -33,6 +33,7 @@ public class KoboldProtectAi : BaseEnemyAI
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
         Protect = false;
+        holdingItem = false;
     }
 
     new void Update()
@@ -71,15 +72,13 @@ public class KoboldProtectAi : BaseEnemyAI
             player.currentHealth--;
             //Knockback
             collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
-            print($"Player Health: {player.currentHealth}");
-            print("HIt");
 
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (Protect && collider.gameObject.tag == "Gold")
+        if (Protect && collider.gameObject.tag == "PickUp")
         {
             Protect = false;
             HeldItem = collider.gameObject;
