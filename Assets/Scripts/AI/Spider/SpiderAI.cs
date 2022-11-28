@@ -6,6 +6,7 @@ public class SpiderAI : BaseEnemyAI
 {
     ThirdPersonController player;
     public GameObject projectile;
+    public Animator anim;
 
     float timeBetweenShots;
     public float startTimeBetweenShots;
