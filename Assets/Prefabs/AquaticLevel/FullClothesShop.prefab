@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2216155226306079833}
   - component: {fileID: 4117884515241269395}
   - component: {fileID: 72315190320181791}
+  - component: {fileID: 5944331746991886031}
   m_Layer: 0
   m_Name: FullClothesShop
   m_TagString: Untagged
@@ -94,8 +95,21 @@ MeshCollider:
   m_GameObject: {fileID: 2460467699258898758}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1013337309052722025, guid: 9e308afa120c5264a8cc762df00c5ad5, type: 3}
+--- !u!65 &5944331746991886031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460467699258898758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.824446, y: 7.685812, z: 5.7793784}
+  m_Center: {x: 0, y: 0, z: 0}

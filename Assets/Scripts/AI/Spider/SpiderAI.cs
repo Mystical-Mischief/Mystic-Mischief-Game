@@ -6,6 +6,7 @@ public class SpiderAI : BaseEnemyAI
 {
     ThirdPersonController player;
     public GameObject projectile;
+    public Animator anim;
 
     float timeBetweenShots;
     public float startTimeBetweenShots;
@@ -28,6 +29,7 @@ public class SpiderAI : BaseEnemyAI
             if (timeBetweenShots <= 0)
             {
                 //fires projectile at the location the player was located at when the spider first shot. It does not follow player
+                ShootAnim();
                 Instantiate(projectile, transform.position, Quaternion.identity);
                 timeBetweenShots = startTimeBetweenShots;
             }
@@ -36,6 +38,11 @@ public class SpiderAI : BaseEnemyAI
                 timeBetweenShots -= Time.deltaTime;
             }
         }
+    }
+
+    public virtual void ShootAnim()
+    {
+                anim.SetTrigger("Web");
     }
 
     public virtual void FoundPlayer(GameObject player)

@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
     public bool inInventory;
     private GameObject Player;
     public Sprite sprite;
+    public Color spriteColor;
 
     void Start()
     {

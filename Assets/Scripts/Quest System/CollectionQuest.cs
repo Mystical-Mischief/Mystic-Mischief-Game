@@ -24,6 +24,7 @@ public class CollectionQuest : MonoBehaviour
     }
     private void Update()
     {
+        //if(inv.)
         if (updateList)
         {
             currentNumberOfItems = 0;

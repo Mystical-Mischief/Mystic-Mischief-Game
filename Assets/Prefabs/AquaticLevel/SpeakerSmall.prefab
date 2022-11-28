@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2964315365083858115}
   - component: {fileID: 1065007130087436297}
   - component: {fileID: 3954980957545634437}
+  - component: {fileID: 2217167607273616192}
   m_Layer: 0
   m_Name: SpeakerSmall
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 1569317723596460508}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6150543920761412590, guid: 0cc5a4de911798d4a862febc1dd252c4, type: 3}
+--- !u!65 &2217167607273616192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569317723596460508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6158223, y: 0.7655248, z: 0.849226}
+  m_Center: {x: 0, y: 0.38276246, z: 0}

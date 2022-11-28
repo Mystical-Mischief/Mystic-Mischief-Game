@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1388688370184273511}
   - component: {fileID: 3792431104093080237}
   - component: {fileID: 901893725430734881}
+  - component: {fileID: 4200747024116190061}
   m_Layer: 0
   m_Name: PopcornCart
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 3432191030600133496}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2398903388265103176, guid: 997353d4cc5ea154d8aea4778cab5d05, type: 3}
+--- !u!65 &4200747024116190061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432191030600133496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2233459, y: 3.4400597, z: 1.5232162}
+  m_Center: {x: 0, y: 1.7200298, z: 0}
