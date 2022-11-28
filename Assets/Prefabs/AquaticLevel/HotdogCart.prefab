@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3212388197263544241}
   - component: {fileID: 824234882797271931}
   - component: {fileID: 3698868356220342775}
+  - component: {fileID: 2237144128323688273}
   m_Layer: 0
   m_Name: HotdogCart
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 1184650328515173038}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7855937133909113453, guid: 85c99d01c83891145a7f140b11d9eecd, type: 3}
+--- !u!65 &2237144128323688273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184650328515173038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2898376, y: 5.3514338, z: 4.2901883}
+  m_Center: {x: 0, y: 2.6757169, z: 0}
