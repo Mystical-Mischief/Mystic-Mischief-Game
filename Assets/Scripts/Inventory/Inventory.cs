@@ -5,13 +5,19 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using System;
+using TMPro; 
 
 public class Inventory : MonoBehaviour
 {
+
+
+
+    public TextMeshProUGUI Weight;
     ControlsforPlayer controls;
     private Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
     public GameObject currentHeldItem;
+    public GameObject currentObject;
     public Transform HoldItemPosition;
 
     private bool PickUp;
@@ -23,11 +29,17 @@ public class Inventory : MonoBehaviour
     public GameObject hat1;
     public GameObject hat2;
     public GameObject hat3;
-    public Text Weight;
-    public GameObject InventorySlot;
+    // public Text Weight;
+    // public GameObject InventorySlot;
     public GameObject InventoryUI;
-    public bool showinventory;
-    public List<GameObject> InventorySlots = new List<GameObject>();
+    public GameObject InventoryImages;
+    private bool UIOpen;
+    private float UITime = 3f;
+    public float HoldTime;
+    private float Holding;
+    public IntegerControl tapCount { get; set; }
+    // public bool showinventory;
+    // public List<GameObject> InventorySlots = new List<GameObject>();
 
     void Awake()
     {
@@ -39,10 +51,14 @@ public class Inventory : MonoBehaviour
     public void OnEnable()
     {
         controls.Enable();
+
+        controls.Inv.Drop.started += DoDrop;
     }
     public void OnDisable()
     {
         controls.Disable();
+
+        controls.Inv.Drop.started -= DoDrop;
     }
 
     void Start()
@@ -52,21 +68,16 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (showinventory == true)
-        {
-            InventoryUI.SetActive(true);
-            foreach (GameObject item in PickedUpItems)
-            {
-                GameObject InventorySlot = Instantiate(InventorySlots[0]);
-            }
-        }
+        // if (showinventory == true)
+        // {
+        //     InventoryUI.SetActive(true);
+        //     foreach (GameObject item in PickedUpItems)
+        //     {
+        //         GameObject InventorySlot = Instantiate(InventorySlots[0]);
+        //     }
+        // }
         // float Mass = rb.mass.ToString();
-        
-        
-        
-        //Weight.text = rb.mass.ToString("F1"); This is creating missing object reference errors. 
-
-
+        Weight.text = ("Weight: " + rb.mass.ToString("F2"));
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         // if (Save)
@@ -93,11 +104,32 @@ public class Inventory : MonoBehaviour
          }*/
 
         //Drop the Current Item
-        bool Drop = controls.Inv.Drop.ReadValue<float>() > 0.1f;
-        if (PickedUpItems.Count > 0 && controls.Inv.Drop.triggered)
+        // currentObject = PickedUpItems[PickedUpItems.Count - 1];
+        bool Drop = controls.Inv.Drop.ReadValue<float>() > 1f;
+        // HoldTime = controls.Inv.Drop.tapCount();
+        if (controls.Inv.OpenInv.WasPerformedThisFrame())
         {
-            QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
+            if (!UIOpen)
+            {
+                OpenUI();
+            }
         }
+        if (UIOpen == true && controls.Inv.OpenInv.WasPressedThisFrame())
+        {
+            CloseUI();
+        }
+            // if ((controls.Inv.Drop.ReadValue<Hold>()))
+            // {
+
+            // }
+            if (controls.Inv.Drop.WasPerformedThisFrame()){
+            QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
+            }
+        // else if (controls.Inv.Drop.ReadValue<float>() < 1f && controls.Inv.Drop.ReadValue<float>() > 0.1f)
+        // {
+        //     
+        // }
+
         if (holdingItem && PickUp && controls.Inv.PressPick.WasPressedThisFrame())
         {
             DropItem(currentHeldItem);
@@ -111,15 +143,34 @@ public class Inventory : MonoBehaviour
         //     SaveManager.SaveJsonData();
         // }
     }
+        private void DoDrop(InputAction.CallbackContext obj)
+    {
+        Holding = obj.ReadValue<float>();
+
+        // HoldTime += Time.deltaTime;
+    }
+
+    public void OpenUI()
+    {
+        InventoryImages.SetActive(true);
+        UIOpen = true;
+    }
+    public void CloseUI()
+    {
+        InventoryImages.SetActive(false);
+        UIOpen = false;
+    }
 
     public void QuickDropStoredItem(GameObject Item)
     {
+
+        InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+        Item.GetComponent<Item>().inInventory = false;
         holdingItem = false;
         rb.mass = rb.mass - Item.GetComponent<Item>().Weight;
         Item.transform.position = transform.position;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
-        Item.GetComponent<Item>().inInventory = false;
         PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
         Item.SetActive(true);
         Item.GetComponent<SphereCollider>().enabled = true;
@@ -130,6 +181,7 @@ public class Inventory : MonoBehaviour
         Debug.Log("Item Stored");
         item.SetActive(false);
         holdingItem = false;
+        item.GetComponent<Item>().inInventory = true;
         PickedUpItems.Add(item);
         rb.mass = rb.mass + item.GetComponent<Item>().Weight;
 
@@ -147,12 +199,12 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(GameObject Item)
     {
+        Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
         currentHeldItem = null;
-        Item.GetComponent<Item>().inInventory = false;
 
         StartCoroutine(dropTimer(0.5f, false));
     }

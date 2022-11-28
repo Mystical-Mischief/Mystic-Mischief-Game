@@ -235,6 +235,34 @@ PrefabInstance:
       propertyPath: currentDestinationItems.Array.data[1]
       value: 
       objectReference: {fileID: 1021675798}
+    - target: {fileID: 2430671006204420507, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094160730578467617, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 3225405914596433670, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
       propertyPath: glideSpeed.y
       value: 100
@@ -243,6 +271,10 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1081186067}
+    - target: {fileID: 3655321739517221840, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7232564835941422695, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
       propertyPath: m_LookAt
       value: 
@@ -294,6 +326,30 @@ PrefabInstance:
     - target: {fileID: 7232564835989429457, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
       propertyPath: m_Name
       value: Player(All)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99864036
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.045756597
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.024950426
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232564836777529916, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0011432009
       objectReference: {fileID: 0}
     - target: {fileID: 7232564837911052068, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
       propertyPath: sensitivity
@@ -775,7 +831,7 @@ RectTransform:
   - {fileID: 1402014169}
   - {fileID: 1638215719}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -793,9 +849,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ticket Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 7281561412130705302, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
+      objectReference: {fileID: 0}
     - target: {fileID: 7946211400526746924, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7946211400526746924, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
       propertyPath: m_LocalPosition.x
@@ -844,6 +904,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7281561412130705302, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
   m_PrefabInstance: {fileID: 1436825264}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1021675807
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021675798}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 1
 --- !u!20 &1081186067 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3006967712434767560, guid: 864b4ddad2759b348ba170480654a6b7, type: 3}
@@ -925,6 +1001,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7281561412130705302, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
   m_PrefabInstance: {fileID: 864724080}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1200072257
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200072248}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 1
 --- !u!1 &1236551551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ticket Collectable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7281561412130705302, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
+      objectReference: {fileID: 0}
     - target: {fileID: 7946211400526746924, guid: 7a59a6cf729e7b74a9cb5beb3953f426, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -1726,6 +1822,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638215718}
   m_CullTransparentMesh: 1
+--- !u!1 &1993490363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993490366}
+  - component: {fileID: 1993490365}
+  - component: {fileID: 1993490369}
+  - component: {fileID: 1993490368}
+  - component: {fileID: 1993490364}
+  - component: {fileID: 1993490367}
+  m_Layer: 0
+  m_Name: QuestTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1993490364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e4d4b92a90b1f448179ab9a4cb1986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalNumberOfItems: 0
+  currentNumberOfItems: 0
+  allItems: []
+  updateList: 0
+--- !u!114 &1993490365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e1e78322f435a48b8c3d0a7a8f12e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questScript:
+  - {fileID: 1993490369}
+  - {fileID: 1993490368}
+  - {fileID: 1993490364}
+  - {fileID: 1993490367}
+  questItem: {fileID: 1638215720}
+  completedColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  text: {fileID: 1402014170}
+  allQuests:
+  - questName: Collect Tickets
+    questDescription: 
+    questType: 2
+    objectiveItems:
+    - {fileID: 1200072248}
+    - {fileID: 1021675798}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+  currentQuests: []
+  activeQuest:
+    questName: 
+    questDescription: 
+    questType: 0
+    objectiveItems: []
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+--- !u!4 &1993490366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9100537, y: 1.2182667, z: -2.2318711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1993490367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25963f8d5d5f1749a3ed81ad3b5600a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escortItem: {fileID: 0}
+  escortLocation: {fileID: 0}
+  targetDistance: 5
+--- !u!114 &1993490368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ba20afebf4bb34cb1031acc268fe40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 0}
+  questScript: {fileID: 0}
+--- !u!114 &1993490369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb010a0387be8945a1c0be2e51ae86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allObjs: []
+  ObjDescriptions: []
+  currObj: {fileID: 0}
+  currObjNumber: 0
+  currObjDescription: 
+  currObjCompelete: 0
+  tutorialText: {fileID: 0}
+  questScript: {fileID: 0}
 --- !u!1 &2057364277
 GameObject:
   m_ObjectHideFlags: 0

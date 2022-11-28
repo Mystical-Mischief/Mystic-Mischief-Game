@@ -107,9 +107,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
-  attackedPlayer: 0
-  isAggressive: 0
-  knockbackForce: 250
+  knockbackForce: 300
 --- !u!136 &4322965945282056453
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -171,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 90
+  viewRadius: 4
+  viewAngle: 360
   Player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
