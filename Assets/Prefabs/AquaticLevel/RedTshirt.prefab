@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6156922424647862013}
   - component: {fileID: 6211014193947721525}
   - component: {fileID: -6359109859585670319}
+  - component: {fileID: 6216131811553308655}
+  - component: {fileID: 8492974489394146552}
   m_Layer: 0
   m_Name: RedTshirt
   m_TagString: PickUp
@@ -129,3 +131,32 @@ MonoBehaviour:
   Weight: 0.01
   inInventory: 0
   sprite: {fileID: 0}
+--- !u!135 &6216131811553308655
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526567870115990948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.34
+  m_Center: {x: -0.0000006817281, y: -0.004229307, z: 0.0053124726}
+--- !u!54 &8492974489394146552
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526567870115990948}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

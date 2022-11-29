@@ -16,10 +16,16 @@ public class Gamma : MonoBehaviour
     // }
     public Rect SliderLocation;
     public void Update() {
-       lightSlider.value = brightnessValue;
+       brightnessValue = lightSlider.value;
         myLight.intensity = lightSlider.value + 0.5f;
         Screen.brightness = 0;
        
+    }
+
+        public void OnSliderChange()
+    {
+        brightnessValue = lightSlider.value;
+        Update();
     }
    
     void OnGUI () {
