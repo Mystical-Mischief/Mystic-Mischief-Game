@@ -372,7 +372,6 @@ public class ThirdPersonController : MonoBehaviour
             if (Stamina > 0)
             {
                 animator.SetTrigger("Jump");    
-                Invoke(nameof(ResetJump), 0.1f);
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
                 //StaminaBar.instance.UseStamina(1);
