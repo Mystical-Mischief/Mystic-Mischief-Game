@@ -38,6 +38,7 @@ public class BaseEnemyAI : MonoBehaviour
             target = PatrolPoints[0].transform;
             UpdateDestination(target.position);
         }
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Update()

@@ -9,6 +9,8 @@ public class Web : MonoBehaviour
 
     private Transform player;
     private Vector3 target;
+    public bool hitPlayer { get; private set; }
+    float timer =  3f;
 
     private void Start()
     {
@@ -16,23 +18,35 @@ public class Web : MonoBehaviour
 
         //grabs the location of the target
         target = new Vector3(player.position.x, player.position.y, player.position.z);
+        hitPlayer = false;
     }
 
-    private void Update()
+
+    private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
+        if(!hitPlayer)
+        {
+            timer-=Time.deltaTime;
+        }
+        if(timer <= 0)
+        {
+
+            DestroyProjectile();
+        }
     }
 
 
    
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            
+            hitPlayer = true;
             StartCoroutine(StunTimer(col.gameObject));
-            
+
         }
+
     }
 
     //stuns player
