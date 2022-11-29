@@ -31,6 +31,11 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if(playerControls.Pause.QuitGame.triggered)
+        {
+            QuitGame();
+        }
     }
 
     public void Resume()
