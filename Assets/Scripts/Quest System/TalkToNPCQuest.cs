@@ -10,14 +10,8 @@ public class TalkToNPCQuest : MonoBehaviour
     public void startQuest(QuestInfo quest, Quest questScr)
     {
         questScript = questScr;
-        NPC = quest.objectiveItems[0];
-    }
-    void Update()
-    {
-        if (NPC.GetComponent<Dialogue>().enabled)
-        {
-            questFinished();
-        }
+        print(quest.NPC);
+        NPC = quest.NPC;
     }
     void questFinished()
     {

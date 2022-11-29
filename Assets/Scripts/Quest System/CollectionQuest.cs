@@ -24,6 +24,10 @@ public class CollectionQuest : MonoBehaviour
     }
     private void Update()
     {
+        if (inv.controls.Inv.Store.WasReleasedThisFrame())
+        {
+            updateList = true;
+        }
         if (updateList)
         {
             currentNumberOfItems = 0;
@@ -47,5 +51,6 @@ public class CollectionQuest : MonoBehaviour
         totalNumberOfItems = 0;
         currentNumberOfItems = 0;
         allItems.Clear();
+        this.enabled = false;
     }
 }

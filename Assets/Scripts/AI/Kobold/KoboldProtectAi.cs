@@ -18,9 +18,10 @@ public class KoboldProtectAi : BaseEnemyAI
 
     public bool Protect;
 
-    public bool holdingItem;
+    private bool holdingItem;
 
     public GameObject HeldItem;
+    public Animator anim;
 
     [SerializeField]
     private Transform fleeLocation;
@@ -33,10 +34,12 @@ public class KoboldProtectAi : BaseEnemyAI
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
         Protect = false;
+        holdingItem = false;
     }
 
     new void Update()
     {
+        float dist = Vector3.Distance(player.transform.position, transform.position);
         base.Update();
         if (attackedPlayer)
         {
@@ -52,14 +55,29 @@ public class KoboldProtectAi : BaseEnemyAI
         {
             if (Protect)
             {
+                anim.SetBool("HasItem", true);
                 ProtectObject(Item);
             }
             else
             {
                 Patrol();
+                // anim.SetBool("HasItem", false);
             }
         }
         Flee();
+                if (base.spottedPlayer == true)
+        {
+            anim.SetBool("FoundPlayer", true);
+        }
+        else {anim.SetBool("FoundPlayer", false);}
+        if (base.ai.speed > 0.1)
+        {
+            anim.SetFloat("RunSpeed", 1f);
+        }
+        if (dist <= 2f)
+        {
+            anim.SetTrigger("Bite");
+        }
 
     }
     // Start is called before the first frame update
@@ -71,16 +89,15 @@ public class KoboldProtectAi : BaseEnemyAI
             player.currentHealth--;
             //Knockback
             collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
-            print($"Player Health: {player.currentHealth}");
-            print("HIt");
 
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (Protect && collider.gameObject.tag == "Gold")
+        if (Protect && collider.gameObject.tag == "PickUp")
         {
+            anim.SetTrigger("Bite");
             Protect = false;
             HeldItem = collider.gameObject;
             HeldItem.transform.SetParent(this.transform, true);

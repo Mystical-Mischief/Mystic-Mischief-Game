@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 988975957727835987}
   - component: {fileID: 3052731556198351769}
   - component: {fileID: 1330878849948035349}
+  - component: {fileID: 770109981701077046}
   m_Layer: 0
   m_Name: FullGIftshop
   m_TagString: Untagged
@@ -94,8 +95,21 @@ MeshCollider:
   m_GameObject: {fileID: 3557148114588246604}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3713898215014171231, guid: ed1daba8f356e8a4a98522b6ce6378d8, type: 3}
+--- !u!65 &770109981701077046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557148114588246604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.017497, y: 9.664094, z: 8.017498}
+  m_Center: {x: 0, y: 4.832046, z: 0}

@@ -25,7 +25,7 @@ public class CameraLogic : MonoBehaviour
         if (isFlying)
         {
             turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity;
-            turn.y = 20;
+            turn.y += inputs.PlayerOnGround.Look.ReadValue<Vector2>().y / sensitivity;
 
             if (turn.x > 360)
             {

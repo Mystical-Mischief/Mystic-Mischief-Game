@@ -33,7 +33,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=1)"",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -42,7 +42,16 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""5ed0ff00-4926-4efc-a969-e399a0c91f33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""MultiTap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInv"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9ceb8b1-28ce-4566-8655-620797abb12d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.5)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -155,12 +164,23 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f6f69ac1-3d95-4cd8-aee7-4a3689525784"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""id"": ""63821ca2-e76a-4d73-bbeb-8b2c381fb53a"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HoldItem"",
+                    ""action"": ""OpenInv"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc4da418-3b38-4c79-a1a8-3a7f05eb0048"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInv"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -591,6 +611,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""31d09895-e657-4807-9d77-01c132754aac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -613,6 +642,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5626e33e-33be-4c74-978e-96f88ad01565"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -741,6 +781,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Inv = asset.FindActionMap("Inv", throwIfNotFound: true);
         m_Inv_Store = m_Inv.FindAction("Store", throwIfNotFound: true);
         m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
+        m_Inv_OpenInv = m_Inv.FindAction("OpenInv", throwIfNotFound: true);
         m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
         m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
         // Actions
@@ -760,6 +801,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
+        m_Pause_QuitGame = m_Pause.FindAction("QuitGame", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
@@ -830,6 +872,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private IInvActions m_InvActionsCallbackInterface;
     private readonly InputAction m_Inv_Store;
     private readonly InputAction m_Inv_Drop;
+    private readonly InputAction m_Inv_OpenInv;
     private readonly InputAction m_Inv_PressPick;
     private readonly InputAction m_Inv_HoldItem;
     public struct InvActions
@@ -838,6 +881,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InvActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Store => m_Wrapper.m_Inv_Store;
         public InputAction @Drop => m_Wrapper.m_Inv_Drop;
+        public InputAction @OpenInv => m_Wrapper.m_Inv_OpenInv;
         public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
         public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
         public InputActionMap Get() { return m_Wrapper.m_Inv; }
@@ -855,6 +899,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Drop.started -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
+                @OpenInv.started -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
+                @OpenInv.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
+                @OpenInv.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
                 @PressPick.started -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
                 @PressPick.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
                 @PressPick.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
@@ -871,6 +918,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @OpenInv.started += instance.OnOpenInv;
+                @OpenInv.performed += instance.OnOpenInv;
+                @OpenInv.canceled += instance.OnOpenInv;
                 @PressPick.started += instance.OnPressPick;
                 @PressPick.performed += instance.OnPressPick;
                 @PressPick.canceled += instance.OnPressPick;
@@ -1007,11 +1057,13 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Pause;
     private IPauseActions m_PauseActionsCallbackInterface;
     private readonly InputAction m_Pause_PauseGame;
+    private readonly InputAction m_Pause_QuitGame;
     public struct PauseActions
     {
         private @ControlsforPlayer m_Wrapper;
         public PauseActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseGame => m_Wrapper.m_Pause_PauseGame;
+        public InputAction @QuitGame => m_Wrapper.m_Pause_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_Pause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1024,6 +1076,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PauseGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
+                @QuitGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_PauseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1031,6 +1086,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -1129,6 +1187,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     {
         void OnStore(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnOpenInv(InputAction.CallbackContext context);
         void OnPressPick(InputAction.CallbackContext context);
         void OnHoldItem(InputAction.CallbackContext context);
     }
@@ -1150,6 +1209,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface IPauseActions
     {
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {
