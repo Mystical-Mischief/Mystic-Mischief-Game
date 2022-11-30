@@ -2335,6 +2335,7 @@ GameObject:
   - component: {fileID: 1993490368}
   - component: {fileID: 1993490364}
   - component: {fileID: 1993490367}
+  - component: {fileID: 1993490370}
   m_Layer: 0
   m_Name: QuestTracker
   m_TagString: Untagged
@@ -2354,10 +2355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e4d4b92a90b1f448179ab9a4cb1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalNumberOfItems: 0
-  currentNumberOfItems: 0
-  allItems: []
-  updateList: 0
 --- !u!114 &1993490365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2376,29 +2373,13 @@ MonoBehaviour:
   - {fileID: 1993490368}
   - {fileID: 1993490364}
   - {fileID: 1993490367}
-  questItem: {fileID: 1638215720}
-  completedColor: {r: 0, g: 0, b: 0, a: 0}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
   text: {fileID: 320246536}
   questText: {fileID: 1235576421}
   allQuests:
-  - questName: Collect Tickets
-    questDescription: Collect the 2 Tickets in the Level
-    questType: 2
-    objectiveItems:
-    - {fileID: 1200072248}
-    - {fileID: 1021675798}
-    turnInQuest: 1
-    NPC: {fileID: 1926524723}
-    active: 0
-    completed: 0
-    submitQuest: 0
   - questName: Talk To Bird
     questDescription: Talk to the clever bird in the level
     questType: 1
-    objectiveItems:
-    - {fileID: 1200072248}
-    - {fileID: 1021675798}
+    objectiveItems: []
     turnInQuest: 1
     NPC: {fileID: 1926524723}
     active: 0
@@ -2410,7 +2391,7 @@ MonoBehaviour:
     objectiveItems:
     - {fileID: 468277566}
     - {fileID: 502694127}
-    turnInQuest: 1
+    turnInQuest: 0
     NPC: {fileID: 1926524723}
     active: 0
     completed: 0
@@ -2453,8 +2434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25963f8d5d5f1749a3ed81ad3b5600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escortItem: {fileID: 0}
-  escortLocation: {fileID: 0}
   targetDistance: 5
 --- !u!114 &1993490368
 MonoBehaviour:
@@ -2468,8 +2447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ba20afebf4bb34cb1031acc268fe40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC: {fileID: 0}
-  questScript: {fileID: 0}
 --- !u!114 &1993490369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2482,13 +2459,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb010a0387be8945a1c0be2e51ae86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allObjs: []
   ObjDescriptions: []
-  currObj: {fileID: 0}
-  currObjNumber: 0
-  currObjDescription: 
-  currObjCompelete: 0
-  tutorialText: {fileID: 0}
+--- !u!114 &1993490370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993490363}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startQuests:
+  - Talk To Bird
+  questsToActivate:
+  - Escort Boat
   questScript: {fileID: 0}
 --- !u!1 &2057364277
 GameObject:
