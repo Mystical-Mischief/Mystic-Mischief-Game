@@ -14,6 +14,7 @@ public class KoboltAI : BaseEnemyAI
 
     [SerializeField]
     private float knockbackForce;
+    public Animator anim;
     
     new void Start()
     {
@@ -24,6 +25,7 @@ public class KoboltAI : BaseEnemyAI
 
     new void Update()
     {
+        float dist = Vector3.Distance(player.transform.position, transform.position);
         base.Update();
         if(attackedPlayer)
         {
@@ -34,6 +36,19 @@ public class KoboltAI : BaseEnemyAI
                 currentAttack = attackCooldown;
                 attackedPlayer = false;
             }
+        }
+        if (base.spottedPlayer == true)
+        {
+            anim.SetBool("FoundPlayer", true);
+        }
+        else {anim.SetBool("FoundPlayer", false);}
+        if (base.ai.speed > 0.1)
+        {
+            anim.SetFloat("RunSpeed", 1f);
+        }
+        if (dist <= 2f)
+        {
+            anim.SetTrigger("Bite");
         }
     }
     // Start is called before the first frame update
