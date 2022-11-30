@@ -38,6 +38,7 @@ public class Quest : MonoBehaviour
     public Color completedColor;
     public Color currentColor;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI questText;
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
@@ -49,7 +50,7 @@ public class Quest : MonoBehaviour
         //currentColor = questItem.color;
         ActivateQuest("Collect Tickets");
         ActivateQuest("Talk To Bird");
-        text.text = activeQuest.questName;
+        ActivateQuest("Escort Boat");
     }
     public void ActivateQuest(string nameOfQuest)
     {
@@ -77,6 +78,7 @@ public class Quest : MonoBehaviour
         {
             print("quest updated");
             activeQuest.submitQuest = true;
+            questText.text = string.Empty;
             NextQuest();
         }
     }
@@ -104,12 +106,12 @@ public class Quest : MonoBehaviour
                 print("quest not found");
                 break;
         }
+        text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
     }
     public void NextQuest()
     {
         if (!activeQuest.completed)
         {
-            FinishQuest();
             activeQuest.completed = true;
         }
         if (!activeQuest.turnInQuest)
@@ -122,15 +124,25 @@ public class Quest : MonoBehaviour
             if (currentQuests.Count != 0)
             {
                 activeQuest = currentQuests[0];
+                activeQuest.active = true;
             }
+            else
+            {
+                activeQuest.active = false;
+            }
+            FinishQuest();
         }
     }
     public void FinishQuest()
     {
-        /*
-        questItem.GetComponent<Button>().interactable = false;
-        currentColor = completedColor;
-        questItem.color = completedColor;*/
+        if(activeQuest.active)
+        {
+            text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
+        }
+        else
+        {
+            text.text = "No Active Quests";
+        }
     }
 
     //rework this
