@@ -10,6 +10,7 @@ public class Web : MonoBehaviour
     private Transform player;
     private Vector3 target;
     public bool hitPlayer { get; private set; }
+    public bool isStun;
     float timer =  3f;
 
     private void Start()
@@ -44,7 +45,7 @@ public class Web : MonoBehaviour
         {
             hitPlayer = true;
             StartCoroutine(StunTimer(col.gameObject));
-
+            isStun = true;
         }
 
     }

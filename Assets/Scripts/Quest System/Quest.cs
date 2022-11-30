@@ -31,6 +31,7 @@ public class QuestInfo
 }
 public class Quest : MonoBehaviour
 {
+    public Interactor interactor;
     //tutorial is 0, Talk to NPC is 1, Collection is 2, Escort is 3 
     public MonoBehaviour[] questScript;
     public Image questItem;
@@ -44,8 +45,10 @@ public class Quest : MonoBehaviour
 
     private void Start()
     {
+        interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
         ActivateQuest("Collect Tickets");
+        ActivateQuest("Talk To Bird");
         text.text = activeQuest.questName;
     }
     public void ActivateQuest(string nameOfQuest)
@@ -63,6 +66,19 @@ public class Quest : MonoBehaviour
             }
         }
         
+    }
+    public void UpdateQuest()
+    {
+        if (activeQuest.questType == QuestType.TalkToNPC)
+        {
+            activeQuest.completed = true;
+        }
+        if (activeQuest.completed)
+        {
+            print("quest updated");
+            activeQuest.submitQuest = true;
+            NextQuest();
+        }
     }
     void processQuest(QuestInfo quest)
     {
@@ -91,16 +107,19 @@ public class Quest : MonoBehaviour
     }
     public void NextQuest()
     {
-        FinishQuest();
-        activeQuest.completed = true;
+        if (!activeQuest.completed)
+        {
+            FinishQuest();
+            activeQuest.completed = true;
+        }
         if (!activeQuest.turnInQuest)
         {
             activeQuest.submitQuest = true;
         }
-        if(activeQuest.submitQuest == true)
+        if (activeQuest.submitQuest == true)
         {
             currentQuests.Remove(activeQuest);
-            if(currentQuests.Count != 0)
+            if (currentQuests.Count != 0)
             {
                 activeQuest = currentQuests[0];
             }

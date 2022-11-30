@@ -15,7 +15,8 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI Weight;
     public float MassText;
     public float weightFloat;
-    ControlsforPlayer controls;
+    [HideInInspector]
+    public ControlsforPlayer controls;
     private Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
     public GameObject currentHeldItem;

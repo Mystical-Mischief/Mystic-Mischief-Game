@@ -143,7 +143,7 @@
                 {
                     "name": "",
                     "id": "63821ca2-e76a-4d73-bbeb-8b2c381fb53a",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -154,17 +154,11 @@
                 {
                     "name": "",
                     "id": "cc4da418-3b38-4c79-a1a8-3a7f05eb0048",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenInv",
-                    "id": "f6f69ac1-3d95-4cd8-aee7-4a3689525784",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HoldItem",
+                    "action": "OpenInv",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -309,7 +303,7 @@
                 {
                     "name": "",
                     "id": "c984d088-ea9b-4b9b-9b66-f62508c13fdd",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -375,7 +369,7 @@
                 {
                     "name": "",
                     "id": "751dfeb3-4ff1-4aa4-bb26-14ea9e2f36fe",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -419,7 +413,7 @@
                 {
                     "name": "",
                     "id": "9cabec8a-5100-4c8f-b87d-fc9b55725ce2",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -595,6 +589,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "QuitGame",
+                    "type": "Button",
+                    "id": "31d09895-e657-4807-9d77-01c132754aac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -617,6 +620,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5626e33e-33be-4c74-978e-96f88ad01565",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

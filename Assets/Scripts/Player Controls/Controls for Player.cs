@@ -165,7 +165,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""63821ca2-e76a-4d73-bbeb-8b2c381fb53a"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -176,7 +176,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cc4da418-3b38-4c79-a1a8-3a7f05eb0048"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -325,7 +325,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c984d088-ea9b-4b9b-9b66-f62508c13fdd"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -391,7 +391,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""751dfeb3-4ff1-4aa4-bb26-14ea9e2f36fe"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -435,7 +435,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9cabec8a-5100-4c8f-b87d-fc9b55725ce2"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -611,6 +611,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""31d09895-e657-4807-9d77-01c132754aac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -633,6 +642,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5626e33e-33be-4c74-978e-96f88ad01565"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -781,6 +801,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
+        m_Pause_QuitGame = m_Pause.FindAction("QuitGame", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
@@ -1036,11 +1057,13 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Pause;
     private IPauseActions m_PauseActionsCallbackInterface;
     private readonly InputAction m_Pause_PauseGame;
+    private readonly InputAction m_Pause_QuitGame;
     public struct PauseActions
     {
         private @ControlsforPlayer m_Wrapper;
         public PauseActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseGame => m_Wrapper.m_Pause_PauseGame;
+        public InputAction @QuitGame => m_Wrapper.m_Pause_QuitGame;
         public InputActionMap Get() { return m_Wrapper.m_Pause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1053,6 +1076,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PauseGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnPauseGame;
+                @QuitGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuitGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuitGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
             }
             m_Wrapper.m_PauseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1060,6 +1086,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @QuitGame.started += instance.OnQuitGame;
+                @QuitGame.performed += instance.OnQuitGame;
+                @QuitGame.canceled += instance.OnQuitGame;
             }
         }
     }
@@ -1180,6 +1209,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     public interface IPauseActions
     {
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnQuitGame(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {
