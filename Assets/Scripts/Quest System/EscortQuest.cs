@@ -14,4 +14,19 @@ public class EscortQuest : MonoBehaviour
         escortLocation = quest.objectiveItems[1];
         questScript = questScr;
     }
+    private void Update()
+    {
+        if(Vector3.Distance(escortItem.transform.position, escortLocation.transform.position) < targetDistance)
+        {
+            questFinished();
+        }
+    }
+    void questFinished()
+    {
+        escortItem = null;
+        escortLocation = null;
+        questScript.NextQuest();
+        this.enabled = false;
+    }
 }
+
