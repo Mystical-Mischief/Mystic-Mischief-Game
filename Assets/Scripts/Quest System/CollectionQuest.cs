@@ -5,10 +5,10 @@ using TMPro;
 
 public class CollectionQuest : MonoBehaviour
 {
-    public int totalNumberOfItems;
-    public int currentNumberOfItems = 0;
-    public List<GameObject> allItems;
-    public bool updateList;
+    private int totalNumberOfItems;
+    private int currentNumberOfItems = 0;
+    private List<GameObject> allItems;
+    private bool updateList;
     Quest questScript;
     Inventory inv;
     TextMeshProUGUI questText;

@@ -5,8 +5,8 @@ using TMPro;
 
 public class TalkToNPCQuest : MonoBehaviour
 {
-    public GameObject NPC;
-    public Quest questScript;
+    private GameObject NPC;
+    private Quest questScript;
     public void startQuest(QuestInfo quest, Quest questScr)
     {
         questScript = questScr;

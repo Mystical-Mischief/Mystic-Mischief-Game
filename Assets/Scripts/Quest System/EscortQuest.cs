@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EscortQuest : MonoBehaviour
 {
-    public GameObject escortItem;
-    public GameObject escortLocation;
+    private GameObject escortItem;
+    private GameObject escortLocation;
     public float targetDistance;
     Quest questScript;
     public void startQuest(QuestInfo quest, Quest questScr)
