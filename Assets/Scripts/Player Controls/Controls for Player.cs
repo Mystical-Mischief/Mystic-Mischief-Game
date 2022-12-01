@@ -166,7 +166,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""63821ca2-e76a-4d73-bbeb-8b2c381fb53a"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenInv"",
