@@ -146,6 +146,7 @@ public class ThirdPersonController : MonoBehaviour
                 Stamina = 6;
             }
             animator.SetBool("IsDiving", false);
+            flyingEffets.SetActive(false);
         }
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
@@ -156,6 +157,7 @@ public class ThirdPersonController : MonoBehaviour
             dive = true;
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             GetComponent<ConstantForce>().force = diveSpeed;
+            flyingEffets.SetActive(false);
         }
         else
         {
@@ -201,7 +203,9 @@ public class ThirdPersonController : MonoBehaviour
 
             flyingEffets.SetActive(true);
         }
-        else { GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); }
+        else 
+        { 
+            GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); }
 
     }
 
