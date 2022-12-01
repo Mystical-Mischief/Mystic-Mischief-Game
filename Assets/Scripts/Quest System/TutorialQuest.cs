@@ -5,17 +5,18 @@ using TMPro;
 
 public class TutorialQuest : MonoBehaviour
 {
-    public List<GameObject> allObjs;
+    private List<GameObject> allObjs;
     public string[] ObjDescriptions;
-    public GameObject currObj;
-    public int currObjNumber;
-    public string currObjDescription;
-    public bool currObjCompelete;
-    public TextMeshProUGUI tutorialText;
-    public Quest questScript;
+    private GameObject currObj;
+    private int currObjNumber;
+    private string currObjDescription;
+    private bool currObjCompelete;
+    private TextMeshProUGUI tutorialText;
+    private Quest questScript;
 
     public void startQuest(QuestInfo quest, Quest questScr)
     {
+        tutorialText = questScr.text;
         foreach (GameObject gO in quest.objectiveItems)
         {
             allObjs.Add(gO);

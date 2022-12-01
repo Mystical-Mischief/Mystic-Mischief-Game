@@ -9,9 +9,6 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-
-
-
     public TextMeshProUGUI Weight;
     public float MassText;
     public float weightFloat;

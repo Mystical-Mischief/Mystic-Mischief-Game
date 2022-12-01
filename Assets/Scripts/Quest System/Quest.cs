@@ -31,25 +31,26 @@ public class QuestInfo
 }
 public class Quest : MonoBehaviour
 {
+    [HideInInspector]
     public Interactor interactor;
     //tutorial is 0, Talk to NPC is 1, Collection is 2, Escort is 3 
     public MonoBehaviour[] questScript;
-    public Image questItem;
-    public Color completedColor;
-    public Color currentColor;
+    //public Image questItem;
+    //public Color completedColor;
+    //public Color currentColor;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI questText;
 
     public QuestInfo[] allQuests;
+    [HideInInspector]
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
+    [HideInInspector]
     public QuestInfo activeQuest;
 
     private void Start()
     {
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
-        ActivateQuest("Collect Tickets");
-        ActivateQuest("Talk To Bird");
-        text.text = activeQuest.questName;
     }
     public void ActivateQuest(string nameOfQuest)
     {
@@ -77,6 +78,7 @@ public class Quest : MonoBehaviour
         {
             print("quest updated");
             activeQuest.submitQuest = true;
+            questText.text = string.Empty;
             NextQuest();
         }
     }
@@ -104,17 +106,21 @@ public class Quest : MonoBehaviour
                 print("quest not found");
                 break;
         }
+        text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
     }
     public void NextQuest()
     {
         if (!activeQuest.completed)
         {
-            FinishQuest();
             activeQuest.completed = true;
         }
         if (!activeQuest.turnInQuest)
         {
             activeQuest.submitQuest = true;
+        }
+        if (activeQuest.turnInQuest)
+        {
+            text.text = $"Return to {activeQuest.NPC.name}";
         }
         if (activeQuest.submitQuest == true)
         {
@@ -122,15 +128,26 @@ public class Quest : MonoBehaviour
             if (currentQuests.Count != 0)
             {
                 activeQuest = currentQuests[0];
+                activeQuest.active = true;
+                processQuest(activeQuest);
             }
+            else
+            {
+                activeQuest.active = false;
+            }
+            FinishQuest();
         }
     }
     public void FinishQuest()
     {
-        /*
-        questItem.GetComponent<Button>().interactable = false;
-        currentColor = completedColor;
-        questItem.color = completedColor;*/
+        if(activeQuest.active)
+        {
+            text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
+        }
+        else
+        {
+            text.text = "No Active Quests";
+        }
     }
 
     //rework this
