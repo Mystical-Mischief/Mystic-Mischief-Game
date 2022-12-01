@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6299054462151979522}
   - component: {fileID: 8110503409745430216}
   - component: {fileID: 5236291702109973572}
+  - component: {fileID: 1701562385123515379}
+  - component: {fileID: 4813430935087489075}
   m_Layer: 0
   m_Name: ShipPiece2
   m_TagString: Untagged
@@ -98,3 +100,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2856219401681225684, guid: c348598a583245b4f886f774a1cb8dfe, type: 3}
+--- !u!65 &1701562385123515379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750333842314438429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 10.145372, y: 7.373308, z: 12.635421}
+  m_Center: {x: 0, y: -0.4468131, z: 0}
+--- !u!136 &4813430935087489075
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750333842314438429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 5.7
+  m_Height: 14.97
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
