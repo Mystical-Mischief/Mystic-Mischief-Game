@@ -7,7 +7,7 @@ using Cinemachine;
 public class ThirdPersonController : MonoBehaviour
 {
     public bool canMove;
-    //private ThirdPersonControl playerInputs;
+    private ThirdPersonControl playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
     private CapsuleCollider CapsuleCollider;
@@ -45,6 +45,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
     [SerializeField] private GameObject camFly;
+    [SerializeField] private GameObject flyingEffets;
 
 
     //[HideInInspector]
@@ -65,7 +66,9 @@ public class ThirdPersonController : MonoBehaviour
     {
         Checkpoint();
         rb = this.GetComponent<Rigidbody>();
-        //playerInputs = new ThirdPersonControl();
+        playerInputs = new ThirdPersonControl();
+
+
         //playerInputs.Enable();
         controls = new ControlsforPlayer();
         controls.Enable();
@@ -82,8 +85,6 @@ public class ThirdPersonController : MonoBehaviour
         caw = GetComponent<AudioSource>();
         
     }
-
-    // Update is called once per frame
     private void FixedUpdate()
     {
         if (canMove)
@@ -130,6 +131,7 @@ public class ThirdPersonController : MonoBehaviour
         }
         Vector3 velocity = rb.velocity;
         Vector3 lastPosition = transform.position;
+
         bool dive = false;
         if (dive == false)
         {
@@ -196,7 +198,8 @@ public class ThirdPersonController : MonoBehaviour
                 Stamina = 6;
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
-            // animator.SetTrigger("glide");
+
+            flyingEffets.SetActive(true);
         }
         else { GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); }
 
@@ -204,6 +207,11 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        if (playerInputs.PlayerOnGround.Jump.triggered)
+        {
+            DoJump();
+        }
+
         bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
         if (diving && isGrounded == false)
         {
@@ -283,7 +291,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Actions.Jump.started += DoJump;
+        playerInputs.Enable();
+        //controls.Actions.Jump.started += DoJump;
         controls.Actions.Caw.started += Caw;
         move = controls.Actions.Movement;
         //playerInputs.PlayerOnGround.Enable();
@@ -295,7 +304,8 @@ public class ThirdPersonController : MonoBehaviour
     }
     private void OnDisable()
     {
-        controls.Actions.Jump.started -= DoJump;
+        playerInputs.Disable();
+        //controls.Actions.Jump.started -= DoJump;
         controls.Actions.Caw.started -= Caw;
         //playerInputs.PlayerOnGround.Disable();
         controls.Disable();
@@ -367,7 +377,7 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-    private void DoJump(InputAction.CallbackContext obj)
+    private void DoJump()
     {
             if (Stamina > 0)
             {
