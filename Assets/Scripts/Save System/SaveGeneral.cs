@@ -74,7 +74,7 @@ public class SaveGeneral : MonoBehaviour
         }
         //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
-        Camera.GetComponent<MainCameraData>().SaveCamera();
+        Camera.GetComponent<CameraLogic>().SaveCamera();
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
@@ -91,7 +91,7 @@ public class SaveGeneral : MonoBehaviour
         }
         //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
-        Camera.GetComponent<MainCameraData>().SaveCamera();
+        Camera.GetComponent<CameraLogic>().SaveCamera();
     }
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
@@ -117,7 +117,7 @@ public class SaveGeneral : MonoBehaviour
         }
         // Loads the player usings the players load function
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
-        Camera.GetComponent<MainCameraData>().LoadCamera();
+        Camera.GetComponent<CameraLogic>().LoadCamera();
     }
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
