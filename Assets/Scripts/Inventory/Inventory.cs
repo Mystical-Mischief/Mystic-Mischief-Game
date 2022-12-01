@@ -169,7 +169,7 @@ public class Inventory : MonoBehaviour
         InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
         Item.GetComponent<Item>().inInventory = false;
         holdingItem = false;
-        rb.mass = rb.mass - Item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.position = transform.position;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
