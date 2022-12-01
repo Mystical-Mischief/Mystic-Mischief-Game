@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8576136701246169144}
   - component: {fileID: 5827791705459856626}
   - component: {fileID: 7549503863242931838}
+  - component: {fileID: 7276374233870766468}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -93,8 +94,22 @@ MeshCollider:
   m_GameObject: {fileID: 5467517135792682279}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5690788129753818753, guid: bb08b2056b79d4d49a85da46a1b800fa, type: 3}
+--- !u!136 &7276374233870766468
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467517135792682279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.36874694
+  m_Height: 1.414356
+  m_Direction: 1
+  m_Center: {x: -0.04598528, y: 0, z: -0.03805852}
