@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
     // public GameObject InventorySlot;
     public GameObject InventoryUI;
     public GameObject InventoryImages;
-    private bool UIOpen;
+    public bool UIOpen;
     private float UITime = 3f;
     public float HoldTime;
     private float Holding;
@@ -110,15 +110,15 @@ public class Inventory : MonoBehaviour
         // HoldTime = controls.Inv.Drop.tapCount();
         if (controls.Inv.OpenInv.WasPerformedThisFrame())
         {
-            if (!UIOpen)
-            {
+            if (UIOpen == false){
                 OpenUI();
             }
+            else {CloseUI();}
         }
-        if (UIOpen == true && controls.Inv.OpenInv.WasPressedThisFrame())
-        {
-            CloseUI();
-        }
+        // if (UIOpen == true && controls.Inv.OpenInv.WasPerformedThisFrame())
+        // {
+        //     CloseUI();
+        // }
             // if ((controls.Inv.Drop.ReadValue<Hold>()))
             // {
 
@@ -153,6 +153,7 @@ public class Inventory : MonoBehaviour
 
     public void OpenUI()
     {
+        Debug.Log("Pressed");
         InventoryImages.SetActive(true);
         UIOpen = true;
     }
