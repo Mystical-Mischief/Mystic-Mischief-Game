@@ -128,6 +128,7 @@ MonoBehaviour:
   target: {fileID: 0}
   projectile: {fileID: 3483852465094967541, guid: f7546a1e107d126479d4fc6573f61526, type: 3}
   anim: {fileID: 4874786286903003386}
+  PlayerCanMove: 0
   startTimeBetweenShots: 2
 --- !u!195 &2714867981466484257
 NavMeshAgent:
@@ -176,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 90
+  viewRadius: 20
+  viewAngle: 120
   Player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
