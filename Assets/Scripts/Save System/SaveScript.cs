@@ -18,7 +18,7 @@ public static class SaveSystem
 
     }
 
-        public static void SaveCamera (MainCameraData camera)
+        public static void SaveCamera (CameraLogic camera)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/camera.fun";
