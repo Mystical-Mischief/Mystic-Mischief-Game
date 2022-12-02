@@ -9,7 +9,7 @@ public class CameraData {
     public float[] position;
     public float[] rotation;
     
-    public CameraData (MainCameraData camera)
+    public CameraData (CameraLogic camera)
     {
 
         position = new float[3];
@@ -17,9 +17,9 @@ public class CameraData {
         position[1] = camera.transform.position.y;
         position[2] = camera.transform.position.z;
         
-        rotation = new float[3];
-        rotation[0] = camera.transform.rotation.x;
-        rotation[1] = camera.transform.rotation.y;
-        rotation[2] = camera.transform.rotation.z;
+        rotation = new float[2];
+        rotation[0] = camera.turn.x;
+        rotation[1] = camera.turn.y;
+        // rotation[2] = camera.transform.rotation.z;
     }
 }
