@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3902544299311345682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3902544299311345687}
+  - component: {fileID: 3902544299311345684}
+  - component: {fileID: 3902544299311345768}
+  - component: {fileID: 3902544299311345769}
+  - component: {fileID: 3902544299311345685}
+  - component: {fileID: 3902544299311345686}
+  - component: {fileID: 3902544299311345771}
+  m_Layer: 0
+  m_Name: QuestTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3902544299311345687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9100537, y: 1.2182667, z: -2.2318711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3902544299311345684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e1e78322f435a48b8c3d0a7a8f12e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactor: {fileID: 0}
+  questScript:
+  - {fileID: 3902544299311345768}
+  - {fileID: 3902544299311345769}
+  - {fileID: 3902544299311345685}
+  - {fileID: 3902544299311345686}
+  text: {fileID: 0}
+  questText: {fileID: 0}
+  allQuests:
+  - questName: Talk To Bird
+    questDescription: Talk to the clever bird in the level
+    questType: 1
+    objectiveItems: []
+    turnInQuest: 1
+    NPC: {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Escort Boat
+    questDescription: Take the boat to the red dot
+    questType: 3
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+  currentQuests: []
+  activeQuest:
+    questName: 
+    questDescription: 
+    questType: 0
+    objectiveItems: []
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+--- !u!114 &3902544299311345768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb010a0387be8945a1c0be2e51ae86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjDescriptions: []
+--- !u!114 &3902544299311345769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ba20afebf4bb34cb1031acc268fe40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3902544299311345685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e4d4b92a90b1f448179ab9a4cb1986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3902544299311345686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25963f8d5d5f1749a3ed81ad3b5600a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetDistance: 5
+--- !u!114 &3902544299311345771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startQuests:
+  - Talk To Bird
+  questsToActivate:
+  - Escort Boat
+  questScript: {fileID: 0}
