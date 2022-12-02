@@ -85,7 +85,7 @@ public class CameraLogic : MonoBehaviour
         Vector2 rotation;
         turn.x = data.rotation[0];
         turn.y = data.rotation[1];
-
+        
         // rotation.z = data.rotation[2];
         // Quaternion quaternion = Quaternion.Euler(rotation.x, rotation.y, rotation.z);
         float smooth = 5.0f;

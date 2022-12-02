@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryData {
 
     public List<GameObject> PickedUpItems;
+    public bool InInventory;
     
     public InventoryData (Inventory inv)
     {

@@ -57,20 +57,20 @@ public class SaveGeneral : MonoBehaviour
     //Saves everything.
     public void SaveEnemy ()
     {
-        //Saves the items.
-        foreach (GameObject items in Items)
-        {
-            items.GetComponent<Item>().SaveItem();
-        }
         //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
         }
         //Saves the players inventory.
-        foreach (GameObject Inv in PickedUpItems)
+        foreach (GameObject Item in PickedUpItems)
         {
-            Inv.GetComponent<Item>().inInventory = true;
+            Item.GetComponent<Item>().inInventory = true;
+        }
+        //Saves the items.
+        foreach (GameObject items in Items)
+        {
+            items.GetComponent<Item>().SaveItem();
         }
         //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
@@ -96,24 +96,40 @@ public class SaveGeneral : MonoBehaviour
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
+        // Player.GetComponent<Inventory>().PickedUpItems = null;
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
         //Loads the items
-        foreach (GameObject Inv in PickedUpItems)
-        {
-            Inv.SetActive(false);
-        }
+        // foreach (GameObject Item in PickedUpItems)
+        // {
+        //     // if (Item.GetComponent<Item>().inInventory == false)
+        //     // {
+        //     //     Player.GetComponent<Inventory>().PickedUpItems.Remove(Item);
+        //     // }
+            
+        //     // Player.GetComponent<Inventory>().PickedUpItems.Add(Item);
+        //     // Item.GetComponent<Item>().inInventory = false;
+        // }
         //Loads the players inventory.
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().LoadItem();
-            if (items.GetComponent<Item>().inInventory == false)
+            if (items.GetComponent<Item>().inInventory == true)
             {
-                    items.SetActive(true);
+                if (!PickedUpItems.Contains(items))
+                {
+                    Player.GetComponent<Inventory>().PickedUpItems.Add(items);
+                    items.GetComponent<Item>().inInventory = false;
+                }
+
             }
+            // if (items.GetComponent<Item>().inInventory == false)
+            // {
+            //         items.SetActive(true);
+            // }
         }
         // Loads the player usings the players load function
         Player.GetComponent<ThirdPersonController>().LoadPlayer();

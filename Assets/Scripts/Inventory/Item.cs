@@ -30,6 +30,7 @@ public class Item : MonoBehaviour
     {
         ItemData data = SaveSystem.LoadItem(this);
 
+        inInventory = data.InInventory;
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
