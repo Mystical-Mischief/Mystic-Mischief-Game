@@ -15,6 +15,9 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     GameObject Item;
 
+    [SerializeField]
+    Transform ObjectNewLocation;
+
 
     public bool Protect;
 
@@ -117,6 +120,7 @@ public class KoboldProtectAi : BaseEnemyAI
         if (holdingItem)
         {
             UpdateDestination(fleeLocation.position);
+            HeldItem.transform.position = ObjectNewLocation.position;
         }
     }
 }
