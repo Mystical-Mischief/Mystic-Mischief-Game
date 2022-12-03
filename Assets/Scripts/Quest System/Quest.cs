@@ -42,7 +42,6 @@ public class Quest : MonoBehaviour
     public TextMeshProUGUI questText;
 
     public QuestInfo[] allQuests;
-    [HideInInspector]
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
     [HideInInspector]
     public QuestInfo activeQuest;
