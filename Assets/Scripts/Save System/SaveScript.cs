@@ -17,6 +17,19 @@ public static class SaveSystem
         stream.Close();
 
     }
+
+        public static void SaveCamera (CameraLogic camera)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/camera.fun";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        CameraData data = new CameraData(camera);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+
+    }
     //Saves a checkpoint.
         public static void Checkpoint (ThirdPersonController player)
     {
@@ -83,6 +96,25 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+           return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+        public static CameraData LoadCamera ()
+    {
+        string path = Application.persistentDataPath + "/camera.fun";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+           CameraData data = formatter.Deserialize(stream) as CameraData;
             stream.Close();
            return data;
         }
