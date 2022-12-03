@@ -53,9 +53,10 @@ public class Quest : MonoBehaviour
     }
     public void ActivateQuest(string nameOfQuest)
     {
+        nameOfQuest = nameOfQuest.ToUpper();
         foreach (QuestInfo quest in allQuests)
         {
-            if(quest.questName == nameOfQuest)
+            if(quest.questName.ToUpper() == nameOfQuest)
             {
                 currentQuests.Add(quest);
                 if(activeQuest.questName == string.Empty)
