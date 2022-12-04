@@ -675,6 +675,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SkipScene",
+                    "type": "Button",
+                    "id": "e38e7d92-7aec-4a1b-b1d5-d4af64015344",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -719,6 +728,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc97064b-1612-4784-9dcd-e87bf4f19bb3",
+                    "path": "<Keyboard>/#(\\)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
