@@ -42,6 +42,9 @@ public class Inventory : MonoBehaviour
     // public bool showinventory;
     // public List<GameObject> InventorySlots = new List<GameObject>();
 
+
+    [SerializeField] private ParticleSystem storeParticles;
+
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
@@ -168,19 +171,25 @@ public class Inventory : MonoBehaviour
     {
         var ItemDropping = 0;
         var itemIndexPos = 0;
-        if (Item.GetComponent<Item>().canDrop == true){
-        InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
-        // Item.GetComponent<Item>().inInventory = false;
-        holdingItem = false;
-        MassText = MassText - Item.GetComponent<Item>().Weight;
-        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
-        Item.transform.position = transform.position;
-        Item.transform.parent = null;
-        Item.GetComponent<Rigidbody>().isKinematic = false;
-        PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
-        Item.SetActive(true);
-        Item.GetComponent<SphereCollider>().enabled = true;
-        Item.GetComponent<BoxCollider>().enabled = true;
+        if (Item.GetComponent<Item>().canDrop == true)
+        {
+            InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+            // Item.GetComponent<Item>().inInventory = false;
+            holdingItem = false;
+            MassText = MassText - Item.GetComponent<Item>().Weight;
+            rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+            Item.transform.position = transform.position;
+            Item.transform.parent = null;
+            Item.GetComponent<Rigidbody>().isKinematic = false;
+            PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
+            Item.SetActive(true);
+            Item.GetComponent<SphereCollider>().enabled = true;
+            Item.GetComponent<BoxCollider>().enabled = true;
+
+            if (storeParticles != null)
+            {
+                Instantiate(storeParticles, transform.position, transform.rotation);
+            }
         }
         else if (PickedUpItems[PickedUpItems.Count - 1].gameObject.GetComponent<Item>().canDrop == false) { 
             
@@ -214,6 +223,7 @@ public class Inventory : MonoBehaviour
     public void StoreItem(GameObject item)
     {
         Debug.Log("Item Stored");
+
         item.SetActive(false);
         holdingItem = false;
         // item.GetComponent<Item>().inInventory = true;
@@ -221,9 +231,14 @@ public class Inventory : MonoBehaviour
         rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
 
+        if (storeParticles != null)
+        {
+            Instantiate(storeParticles, transform.position, transform.rotation);
+        }
+
     }
 
-        public void StoreObjective(GameObject item)
+    public void StoreObjective(GameObject item)
     {
         Debug.Log("Item Stored");
         item.SetActive(false);
@@ -232,6 +247,11 @@ public class Inventory : MonoBehaviour
         Objective.Add(item);
         rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
+
+        if (storeParticles != null)
+        {
+            Instantiate(storeParticles, transform.position, transform.rotation);
+        }
 
     }
     public void HoldItem(GameObject Item)
@@ -255,6 +275,11 @@ public class Inventory : MonoBehaviour
         currentHeldItem = null;
 
         StartCoroutine(dropTimer(0.5f, false));
+
+        if (storeParticles != null)
+        {
+            Instantiate(storeParticles, transform.position, transform.rotation);
+        }
     }
     IEnumerator dropTimer(float time, bool value)
     {

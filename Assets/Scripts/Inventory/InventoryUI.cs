@@ -16,7 +16,10 @@ public class InventoryUI : MonoBehaviour
         PickedUpItems = inv.PickedUpItems;
         if (PickedUpItems != null)
         {
-        InventorySlot = InventorySlots[PickedUpItems.Count - 1];
+            if(PickedUpItems.Count != 0)
+            {
+                InventorySlot = InventorySlots[PickedUpItems.Count - 1];
+            }
         }
     }
     public void DropLastItemUI()
