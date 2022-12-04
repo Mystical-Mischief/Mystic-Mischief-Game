@@ -11,8 +11,14 @@ public class SaveGeneral : MonoBehaviour
     public static bool LoadMenu;
     public List<GameObject> Items = new List<GameObject>();
     public GameObject Camera;
-
-    public void OnEnable()
+    public GameObject Dragon;
+    public string DragonType;
+       
+       void Awake()
+       {
+            controls = new ControlsforPlayer();
+       }
+        public void OnEnable()
     {
         controls.Enable();
     }
@@ -20,12 +26,12 @@ public class SaveGeneral : MonoBehaviour
     {
         controls.Disable();
     }
+
     // Start is called before the first frame update
     void Start()
     {
         //Saves the checkpoint when the level starts.
         SaveEnemyCheckPoint();
-        controls = new ControlsforPlayer();
         controls.Enable();
     }
 
@@ -75,6 +81,7 @@ public class SaveGeneral : MonoBehaviour
         //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
+        Dragon.GetComponent<WaterDragonAi>().SaveDragon();
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
@@ -92,6 +99,7 @@ public class SaveGeneral : MonoBehaviour
         //Saves the player usings the players save function.
         Player.GetComponent<ThirdPersonController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
+        Dragon.GetComponent<WaterDragonAi>().SaveDragon();
     }
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
@@ -134,6 +142,7 @@ public class SaveGeneral : MonoBehaviour
         // Loads the player usings the players load function
         Player.GetComponent<ThirdPersonController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
+        Dragon.GetComponent<WaterDragonAi>().LoadDragon();
     }
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
@@ -159,6 +168,8 @@ public class SaveGeneral : MonoBehaviour
         }
         //Loads the player from the players load function.
         Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
+        Camera.GetComponent<CameraLogic>().LoadCamera();
+        Dragon.GetComponent<WaterDragonAi>().LoadDragon();
     }
     public virtual void Loadmenu()
     {

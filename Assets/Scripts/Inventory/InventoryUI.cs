@@ -14,7 +14,10 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         PickedUpItems = inv.PickedUpItems;
+        if (PickedUpItems != null)
+        {
         InventorySlot = InventorySlots[PickedUpItems.Count - 1];
+        }
     }
     public void DropLastItemUI()
     {

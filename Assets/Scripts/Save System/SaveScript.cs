@@ -57,6 +57,19 @@ public static class SaveSystem
         stream.Close();
 
     }
+            //Saves the dragons.
+        public static void SaveDragon (WaterDragonAi dragon)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + dragon.name;
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        DragonData data = new DragonData(dragon);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+
+    }
 
     //Saves the items.
     public static void SaveItem(Item item)
@@ -155,6 +168,26 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
            EnemyData data = formatter.Deserialize(stream) as EnemyData;
+            stream.Close();
+           return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+        //Loads the dragon.
+        public static DragonData LoadDragon (WaterDragonAi dragon)
+    {
+        string path = Application.persistentDataPath + dragon.name;
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+           DragonData data = formatter.Deserialize(stream) as DragonData;
             stream.Close();
            return data;
         }
