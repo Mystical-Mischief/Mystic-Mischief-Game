@@ -5,15 +5,16 @@ using TMPro;
 
 public class CollectionQuest : MonoBehaviour
 {
-    public int totalNumberOfItems;
-    public int currentNumberOfItems = 0;
-    public List<GameObject> allItems;
-    public bool updateList;
+    private int totalNumberOfItems;
+    private int currentNumberOfItems = 0;
+    private List<GameObject> allItems = new List<GameObject>();
+    private bool updateList;
     Quest questScript;
     Inventory inv;
-
+    TextMeshProUGUI questText;
     public void startQuest(QuestInfo quest, Quest questScr)
     {
+        questText = questScr.questText;
         inv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         questScript = questScr;
         totalNumberOfItems = quest.objectiveItems.Length;
@@ -39,6 +40,7 @@ public class CollectionQuest : MonoBehaviour
                 }
             }
             updateList = false;
+            questText.text = $"{currentNumberOfItems} / {totalNumberOfItems}";
         }
         if (currentNumberOfItems >= totalNumberOfItems)
         {

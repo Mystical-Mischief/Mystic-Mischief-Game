@@ -42,7 +42,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""5ed0ff00-4926-4efc-a969-e399a0c91f33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""MultiTap"",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -51,7 +51,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""a9ceb8b1-28ce-4566-8655-620797abb12d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.5)"",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -697,6 +697,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SkipScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""e38e7d92-7aec-4a1b-b1d5-d4af64015344"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -741,6 +750,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc97064b-1612-4784-9dcd-e87bf4f19bb3"",
+                    ""path"": ""<Keyboard>/#(\\)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipScene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -808,6 +828,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_MenuActions_BUP = m_MenuActions.FindAction("BUP", throwIfNotFound: true);
         m_MenuActions_Save = m_MenuActions.FindAction("Save", throwIfNotFound: true);
         m_MenuActions_Load = m_MenuActions.FindAction("Load", throwIfNotFound: true);
+        m_MenuActions_SkipScene = m_MenuActions.FindAction("SkipScene", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_HeathTest = m_Test.FindAction("HeathTest", throwIfNotFound: true);
@@ -1101,6 +1122,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_MenuActions_BUP;
     private readonly InputAction m_MenuActions_Save;
     private readonly InputAction m_MenuActions_Load;
+    private readonly InputAction m_MenuActions_SkipScene;
     public struct MenuActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -1109,6 +1131,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @BUP => m_Wrapper.m_MenuActions_BUP;
         public InputAction @Save => m_Wrapper.m_MenuActions_Save;
         public InputAction @Load => m_Wrapper.m_MenuActions_Load;
+        public InputAction @SkipScene => m_Wrapper.m_MenuActions_SkipScene;
         public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1130,6 +1153,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Load.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
                 @Load.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
                 @Load.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnLoad;
+                @SkipScene.started -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSkipScene;
+                @SkipScene.performed -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSkipScene;
+                @SkipScene.canceled -= m_Wrapper.m_MenuActionsActionsCallbackInterface.OnSkipScene;
             }
             m_Wrapper.m_MenuActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1146,6 +1172,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Load.started += instance.OnLoad;
                 @Load.performed += instance.OnLoad;
                 @Load.canceled += instance.OnLoad;
+                @SkipScene.started += instance.OnSkipScene;
+                @SkipScene.performed += instance.OnSkipScene;
+                @SkipScene.canceled += instance.OnSkipScene;
             }
         }
     }
@@ -1217,6 +1246,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnBUP(InputAction.CallbackContext context);
         void OnSave(InputAction.CallbackContext context);
         void OnLoad(InputAction.CallbackContext context);
+        void OnSkipScene(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

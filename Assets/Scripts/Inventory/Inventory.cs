@@ -9,9 +9,6 @@ using TMPro;
 
 public class Inventory : MonoBehaviour
 {
-
-
-
     public TextMeshProUGUI Weight;
     public float MassText;
     public float weightFloat;
@@ -36,7 +33,7 @@ public class Inventory : MonoBehaviour
     // public GameObject InventorySlot;
     public GameObject InventoryUI;
     public GameObject InventoryImages;
-    private bool UIOpen;
+    public bool UIOpen;
     private float UITime = 3f;
     public float HoldTime;
     private float Holding;
@@ -113,15 +110,15 @@ public class Inventory : MonoBehaviour
         // HoldTime = controls.Inv.Drop.tapCount();
         if (controls.Inv.OpenInv.WasPerformedThisFrame())
         {
-            if (!UIOpen)
-            {
+            if (UIOpen == false){
                 OpenUI();
             }
+            else {CloseUI();}
         }
-        if (UIOpen == true && controls.Inv.OpenInv.WasPressedThisFrame())
-        {
-            CloseUI();
-        }
+        // if (UIOpen == true && controls.Inv.OpenInv.WasPerformedThisFrame())
+        // {
+        //     CloseUI();
+        // }
             // if ((controls.Inv.Drop.ReadValue<Hold>()))
             // {
 
@@ -156,6 +153,7 @@ public class Inventory : MonoBehaviour
 
     public void OpenUI()
     {
+        Debug.Log("Pressed");
         InventoryImages.SetActive(true);
         UIOpen = true;
     }
@@ -169,9 +167,10 @@ public class Inventory : MonoBehaviour
     {
 
         InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
-        Item.GetComponent<Item>().inInventory = false;
+        // Item.GetComponent<Item>().inInventory = false;
         holdingItem = false;
-        rb.mass = rb.mass - Item.GetComponent<Item>().Weight;
+        MassText = MassText - Item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.position = transform.position;
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
@@ -185,7 +184,7 @@ public class Inventory : MonoBehaviour
         Debug.Log("Item Stored");
         item.SetActive(false);
         holdingItem = false;
-        item.GetComponent<Item>().inInventory = true;
+        // item.GetComponent<Item>().inInventory = true;
         PickedUpItems.Add(item);
         rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
@@ -195,7 +194,7 @@ public class Inventory : MonoBehaviour
     {
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
-        Item.GetComponent<Item>().inInventory = true;
+        // Item.GetComponent<Item>().inInventory = true;
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
         Item.GetComponent<Rigidbody>().isKinematic = true;
@@ -204,7 +203,7 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(GameObject Item)
     {
-        Item.GetComponent<Item>().inInventory = false;
+        // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
         Item.transform.parent = null;
