@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
     private GameObject Player;
     public Sprite sprite;
     public Color spriteColor;
+    public bool canDrop;
 
     void Start()
     {

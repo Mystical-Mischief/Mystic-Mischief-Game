@@ -8,6 +8,10 @@ public class BirdInteraction : MonoBehaviour
     private bool inRange;
     private ControlsforPlayer control;
     public Animator anim;
+    public GameObject Hat;
+    public Inventory inv;
+    public float ticketCount;
+    public float TicketAmount;
 
     private void Start()
     {
@@ -20,11 +24,26 @@ public class BirdInteraction : MonoBehaviour
         {
             BirdAction();
         }
+        if (ticketCount >= TicketAmount)
+        {
+            Hat.SetActive(true);
+        }
     }
 
     void BirdAction()
     {
         anim.SetBool("Talking", true);
+        foreach (GameObject Inv in inv.PickedUpItems)
+        {
+            if (Inv.gameObject.GetComponent<Item>().itemType == Item.ItemType.Objective)
+            {
+                ticketCount = ticketCount + 1;
+            }
+        }
+        // if (inv.Objective.Count >= 1)
+        // {
+            
+        // }
         // SceneManager.LoadScene("MainMenu");
     }
     private void OnTriggerEnter(Collider other)
@@ -48,5 +67,6 @@ public class BirdInteraction : MonoBehaviour
             inRange = false;
             anim.SetBool("Talking", false);
         }
+        ticketCount = 0;
     }
 }
