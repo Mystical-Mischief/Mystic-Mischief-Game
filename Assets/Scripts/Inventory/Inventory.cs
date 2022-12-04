@@ -169,6 +169,8 @@ public class Inventory : MonoBehaviour
 
     public void QuickDropStoredItem(GameObject Item)
     {
+        var ItemDropping = 0;
+        var itemIndexPos = 0;
         if (Item.GetComponent<Item>().canDrop == true)
         {
             InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
@@ -189,24 +191,35 @@ public class Inventory : MonoBehaviour
                 Instantiate(storeParticles, transform.position, transform.rotation);
             }
         }
-        else { 
-            var ItemDropping = 0;
+        else if (PickedUpItems[PickedUpItems.Count - 1].gameObject.GetComponent<Item>().canDrop == false) { 
             
-                if (PickedUpItems[ItemDropping].gameObject.GetComponent<Item>().canDrop == true)
-                {
-                    GameObject temp = PickedUpItems[ItemDropping];
-                    PickedUpItems[ItemDropping] = PickedUpItems[PickedUpItems.Count - 1];
-                    PickedUpItems[PickedUpItems.Count - 1] = temp;
-                    QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
-                }
-                else if (PickedUpItems[ItemDropping].gameObject.GetComponent<Item>().canDrop == false) 
-                {GameObject temp = PickedUpItems[ItemDropping + 1];
-                    PickedUpItems[ItemDropping + 1] = PickedUpItems[PickedUpItems.Count - 1];
-                    PickedUpItems[PickedUpItems.Count - 1] = temp; 
-                    QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);}
+                                foreach (GameObject i in PickedUpItems)
+                    {
+                        if (i.gameObject.GetComponent<Item>().canDrop == true)
+                        {
+                            Item = i;
+                            break;
+                        }
+                        InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+                    }
 
+                    if (Item.GetComponent<Item>().canDrop == true){
+            holdingItem = false;
+        MassText = MassText - Item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+        Item.transform.position = transform.position;
+        Item.transform.parent = null;
+        Item.GetComponent<Rigidbody>().isKinematic = false;
+        PickedUpItems.Remove(Item);
+        Item.SetActive(true);
+        Item.GetComponent<SphereCollider>().enabled = true;
+        Item.GetComponent<BoxCollider>().enabled = true;
+                        GameObject temp = PickedUpItems[ItemDropping];
+                    PickedUpItems[itemIndexPos] = PickedUpItems[PickedUpItems.Count - 1];
+                    PickedUpItems[PickedUpItems.Count - 1] = temp; 
+                    }
                 }
-    }
+        }
     public void StoreItem(GameObject item)
     {
         Debug.Log("Item Stored");
