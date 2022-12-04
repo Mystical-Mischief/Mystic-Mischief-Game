@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     public ControlsforPlayer controls;
     private Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
+    public List<GameObject> Objective = new List<GameObject>();
     public GameObject currentHeldItem;
     public GameObject currentObject;
     public Transform HoldItemPosition;
@@ -165,7 +166,7 @@ public class Inventory : MonoBehaviour
 
     public void QuickDropStoredItem(GameObject Item)
     {
-
+        if (Item.GetComponent<Item>().canDrop == true){
         InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
         // Item.GetComponent<Item>().inInventory = false;
         holdingItem = false;
@@ -178,6 +179,24 @@ public class Inventory : MonoBehaviour
         Item.SetActive(true);
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
+        }
+        else { 
+            var ItemDropping = 0;
+            
+                if (PickedUpItems[ItemDropping].gameObject.GetComponent<Item>().canDrop == true)
+                {
+                    GameObject temp = PickedUpItems[ItemDropping];
+                    PickedUpItems[ItemDropping] = PickedUpItems[PickedUpItems.Count - 1];
+                    PickedUpItems[PickedUpItems.Count - 1] = temp;
+                    QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);
+                }
+                else if (PickedUpItems[ItemDropping].gameObject.GetComponent<Item>().canDrop == false) 
+                {GameObject temp = PickedUpItems[ItemDropping + 1];
+                    PickedUpItems[ItemDropping + 1] = PickedUpItems[PickedUpItems.Count - 1];
+                    PickedUpItems[PickedUpItems.Count - 1] = temp; 
+                    QuickDropStoredItem(PickedUpItems[PickedUpItems.Count - 1]);}
+
+                }
     }
     public void StoreItem(GameObject item)
     {
@@ -186,6 +205,18 @@ public class Inventory : MonoBehaviour
         holdingItem = false;
         // item.GetComponent<Item>().inInventory = true;
         PickedUpItems.Add(item);
+        rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
+        MassText = MassText + item.GetComponent<Item>().Weight;
+
+    }
+
+        public void StoreObjective(GameObject item)
+    {
+        Debug.Log("Item Stored");
+        item.SetActive(false);
+        holdingItem = false;
+        // item.GetComponent<Item>().inInventory = true;
+        Objective.Add(item);
         rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
 
@@ -222,7 +253,11 @@ public class Inventory : MonoBehaviour
     {
         if (other.gameObject.tag == "PickUp" && Store && holdingItem == false)
         {
-            StoreItem(other.gameObject);
+            // if (other.gameObject.GetComponent<Item>().itemType == Item.ItemType.Objective)
+            // {
+            //     StoreObjective(other.gameObject);
+            // }
+            StoreItem(other.gameObject); 
         }
         if (other.gameObject.tag == "Hat" && Store && holdingItem == false)
         {
