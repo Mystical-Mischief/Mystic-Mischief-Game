@@ -756,7 +756,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dc97064b-1612-4784-9dcd-e87bf4f19bb3"",
-                    ""path"": ""<Keyboard>/#(\\)"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
