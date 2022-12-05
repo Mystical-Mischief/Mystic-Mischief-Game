@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -245,8 +246,9 @@ public class ThirdPersonController : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            LoadCheckpoint();
+            //LoadCheckpoint();
             currentHealth = maxHealth;
+            SceneManager.LoadScene("LoseScreen");
         }
         //if(staminaBar != null)
         //{
