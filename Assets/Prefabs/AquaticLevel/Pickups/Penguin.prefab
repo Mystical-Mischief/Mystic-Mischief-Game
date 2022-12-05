@@ -128,7 +128,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.44510034
+  m_Radius: 2.8
   m_Center: {x: 0.0000000149011585, y: 0.435689, z: -0.06363202}
 --- !u!114 &-2003787435873863643
 MonoBehaviour:
@@ -148,6 +148,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
+  itemEffect: {fileID: 0}
 --- !u!114 &-9097939244147765103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +162,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 0}
+  questToFinish: 
+  questToActivate: 
+  finishQuest: 0
   _prompt: Collect
+  dissapear: 0
 --- !u!54 &-2426599722126989739
 Rigidbody:
   m_ObjectHideFlags: 0
