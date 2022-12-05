@@ -22,11 +22,38 @@ public class SpiderAI : BaseEnemyAI
 
     new void Update()
     {
-        base.Update();
         PlayerCanMove = player.canMove;
+        if (target == Player && PlayerCanMove)
+        {
+            Player.GetComponent<ThirdPersonController>().Targeted = true;
+        }
+        
+        // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+        // {
+        //     SaveEnemy();
+        //     Saved = true;
+        // }
+        // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+        // {
+        //     Saved = false;
+        //     LoadEnemy();
+        // }
+        //if the ai doesnt see the player then it will patrol and look for it
+        if (!spottedPlayer)
+        {
+            EnemyDetection();
+            Patrol();
+        }
+        //if the ai finds the player it will do what it does when it sees the player
+        else
+        {
+            FoundPlayer();
+        }
+
         if (!PlayerCanMove)
         {
             LostPlayer();
+            spottedPlayer = false;
         }
         if (spottedPlayer == true && PlayerCanMove)
         {
@@ -50,29 +77,79 @@ public class SpiderAI : BaseEnemyAI
                 }
             }
         }
-        
     }
 
     public virtual void ShootAnim()
     {
-        Debug.Log("Shoot");
         anim.SetTrigger("Web");
-                        Instantiate(projectile, transform.position, Quaternion.identity);
-                timeBetweenShots = startTimeBetweenShots;
+        Instantiate(projectile, transform.position, Quaternion.identity);
+        timeBetweenShots = startTimeBetweenShots;
     }
 
-    public virtual void FoundPlayer(GameObject player)
-    {
-        base.FoundPlayer();
+    //public virtual void FoundPlayer(GameObject player)
+    //{
+    //    base.FoundPlayer();
 
-        if (player.GetComponent<Web>().isStun == true)
+    //    if (player.GetComponent<Web>().isStun == true)
+    //    {
+    //        LostPlayer();
+    //    }
+    //}
+
+    public override void EnemyDetection()
+    {
+        if(PlayerCanMove)
+        {
+            EnemyVision.FieldOfView();
+            spottedPlayer = EnemyVision.PlayerDetected; //checks if the ai saw the player
+            if (spottedPlayer)
+            {
+                target = EnemyVision.LocationTarget; //the ai would move towards the player, and the target would be also the current player location
+            }
+        }
+        else
         {
             LostPlayer();
         }
     }
-
-    new public virtual void LostPlayer()
+    public override void FoundPlayer()
     {
-        base.LostPlayer();
+        if(PlayerCanMove)
+        {
+            EnemyVision.FieldOfView();
+            spottedPlayer = EnemyVision.PlayerDetected;
+            if (spottedPlayer)
+            {
+                UpdateDestination(target.position);
+                //checks if the ai can see the player
+                EnemyVision.FieldOfView();
+                spottedPlayer = EnemyVision.PlayerDetected;
+                //This would happen if the player goes out of range while the ai was targeting the player
+                if (!spottedPlayer)
+                {
+                    LostPlayer();
+                }
+            }
+            else
+            {
+                LostPlayer();
+            }
+        }
+        else
+        {
+            LostPlayer();
+        }
+    }
+    public override void UpdateDestination(Vector3 newDestination)
+    {
+        if(PlayerCanMove && target != null)
+        {
+            ai.destination = newDestination;
+        }
+        else
+        {
+            LostPlayer();
+            ai.destination = newDestination;
+        }
     }
 }
