@@ -417,4 +417,28 @@ public class WaterDragonAi : BasicDragonAI
     //     yield return new WaitForSeconds(10);
     //     Jumping = false;
     // }
+
+
+    public void SaveDragon ()
+    {
+        SaveSystem.SaveDragon(this);
+        // Debug.Log("Saved");
+    }
+    public void LoadDragon ()
+    {
+        DragonData data = SaveSystem.LoadDragon(this);
+        patrolNum = data.patrolNum;
+        Patrol();
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        spottedPlayer = data.spottedPlayer;
+        patrolNum = data.patrolNum;  
+        randomNumber =  data.RandomNumber;
+        attackTimes = data.AttackTimes;
+        base.LostPlayer();
+    }
 }

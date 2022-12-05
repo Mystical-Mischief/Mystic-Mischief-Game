@@ -7,7 +7,7 @@ public class CollectionQuest : MonoBehaviour
 {
     private int totalNumberOfItems;
     private int currentNumberOfItems = 0;
-    private List<GameObject> allItems;
+    private List<GameObject> allItems = new List<GameObject>();
     private bool updateList;
     Quest questScript;
     Inventory inv;

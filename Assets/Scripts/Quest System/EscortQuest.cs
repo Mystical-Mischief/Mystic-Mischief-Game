@@ -16,7 +16,7 @@ public class EscortQuest : MonoBehaviour
     }
     private void Update()
     {
-        if(Vector3.Distance(escortItem.transform.position, escortLocation.transform.position) < targetDistance)
+        if(escortItem != null && Vector3.Distance(escortItem.transform.position, escortLocation.transform.position) < targetDistance)
         {
             questFinished();
         }
@@ -26,7 +26,7 @@ public class EscortQuest : MonoBehaviour
         escortItem = null;
         escortLocation = null;
         questScript.NextQuest();
-        this.enabled = false;
+        //this.enabled = false;
     }
 }
 
