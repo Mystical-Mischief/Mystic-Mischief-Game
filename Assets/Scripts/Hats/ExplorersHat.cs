@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplorersHat : BaseHatScript
 {
-    public GameObject[] currentDestinationItems;
+    public List<GameObject> currentDestinationItems = new List<GameObject>();
     public GameObject cameraForward;
     [SerializeField]
     private GameObject circleTool;
@@ -13,8 +13,11 @@ public class ExplorersHat : BaseHatScript
     public GameObject closestItem;
     private GameObject nextClosestItem;
     private bool findCloseItem;
+    public GameObject quest;
+    private bool updateList = true;
     new void Start()
     {
+        
         if (closestItem == null)
         {
             findCloseItem = true;
@@ -24,6 +27,12 @@ public class ExplorersHat : BaseHatScript
 
     new void Update()
     {
+        if (updateList)
+        {
+            currentDestinationItems.Clear();
+            currentDestinationItems.AddRange(quest.GetComponent<Quest>().activeQuest.objectiveItems);
+            updateList = false;
+        }
         //if the hat isnt active dont enable the circle guide
         if (!activateHat)
         {
@@ -41,7 +50,8 @@ public class ExplorersHat : BaseHatScript
         //finds the closest item out of the objectives so when you use the ability it will guide the player to the nearest object
         if (findCloseItem)
         {
-            foreach(GameObject gO in currentDestinationItems)
+            updateList = true;
+            foreach (GameObject gO in currentDestinationItems)
             {
                 if (!gO.activeInHierarchy)
                 {

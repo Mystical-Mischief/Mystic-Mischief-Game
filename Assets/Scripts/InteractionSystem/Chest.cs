@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour, IInteractable
     private bool questAccepted;
     public bool finishQuest;
     [SerializeField] private string _prompt;
+    public bool dissapear;
 
     public string InteractionPrompt => _prompt; 
 
@@ -25,7 +26,11 @@ public class Chest : MonoBehaviour, IInteractable
             quest.ActivateQuest(questToActivate);
             quest.UpdateQuest();
             questAccepted = true;
-            gameObject.SetActive(false);
+            if (dissapear)
+            {
+                gameObject.SetActive(false);
+            }
+            
         }
         return true;
     }
