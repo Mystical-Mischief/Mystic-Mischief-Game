@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour, IInteractable
 {
     public Quest quest;
+    public string questToFinish;
     public string questToActivate;
     private bool questAccepted;
     public bool finishQuest;
@@ -21,12 +22,10 @@ public class Chest : MonoBehaviour, IInteractable
         }
         if (quest != null && questToActivate != string.Empty && !questAccepted)
         {
-            questAccepted = true;
             quest.ActivateQuest(questToActivate);
-            if (finishQuest)
-            {
-                quest.UpdateQuest();
-            }
+            quest.UpdateQuest();
+            questAccepted = true;
+            gameObject.SetActive(false);
         }
         return true;
     }

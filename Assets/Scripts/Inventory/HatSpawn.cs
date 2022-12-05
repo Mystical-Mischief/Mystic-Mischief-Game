@@ -17,7 +17,11 @@ public class HatSpawn : MonoBehaviour
     {
         if (inv.PickedUpItems.Count >= 10)
         {
-            Hat.SetActive(true);
+            activateHat();
         }
+    }
+    public void activateHat()
+    {
+        Hat.SetActive(true);
     }
 }
