@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4055404369743915610}
   - component: {fileID: 4055404369743915611}
   - component: {fileID: 4055404369743915609}
-  - component: {fileID: 2549625747344915042}
   m_Layer: 0
   m_Name: Protect Gold_Bar
   m_TagString: PickUp
@@ -134,24 +133,8 @@ MonoBehaviour:
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 0
   itemEffect: {fileID: 0}
---- !u!114 &2549625747344915042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3784951235269127302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 0}
-  questToFinish: 
-  questToActivate: 
-  finishQuest: 0
-  _prompt: Press E/LMB to pick up. Prress G to drop
-  dissapear: 0
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 1
 --- !u!1 &5260066398784362999
 GameObject:
   m_ObjectHideFlags: 0

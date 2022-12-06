@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: -2003787435873863643}
   - component: {fileID: -9097939244147765103}
   - component: {fileID: -2426599722126989739}
-  - component: {fileID: 4402851537763573104}
   m_Layer: 6
   m_Name: Penguin
   m_TagString: PickUp
@@ -149,7 +148,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
-  itemEffect: {fileID: 0}
 --- !u!114 &-9097939244147765103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,11 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 0}
-  questToFinish: 
-  questToActivate: 
-  finishQuest: 0
   _prompt: Collect
-  dissapear: 0
 --- !u!54 &-2426599722126989739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,24 +178,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4402851537763573104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931552958597186695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 0}
-  questToFinish: 
-  questToActivate: 
-  finishQuest: 0
-  _prompt: Press E/LMB to pick up. Prress G to drop
-  dissapear: 0
 --- !u!1001 &1315744840869450275
 PrefabInstance:
   m_ObjectHideFlags: 0
