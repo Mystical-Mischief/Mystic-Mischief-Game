@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 0}
+  questToFinish: 
   questToActivate: 
   finishQuest: 0
   _prompt: Collect
+  dissapear: 0
 --- !u!114 &-1512587858032365545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +140,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
+  itemEffect: {fileID: 0}
 --- !u!65 &-2319925732966529404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -162,7 +165,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5258229
+  m_Radius: 1.74
   m_Center: {x: -0.0103930235, y: 0.046883404, z: -0.013565198}
 --- !u!54 &4710929083088675056
 Rigidbody:
@@ -205,19 +208,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.51245713
+      value: 0.08638571
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0041610827
+      value: 0.0023441822
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.85867447
+      value: 0.9958924
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.006972321
+      value: -0.02702476
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
