@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6225669455701436050}
   - component: {fileID: 6225669455701436051}
   - component: {fileID: 6225669455701436049}
-  - component: {fileID: -7859304206027548868}
+  - component: {fileID: 560147784611987421}
   m_Layer: 0
   m_Name: Gold_Bar (7)
   m_TagString: PickUp
@@ -128,7 +128,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0.037411295, z: 0}
 --- !u!114 &6225669455701436049
 MonoBehaviour:
@@ -149,7 +149,7 @@ MonoBehaviour:
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
   itemEffect: {fileID: 0}
---- !u!114 &-7859304206027548868
+--- !u!114 &560147784611987421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,5 +165,5 @@ MonoBehaviour:
   questToFinish: 
   questToActivate: 
   finishQuest: 0
-  _prompt: Press E/LMB to pick up. Prress G to drop
+  _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0

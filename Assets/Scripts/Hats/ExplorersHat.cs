@@ -17,7 +17,7 @@ public class ExplorersHat : BaseHatScript
     private bool updateList = true;
     new void Start()
     {
-        
+
         if (closestItem == null)
         {
             findCloseItem = true;
@@ -31,16 +31,19 @@ public class ExplorersHat : BaseHatScript
         {
             currentDestinationItems.Clear();
             currentDestinationItems.AddRange(quest.GetComponent<Quest>().activeQuest.objectiveItems);
+            closestItem = null;
             updateList = false;
         }
         //if the hat isnt active dont enable the circle guide
         if (!activateHat)
         {
             circleTool.SetActive(false);
+            updateList = true;
         }
         if (activateHat)
         {
             circleTool.SetActive(true);
+            updateList = true;
         }
         if (closestItem == null || !closestItem.activeInHierarchy)
         {

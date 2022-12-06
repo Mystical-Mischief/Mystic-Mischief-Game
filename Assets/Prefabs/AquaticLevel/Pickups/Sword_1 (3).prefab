@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3085538529498846689}
   - component: {fileID: 3085538529498846688}
   - component: {fileID: 3085538529498846690}
-  - component: {fileID: 1001799230738710311}
+  - component: {fileID: 6566001819641826260}
   m_Layer: 0
   m_Name: Sword_1 (3)
   m_TagString: PickUp
@@ -115,7 +115,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 13.98
+  m_Radius: 34.44
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &3085538529498846688
 BoxCollider:
@@ -149,7 +149,7 @@ MonoBehaviour:
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
   itemEffect: {fileID: 0}
---- !u!114 &1001799230738710311
+--- !u!114 &6566001819641826260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,5 +165,5 @@ MonoBehaviour:
   questToFinish: 
   questToActivate: 
   finishQuest: 0
-  _prompt: Press E/LMB to pick up. Prress G to drop
+  _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
