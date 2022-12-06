@@ -16,6 +16,9 @@ public class Item : MonoBehaviour
     private GameObject Player;
     public Sprite sprite;
     public Color spriteColor;
+    public bool canDrop;
+
+    [SerializeField] private GameObject itemEffect;
 
     void Start()
     {
@@ -36,5 +39,17 @@ public class Item : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
+    }
+
+    public void PlayEffect()
+    {
+        if(itemEffect != null)
+        {
+           
+            if(itemType == ItemType.Collectable)
+            {
+                //Instantiate(itemEffect, this.transform.position, Quaternion.identity) as GameObject;
+            }
+        }
     }
 }

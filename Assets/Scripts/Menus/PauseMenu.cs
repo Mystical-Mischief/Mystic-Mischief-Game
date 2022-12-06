@@ -44,14 +44,17 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f; //resumes game time
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
+        AudioListener.pause = false;
     }
 
     void Pause()
     {
+        defaultBtn.Select();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; //stops the game
         GameIsPaused = true;
         Cursor.lockState = CursorLockMode.None;
+        AudioListener.pause = true;
     }
 
     public void LoadMenu()
