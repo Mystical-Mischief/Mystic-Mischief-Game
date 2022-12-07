@@ -835,6 +835,8 @@ MonoBehaviour:
   inInventory: 0
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  itemEffect: {fileID: 0}
 --- !u!65 &151465313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1644,6 +1646,8 @@ MonoBehaviour:
   inInventory: 0
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  itemEffect: {fileID: 0}
 --- !u!135 &334866301
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1884,6 +1888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoredItems: []
+  goal: {fileID: 0}
+  TurnsOff: 0
 --- !u!1 &372324857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2163,8 @@ MonoBehaviour:
   inInventory: 0
   sprite: {fileID: -2413806693520163455, guid: ced35da71ddfb314cabdb8665d64041e, type: 3}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  itemEffect: {fileID: 0}
 --- !u!65 &518250015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2927,6 +2935,7 @@ MonoBehaviour:
   circleTool: {fileID: 127968709}
   offsetHeight: {x: 0, y: 5, z: 0}
   closestItem: {fileID: 0}
+  quest: {fileID: 0}
 --- !u!1 &721110491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,51 +3070,6 @@ Transform:
   m_Father: {fileID: 425680829}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &765600315
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 765600317}
-  - component: {fileID: 765600316}
-  m_Layer: 0
-  m_Name: Checkpoint
-  m_TagString: Checkpoint
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &765600316
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765600315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 20, z: 50.45}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &765600317
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765600315}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.38, y: 10.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &768560082
 GameObject:
   m_ObjectHideFlags: 0
@@ -3230,6 +3194,8 @@ MonoBehaviour:
   inInventory: 0
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  itemEffect: {fileID: 0}
 --- !u!65 &771108292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4016,6 +3982,9 @@ MonoBehaviour:
   PickedUpItems: []
   Items:
   - {fileID: 3114266207231585267}
+  Camera: {fileID: 6077808235289668850}
+  Dragon: {fileID: 1171246719}
+  DragonType: 
 --- !u!4 &1096242136
 Transform:
   m_ObjectHideFlags: 0
@@ -8635,11 +8604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: meleeDist
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: heightDist
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1656770939696214175, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: rangedDist
@@ -8739,7 +8708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1891337800876849646, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1891337801709588539, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: m_Layer
@@ -9642,7 +9611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: {fileID: 845870924}
+  MassText: 0
+  weightFloat: 0
   PickedUpItems: []
+  Objective: []
   currentHeldItem: {fileID: 0}
   currentObject: {fileID: 0}
   HoldItemPosition: {fileID: 7232564836657014369}
@@ -9653,7 +9625,9 @@ MonoBehaviour:
   hat3: {fileID: 4548586840390678632}
   InventoryUI: {fileID: 558337341}
   InventoryImages: {fileID: 1586225666}
+  UIOpen: 0
   HoldTime: 0
+  storeParticles: {fileID: 0}
   playerHatLogic: {fileID: 3225405915454877651}
 --- !u!75 &3225405914424053043
 ConstantForce:
@@ -9763,10 +9737,12 @@ MonoBehaviour:
   HurtClip: {fileID: 8300000, guid: 99636ea246e17754a8297db89f98eece, type: 3}
   camGround: {fileID: 7232564836077223939}
   camFly: {fileID: 7232564836910187612}
+  flyingEffets: {fileID: 0}
   rbSpeed: 0
   maxHealth: 4
   currentHealth: 0
   animator: {fileID: 4806165123414977358}
+  save: {fileID: 1096242135}
 --- !u!1 &3225405914424053053
 GameObject:
   m_ObjectHideFlags: 0
@@ -10274,6 +10250,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hatType: 0
   inInventory: 0
+--- !u!1001 &3434882997339684273
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3434882996859559818, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -52.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434882996859559820, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b8304db010959143a41e00bfeba60fb, type: 3}
 --- !u!23 &3474778822239652390
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10375,6 +10408,8 @@ MonoBehaviour:
   inInventory: 0
   sprite: {fileID: -2413806693520163455, guid: ced35da71ddfb314cabdb8665d64041e, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 0}
+  canDrop: 0
+  itemEffect: {fileID: 0}
 --- !u!1001 &3806945904541786938
 PrefabInstance:
   m_ObjectHideFlags: 0
