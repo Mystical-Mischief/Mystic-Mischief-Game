@@ -139,13 +139,13 @@ public class Quest : MonoBehaviour
                 activeQuest = currentQuests[0];
                 activeQuest.active = true;
                 processQuest(activeQuest);
+                print(activeQuest.questName);
             }
             else
             {
                 activeQuest.active = false;
             }
         }
-        FinishQuest();
     }
     public void FinishQuest()
     {

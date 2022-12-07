@@ -31,7 +31,8 @@ public class ExplorersHat : BaseHatScript
         {
             currentDestinationItems.Clear();
             currentDestinationItems.AddRange(quest.GetComponent<Quest>().activeQuest.objectiveItems);
-            closestItem = null;
+            if(quest.GetComponent<Quest>().activeQuest.questType != QuestType.Escort)
+                closestItem = null;
             updateList = false;
         }
         //if the hat isnt active dont enable the circle guide
@@ -54,24 +55,31 @@ public class ExplorersHat : BaseHatScript
         if (findCloseItem)
         {
             updateList = true;
-            foreach (GameObject gO in currentDestinationItems)
+            if (quest.GetComponent<Quest>().activeQuest.questType != QuestType.Escort)
             {
-                if (!gO.activeInHierarchy)
+                foreach (GameObject gO in currentDestinationItems)
                 {
-                    continue;
+                    if (!gO.activeInHierarchy)
+                    {
+                        continue;
+                    }
+                    if (closestItem == null)
+                    {
+                        closestItem = gO;
+                        continue;
+                    }
+                    //sees if the object is closer to the current object. if it is make it the closest object
+                    if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
+                    {
+                        closestItem = gO;
+                    }
                 }
-                if(closestItem == null)
-                {
-                    closestItem = gO;
-                    continue;
-                }
-                //sees if the object is closer to the current object. if it is make it the closest object
-                if(Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
-                {
-                    closestItem = gO;
-                }
+                findCloseItem = false;
             }
-            findCloseItem = false;
+            else
+            {
+                closestItem = quest.GetComponent<Quest>().activeQuest.objectiveItems[1];
+            }
         }
         else
         {
@@ -80,7 +88,6 @@ public class ExplorersHat : BaseHatScript
                 detectNextClosestItem();
             }
         }
-
         base.Update();
     }
     //detects the 2nd closes item so when the player gets to that item it will update and make it to where that is the closest item.
