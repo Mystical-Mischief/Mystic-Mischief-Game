@@ -54,6 +54,7 @@ public class ThirdPersonController : MonoBehaviour
     public int maxHealth = 4;
     public int currentHealth;
     public Animator animator;
+    public SaveGeneral save;
 
     //public GameObject healthBar;
     //public GameObject staminaBar;
@@ -343,6 +344,8 @@ public class ThirdPersonController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if(other.gameObject.CompareTag("Checkpoint")){
+        }
         if(other.gameObject.CompareTag("wall")){
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
@@ -375,7 +378,7 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Checkpoint")
         {
@@ -419,8 +422,10 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Checkpoint ()
     {
-        SaveSystem.Checkpoint(this);
-        Saved = true;
+        save.SaveEnemyCheckPoint();
+        // SaveSystem.Checkpoint(this);
+        // Saved = true;
+        Debug.Log("Saved");
     }
     public void LoadCheckpoint ()
     {

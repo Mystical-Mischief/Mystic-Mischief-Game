@@ -42,15 +42,15 @@ public class SaveGeneral : MonoBehaviour
         // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         // bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         //Saves everything on button press.
-        if (controls.MenuActions.Save.triggered)
-        {
-            Debug.Log("Saved");
-            SaveEnemy();
-        }
+        // if (controls.MenuActions.Save.triggered)
+        // {
+        //     Debug.Log("Saved");
+        //     SaveEnemy();
+        // }
         //Loads everything on button press.
         if (controls.MenuActions.Load.triggered)
         {
-            LoadEnemy();
+            LoadCheckpoint();
         }
         //If the player selects Load from the menu it loads the save.
         if (LoadMenu == true)
@@ -147,27 +147,28 @@ public class SaveGeneral : MonoBehaviour
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
     {
-        //Loads the enemies.
+        // Player.GetComponent<Inventory>().PickedUpItems = null;
+        //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
-        // loads the players inventory.
-        foreach (GameObject Inv in PickedUpItems)
-        {
-            Inv.SetActive(false);
-        }
-        //Loads the items.
+        //Loads the players inventory.
         foreach (GameObject items in Items)
         {
             items.GetComponent<Item>().LoadItem();
-            if (items.GetComponent<Item>().inInventory == false)
+            if (items.GetComponent<Item>().inInventory == true)
             {
-                    items.SetActive(true);
+                if (!PickedUpItems.Contains(items))
+                {
+                    Player.GetComponent<Inventory>().PickedUpItems.Add(items);
+                    items.GetComponent<Item>().inInventory = false;
+                }
+
             }
         }
-        //Loads the player from the players load function.
-        Player.GetComponent<ThirdPersonController>().LoadCheckpoint();
+        // Loads the player usings the players load function
+        Player.GetComponent<ThirdPersonController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
         Dragon.GetComponent<WaterDragonAi>().LoadDragon();
     }
