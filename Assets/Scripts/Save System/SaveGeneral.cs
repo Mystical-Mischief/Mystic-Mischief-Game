@@ -55,7 +55,7 @@ public class SaveGeneral : MonoBehaviour
         //If the player selects Load from the menu it loads the save.
         if (LoadMenu == true)
         {
-            LoadEnemy();
+            LoadCheckpoint();
             LoadMenu = false;
         }
     }
