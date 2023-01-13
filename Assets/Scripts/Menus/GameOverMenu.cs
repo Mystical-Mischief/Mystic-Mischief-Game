@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void Retry()
     {
         SceneManager.LoadScene(2);

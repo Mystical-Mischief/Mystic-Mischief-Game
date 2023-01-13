@@ -27,9 +27,10 @@ public class CowboyHat : BaseHatScript
         //adds all objects the player can use the whip on in a list for later
         foreach(GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         {
-            if(gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
+            print(gO.name);
+            if (gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
             {
-                print(gO.name);
+
                 allObjects.Add(gO);
             }
         }
