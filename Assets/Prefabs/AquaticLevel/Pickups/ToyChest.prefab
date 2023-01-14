@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 517691307321428040}
   - component: {fileID: 4224428474195424718}
   - component: {fileID: -7397669084855439332}
+  - component: {fileID: 993935636}
   m_Layer: 0
   m_Name: ToyChest
   m_TagString: PickUp
@@ -144,6 +145,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.14
   m_Center: {x: 0, y: 0.18038559, z: 0}
+--- !u!114 &993935636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644373201503908071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  Weight: 0
+  inInventory: 0
+  sprite: {fileID: 0}
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 1
+  itemEffect: {fileID: 0}
 --- !u!1001 &4777707897161275254
 PrefabInstance:
   m_ObjectHideFlags: 0
