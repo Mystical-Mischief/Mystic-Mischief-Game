@@ -22,17 +22,22 @@ public class RopeStretcher : MonoBehaviour
     void Stretch()
     {
         //I check if the value is null in case the gameobject slots are empty
-        if(distance != null)
+        if(StartOfRope != null)
         {
-            //this function gives us the distance between the two gameobjects
-            distance = Vector3.Distance(StartOfRope.transform.position, LassoProjectile.transform.position);
+            if(LassoProjectile != null)
+            {
+                //this function gives us the distance between the two gameobjects
+                distance = Vector3.Distance(StartOfRope.transform.position, LassoProjectile.transform.position);
+            }
+            
         }
         
         //The script only runs if the distance is greater than 2 to prevent the rope from shrinking
-        if(distance >2)
+        if(distance >0.1)
         {
-            this.gameObject.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, distance/2);
+            this.gameObject.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, distance);
         }
+        transform.LookAt(LassoProjectile.transform);
         
     }
 }
