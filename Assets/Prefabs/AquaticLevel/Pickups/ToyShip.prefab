@@ -129,7 +129,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.55142033
+  m_Radius: 1.54
   m_Center: {x: 0, y: 0.43771157, z: 0}
 --- !u!114 &-221737121283117411
 MonoBehaviour:
@@ -163,9 +163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 0}
+  questToFinish: 
   questToActivate: 
   finishQuest: 0
-  _prompt: Collect
+  _prompt: Press E/LMB to pick up. Press G to drop
+  dissapear: 0
 --- !u!1001 &4948580903598406043
 PrefabInstance:
   m_ObjectHideFlags: 0

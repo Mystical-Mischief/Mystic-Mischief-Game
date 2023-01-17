@@ -22,6 +22,7 @@ public class QuestInfo
     public bool turnInQuest;
     [Header("Use only if turn in quest is true")]
     public GameObject NPC;
+    public GameObject[] rewards;
     [HideInInspector]
     public bool active;
     [HideInInspector]
@@ -58,15 +59,16 @@ public class Quest : MonoBehaviour
         {
             if(quest.questName.ToUpper() == nameOfQuest)
             {
+                quest.active = true;
                 currentQuests.Add(quest);
-                if(activeQuest.questName == string.Empty)
+                if (activeQuest.questName == string.Empty)
                 {
                     activeQuest = quest;
+                    print(activeQuest.questName);
                     processQuest(activeQuest);
                 }
             }
         }
-        
     }
     public void UpdateQuest()
     {
@@ -106,7 +108,7 @@ public class Quest : MonoBehaviour
                 print("quest not found");
                 break;
         }
-        text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
+        FinishQuest();
     }
     public void NextQuest()
     {
@@ -124,18 +126,25 @@ public class Quest : MonoBehaviour
         }
         if (activeQuest.submitQuest == true)
         {
+            if(activeQuest.rewards.Length != 0)
+            {
+                foreach(GameObject gO in activeQuest.rewards)
+                {
+                    gO.SetActive(true);
+                }
+            }
             currentQuests.Remove(activeQuest);
             if (currentQuests.Count != 0)
             {
                 activeQuest = currentQuests[0];
                 activeQuest.active = true;
                 processQuest(activeQuest);
+                print(activeQuest.questName);
             }
             else
             {
                 activeQuest.active = false;
             }
-            FinishQuest();
         }
     }
     public void FinishQuest()
