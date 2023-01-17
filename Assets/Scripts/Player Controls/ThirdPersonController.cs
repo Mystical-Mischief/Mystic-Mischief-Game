@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ThirdPersonController : MonoBehaviour
 {
+    public Reload reload;
     public bool canMove;
     private ThirdPersonControl playerInputs;
     private InputAction move;
@@ -66,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Checkpoint();
+        // Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonControl();
 
@@ -248,7 +249,7 @@ public class ThirdPersonController : MonoBehaviour
         if (currentHealth <= 0)
         {
             //LoadCheckpoint();
-            currentHealth = maxHealth;
+            // currentHealth = maxHealth;
             SceneManager.LoadScene("LoseScreen");
         }
         //if(staminaBar != null)
@@ -422,7 +423,8 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Checkpoint ()
     {
-        save.SaveEnemyCheckPoint();
+        // save.SaveEnemyCheckPoint();
+        SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
         Debug.Log("Saved");
