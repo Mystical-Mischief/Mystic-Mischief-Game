@@ -139,10 +139,10 @@ public class Inventory : MonoBehaviour
         {
             DropItem(currentHeldItem);
         }
-        if (holdingItem && Store && controls.Inv.Store.WasPressedThisFrame())
-        {
-            StoreItem(currentHeldItem);
-        }
+        // if (holdingItem && Store && controls.Inv.Store.WasPressedThisFrame())
+        // {
+        //     StoreItem(currentHeldItem);
+        // }
         // if (controls.MenuActions.Save.WasPressedThisFrame())
         // {
         //     SaveManager.SaveJsonData();
@@ -157,68 +157,68 @@ public class Inventory : MonoBehaviour
 
     public void OpenUI()
     {
-        Debug.Log("Pressed");
-        InventoryImages.SetActive(true);
-        UIOpen = true;
+        // Debug.Log("Pressed");
+        // InventoryImages.SetActive(true);
+        // UIOpen = true;
     }
     public void CloseUI()
     {
-        InventoryImages.SetActive(false);
-        UIOpen = false;
+        // InventoryImages.SetActive(false);
+        // UIOpen = false;
     }
 
     public void QuickDropStoredItem(GameObject Item)
     {
-        var ItemDropping = 0;
-        var itemIndexPos = 0;
-        if (Item.GetComponent<Item>().canDrop == true)
-        {
-            InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
-            // Item.GetComponent<Item>().inInventory = false;
-            holdingItem = false;
-            MassText = MassText - Item.GetComponent<Item>().Weight;
-            rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
-            Item.transform.position = transform.position;
-            Item.transform.parent = null;
-            Item.GetComponent<Rigidbody>().isKinematic = false;
-            PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
-            Item.SetActive(true);
-            Item.GetComponent<SphereCollider>().enabled = true;
-            Item.GetComponent<BoxCollider>().enabled = true;
+        // var ItemDropping = 0;
+        // var itemIndexPos = 0;
+        // if (Item.GetComponent<Item>().canDrop == true)
+        // {
+        //     InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+        //     // Item.GetComponent<Item>().inInventory = false;
+        //     holdingItem = false;
+        //     MassText = MassText - Item.GetComponent<Item>().Weight;
+        //     rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+        //     Item.transform.position = transform.position;
+        //     Item.transform.parent = null;
+        //     Item.GetComponent<Rigidbody>().isKinematic = false;
+        //     PickedUpItems.RemoveAt(PickedUpItems.Count - 1); ;
+        //     Item.SetActive(true);
+        //     Item.GetComponent<SphereCollider>().enabled = true;
+        //     Item.GetComponent<BoxCollider>().enabled = true;
 
-            if (storeParticles != null)
-            {
-                Instantiate(storeParticles, transform.position, transform.rotation);
-            }
-        }
-        else if (PickedUpItems[PickedUpItems.Count - 1].gameObject.GetComponent<Item>().canDrop == false) { 
+        //     if (storeParticles != null)
+        //     {
+        //         Instantiate(storeParticles, transform.position, transform.rotation);
+        //     }
+        // }
+        // else if (PickedUpItems[PickedUpItems.Count - 1].gameObject.GetComponent<Item>().canDrop == false) { 
             
-                                foreach (GameObject i in PickedUpItems)
-                    {
-                        if (i.gameObject.GetComponent<Item>().canDrop == true)
-                        {
-                            Item = i;
-                            break;
-                        }
-                        InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
-                    }
+        //                         foreach (GameObject i in PickedUpItems)
+        //             {
+        //                 if (i.gameObject.GetComponent<Item>().canDrop == true)
+        //                 {
+        //                     Item = i;
+        //                     break;
+        //                 }
+        //                 InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+        //             }
 
-                    if (Item.GetComponent<Item>().canDrop == true){
-            holdingItem = false;
-        MassText = MassText - Item.GetComponent<Item>().Weight;
-        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
-        Item.transform.position = transform.position;
-        Item.transform.parent = null;
-        Item.GetComponent<Rigidbody>().isKinematic = false;
-        PickedUpItems.Remove(Item);
-        Item.SetActive(true);
-        Item.GetComponent<SphereCollider>().enabled = true;
-        Item.GetComponent<BoxCollider>().enabled = true;
-                        GameObject temp = PickedUpItems[ItemDropping];
-                    PickedUpItems[itemIndexPos] = PickedUpItems[PickedUpItems.Count - 1];
-                    PickedUpItems[PickedUpItems.Count - 1] = temp; 
-                    }
-                }
+        //             if (Item.GetComponent<Item>().canDrop == true){
+        //     holdingItem = false;
+        // MassText = MassText - Item.GetComponent<Item>().Weight;
+        // rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+        // Item.transform.position = transform.position;
+        // Item.transform.parent = null;
+        // Item.GetComponent<Rigidbody>().isKinematic = false;
+        // PickedUpItems.Remove(Item);
+        // Item.SetActive(true);
+        // Item.GetComponent<SphereCollider>().enabled = true;
+        // Item.GetComponent<BoxCollider>().enabled = true;
+        //                 GameObject temp = PickedUpItems[ItemDropping];
+        //             PickedUpItems[itemIndexPos] = PickedUpItems[PickedUpItems.Count - 1];
+        //             PickedUpItems[PickedUpItems.Count - 1] = temp; 
+        //             }
+        //         }
         }
     public void StoreItem(GameObject item)
     {
@@ -228,7 +228,7 @@ public class Inventory : MonoBehaviour
         holdingItem = false;
         // item.GetComponent<Item>().inInventory = true;
         PickedUpItems.Add(item);
-        rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
+        // rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
 
         if (storeParticles != null)
@@ -295,7 +295,10 @@ public class Inventory : MonoBehaviour
             // {
             //     StoreObjective(other.gameObject);
             // }
+            if (other.gameObject.GetComponent<Item>().itemType == Item.ItemType.Objective)
+            {
             StoreItem(other.gameObject); 
+            }
         }
         if (other.gameObject.tag == "Hat" && Store && holdingItem == false)
         {
@@ -321,17 +324,17 @@ public class Inventory : MonoBehaviour
         }
         if (other.gameObject.tag == "Goal")
         {
-            for (var i = 0; i < PickedUpItems.Count; i++)
-            {
-                other.gameObject.GetComponent<Goal>().StoredItems.Add(PickedUpItems[i]);
-                InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
-                // Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
-                PickedUpItems.RemoveAt(i);
-                rb.mass = startMass;
-            }
-            if (PickedUpItems.Count <= 0 && other.gameObject.GetComponent<Goal>().TurnsOff == true){
-            other.gameObject.GetComponent<Goal>().goal.enabled=false;
-            }
+            // for (var i = 0; i < PickedUpItems.Count; i++)
+            // {
+            //     other.gameObject.GetComponent<Goal>().StoredItems.Add(PickedUpItems[i]);
+            //     InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
+            //     // Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+            //     PickedUpItems.RemoveAt(i);
+            //     rb.mass = startMass;
+            // }
+            // if (PickedUpItems.Count <= 0 && other.gameObject.GetComponent<Goal>().TurnsOff == true){
+            // other.gameObject.GetComponent<Goal>().goal.enabled=false;
+            // }
         }
                 if (other.gameObject.tag == "GoldToTickets")
         {
