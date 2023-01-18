@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3388471616609052626}
   - component: {fileID: 2921989010253709367}
+  - component: {fileID: 1946036194769734217}
   - component: {fileID: 4969936087600026597}
   - component: {fileID: 2921989010253709364}
   m_Layer: 0
@@ -334,6 +335,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.11, z: 2}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &1946036194769734217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615910063810395496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 582c6fb5cf55b2b4485e570e077c3b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arraySize: 0
+  AllMaterials: []
+  safeMaterial: {fileID: 0}
+  models: []
+  FaceMaterialNum: 0
+  EyeMaterialNum: 0
+  period: 2
 --- !u!114 &4969936087600026597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2921989010253709364}
+  Hat: {fileID: 0}
+  inv: {fileID: 0}
+  ticketCount: 0
+  TicketAmount: 0
 --- !u!95 &2921989010253709364
 Animator:
   serializedVersion: 4
