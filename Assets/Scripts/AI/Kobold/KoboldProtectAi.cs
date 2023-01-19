@@ -21,7 +21,7 @@ public class KoboldProtectAi : BaseEnemyAI
 
     public bool Protect;
 
-    private bool holdingItem;
+    public bool holdingItem { get; private set; }
 
     public GameObject HeldItem;
     public Animator anim;
@@ -32,12 +32,15 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     private float knockbackForce;
 
+    private bool flee;
+
     new void Start()
     {
         base.Start();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
         Protect = false;
         holdingItem = false;
+        flee = false;
     }
 
     new void Update()
@@ -61,13 +64,18 @@ public class KoboldProtectAi : BaseEnemyAI
                 anim.SetBool("HasItem", true);
                 ProtectObject(Item);
             }
+            if(flee)
+            {
+                Flee();
+            }
             else
             {
                 Patrol();
                 // anim.SetBool("HasItem", false);
             }
+            
         }
-        Flee();
+        
                 if (base.spottedPlayer == true)
         {
             anim.SetBool("FoundPlayer", true);
@@ -105,6 +113,7 @@ public class KoboldProtectAi : BaseEnemyAI
             HeldItem = collider.gameObject;
             HeldItem.transform.SetParent(this.transform, true);
             holdingItem = true;
+            flee = true;
         }
     }
 
@@ -121,6 +130,16 @@ public class KoboldProtectAi : BaseEnemyAI
         {
             UpdateDestination(fleeLocation.position);
             HeldItem.transform.position = ObjectNewLocation.position;
+            flee = false;
+        }
+        ContinuePatrol();
+    }
+
+    private void ContinuePatrol()
+    {
+        if(transform.position == fleeLocation.transform.position)
+        {
+            LostPlayer();
         }
     }
 }

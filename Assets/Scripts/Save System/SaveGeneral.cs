@@ -13,6 +13,7 @@ public class SaveGeneral : MonoBehaviour
     public GameObject Camera;
     public GameObject Dragon;
     public string DragonType;
+    public Reload reload;
        
        void Awake()
        {
@@ -31,13 +32,18 @@ public class SaveGeneral : MonoBehaviour
     void Start()
     {
         //Saves the checkpoint when the level starts.
-        SaveEnemyCheckPoint();
+        // SaveEnemyCheckPoint();
         controls.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (reload.retrying == true)
+        {
+            LoadCheckpoint();
+            reload.reloaded = true;
+        }
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
         // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         // bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;

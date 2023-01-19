@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class BirdInteraction : MonoBehaviour
 {
-    private bool inRange;
+    public bool inRange;
     private ControlsforPlayer control;
     public Animator anim;
     public GameObject Hat;
     public Inventory inv;
     public float ticketCount;
     public float TicketAmount;
+    public CleverBirdFaceChange faceChange;
 
     private void Start()
     {
@@ -20,7 +21,11 @@ public class BirdInteraction : MonoBehaviour
     }
     void Update()
     {
-        if(inRange == true && control.Actions.Interact.WasPressedThisFrame())
+        // if(inRange == true && control.Actions.Interact.WasPressedThisFrame())
+        // {
+        //     BirdAction();
+        // }
+        if (inRange == true)
         {
             BirdAction();
         }
@@ -32,6 +37,7 @@ public class BirdInteraction : MonoBehaviour
 
     void BirdAction()
     {
+        faceChange.talking = true;
         anim.SetBool("Talking", true);
         foreach (GameObject Inv in inv.PickedUpItems)
         {
@@ -67,6 +73,7 @@ public class BirdInteraction : MonoBehaviour
             inRange = false;
             anim.SetBool("Talking", false);
         }
+        faceChange.talking = false;
         ticketCount = 0;
     }
 }
