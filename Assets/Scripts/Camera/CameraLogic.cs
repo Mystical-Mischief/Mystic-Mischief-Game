@@ -35,6 +35,14 @@ public class CameraLogic : MonoBehaviour
             {
                 turn.x += 360;
             }
+            if(turn.y < -45)
+            {
+                turn.y = -45;
+            }
+            if (turn.y > 45)
+            {
+                turn.y = 45;
+            }
             Quaternion newRotation = Quaternion.Euler(turn.y, turn.x, 0);
             transform.localRotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
         }
