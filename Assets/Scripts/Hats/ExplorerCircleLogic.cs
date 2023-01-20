@@ -8,6 +8,19 @@ public class ExplorerCircleLogic : MonoBehaviour
     private ExplorersHat exploreHat;
     [SerializeField]
     private CowboyHat cowboyHat;
+    [SerializeField]
+    private RopeStretcher rope;
+    private Transform startOfRopeTransform;
+    private GameObject cowboyAutoLock;
+    private Vector3 cowboyAutoLockPos;
+    private Transform closestItem;
+
+    private void Start()
+    {
+        //temporary location for auto lock for cowboy hat if the object is far from reach
+        cowboyAutoLock = GameObject.FindGameObjectWithTag("CowboyHatLockOn");
+        cowboyAutoLockPos = cowboyAutoLock.transform.position;
+    }
 
     private void Update()
     {
@@ -18,10 +31,24 @@ public class ExplorerCircleLogic : MonoBehaviour
         {
             transform.position = exploreHat.closestItem.transform.position;
         }
-        //if the cowboy hat is active go to the closest cowboy hat item
+        //if the cowboy hat is active 
         if (cowboyHat.gameObject.transform.parent.gameObject.activeSelf && cowboyHat.closestItem != null) 
         {
-            transform.position = cowboyHat.closestItem.transform.position;
+            cowboyAutoLockPos = cowboyAutoLock.transform.position;
+            startOfRopeTransform = rope.transform;
+            closestItem = cowboyHat.closestItem.transform;
+            //finds the distance between the rope and closest item
+            float ropeAndItemDis = Vector3.Distance(startOfRopeTransform.position, closestItem.transform.position);
+            //if item is within reach for the cowboy hat
+            if(ropeAndItemDis < cowboyHat.MaxWhipDis())
+            {
+                transform.position = closestItem.transform.position;
+            }
+            //if item is not within reach then change the position of the auto lock circle to where the player wouldn't see
+            else
+            {
+                transform.position = cowboyAutoLockPos;
+            }
         }
 
     }
