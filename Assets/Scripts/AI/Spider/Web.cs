@@ -32,17 +32,22 @@ public class Web : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //function deals with how the web shoots and how long it exists before it is deleted.
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
         if (!hitPlayer)
         {
             timer -= Time.deltaTime;
         }
-        if (timer <= 0)
+        if (timer <= 2)
         {
 
             DestroyProjectile();
         }
 
+
+        /* Code commented out becuase the counter to have 2 button presses does
+         * not work for some reason.
+         * 
         if (controls.Actions.Snatch.WasPressedThisFrame() && isStun == true)
         {
             if (stunCounter < 1)
@@ -56,6 +61,14 @@ public class Web : MonoBehaviour
                 stunCounter = 0;
                 DestroyProjectile();
             }
+        }*/
+
+        //allows the player to break out of a stun with a single snatch button press
+        if (controls.Actions.Snatch.IsPressed() && isStun == true)
+        {
+                player.GetComponent<ThirdPersonController>().canMove = true;
+                isStun = false;
+                DestroyProjectile();
         }
     }
 
