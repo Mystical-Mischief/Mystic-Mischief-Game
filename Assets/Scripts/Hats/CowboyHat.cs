@@ -158,4 +158,9 @@ public class CowboyHat : BaseHatScript
             ResetHat();
         }
     }
+
+    public float MaxWhipDis()
+    {
+        return maxWhipDistance;
+    }
 }
