@@ -120,17 +120,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -297,6 +286,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Poop"",
+                    ""type"": ""Button"",
+                    ""id"": ""66e5aeaa-dffd-42a3-8673-e770990da8e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -401,19 +399,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""17d7afcf-e839-4b7b-b83b-51936af557fa"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchHat"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9dc3e473-1bf9-49f7-95a9-800093297476"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -567,7 +554,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a135c2dd-936c-4b34-838c-222b7dbfa41c"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -580,7 +567,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""de7bf59d-9d89-48a3-a2a1-58a22ca149c8"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -594,6 +581,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b292632f-7007-4cb8-886e-9a210819248d"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Poop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29fd8eff-7f16-494a-9cb5-cc96b7e19df5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Poop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,6 +827,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Movement = m_Actions.FindAction("Movement", throwIfNotFound: true);
         m_Actions_Caw = m_Actions.FindAction("Caw", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
+        m_Actions_Poop = m_Actions.FindAction("Poop", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
@@ -968,6 +978,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Movement;
     private readonly InputAction m_Actions_Caw;
     private readonly InputAction m_Actions_Look;
+    private readonly InputAction m_Actions_Poop;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -984,6 +995,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Actions_Movement;
         public InputAction @Caw => m_Wrapper.m_Actions_Caw;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
+        public InputAction @Poop => m_Wrapper.m_Actions_Poop;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1029,6 +1041,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Poop.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @Poop.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @Poop.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1069,6 +1084,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Poop.started += instance.OnPoop;
+                @Poop.performed += instance.OnPoop;
+                @Poop.canceled += instance.OnPoop;
             }
         }
     }
@@ -1234,6 +1252,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnCaw(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnPoop(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {
