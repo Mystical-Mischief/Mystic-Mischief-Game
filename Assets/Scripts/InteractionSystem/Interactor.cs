@@ -15,8 +15,13 @@ public class Interactor : MonoBehaviour
    [SerializeField] private int _numFound;
 
    private IInteractable _interactable;
-
-   private void Update()
+    ControlsforPlayer controls;
+    private void Start()
+    {
+        controls = new ControlsforPlayer();
+        controls.Enable();
+    }
+    private void Update()
     {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, 
         _interactableMask);
@@ -29,7 +34,7 @@ public class Interactor : MonoBehaviour
             {
                 if (!_interactionpromptUI.IsDisplayed) _interactionpromptUI.Setup(_interactable.InteractionPrompt);
 
-                if(Keyboard.current.eKey.wasPressedThisFrame) _interactable.Interact(this);
+                if(controls.Actions.Interact.WasPerformedThisFrame()) _interactable.Interact(this);
             }
        }
        else
