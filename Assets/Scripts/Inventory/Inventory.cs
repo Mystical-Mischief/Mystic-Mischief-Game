@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public GameObject currentHeldItem;
     public GameObject currentObject;
     public Transform HoldItemPosition;
+    public bool canGrabItem;
 
     private bool PickUp;
     private bool Store;
@@ -287,6 +288,20 @@ public class Inventory : MonoBehaviour
         holdingItem = value;
     }
     public PlayerHatLogic playerHatLogic;
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PickUp")
+        {
+            canGrabItem = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "PickUp")
+        {
+            canGrabItem = false;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "PickUp" && Store && holdingItem == false)
