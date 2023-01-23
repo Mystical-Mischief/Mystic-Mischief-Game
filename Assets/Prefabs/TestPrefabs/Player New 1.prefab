@@ -79,6 +79,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentHatObject: {fileID: 0}
 --- !u!1 &4921147446654976476
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4921147447812909360
 Transform:
   m_ObjectHideFlags: 0
@@ -376,11 +377,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5d6416be803cf4497ed34a804da05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Weight: {fileID: 0}
+  MassText: 0
+  weightFloat: 0
   PickedUpItems: []
+  Objective: []
   currentHeldItem: {fileID: 0}
+  currentObject: {fileID: 0}
   HoldItemPosition: {fileID: 925110902953984616}
+  canGrabItem: 0
   holdingItem: 0
   Ticket: {fileID: 0}
+  hat1: {fileID: 0}
+  hat2: {fileID: 0}
+  hat3: {fileID: 0}
+  InventoryUI: {fileID: 0}
+  InventoryImages: {fileID: 0}
+  UIOpen: 0
+  HoldTime: 0
+  storeParticles: {fileID: 0}
+  playerHatLogic: {fileID: 0}
 --- !u!114 &4921147447812909362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f80590ac1c7eb429ef2dbdc84cfb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reload: {fileID: 0}
   canMove: 0
   moveForce: 5
   jumpForce: 10
@@ -410,14 +427,16 @@ MonoBehaviour:
   powerValue: 0
   Targeted: 0
   inWater: 0
+  playerAnimation: {fileID: 0}
+  HurtClip: {fileID: 0}
   camGround: {fileID: 0}
   camFly: {fileID: 0}
+  flyingEffets: {fileID: 0}
   rbSpeed: 0
   maxHealth: 4
   currentHealth: 0
   animator: {fileID: 0}
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
+  save: {fileID: 0}
 --- !u!54 &4921147447812909373
 Rigidbody:
   m_ObjectHideFlags: 0
