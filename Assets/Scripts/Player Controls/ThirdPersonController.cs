@@ -161,6 +161,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             GetComponent<ConstantForce>().force = diveSpeed;
             flyingEffets.SetActive(false);
+            
         }
         else
         {
