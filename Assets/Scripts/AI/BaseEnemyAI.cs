@@ -15,7 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     private int Health;
     
     public GameObject Player;
-    private bool stunned;
+    internal bool stunned;
     private bool Saved;
     [HideInInspector]
     public Vector3 targetPosition;
@@ -116,11 +116,16 @@ public class BaseEnemyAI : MonoBehaviour
             }
         }
     }
-    public virtual void Stun()
+    public virtual void Stun(float time)
     {
         GetComponent<NavMeshAgent>().speed = 0;
         stunned = true;
-
+        StartCoroutine(stunTimer(time));
+    }
+    IEnumerator stunTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        stunned = false;
     }
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     private Vector3 PlayerDirection;

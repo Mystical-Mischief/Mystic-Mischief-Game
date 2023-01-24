@@ -13,7 +13,6 @@ public class Web : MonoBehaviour
     public bool isStun;
     float timer = 3f;
 
-    int stunCounter = 0;
 
     ControlsforPlayer controls;
 
@@ -39,23 +38,14 @@ public class Web : MonoBehaviour
         }
         if (timer <= 0)
         {
-
             DestroyProjectile();
         }
 
-        if (controls.Actions.Snatch.WasPressedThisFrame() && isStun == true)
+        if (controls.Actions.Snatch.WasPerformedThisFrame() && isStun == true)
         {
-            if (stunCounter < 1)
-            {
-                stunCounter += 1;
-            }
-            else
-            {
-                player.GetComponent<ThirdPersonController>().canMove = true;
-                isStun = false;
-                stunCounter = 0;
-                DestroyProjectile();
-            }
+            player.GetComponent<ThirdPersonController>().canMove = true;
+            isStun = false;
+            DestroyProjectile();
         }
     }
 
@@ -69,7 +59,14 @@ public class Web : MonoBehaviour
             StartCoroutine(StunTimer(col.gameObject));
             isStun = true;
         }
+    }
+    private void OnTriggerStay(Collider other)
+    {
 
+        if (!isStun && other.gameObject.tag != "Player")
+        {
+            DestroyProjectile();
+        }
     }
 
     //stuns player
@@ -80,7 +77,6 @@ public class Web : MonoBehaviour
         yield return new WaitForSeconds(stun);
         player.GetComponent<ThirdPersonController>().canMove = true;
         DestroyProjectile();
-        stunCounter = 0;
 
     }
     void DestroyProjectile()
