@@ -5044,6 +5044,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
+--- !u!1 &287391880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287391883}
+  - component: {fileID: 287391882}
+  - component: {fileID: 287391881}
+  m_Layer: 0
+  m_Name: RecorderCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &287391881
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287391880}
+  m_Enabled: 1
+--- !u!20 &287391882
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287391880}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &287391883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287391880}
+  m_LocalRotation: {x: -0, y: 0.3781825, z: -0, w: 0.9257311}
+  m_LocalPosition: {x: 0.474, y: 0.64, z: -1.074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 44.442, z: 0}
 --- !u!1 &498153277
 GameObject:
   m_ObjectHideFlags: 0
@@ -10037,24 +10121,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allFaces:
-  - EmotionMaterial: {fileID: 2100000, guid: cab84cc16e9e94a408bd11984d84d123, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: 98c526c3adf03ff4989428690e2e56e5, type: 3}
     emotion: 0
-  - EmotionMaterial: {fileID: 2100000, guid: c75d19ff544c5794ba016f1aef216eea, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: a519ce6638da14542bdf8fbfad303de9, type: 3}
     emotion: 1
-  - EmotionMaterial: {fileID: 2100000, guid: c75d19ff544c5794ba016f1aef216eea, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: 326c75e49668a3c47addc3126c85f95d, type: 3}
     emotion: 2
-  - EmotionMaterial: {fileID: 2100000, guid: 7eb5f10eb6bd2ee4ab13c18007b55ddd, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: b7abaad85bdfc704f953d3100f66d33d, type: 3}
     emotion: 3
-  - EmotionMaterial: {fileID: 2100000, guid: c7b2faeedd886e049b58bad9fe21cd8e, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: c5b49181b3d288c4a89ddfe27a3f7c5c, type: 3}
     emotion: 4
-  - EmotionMaterial: {fileID: 2100000, guid: e4196203d426739408203fe13b397f47, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: 0d6b6c161f4bbe04fa65a6d1b42d4316, type: 3}
     emotion: 5
-  - EmotionMaterial: {fileID: 2100000, guid: 05da90e355c4bff4e853b9f746ca0b3f, type: 2}
+  - EmotionTexture: {fileID: 2800000, guid: 189f5ac4d6745b64293421c0419b30f8, type: 3}
     emotion: 6
-  currentFace:
-    EmotionMaterial: {fileID: 0}
-    emotion: 0
   currentEmotion: 0
+  EmotionMaterial: {fileID: 2100000, guid: 72616c515dfea464abd82b02c8b0a9a0, type: 2}
 --- !u!1 &771613307
 GameObject:
   m_ObjectHideFlags: 0
@@ -15113,12 +15195,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6986816081779439680, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7510103832691703385, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1131620464}
     - target: {fileID: 7510103832691703404, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619498870445360262, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619498870445360262, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15260,14 +15354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allFaces:
-  - EmotionMaterial: {fileID: 2100000, guid: 6c21bb43288db5f4c8a5ed482196661e, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 0
-  - EmotionMaterial: {fileID: 2100000, guid: 0f09b9ef15aa7344e90ade7ee55f06f8, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 4
-  currentFace:
-    EmotionMaterial: {fileID: 0}
-    emotion: 0
   currentEmotion: 0
+  EmotionMaterial: {fileID: 0}
 --- !u!1 &1239383476
 GameObject:
   m_ObjectHideFlags: 0
@@ -15284,7 +15376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1239383477
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15553,6 +15645,10 @@ PrefabInstance:
     - target: {fileID: 2615910063810395496, guid: 6d65667c631c51142a515fdf784be5b7, type: 3}
       propertyPath: m_Name
       value: Clever Bird
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615910063810395496, guid: 6d65667c631c51142a515fdf784be5b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3388471616609052626, guid: 6d65667c631c51142a515fdf784be5b7, type: 3}
       propertyPath: m_RootOrder
