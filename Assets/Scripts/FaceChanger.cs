@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 [Serializable]
 public class Face
 {
-    public Material EmotionMaterial;
+    public Texture EmotionTexture;
     public Emotion emotion;
 }
 public enum Emotion
@@ -14,32 +13,37 @@ public enum Emotion
     Neutral,
     Happy,
     Sad,
-    Angry
+    Angry,
+    Blink,
+    Shock,
+    Greed
 }
 public class FaceChanger : MonoBehaviour
 {
     public Face[] allFaces;
-    public Face currentFace;
     public Emotion currentEmotion;
+    
+    private Texture currentTexture;
+
+    public Material EmotionMaterial;
+
+
     private void Start()
     {
         findNewFace();
     }
-    private void Update()
+    private void Update() //Could be turned into event, does not need to check the face every frame. 
     {
-        if(currentEmotion != currentFace.emotion)
-        {
             findNewFace();
-        }
     }
-    void findNewFace() 
+    void findNewFace() //Finds a face that has the correct emotion, then changes the texture of the Material that shows the emotion. 
     {
         foreach (Face face in allFaces)
         {
             if (currentEmotion == face.emotion)
-            {
-                GetComponent<MeshRenderer>().material = face.EmotionMaterial;
-                currentFace = face;
+            {            
+                currentTexture = face.EmotionTexture;
+                EmotionMaterial.SetTexture("_MainTex", currentTexture);
                 return;
             }
         }
