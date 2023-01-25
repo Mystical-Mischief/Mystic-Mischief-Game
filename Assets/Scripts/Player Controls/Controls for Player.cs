@@ -607,6 +607,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuestAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a5d3679-0bdb-450f-937b-0ed615a4c4c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -640,6 +649,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40a3ddae-7038-4fe7-a3c3-e98aa13a9282"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuestAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d2b3943-e9e1-4dd9-b240-ea1e6339dd26"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuestAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -810,6 +841,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
         m_Pause_QuitGame = m_Pause.FindAction("QuitGame", throwIfNotFound: true);
+        m_Pause_QuestAction = m_Pause.FindAction("QuestAction", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
@@ -1075,12 +1107,14 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private IPauseActions m_PauseActionsCallbackInterface;
     private readonly InputAction m_Pause_PauseGame;
     private readonly InputAction m_Pause_QuitGame;
+    private readonly InputAction m_Pause_QuestAction;
     public struct PauseActions
     {
         private @ControlsforPlayer m_Wrapper;
         public PauseActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseGame => m_Wrapper.m_Pause_PauseGame;
         public InputAction @QuitGame => m_Wrapper.m_Pause_QuitGame;
+        public InputAction @QuestAction => m_Wrapper.m_Pause_QuestAction;
         public InputActionMap Get() { return m_Wrapper.m_Pause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1096,6 +1130,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuitGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
                 @QuitGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
                 @QuitGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuestAction.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
+                @QuestAction.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
+                @QuestAction.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
             }
             m_Wrapper.m_PauseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1106,6 +1143,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuitGame.started += instance.OnQuitGame;
                 @QuitGame.performed += instance.OnQuitGame;
                 @QuitGame.canceled += instance.OnQuitGame;
+                @QuestAction.started += instance.OnQuestAction;
+                @QuestAction.performed += instance.OnQuestAction;
+                @QuestAction.canceled += instance.OnQuestAction;
             }
         }
     }
@@ -1236,6 +1276,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     {
         void OnPauseGame(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
+        void OnQuestAction(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {
