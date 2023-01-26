@@ -15,6 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     private int Health;
     
     public GameObject Player;
+    internal bool stunned;
     private bool Saved;
     [HideInInspector]
     public Vector3 targetPosition;
@@ -43,18 +44,7 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
 
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
-        //{
-        //    if (hit.transform.gameObject.tag == "Player")
-        //    {
-        //        spottedPlayer = true;
-        //        target = hit.transform;
-
-        //    }
-        //}
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
@@ -90,18 +80,6 @@ public class BaseEnemyAI : MonoBehaviour
     //uses raycasts to look for the player. if the player touches the raycast the player it will update it to where the player is found
     public virtual void EnemyDetection()
     {
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * SightDistance, Color.red);
-
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, SightDistance))
-        //{
-        //    if (hit.transform.gameObject.tag == "Player")
-        //    {
-        //        spottedPlayer = true;
-        //        target = hit.transform;
-        //        
-        //    }
-        //}
         EnemyVision.FieldOfView();
         spottedPlayer = EnemyVision.PlayerDetected; //checks if the ai saw the player
         if(spottedPlayer)
@@ -113,47 +91,45 @@ public class BaseEnemyAI : MonoBehaviour
     //if the ai doesnt see the player it will patrol between all the points
     public virtual void Patrol()
     {
-        if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false)
+        if (!stunned)
         {
-            atDestination = true;
-            //if the player isnt at the last point
-            if (patrolNum < PatrolPoints.Count - 1)
+            if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false)
             {
-                patrolNum++;
+                atDestination = true;
+                //if the player isnt at the last point
+                if (patrolNum < PatrolPoints.Count - 1)
+                {
+                    patrolNum++;
+                }
+                //if the player is at the last point go to the first one
+                else
+                {
+                    patrolNum = 0;
+
+                }
+                target = PatrolPoints[patrolNum];
+                UpdateDestination(target.position);
             }
-            //if the player is at the last point go to the first one
             else
             {
-                patrolNum = 0;
-
+                atDestination = false;
             }
-            target = PatrolPoints[patrolNum];
-            UpdateDestination(target.position);
         }
-        else
-        {
-            atDestination = false;
-        }
+    }
+    public virtual void Stun(float time)
+    {
+        GetComponent<NavMeshAgent>().speed = 0;
+        StartCoroutine(stunTimer(time));
+    }
+    IEnumerator stunTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<NavMeshAgent>().speed = 0;
     }
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     private Vector3 PlayerDirection;
     public virtual void FoundPlayer()
     {
-        //PlayerDirection = target.transform.position - transform.position;
-        //Debug.DrawRay(transform.position, (PlayerDirection).normalized * SightDistance, Color.green);
-        //RaycastHit hit;
-
-
-        //if (Physics.Raycast(transform.position, PlayerDirection, out hit, SightDistance))
-        //{
-        //    UpdateDestination(target.position);
-        //if the ai cant see the player
-        //    if (hit.transform.gameObject.tag != "Player")
-        //    {
-        //        LostPlayer();
-        //    }
-        //}
-        
         EnemyVision.FieldOfView();
         spottedPlayer = EnemyVision.PlayerDetected;
         if(spottedPlayer)
@@ -179,16 +155,6 @@ public class BaseEnemyAI : MonoBehaviour
         spottedPlayer = false;
         target = PatrolPoints[0];
     }
-
-    //     private void OnEnable()
-    // {
-    //     controls.Enable();
-    // }
-    // private void OnDisable()
-    // {
-    //     controls.Disable();
-    // }
-
     public void SaveEnemy ()
     {
         SaveSystem.SaveEnemy(this);

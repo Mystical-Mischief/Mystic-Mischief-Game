@@ -14,7 +14,7 @@ public class CollectionQuest : MonoBehaviour
     TextMeshProUGUI questText;
     public void startQuest(QuestInfo quest, Quest questScr)
     {
-        questText = questScr.questText;
+        questText = questScr.text;
         inv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         questScript = questScr;
         totalNumberOfItems = quest.objectiveItems.Length;

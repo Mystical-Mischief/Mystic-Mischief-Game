@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &114122856606309157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.008525
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0056155603
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.339655
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984848451847148898, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_Name
+      value: Spider Bite Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2714867981466484252, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+--- !u!1 &2952459167832264263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2984848451847148898, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+  m_PrefabInstance: {fileID: 114122856606309157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1558636802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2952459167832264263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd15f49b45315e04385068c4ee665539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PatrolPoints:
+  - {fileID: 0}
+  patrolNum: 1
+  SightDistance: 20
+  EnemyType: 
+  Player: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  attackedPlayer: 0
+  knockbackForce: 300
+  anim: {fileID: 4770379008171381727}
+  wanderRange: 50
+--- !u!95 &4770379008171381727 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4874786286903003386, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+  m_PrefabInstance: {fileID: 114122856606309157}
+  m_PrefabAsset: {fileID: 0}

@@ -40,7 +40,7 @@ public class Quest : MonoBehaviour
     //public Color completedColor;
     //public Color currentColor;
     public TextMeshProUGUI text;
-    public TextMeshProUGUI questText;
+    public TextMeshProUGUI nextQuestText;
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
@@ -69,6 +69,7 @@ public class Quest : MonoBehaviour
                 }
             }
         }
+        UpdateText();
     }
     public void UpdateQuest()
     {
@@ -80,7 +81,6 @@ public class Quest : MonoBehaviour
         {
             print("quest updated");
             activeQuest.submitQuest = true;
-            questText.text = string.Empty;
             NextQuest();
         }
     }
@@ -108,7 +108,7 @@ public class Quest : MonoBehaviour
                 print("quest not found");
                 break;
         }
-        FinishQuest();
+        UpdateText();
     }
     public void NextQuest()
     {
@@ -147,11 +147,19 @@ public class Quest : MonoBehaviour
             }
         }
     }
-    public void FinishQuest()
+    public void UpdateText()
     {
         if(activeQuest.active)
         {
             text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
+            nextQuestText.text = "";
+            foreach (QuestInfo quest in currentQuests)
+            {
+                if(quest != activeQuest)
+                {
+                    nextQuestText.text += $">{quest.questName}\n";
+                }
+            }
         }
         else
         {

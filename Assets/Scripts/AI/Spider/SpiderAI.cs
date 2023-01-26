@@ -1,14 +1,15 @@
 using UnityEngine;
-
+using UnityEngine.AI;
 public class SpiderAI : BaseEnemyAI
 {
     ThirdPersonController player;
     public GameObject projectile;
     public Animator anim;
-
+    public Vector3 webOffset;
     public bool PlayerCanMove;
     float timeBetweenShots;
     public float startTimeBetweenShots;
+    public float wanderRange;
 
     new void Start()
     {
@@ -78,11 +79,31 @@ public class SpiderAI : BaseEnemyAI
             }
         }
     }
-
+    public override void Patrol()
+    {
+        if (!stunned)
+        {
+            if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false)
+            {
+                atDestination = true;
+                Vector3 randomDirection = Random.insideUnitSphere * wanderRange;
+                randomDirection += transform.position;
+                NavMeshHit hit;
+                NavMesh.SamplePosition(randomDirection, out hit, wanderRange, 1);
+                Vector3 finalPosition = hit.position;
+                print(finalPosition);
+                UpdateDestination(finalPosition);
+            }
+            else
+            {
+                atDestination = false;
+            }
+        }
+    }
     public virtual void ShootAnim()
     {
         anim.SetTrigger("Web");
-        Instantiate(projectile, transform.position, Quaternion.identity);
+        Instantiate(projectile, transform.position + webOffset, Quaternion.identity);
         timeBetweenShots = startTimeBetweenShots;
     }
 

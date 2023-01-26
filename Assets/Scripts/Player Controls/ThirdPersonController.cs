@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ThirdPersonController : MonoBehaviour
 {
+    public Reload reload;
     public bool canMove;
     private ThirdPersonControl playerInputs;
     private InputAction move;
@@ -66,7 +67,7 @@ public class ThirdPersonController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        Checkpoint();
+        // Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonControl();
 
@@ -75,7 +76,7 @@ public class ThirdPersonController : MonoBehaviour
         controls = new ControlsforPlayer();
         controls.Enable();
         move = controls.Actions.Movement;
-        Stamina = 6;
+        Stamina = 4;
         CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         isGrounded = true;
         //if(healthBar != null)
@@ -143,9 +144,9 @@ public class ThirdPersonController : MonoBehaviour
         if (isGrounded == true)
         {
             Stamina += Time.fixedDeltaTime;
-            if (Stamina >= 6)
+            if (Stamina >= 4)
             {
-                Stamina = 6;
+                Stamina = 4;
             }
             animator.SetBool("IsDiving", false);
             flyingEffets.SetActive(false);
@@ -160,6 +161,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             GetComponent<ConstantForce>().force = diveSpeed;
             flyingEffets.SetActive(false);
+            
         }
         else
         {
@@ -197,9 +199,9 @@ public class ThirdPersonController : MonoBehaviour
         if (isGrounded == false && canMove)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
-            if (Stamina >= 6)
+            if (Stamina >= 4)
             {
-                Stamina = 6;
+                Stamina = 4;
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
 
@@ -248,7 +250,7 @@ public class ThirdPersonController : MonoBehaviour
         if (currentHealth <= 0)
         {
             //LoadCheckpoint();
-            currentHealth = maxHealth;
+            // currentHealth = maxHealth;
             SceneManager.LoadScene("LoseScreen");
         }
         //if(staminaBar != null)
@@ -422,7 +424,8 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Checkpoint ()
     {
-        save.SaveEnemyCheckPoint();
+        // save.SaveEnemyCheckPoint();
+        SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
         Debug.Log("Saved");

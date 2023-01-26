@@ -14,7 +14,7 @@ public class Chest : MonoBehaviour, IInteractable
 
     public string InteractionPrompt => _prompt; 
 
-    public bool Interact(Interactor interactor)
+    public virtual bool Interact(Interactor interactor)
     {
         Debug.Log( "opening Chest!");
         if(quest != null && (questAccepted || questToActivate == string.Empty))
