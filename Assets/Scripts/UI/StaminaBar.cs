@@ -35,6 +35,6 @@ public class StaminaBar : MonoBehaviour
 
     bool DisplayStaminaPoint(float stamina, int pointNumber)
     {
-        return ((pointNumber * 4) >= stamina);
+        return (pointNumber >= stamina);
     }
 }
