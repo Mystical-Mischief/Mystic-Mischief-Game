@@ -152,12 +152,12 @@ public class Quest : MonoBehaviour
         if(activeQuest.active)
         {
             text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
-            nextQuestText.text = "To do:\n";
+            nextQuestText.text = "";
             foreach (QuestInfo quest in currentQuests)
             {
                 if(quest != activeQuest)
                 {
-                    nextQuestText.text += $"{quest.questName}\n";
+                    nextQuestText.text += $">{quest.questName}\n";
                 }
             }
         }
