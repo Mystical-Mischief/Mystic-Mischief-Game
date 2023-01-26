@@ -72,7 +72,6 @@ public class ThirdPersonController : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonControl();
 
-
         //playerInputs.Enable();
         controls = new ControlsforPlayer();
         controls.Enable();
