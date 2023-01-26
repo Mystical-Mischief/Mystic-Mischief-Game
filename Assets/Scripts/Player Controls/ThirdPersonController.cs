@@ -56,6 +56,7 @@ public class ThirdPersonController : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public SaveGeneral save;
+    private bool jumpInAir;
 
     //public GameObject healthBar;
     //public GameObject staminaBar;
@@ -196,7 +197,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             diveTim = 0;
         }
-        if (isGrounded == false && canMove)
+        if (isGrounded == false && canMove && jumpInAir == true)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 6)
@@ -334,6 +335,7 @@ public class ThirdPersonController : MonoBehaviour
             camGround.SetActive(true);
             camFly.SetActive(false);
             animator.SetBool("Grounded", true);
+            jumpInAir = false;
         }
         else
         {
@@ -390,13 +392,22 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump()
     {
-            if (Stamina > 0)
+            if (Stamina > 0 && isGrounded == true)
             {
                 animator.SetTrigger("Jump");    
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
                 //StaminaBar.instance.UseStamina(1);
                 Debug.Log("In DoJump Function");
+            }
+            if (Stamina > 0 && isGrounded == false)
+            {
+                animator.SetTrigger("Jump");    
+                forceDirection += Vector3.up * jumpForce;
+                Stamina -= 1;
+                //StaminaBar.instance.UseStamina(1);
+                Debug.Log("In DoJump Function");
+                jumpInAir = true;
             }
     }
     public void SavePlayer ()

@@ -808,6 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exploreHat: {fileID: 712601106}
   cowboyHat: {fileID: 6414350664172144262}
+  rope: {fileID: 0}
 --- !u!1 &151465309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 24a6653f46e84994cbcfb879134a74e7, type: 3}
@@ -3985,6 +3986,7 @@ MonoBehaviour:
   Camera: {fileID: 6077808235289668850}
   Dragon: {fileID: 1171246719}
   DragonType: 
+  reload: {fileID: 0}
 --- !u!4 &1096242136
 Transform:
   m_ObjectHideFlags: 0
@@ -8943,6 +8945,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3225405914424053053}
     - target: {fileID: 5644899848339536680, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
+      propertyPath: viewAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644899848339536680, guid: c0b1d16b8f2d9dc438218d287b85f154, type: 3}
       propertyPath: viewRadius
       value: 0
       objectReference: {fileID: 0}
@@ -9618,6 +9624,7 @@ MonoBehaviour:
   currentHeldItem: {fileID: 0}
   currentObject: {fileID: 0}
   HoldItemPosition: {fileID: 7232564836657014369}
+  canGrabItem: 0
   holdingItem: 0
   Ticket: {fileID: 0}
   hat1: {fileID: 1402024273}
@@ -9716,6 +9723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f80590ac1c7eb429ef2dbdc84cfb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reload: {fileID: 0}
   canMove: 1
   moveForce: 5
   jumpForce: 10
