@@ -5,6 +5,7 @@ using UnityEngine;
 public class SmokeBombLogic : MonoBehaviour
 {
     public GameObject smokeScreen;
+    public float stunTimer;
     private Rigidbody rb;
     void Start()
     {
@@ -17,5 +18,12 @@ public class SmokeBombLogic : MonoBehaviour
         print("poof! smoke bomb here");
         Instantiate(smokeScreen, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "enemy")
+        {
+            other.gameObject.GetComponent<BaseEnemyAI>().Stun(stunTimer);
+        }
     }
 }
