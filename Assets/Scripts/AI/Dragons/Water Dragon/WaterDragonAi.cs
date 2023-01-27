@@ -441,4 +441,8 @@ public class WaterDragonAi : BasicDragonAI
         attackTimes = data.AttackTimes;
         base.LostPlayer();
     }
+    public override bool PlayerDetect()
+    {
+        return FoundPlayer;
+    }
 }
