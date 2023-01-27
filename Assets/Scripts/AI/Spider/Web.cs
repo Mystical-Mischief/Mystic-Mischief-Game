@@ -13,6 +13,7 @@ public class Web : MonoBehaviour
     public bool isStun;
     float timer = 3f;
 
+    int stunCounter = 0;
 
     ControlsforPlayer controls;
 
@@ -31,21 +32,43 @@ public class Web : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //function deals with how the web shoots and how long it exists before it is deleted.
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
         if (!hitPlayer)
         {
             timer -= Time.deltaTime;
         }
-        if (timer <= 0)
+        if (timer <= 2)
         {
+
             DestroyProjectile();
         }
 
-        if (controls.Actions.Snatch.WasPerformedThisFrame() && isStun == true)
+
+        /* Code commented out becuase the counter to have 2 button presses does
+         * not work for some reason.
+         * 
+        if (controls.Actions.Snatch.WasPressedThisFrame() && isStun == true)
         {
-            player.GetComponent<ThirdPersonController>().canMove = true;
-            isStun = false;
-            DestroyProjectile();
+            if (stunCounter < 1)
+            {
+                stunCounter += 1;
+            }
+            else
+            {
+                player.GetComponent<ThirdPersonController>().canMove = true;
+                isStun = false;
+                stunCounter = 0;
+                DestroyProjectile();
+            }
+        }*/
+
+        //allows the player to break out of a stun with a single snatch button press
+        if (controls.Actions.Snatch.IsPressed() && isStun == true)
+        {
+                player.GetComponent<ThirdPersonController>().canMove = true;
+                isStun = false;
+                DestroyProjectile();
         }
     }
 
@@ -59,14 +82,7 @@ public class Web : MonoBehaviour
             StartCoroutine(StunTimer(col.gameObject));
             isStun = true;
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
 
-        if (!isStun && other.gameObject.tag != "Player")
-        {
-            DestroyProjectile();
-        }
     }
 
     //stuns player
@@ -77,6 +93,7 @@ public class Web : MonoBehaviour
         yield return new WaitForSeconds(stun);
         player.GetComponent<ThirdPersonController>().canMove = true;
         DestroyProjectile();
+        stunCounter = 0;
 
     }
     void DestroyProjectile()
