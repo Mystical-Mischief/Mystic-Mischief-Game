@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 2352274647880217442}
   - component: {fileID: 2352274647880217468}
   - component: {fileID: 4970793329160611933}
-  - component: {fileID: 2306246915029885858}
   m_Layer: 0
   m_Name: VirtualCamera
   m_TagString: Untagged
@@ -91,8 +90,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2352274647880217441}
-  m_LocalRotation: {x: -0.08850713, y: -0.024875011, z: -0.0022109856, w: 0.99576247}
-  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
+  m_LocalRotation: {x: -0.045757405, y: -0.02494663, z: -0.0011430476, w: 0.9986404}
+  m_LocalPosition: {x: 0.49999887, y: -0.7599126, z: -10.001524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -185,20 +184,6 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
---- !u!114 &2306246915029885858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2352274647880217441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b400fd49de2bbf489fd75e3660fa5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragonAi: {fileID: 0}
-  canActivate: 0
 --- !u!1 &2352274648084419578
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +321,6 @@ GameObject:
   - component: {fileID: 2352274648186533688}
   - component: {fileID: 2352274648186533695}
   - component: {fileID: 4970793329663088422}
-  - component: {fileID: 3104810606847106272}
   m_Layer: 0
   m_Name: VirtualCamera (1)
   m_TagString: Untagged
@@ -445,20 +429,6 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
---- !u!114 &3104810606847106272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2352274648186533694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b400fd49de2bbf489fd75e3660fa5c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragonAi: {fileID: 0}
-  canActivate: 0
 --- !u!1 &2352274648369216910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,10 +2438,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3460889892036215275, guid: 08aaef2106c5f2d4faeb4ab35792343f, type: 3}
-      propertyPath: m_TagString
-      value: PlayerFollow
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08aaef2106c5f2d4faeb4ab35792343f, type: 3}
 --- !u!1 &2352274647002553976 stripped
@@ -3026,6 +2992,41 @@ PrefabInstance:
       objectReference: {fileID: 12800000, guid: 64cad1fb6144f0f4892c0ddc71472291, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
+--- !u!1 &6250596879912317043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1029519008113494288, guid: ced6c11699bf04946a4060436568cf7f, type: 3}
+  m_PrefabInstance: {fileID: 6410595530552424803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6460304615148100987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250596879912317043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!224 &6986816081779439684 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4035553603425632551, guid: ced6c11699bf04946a4060436568cf7f, type: 3}

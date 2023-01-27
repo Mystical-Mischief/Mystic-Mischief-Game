@@ -315,7 +315,7 @@ public class Inventory : MonoBehaviour
             StoreItem(other.gameObject); 
             }
         }
-        if (other.gameObject.tag == "Hat" && Store && holdingItem == false)
+        if (other.gameObject.tag == "Hat" && PickUp && holdingItem == false)
         {
             if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.first)
             {
