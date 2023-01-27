@@ -19,10 +19,7 @@ public class HitboxLogic : MonoBehaviour
             //if the enemy is an item holder snatch the item the ai is holding
             if(enemy.GetComponent<BaseEnemyAI>().EnemyType == "ItemHolder")
             {
-                if (enemy.GetComponent<ItemHolderAI>().HoldingItem)
-                {
-                    snatchItem(enemy.GetComponent<ItemHolderAI>().CurrentHeldItem);
-                }
+               
             }
         }
     }

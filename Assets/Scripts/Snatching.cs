@@ -23,7 +23,7 @@ public class Snatching : MonoBehaviour
     {
         snatching = controls.Actions.Snatch.IsPressed();
         //if the player snatchs and is currently not snatching run the snatching function
-        if (snatching && !isSnatching)
+        if (snatching && !isSnatching && !GetComponent<Inventory>().holdingItem && !GetComponent<Inventory>().canGrabItem)
         {
             isSnatching = true;
             // if the player is on the ground use the ground hitbox. 

@@ -76,28 +76,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""249f10df-dcd2-4d2a-b7a2-a5310ed10354"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Store"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c2d68109-9b48-4f39-8328-bd265a513646"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Store"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
                     ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
@@ -115,39 +93,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0b4d538b-bf56-4a9f-a01a-eb3b48c54349"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PressPick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PressPick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -181,6 +126,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenInv"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -297,6 +264,24 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Poop"",
+                    ""type"": ""Button"",
+                    ""id"": ""66e5aeaa-dffd-42a3-8673-e770990da8e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DragonLockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""5907e50a-1eee-4708-a5e0-925f2eb32d71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -401,19 +386,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""17d7afcf-e839-4b7b-b83b-51936af557fa"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchHat"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9dc3e473-1bf9-49f7-95a9-800093297476"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -446,7 +420,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6e384cb0-76c0-4b1a-98a4-167984a63b59"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -457,7 +431,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""076b3051-9ae7-4873-92c8-247a2fafe591"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -567,7 +541,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a135c2dd-936c-4b34-838c-222b7dbfa41c"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -580,7 +554,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""de7bf59d-9d89-48a3-a2a1-58a22ca149c8"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -594,6 +568,50 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": ""InvertVector2(invertY=false)"",
                     ""groups"": """",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b292632f-7007-4cb8-886e-9a210819248d"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Poop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29fd8eff-7f16-494a-9cb5-cc96b7e19df5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Poop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16c2f09-610b-4b04-a596-e4b3c989eeeb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragonLockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""249e7739-f6e0-4f2d-8df9-e35047434970"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragonLockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -616,6 +634,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": ""QuitGame"",
                     ""type"": ""Button"",
                     ""id"": ""31d09895-e657-4807-9d77-01c132754aac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuestAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a5d3679-0bdb-450f-937b-0ed615a4c4c0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -653,6 +680,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40a3ddae-7038-4fe7-a3c3-e98aa13a9282"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuestAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d2b3943-e9e1-4dd9-b240-ea1e6339dd26"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuestAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,10 +867,13 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Movement = m_Actions.FindAction("Movement", throwIfNotFound: true);
         m_Actions_Caw = m_Actions.FindAction("Caw", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
+        m_Actions_Poop = m_Actions.FindAction("Poop", throwIfNotFound: true);
+        m_Actions_DragonLockOn = m_Actions.FindAction("DragonLockOn", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
         m_Pause_QuitGame = m_Pause.FindAction("QuitGame", throwIfNotFound: true);
+        m_Pause_QuestAction = m_Pause.FindAction("QuestAction", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
@@ -968,6 +1020,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Movement;
     private readonly InputAction m_Actions_Caw;
     private readonly InputAction m_Actions_Look;
+    private readonly InputAction m_Actions_Poop;
+    private readonly InputAction m_Actions_DragonLockOn;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -984,6 +1038,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Actions_Movement;
         public InputAction @Caw => m_Wrapper.m_Actions_Caw;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
+        public InputAction @Poop => m_Wrapper.m_Actions_Poop;
+        public InputAction @DragonLockOn => m_Wrapper.m_Actions_DragonLockOn;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1029,6 +1085,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnLook;
+                @Poop.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @Poop.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @Poop.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @DragonLockOn.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
+                @DragonLockOn.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
+                @DragonLockOn.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1069,6 +1131,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Poop.started += instance.OnPoop;
+                @Poop.performed += instance.OnPoop;
+                @Poop.canceled += instance.OnPoop;
+                @DragonLockOn.started += instance.OnDragonLockOn;
+                @DragonLockOn.performed += instance.OnDragonLockOn;
+                @DragonLockOn.canceled += instance.OnDragonLockOn;
             }
         }
     }
@@ -1079,12 +1147,14 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private IPauseActions m_PauseActionsCallbackInterface;
     private readonly InputAction m_Pause_PauseGame;
     private readonly InputAction m_Pause_QuitGame;
+    private readonly InputAction m_Pause_QuestAction;
     public struct PauseActions
     {
         private @ControlsforPlayer m_Wrapper;
         public PauseActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseGame => m_Wrapper.m_Pause_PauseGame;
         public InputAction @QuitGame => m_Wrapper.m_Pause_QuitGame;
+        public InputAction @QuestAction => m_Wrapper.m_Pause_QuestAction;
         public InputActionMap Get() { return m_Wrapper.m_Pause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1100,6 +1170,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuitGame.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
                 @QuitGame.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
                 @QuitGame.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuitGame;
+                @QuestAction.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
+                @QuestAction.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
+                @QuestAction.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
             }
             m_Wrapper.m_PauseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1110,6 +1183,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuitGame.started += instance.OnQuitGame;
                 @QuitGame.performed += instance.OnQuitGame;
                 @QuitGame.canceled += instance.OnQuitGame;
+                @QuestAction.started += instance.OnQuestAction;
+                @QuestAction.performed += instance.OnQuestAction;
+                @QuestAction.canceled += instance.OnQuestAction;
             }
         }
     }
@@ -1234,11 +1310,14 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnCaw(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnPoop(InputAction.CallbackContext context);
+        void OnDragonLockOn(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {
         void OnPauseGame(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
+        void OnQuestAction(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {

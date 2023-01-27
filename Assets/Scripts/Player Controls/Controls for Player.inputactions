@@ -54,28 +54,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "249f10df-dcd2-4d2a-b7a2-a5310ed10354",
-                    "path": "<Keyboard>/e",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Store",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c2d68109-9b48-4f39-8328-bd265a513646",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Store",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "25af452b-f432-46da-8bd2-79f6244aeeed",
                     "path": "<XInputController>/buttonWest",
                     "interactions": "",
@@ -93,39 +71,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0b4d538b-bf56-4a9f-a01a-eb3b48c54349",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ad86e4db-23c8-4aac-9036-2eff151e3b10",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressPick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2643c2af-f640-46b5-b5a6-51cfe754008e",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressPick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -159,6 +104,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenInv",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad86e4db-23c8-4aac-9036-2eff151e3b10",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressPick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2643c2af-f640-46b5-b5a6-51cfe754008e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressPick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -275,6 +242,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Poop",
+                    "type": "Button",
+                    "id": "66e5aeaa-dffd-42a3-8673-e770990da8e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DragonLockOn",
+                    "type": "Button",
+                    "id": "5907e50a-1eee-4708-a5e0-925f2eb32d71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -379,19 +364,8 @@
                 },
                 {
                     "name": "",
-                    "id": "17d7afcf-e839-4b7b-b83b-51936af557fa",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchHat",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9dc3e473-1bf9-49f7-95a9-800093297476",
-                    "path": "<Gamepad>/dpad/left",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -424,7 +398,7 @@
                 {
                     "name": "",
                     "id": "6e384cb0-76c0-4b1a-98a4-167984a63b59",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -435,7 +409,7 @@
                 {
                     "name": "",
                     "id": "076b3051-9ae7-4873-92c8-247a2fafe591",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -545,7 +519,7 @@
                 {
                     "name": "",
                     "id": "a135c2dd-936c-4b34-838c-222b7dbfa41c",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -558,7 +532,7 @@
                     "id": "de7bf59d-9d89-48a3-a2a1-58a22ca149c8",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "InvertVector2(invertY=false)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
@@ -572,6 +546,50 @@
                     "processors": "InvertVector2(invertY=false)",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b292632f-7007-4cb8-886e-9a210819248d",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Poop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29fd8eff-7f16-494a-9cb5-cc96b7e19df5",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Poop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16c2f09-610b-4b04-a596-e4b3c989eeeb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragonLockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "249e7739-f6e0-4f2d-8df9-e35047434970",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragonLockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -594,6 +612,15 @@
                     "name": "QuitGame",
                     "type": "Button",
                     "id": "31d09895-e657-4807-9d77-01c132754aac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QuestAction",
+                    "type": "Button",
+                    "id": "9a5d3679-0bdb-450f-937b-0ed615a4c4c0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -631,6 +658,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40a3ddae-7038-4fe7-a3c3-e98aa13a9282",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d2b3943-e9e1-4dd9-b240-ea1e6339dd26",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuestAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
