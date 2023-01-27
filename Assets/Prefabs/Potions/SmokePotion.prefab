@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4258509396409830288}
   - component: {fileID: 3069916364103950565}
   - component: {fileID: 7644058293559916564}
+  - component: {fileID: 117545042041423000}
   m_Layer: 0
   m_Name: SmokePotion
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeScreen: {fileID: 8788795221550561932, guid: 91ff5156996f7dc439b70545acaef232, type: 3}
+  stunTimer: 5
+--- !u!135 &117545042041423000
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4312630136759915681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 60
+  m_Center: {x: 0, y: 6, z: 1}
