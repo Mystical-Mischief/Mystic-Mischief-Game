@@ -91,7 +91,6 @@ public class SpiderAI : BaseEnemyAI
                 NavMeshHit hit;
                 NavMesh.SamplePosition(randomDirection, out hit, wanderRange, 1);
                 Vector3 finalPosition = hit.position;
-                print(finalPosition);
                 UpdateDestination(finalPosition);
             }
             else

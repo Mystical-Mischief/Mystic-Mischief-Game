@@ -273,6 +273,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DragonLockOn"",
+                    ""type"": ""Button"",
+                    ""id"": ""5907e50a-1eee-4708-a5e0-925f2eb32d71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -583,6 +592,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""Poop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16c2f09-610b-4b04-a596-e4b3c989eeeb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragonLockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""249e7739-f6e0-4f2d-8df9-e35047434970"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragonLockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -837,6 +868,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Caw = m_Actions.FindAction("Caw", throwIfNotFound: true);
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_Poop = m_Actions.FindAction("Poop", throwIfNotFound: true);
+        m_Actions_DragonLockOn = m_Actions.FindAction("DragonLockOn", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
@@ -989,6 +1021,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Caw;
     private readonly InputAction m_Actions_Look;
     private readonly InputAction m_Actions_Poop;
+    private readonly InputAction m_Actions_DragonLockOn;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -1006,6 +1039,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Caw => m_Wrapper.m_Actions_Caw;
         public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputAction @Poop => m_Wrapper.m_Actions_Poop;
+        public InputAction @DragonLockOn => m_Wrapper.m_Actions_DragonLockOn;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1054,6 +1088,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Poop.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
                 @Poop.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
                 @Poop.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnPoop;
+                @DragonLockOn.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
+                @DragonLockOn.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
+                @DragonLockOn.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1097,6 +1134,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @Poop.started += instance.OnPoop;
                 @Poop.performed += instance.OnPoop;
                 @Poop.canceled += instance.OnPoop;
+                @DragonLockOn.started += instance.OnDragonLockOn;
+                @DragonLockOn.performed += instance.OnDragonLockOn;
+                @DragonLockOn.canceled += instance.OnDragonLockOn;
             }
         }
     }
@@ -1271,6 +1311,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnCaw(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnPoop(InputAction.CallbackContext context);
+        void OnDragonLockOn(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {
