@@ -79,11 +79,11 @@ public class CameraLogic : MonoBehaviour
     }
 
         public void SaveCamera()
-    {
-        SaveSystem.SaveCamera(this);
-    }
+        {
+            SaveSystem.SaveCamera(this);
+        }
         public void LoadCamera ()
-    {
+        {
         CameraData data = SaveSystem.LoadCamera();
         Vector3 position;
         position.x = data.position[0];
