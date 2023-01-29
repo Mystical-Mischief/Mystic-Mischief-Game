@@ -439,6 +439,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26840964}
   m_CullTransparentMesh: 1
+--- !u!1001 &43576910
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1163440151}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.469253
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13091612
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.7522907
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68226695
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7311032
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 93.958
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+      propertyPath: m_Name
+      value: Wizard (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+--- !u!4 &43576911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+  m_PrefabInstance: {fileID: 43576910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &43576912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b1d142ba386f56448bf592787afd762, type: 3}
+  m_PrefabInstance: {fileID: 43576910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &58848990
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +849,103 @@ Transform:
   m_Father: {fileID: 692181040}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &84155191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 84155192}
+  - component: {fileID: 84155195}
+  - component: {fileID: 84155194}
+  - component: {fileID: 84155193}
+  m_Layer: 0
+  m_Name: Bird House
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &84155192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84155191}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 7.9600887, y: 5.2990837, z: 18.202917}
+  m_LocalScale: {x: 1.1440208, y: 1.7955, z: 1.7955}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1163440151}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &84155193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84155191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &84155194
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84155191}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 237f8ad9ba9be7f42908653db5db33fb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &84155195
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84155191}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &91895520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3632,85 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 692f789ccaf3028449cfb3018537b9ca, type: 3}
   m_PrefabInstance: {fileID: 410014747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &428822996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1163440151}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.39012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.39012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.9848404
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6790838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.762917
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7083307
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7058808
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 89.802
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+      propertyPath: m_Name
+      value: Sword_Regular
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+--- !u!4 &428822997 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+  m_PrefabInstance: {fileID: 428822996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &428822998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 376e01db93afbea46b048bd4f6001888, type: 3}
+  m_PrefabInstance: {fileID: 428822996}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &440671756
 PrefabInstance:
@@ -7391,6 +7634,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e94f15aa60088c24e8584c7b52fd0c0f, type: 3}
   m_PrefabInstance: {fileID: 800838696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &804798084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9087141192907297540, guid: 991fcf213ac046849aa24e5b94453687, type: 3}
+  m_PrefabInstance: {fileID: 1383366590}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &822652706 stripped
 Transform:
@@ -11531,6 +11779,11 @@ Transform:
   m_Father: {fileID: 692181040}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -89.866, z: 0}
+--- !u!1 &1093580588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3225405914596433664, guid: e48f09f368e2baf48baab0d9c3128b4d, type: 3}
+  m_PrefabInstance: {fileID: 2037392126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1099998110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12212,6 +12465,10 @@ Transform:
   m_Children:
   - {fileID: 1383366591}
   - {fileID: 569565238}
+  - {fileID: 43576911}
+  - {fileID: 84155192}
+  - {fileID: 1222219321}
+  - {fileID: 428822997}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12288,6 +12545,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e94f15aa60088c24e8584c7b52fd0c0f, type: 3}
   m_PrefabInstance: {fileID: 1164199445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1165770264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b6925b049b1a9df4aa05625af052a42f, type: 3}
+  m_PrefabInstance: {fileID: 1257775769}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1171141590
 GameObject:
@@ -12968,6 +13230,86 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e94f15aa60088c24e8584c7b52fd0c0f, type: 3}
   m_PrefabInstance: {fileID: 1215989038}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1222219320
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1163440151}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.95
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.614
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+      propertyPath: m_Name
+      value: Explorers_Hat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+--- !u!4 &1222219321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+  m_PrefabInstance: {fileID: 1222219320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1222219322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d77e39608019db44be52a4f28b5992e, type: 3}
+  m_PrefabInstance: {fileID: 1222219320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1222219323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222219322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49575812, y: 0.5030001, z: 0.47149414}
+  m_Center: {x: 0, y: 0.23755005, z: 0}
 --- !u!1 &1224945538
 GameObject:
   m_ObjectHideFlags: 0
@@ -15644,7 +15986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1460793632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16551,6 +16893,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02e1e78322f435a48b8c3d0a7a8f12e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1519102598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8340303615475355860, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+  m_PrefabInstance: {fileID: 1974848883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a902417b804e7848a3b8dfb931be443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1522530229
@@ -17529,7 +17882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1599635685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21426,7 +21779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1970376717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21519,7 +21872,7 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1019371000}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: questText
       value: 
@@ -21527,11 +21880,19 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: nextQuestText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 589449200}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.size
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: questScript.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: questScript.Array.data[4]
+      value: 
+      objectReference: {fileID: 1519102598}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].NPC
       value: 
@@ -21577,6 +21938,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: ca40b3a1baaa81544890a2ce859ec27e, type: 3}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].questName
       value: How to move
       objectReference: {fileID: 0}
@@ -21586,7 +21951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].questName
-      value: Tracker Hat
+      value: How to Fly
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].questType
@@ -21594,11 +21959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].questName
-      value: How to Fly
+      value: How to dive
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].questType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].questName
@@ -21606,27 +21971,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].questType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].questName
-      value: Find Wizard Hat
+      value: Pick Up/Drop Items while flying
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].questType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].questName
-      value: Talk To Clever Bird
+      value: Tracker Hat
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].questType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].questName
-      value: Collect Tickets
+      value: Pick up wizard food
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].questType
@@ -21634,15 +21999,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[7].questName
-      value: Talk To Shy Bird
+      value: Chase Rat
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[7].questType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].questName
-      value: Rescue Shy Bird
+      value: Go back to wizard
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].questType
@@ -21663,6 +22028,22 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[10].questType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_Id
+      value: 108d1121-f8a5-4399-b29f-9d7fe1d51f32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_Id
+      value: 385b62be-295c-4026-ae09-7540788f0777
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_Id
+      value: b297bed0-82bf-43b5-8cc1-6129d81429c5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[5].input.m_Id
+      value: d9eec64e-f3ba-4571-bd70-634dc48c27cd
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].turnInQuest
@@ -21686,15 +22067,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].turnInQuest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].turnInQuest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[7].turnInQuest
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].turnInQuest
@@ -21705,46 +22086,58 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[5].input.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].questDescription
-      value: WASD & mouse/Left & Right sticks to walk to the nest
+      value: Go to the wizard. WASD/ control stick.
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].questDescription
+      value: Space bar & mouse/ A & joy sticks to fly to the tree near the mast
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].questDescription
+      value: Hold shift/Press B
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].questDescription
+      value: E/X  to drop and pick up. Go find tracker hat.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].questDescription
+      value: E/X to drop and pick up
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[5].questDescription
       value: Press Tab/Right D-Pad to switch to the explorers hat.  Use this to focus
         on where you need to go by pressing 1/LT. if you can't figure out where to
         go next! Look for the tree to go to.
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: allQuests.Array.data[2].questDescription
-      value: Space bar & mouse/ A & joy sticks to fly to the tree near the mast
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: allQuests.Array.data[3].questDescription
-      value: Go up to items on the table. Press F/X  to pick up the sword. Press
-        E/Y to store. Now you cant fly as high due to the wieght of the object(s). 
-        Press Q/Left Trigger to see your inventory and the weight you are holding.
-        To drop items, press G/Right Bumper from inventory or F/X if you are holding
-        it. Bring the sword to the nest
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: allQuests.Array.data[4].questDescription
-      value: Find wizard hat.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: allQuests.Array.data[5].questDescription
-      value: Look for the clever bird in the merchandise section of the cave
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].questDescription
-      value: Explore outside to find the tickets.
+      value: Go to his room and get food
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[7].questDescription
-      value: Explore the cave to find the shy bird.
+      value: Get the item from the rat.
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].questDescription
-      value: Bring Shy bird to the tree next to the popcorn stand
+      value: Go bring the item to the wizard
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[9].questDescription
@@ -21772,7 +22165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].rewards.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[9].rewards.Array.size
@@ -21836,23 +22229,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].objectiveItems.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].objectiveItems.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].objectiveItems.Array.size
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[7].objectiveItems.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].objectiveItems.Array.size
@@ -21869,19 +22262,19 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1093580588}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 43576912}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1093580588}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 84155191}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].objectiveItems.Array.data[0]
       value: 
@@ -21925,11 +22318,11 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 428822998}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1222219322}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].objectiveItems.Array.data[2]
       value: 
@@ -22005,11 +22398,11 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1093580588}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1165770264}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.data[2]
       value: 
@@ -22045,7 +22438,7 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 804798084}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].objectiveItems.Array.data[1]
       value: 
@@ -22093,11 +22486,11 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1093580588}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 43576912}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[9].objectiveItems.Array.data[0]
       value: 
@@ -22105,6 +22498,62 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[10].objectiveItems.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 6c09c89d-fe0e-4a13-9811-462a494fceba
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 8eebee0a-32e2-495e-8ccf-dcf7109d060a
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 4324489a-1e3a-4383-b59e-9f792ba92bcd
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.data[0].m_Id
+      value: b428efb2-6f29-4351-af65-2f18b3f268c3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/shift
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].input.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345686, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: m_Enabled
@@ -22120,15 +22569,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345687, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9100537
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345687, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2182667
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345687, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.2318711
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345687, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22196,23 +22645,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: startQuests.Array.data[2]
-      value: how to glide
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: startQuests.Array.data[3]
       value: how to dive
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: startQuests.Array.data[4]
+      propertyPath: startQuests.Array.data[3]
       value: Tracker Hat
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: startQuests.Array.data[5]
+      propertyPath: startQuests.Array.data[4]
       value: pick up/drop items
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: startQuests.Array.data[6]
+      propertyPath: startQuests.Array.data[5]
       value: pick up/drop items flying
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: startQuests.Array.data[6]
+      value: Pick up wizard food
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: startQuests.Array.data[7]
@@ -22236,23 +22685,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: questsToActivate.Array.data[2]
-      value: How to glide
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: questsToActivate.Array.data[3]
       value: How to dive
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: questsToActivate.Array.data[4]
+      propertyPath: questsToActivate.Array.data[3]
       value: Tracker Hat
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: questsToActivate.Array.data[5]
+      propertyPath: questsToActivate.Array.data[4]
       value: pick up/drop items
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
-      propertyPath: questsToActivate.Array.data[6]
+      propertyPath: questsToActivate.Array.data[5]
       value: pick up/drop items while flying
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: questsToActivate.Array.data[6]
+      value: Pick up wizard food
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: questsToActivate.Array.data[7]
@@ -22266,7 +22715,8 @@ PrefabInstance:
       propertyPath: questsToActivate.Array.data[9]
       value: Find Escape Portal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1474249249962068078, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
 --- !u!1001 &1978787856
 PrefabInstance:
