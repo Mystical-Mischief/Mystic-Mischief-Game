@@ -82,7 +82,7 @@ public class Inventory : MonoBehaviour
         //     }
         // }
         // float Mass = rb.mass.ToString();
-        Weight.text = ("Weight: " + MassText.ToString("F2")+"lb");
+        //Weight.text = ("Weight: " + MassText.ToString("F2")+"lb");
         weightFloat = rb.mass;
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
