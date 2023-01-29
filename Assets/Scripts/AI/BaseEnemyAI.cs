@@ -1,5 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,9 +16,8 @@ public class BaseEnemyAI : MonoBehaviour
     public string EnemyType;
     private int Health;
 
-    public bool isStunned;
     public GameObject Player;
-    internal bool stunned;
+    public bool stunned;
     private bool Saved;
     [HideInInspector]
     public Vector3 targetPosition;
@@ -25,6 +26,13 @@ public class BaseEnemyAI : MonoBehaviour
 
     public Transform target;
     internal NavMeshAgent ai;
+    private Rigidbody ai_Rb;
+
+    [SerializeField]
+    private float stunTime;
+    float timer;
+
+    
     
     //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
     //start used to set up nav mesh and set target if its null
@@ -41,36 +49,53 @@ public class BaseEnemyAI : MonoBehaviour
             UpdateDestination(target.position);
         }
         Player = GameObject.FindGameObjectWithTag("Player");
+        ai_Rb = GetComponent<Rigidbody>();
+        stunned = false;
+        timer = stunTime;
     }
 
     public void Update()
     {
-
-        if (target == Player)
+        if(!stunned)
         {
-            Player.GetComponent<ThirdPersonController>().Targeted = true;
+            if(stunned)
+            {
+                Transform stunnedPos = ai_Rb.transform;
+                targetPosition = stunnedPos.position;
+                ai_Rb.transform.position = targetPosition;
+                return;
+            }
+            if (target == Player)
+            {
+                Player.GetComponent<ThirdPersonController>().Targeted = true;
+            }
+            targetPosition = target.transform.position;
+            // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+            // {
+            //     SaveEnemy();
+            //     Saved = true;
+            // }
+            // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+            // {
+            //     Saved = false;
+            //     LoadEnemy();
+            // }
+            //if the ai doesnt see the player then it will patrol and look for it
+            if (!spottedPlayer)
+            {
+                EnemyDetection();
+                Patrol();
+            }
+            //if the ai finds the player it will do what it does when it sees the player
+            else
+            {
+                FoundPlayer();
+            }
         }
-        targetPosition = target.transform.position;
-        // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
-        // {
-        //     SaveEnemy();
-        //     Saved = true;
-        // }
-        // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
-        // {
-        //     Saved = false;
-        //     LoadEnemy();
-        // }
-        //if the ai doesnt see the player then it will patrol and look for it
-        if (!spottedPlayer)
-        {
-            EnemyDetection();
-            Patrol();
-        }
-        //if the ai finds the player it will do what it does when it sees the player
         else
         {
-            FoundPlayer();
+            timer-=Time.deltaTime;
+            Stun(timer);
         }
     }
     //updates where the player goes to save code
@@ -92,9 +117,8 @@ public class BaseEnemyAI : MonoBehaviour
     //if the ai doesnt see the player it will patrol between all the points
     public virtual void Patrol()
     {
-        if (!stunned)
-        {
-            if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false)
+
+            if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false && !stunned)
             {
                 atDestination = true;
                 //if the player isnt at the last point
@@ -115,25 +139,24 @@ public class BaseEnemyAI : MonoBehaviour
             {
                 atDestination = false;
             }
-        }
     }
     public virtual void Stun(float time)
     {
-        if (!isStunned)
+        if(stunned && time > 0)
         {
-            float currSpeed = GetComponent<NavMeshAgent>().speed;
-            GetComponent<NavMeshAgent>().speed = 0;
-            StartCoroutine(stunTimer(time, currSpeed));
-            isStunned = true;
+            
+            Transform stunnedPos = ai_Rb.transform;
+            targetPosition = stunnedPos.position;
+            UpdateDestination(targetPosition);
+        }
+        else
+        {
+            stunned = false;
+            timer = stunTime;
         }
     }
-    IEnumerator stunTimer(float time, float speed)
-    {
-        yield return new WaitForSeconds(time);
-        print(speed);
-        GetComponent<NavMeshAgent>().speed = speed;
-        isStunned = false;
-    }
+
+ 
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     private Vector3 PlayerDirection;
     public virtual void FoundPlayer()
