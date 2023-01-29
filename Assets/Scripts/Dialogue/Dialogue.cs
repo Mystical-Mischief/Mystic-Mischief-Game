@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class Character
 {
     public string CharacterName;
-    public Sprite CharacterSprite;
+    public Vector3 CameraPosition;
+    public Vector3 CameraRotation;
 }
 [Serializable]
 public class DialogueLines
@@ -24,7 +25,6 @@ public class AllDialogue
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public Image characterImage;
     public bool DialogueIsRandom;
     public Character[] Characters;
     public AllDialogue[] AllDialogues;
