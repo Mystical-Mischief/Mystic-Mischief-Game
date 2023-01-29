@@ -11,6 +11,7 @@ public enum QuestType
     TalkToNPC,
     Collection,
     Escort,
+    Input
 }
 [Serializable]
 public class QuestInfo
@@ -22,6 +23,8 @@ public class QuestInfo
     public bool turnInQuest;
     [Header("Use only if turn in quest is true")]
     public GameObject NPC;
+    [Header("Use only if input quest")]
+    public UnityEngine.InputSystem.InputAction input;
     public GameObject[] rewards;
     [HideInInspector]
     public bool active;
@@ -103,6 +106,10 @@ public class Quest : MonoBehaviour
             case QuestType.Escort:
                 questScript[3].enabled = true;
                 questScript[3].GetComponent<EscortQuest>().startQuest(activeQuest, this);
+                break;
+            case QuestType.Input:
+                questScript[4].enabled = true;
+                questScript[4].GetComponent<ButtonQuest>().startQuest(activeQuest, this, activeQuest.input);
                 break;
             default:
                 print("quest not found");
