@@ -78,7 +78,7 @@ public class Dialogue : MonoBehaviour
             }
         }
         DialogueLines[] currentConversation = AllDialogues[convoNumber - 1].Interaction;
-        characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
+        //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
     }
     //types the lines letter by letter to look nice
@@ -99,7 +99,7 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
+            //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
             StartCoroutine(TypeLine(currentConversation));
         }
         else
