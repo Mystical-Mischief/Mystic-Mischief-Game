@@ -55,7 +55,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!136 &1027322425337115458
 CapsuleCollider:
@@ -266,9 +266,12 @@ MonoBehaviour:
   patrolNum: 0
   SightDistance: 10
   EnemyType: 
+  isStunned: 0
   Player: {fileID: 0}
+  stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  stunTime: 3
   attackedPlayer: 0
   knockbackForce: 300
   anim: {fileID: 5980609982658558602}
