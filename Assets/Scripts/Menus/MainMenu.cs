@@ -14,7 +14,8 @@ public class MainMenu : MonoBehaviour
     public void GoToLevel2() => SceneManager.LoadScene(6);
     
     public void GoToLevel3() => SceneManager.LoadScene(7);
-    
+
+    public void GoToWizardHub() => SceneManager.LoadScene(8);
 
     public void LoadGame()
     {
