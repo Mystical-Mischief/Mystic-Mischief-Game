@@ -262,6 +262,7 @@ public class Inventory : MonoBehaviour
         // Item.GetComponent<Item>().inInventory = true;
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
+        Item.transform.rotation = HoldItemPosition.rotation;
         Item.GetComponent<Rigidbody>().isKinematic = true;
         holdingItem = true;
         currentHeldItem = Item;
