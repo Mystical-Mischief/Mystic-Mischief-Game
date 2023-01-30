@@ -60,10 +60,7 @@ public class KoboltAI : BaseEnemyAI
             {
                 attackedPlayer = true;
                 LostPlayer();
-                if(player.godMode==false)
-                {
-                    player.currentHealth--;
-                }
+                player.TakeDamage(1);
                 //Knockback
                 collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
             }

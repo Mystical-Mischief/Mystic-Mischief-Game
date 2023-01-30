@@ -261,8 +261,8 @@ public class ThirdPersonController : MonoBehaviour
         //}
     }
 
-        public TextMeshProUGUI damagetext;
-        public InteractionpromptUI Interactionprompt;
+    public InteractionpromptUI Interactionprompt;
+    public bool damaged;
     public void TakeDamage(int damage)
     {
         if(!godMode)
@@ -270,13 +270,19 @@ public class ThirdPersonController : MonoBehaviour
             playerAnimation.PlaySound(HurtClip);
             currentHealth -= damage;
             Debug.Log(currentHealth);
-            damagetext.text = "FUCK";
-            Interactionprompt.IsDisplayed = true;
-
+            damaged = true;
+            Interactionprompt.Setup("FUCK");
+            StartCoroutine(tookDamage());
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
             Debug.Log("In TakeDamage");
         }
         
+    }
+    IEnumerator tookDamage()
+    {
+        yield return new WaitForSeconds(2);
+        Interactionprompt.Close();
+        damaged = false;
     }
 
     private void LookAt()
