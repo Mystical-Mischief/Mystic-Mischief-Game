@@ -271,7 +271,7 @@ public class ThirdPersonController : MonoBehaviour
             currentHealth -= damage;
             Debug.Log(currentHealth);
             damaged = true;
-            Interactionprompt.Setup("FUCK");
+            Interactionprompt.Setup("Ouch, That hurt!");
             StartCoroutine(tookDamage());
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
             Debug.Log("In TakeDamage");
