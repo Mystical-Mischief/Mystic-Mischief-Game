@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -260,7 +261,8 @@ public class ThirdPersonController : MonoBehaviour
         //}
     }
 
-
+        public TextMeshProUGUI damagetext;
+        public InteractionpromptUI Interactionprompt;
     public void TakeDamage(int damage)
     {
         if(!godMode)
@@ -268,6 +270,8 @@ public class ThirdPersonController : MonoBehaviour
             playerAnimation.PlaySound(HurtClip);
             currentHealth -= damage;
             Debug.Log(currentHealth);
+            damagetext.text = "FUCK";
+            Interactionprompt.IsDisplayed = true;
 
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
             Debug.Log("In TakeDamage");
