@@ -37,6 +37,9 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     private bool finishedPatrolling;
     public bool inAir;
     public bool onGround;
+    private float previousSpeed;
+    private float previousAISpeed;
+    public bool canMove;
 
     public new void Start()
     {
@@ -46,46 +49,22 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         rb = GetComponent<Rigidbody>();
         ai = this.GetComponent<NavMeshAgent>();
         base.Start();
-        // if(target == null)
-        // {
-        //     target = base.PatrolPoints[0].transform;
-        //     UpdateDestination(target.position);
-        // }
+        NewPath();
     }
 
     public new void Update()
     {
-        // if (target == Player)
-        // {
-        //     Player.GetComponent<ThirdPersonController>().Targeted = true;
-        // }
-        // targetPosition = target.transform.position;
-
-        if (randomNumber == 1)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }
-        if (randomNumber == 2)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }      
-        if (randomNumber == 3)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }
 
         //if the ai doesnt see the player then it will patrol and look for it
         if (!spottedPlayer)
         {
             EnemyDetection();
-            if (onGround == true)
+            if(canMove == true && onGround == true && inAir == false)
             {
             Patrol();
             }
-            if (inAir == true)
+
+            if (inAir == true && onGround == false)
             {
                 PatrolAir();
             }
@@ -94,9 +73,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (finishedPatrolling)
         {
             print("points cleared");
-            // base.PatrolPoints.Clear();
             NewRandomNumber();
-            // PatrolPoints = AllPatrolPoints[randomNumber].WanderPoints;
             UpdateDestination(base.PatrolPoints[0].position);
             lastPosition = base.PatrolPoints.Count - 1;
             patrolNum = 0;
@@ -107,6 +84,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             GoToGround();
         }
         base.Update();
+        if (isGroundedD == true)
+        {
+            
+        }
     }
 
     public override void Patrol()
@@ -134,6 +115,43 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             atDestination = false;
         }
     }
+
+    public void NewPath()
+    {
+        if (randomNumber == 1 && inAir == false)
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        }
+        else
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        }
+
+        if (randomNumber == 2 && inAir == false)
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        }
+        else
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        } 
+
+        if (randomNumber == 3 && inAir == false)
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        }
+        else
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        }
+    }
+    
     public void PatrolAir()
     {
         float dist = Vector3.Distance(base.target.position, transform.position);
@@ -170,7 +188,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         float dist = Vector3.Distance(base.target.position, transform.position);
 
         // Transform startGround = WanderPointsGround[1].WanderPoints[1].position;
-        transform.position = Vector3.MoveTowards(transform.position, WanderPointsGround[1].WanderPoints[1].transform.position, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, WanderPointsGround[0].WanderPoints[0].transform.position, Speed * Time.deltaTime);
         if (dist < 0.5f && atDestination == false)
         {
             inAir = false;
@@ -201,6 +219,25 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             LostPlayer();
         }
+    }
+
+    public void StopMoving()
+    {
+        previousSpeed = Speed;
+        previousAISpeed = ai.speed;
+        Speed = 0;
+        ai.speed = 0;
+    }
+
+    public void StartMoving()
+    {
+        Speed = previousSpeed;
+        ai.speed = previousAISpeed;
+    }
+    
+    public override void Stun(float time)
+    {
+
     }
 
 

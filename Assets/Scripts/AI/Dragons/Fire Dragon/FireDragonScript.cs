@@ -15,19 +15,26 @@ public class FireDragonScript : BasicfireDragonAI
     public bool spotsPlayer;
     public ParticleSystem ps;
     public float maxDistance;
+    public float meleeDist;
+    private bool meleeAttack;
+    public GameObject attackPos;
+    private bool attacked;
+    public float attackDist;
+    public float agressionMeter;
+    public bool fireBreath;
 
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
-        ps = GetComponent<ParticleSystem>();
-        ps.Play(true);
+        // ps = GetComponent<ParticleSystem>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
@@ -53,14 +60,26 @@ public class FireDragonScript : BasicfireDragonAI
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             // Debug.Log("Hit Player");
         }
-    }
-
-        void OnParticleCollision(GameObject other)
-    {
-
-    }
-        //     if (other.gameObject.CompareTag("Player"))
+        if (dist <= attackDist && base.inAir == true && attacked == false)
+        {
+            ps.Play(true);
+        }
+        // else 
         // {
-        //     Debug.Log("HitPlayer");
+        //     ps.Stop(true);
         // }
+
+        // If it is close to the dragon it sets the attack to true.
+         if (dist > 2f && dist <= meleeDist)
+         {
+            //transform.LookAt(PlayerPos);
+            if (meleeAttack == false)
+            {
+            attackPos.SetActive(true);
+            meleeAttack = true;
+            attacked = true;
+            }
+            // else {anim.SetBool("Bite 0", false);}
+         }
+    }
 }
