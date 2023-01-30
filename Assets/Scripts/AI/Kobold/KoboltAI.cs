@@ -56,11 +56,17 @@ public class KoboltAI : BaseEnemyAI
     {
         if(!attackedPlayer && collision.gameObject.tag == "Player")
         {
-            attackedPlayer = true;
-            LostPlayer();
-            player.currentHealth--;
-            //Knockback
-            collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
+            if(!stunned)
+            {
+                attackedPlayer = true;
+                LostPlayer();
+                if(player.godMode==false)
+                {
+                    player.currentHealth--;
+                }
+                //Knockback
+                collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+            }
             
         }
     }
