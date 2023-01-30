@@ -17,12 +17,14 @@ public class Item : MonoBehaviour
     public Sprite sprite;
     public Color spriteColor;
     public bool canDrop;
+    public bool dropped;
 
     [SerializeField] private GameObject itemEffect;
 
     void Start()
     {
         Player = GameObject.Find("Player");
+        dropped = false;
     }
     
     public void SaveItem()
