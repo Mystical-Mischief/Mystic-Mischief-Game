@@ -44,7 +44,10 @@ public class SnakeAI : BaseEnemyAI
         {
             LostPlayer();
             attackedPlayer = true;
-            player.currentHealth--;
+            if(player.godMode==false)
+            {
+                player.currentHealth--;
+            }
             //Knockback
             collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
             

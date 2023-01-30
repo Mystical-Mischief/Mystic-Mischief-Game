@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool Targeted;
     public bool inWater;
     public PlayerAnimation playerAnimation;
-            public AudioClip HurtClip;
+    public AudioClip HurtClip;
 
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
@@ -62,8 +63,8 @@ public class ThirdPersonController : MonoBehaviour
     //public GameObject staminaBar;
 
     private AudioSource caw;
-    
 
+    public bool godMode { get; private set;}
 
     // Start is called before the first frame update
     private void Awake()
@@ -86,6 +87,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth = maxHealth;
 
         caw = GetComponent<AudioSource>();
+        godMode = false;
         
     }
     private void FixedUpdate()
@@ -247,16 +249,28 @@ public class ThirdPersonController : MonoBehaviour
         //}
     }
 
-
+    public InteractionpromptUI Interactionprompt;
+    public bool damaged;
     public void TakeDamage(int damage)
     {
-        playerAnimation.PlaySound(HurtClip);
-        currentHealth -= damage;
-        Debug.Log(currentHealth);
-
-        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
-        Debug.Log("In TakeDamage");
+        if(!godMode)
+        {
+            playerAnimation.PlaySound(HurtClip);
+            currentHealth -= damage;
+            Debug.Log(currentHealth);
+            damaged = true;
+            Interactionprompt.Setup("Ouch, That hurt!");
+            StartCoroutine(tookDamage());
+            //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+            Debug.Log("In TakeDamage");
+        }
         
+    }
+    IEnumerator tookDamage()
+    {
+        yield return new WaitForSeconds(2);
+        Interactionprompt.Close();
+        damaged = false;
     }
 
     private void LookAt()
@@ -291,6 +305,7 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.Enable();
         //controls.Actions.Jump.started += DoJump;
         controls.Actions.Caw.started += Caw;
+        controls.Actions.GodMode.started += GodMode;
         move = controls.Actions.Movement;
         //playerInputs.PlayerOnGround.Enable();
         controls.Enable();
@@ -305,6 +320,7 @@ public class ThirdPersonController : MonoBehaviour
         //controls.Actions.Jump.started -= DoJump;
         controls.Actions.Caw.started -= Caw;
         //playerInputs.PlayerOnGround.Disable();
+        controls.Actions.GodMode.started-=GodMode;
         controls.Disable();
 
         camGround.SetActive(false);
@@ -397,13 +413,13 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoJump()
     {
-            if (Stamina > 0 && isGrounded == true)
+        if (Stamina > 0)
+        {
+            animator.SetTrigger("Jump");    
+            forceDirection += Vector3.up * jumpForce;
+            if(!godMode)
             {
-                animator.SetTrigger("Jump");    
-                forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
-                //StaminaBar.instance.UseStamina(1);
-                Debug.Log("In DoJump Function");
             }
             if (Stamina > 0 && isGrounded == false)
             {
@@ -414,6 +430,10 @@ public class ThirdPersonController : MonoBehaviour
                 Debug.Log("In DoJump Function");
                 jumpInAir = true;
             }
+                
+            //StaminaBar.instance.UseStamina(1);
+            Debug.Log("In DoJump Function");
+        }
     }
     public void SavePlayer ()
     {
@@ -458,6 +478,21 @@ public class ThirdPersonController : MonoBehaviour
     private void Caw(InputAction.CallbackContext obj)
     {
         caw.Play();
+    }
+    private void GodMode(InputAction.CallbackContext obj)
+    {
+        if(!godMode)
+        {
+            godMode = true;
+            maxSpeed *= 2;
+            moveForce *= 2;
+        }
+        else
+        {
+            maxSpeed /= 2;
+            moveForce /= 2;
+            godMode = false;
+        }
     }
 
 }
