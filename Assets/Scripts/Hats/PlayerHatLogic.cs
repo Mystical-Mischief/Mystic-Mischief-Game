@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHatLogic : MonoBehaviour
 {
     public GameObject[] hats;
+    public GameObject[] godModeHats;
+    GameObject[] playerHats;
 
     ControlsforPlayer controls;
     private bool switchHat;
@@ -12,21 +14,33 @@ public class PlayerHatLogic : MonoBehaviour
     public GameObject currentHatObject;
     private bool canSwitchHat = true;
 
+    private ThirdPersonController player;
+
     void Start()
     {
         //sets up all the boring stuff like controls what hat the player is using and disables all but the first hat
         controls = new ControlsforPlayer();
         controls.Enable();
         currentHatNum = 0;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
         foreach(GameObject hat in hats)
         {
             hat.SetActive(false);
         }
         hats[currentHatNum].SetActive(true);
+        playerHats = hats;
     }
 
     void Update()
     {
+        if(player.godMode)
+        {
+            hats = godModeHats;
+        }
+        else
+        {
+            hats = playerHats;
+        }
         //if the player switches their hat run the hat change corotine so the players cant spam it
         switchHat = controls.Actions.SwitchHat.IsPressed();
         if (switchHat && canSwitchHat)

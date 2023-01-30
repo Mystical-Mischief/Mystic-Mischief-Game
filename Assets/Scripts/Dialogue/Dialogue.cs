@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class Character
 {
     public string CharacterName;
-    public Sprite CharacterSprite;
+    public Vector3 CameraPosition;
+    public Vector3 CameraRotation;
 }
 [Serializable]
 public class DialogueLines
@@ -24,7 +25,6 @@ public class AllDialogue
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public Image characterImage;
     public bool DialogueIsRandom;
     public Character[] Characters;
     public AllDialogue[] AllDialogues;
@@ -78,7 +78,7 @@ public class Dialogue : MonoBehaviour
             }
         }
         DialogueLines[] currentConversation = AllDialogues[convoNumber - 1].Interaction;
-        characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
+        //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
     }
     //types the lines letter by letter to look nice
@@ -99,7 +99,7 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
+            //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
             StartCoroutine(TypeLine(currentConversation));
         }
         else

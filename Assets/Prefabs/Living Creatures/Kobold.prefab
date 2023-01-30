@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5904533983049128167}
   m_Layer: 0
   m_Name: Kobold
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!136 &1027322425337115458
 CapsuleCollider:
@@ -267,8 +267,10 @@ MonoBehaviour:
   SightDistance: 10
   EnemyType: 
   Player: {fileID: 0}
+  stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  stunTime: 3
   attackedPlayer: 0
   knockbackForce: 300
   anim: {fileID: 5980609982658558602}
