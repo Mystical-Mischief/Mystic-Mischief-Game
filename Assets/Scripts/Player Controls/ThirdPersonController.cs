@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -260,7 +261,8 @@ public class ThirdPersonController : MonoBehaviour
         //}
     }
 
-
+    public InteractionpromptUI Interactionprompt;
+    public bool damaged;
     public void TakeDamage(int damage)
     {
         if(!godMode)
@@ -268,11 +270,19 @@ public class ThirdPersonController : MonoBehaviour
             playerAnimation.PlaySound(HurtClip);
             currentHealth -= damage;
             Debug.Log(currentHealth);
-
+            damaged = true;
+            Interactionprompt.Setup("Ouch, That hurt!");
+            StartCoroutine(tookDamage());
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
             Debug.Log("In TakeDamage");
         }
         
+    }
+    IEnumerator tookDamage()
+    {
+        yield return new WaitForSeconds(2);
+        Interactionprompt.Close();
+        damaged = false;
     }
 
     private void LookAt()

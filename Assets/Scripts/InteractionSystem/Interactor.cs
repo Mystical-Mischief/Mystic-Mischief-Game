@@ -26,10 +26,12 @@ public class Interactor : MonoBehaviour
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, 
         _interactableMask);
 
-       if (_numFound > 0)
+        if (_numFound > 0 || GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>().damaged == true)
        {
-            _interactable = _colliders[0].GetComponent<IInteractable>();
-
+            if(_numFound > 0)
+            {
+                _interactable = _colliders[0].GetComponent<IInteractable>();
+            }
             if(_interactable != null)
             {
                 if (!_interactionpromptUI.IsDisplayed) _interactionpromptUI.Setup(_interactable.InteractionPrompt);
