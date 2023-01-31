@@ -7,8 +7,11 @@ using System;
 public class StaminaBar : MonoBehaviour
 {
     private Image Stamina;
-    public float CurrentStamina;
-    private float MaxStamina = 6;
+    public Image[] staminaPoints;
+
+    public float CurrentStamina = 4;
+    private float MaxStamina = 4;
+
     ThirdPersonController Player;
 
     private void Start()
@@ -23,5 +26,15 @@ public class StaminaBar : MonoBehaviour
         CurrentStamina = Player.Stamina;
         Stamina.fillAmount = CurrentStamina/MaxStamina; //updates the amount of stamina the player has in the UI
 
+        for(int i = 0; i < staminaPoints.Length; i++)
+        {
+            staminaPoints[i].enabled = !DisplayStaminaPoint(CurrentStamina, i);
+        }
+
+    }
+
+    bool DisplayStaminaPoint(float stamina, int pointNumber)
+    {
+        return (pointNumber >= stamina);
     }
 }

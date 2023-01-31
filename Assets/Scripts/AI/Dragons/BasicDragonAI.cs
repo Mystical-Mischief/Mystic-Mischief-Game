@@ -164,4 +164,8 @@ public abstract class BasicDragonAI : BaseEnemyAI
         }
         lastNumber = randomNumber;
     }
+    public virtual bool PlayerDetect()
+    {
+        return spottedPlayer;
+    }
 }
