@@ -38,7 +38,8 @@ public class BirdInteraction : MonoBehaviour
         {
              if (items.gameObject.GetComponent<Item>().itemType == Item.ItemType.Objective)
             {
-                
+                // ticketCount = ticketCount - 1;
+                items.SetActive(false);
             }
         }
     }
@@ -84,14 +85,14 @@ public class BirdInteraction : MonoBehaviour
         faceChange.talking = false;
         // ticketCount = 0;
     }
-        void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("PickUp"))
-        {
-            other.gameObject.SetActive(false);
-            StoredItems.Add(other.gameObject);
-            ticketCount = ticketCount + 1;
+    //     void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("PickUp"))
+    //     {
+    //         other.gameObject.SetActive(false);
+    //         // StoredItems.Add(other.gameObject);
+    //         ticketCount = ticketCount + 1;
             
-        }
-    }
+    //     }
+    // }
 }
