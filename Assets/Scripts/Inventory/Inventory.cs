@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     public GameObject currentObject;
     public Transform HoldItemPosition;
     public bool canGrabItem;
-
+    private Item heldItem;
     private bool PickUp;
     private bool Store;
     public bool holdingItem;
@@ -262,9 +262,11 @@ public class Inventory : MonoBehaviour
         // Item.GetComponent<Item>().inInventory = true;
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
+        Item.transform.rotation = HoldItemPosition.rotation;
         Item.GetComponent<Rigidbody>().isKinematic = true;
         holdingItem = true;
         currentHeldItem = Item;
+        heldItem = Item.GetComponent<Item>();
     }
     public void DropItem(GameObject Item)
     {
@@ -274,7 +276,7 @@ public class Inventory : MonoBehaviour
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
         currentHeldItem = null;
-
+        heldItem.dropped = true;
         StartCoroutine(dropTimer(0.5f, false));
 
         if (storeParticles != null)

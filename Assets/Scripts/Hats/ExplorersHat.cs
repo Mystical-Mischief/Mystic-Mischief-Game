@@ -17,7 +17,6 @@ public class ExplorersHat : BaseHatScript
     private bool updateList = true;
     new void Start()
     {
-
         if (closestItem == null)
         {
             findCloseItem = true;
@@ -40,6 +39,7 @@ public class ExplorersHat : BaseHatScript
         {
             circleTool.SetActive(false);
             updateList = true;
+            timeElapsed = 0;
         }
         if (activateHat)
         {
@@ -119,12 +119,20 @@ public class ExplorersHat : BaseHatScript
             findCloseItem = true;
         }
     }
+    float timeElapsed;
+    float lerpDuration = 0.5f;
     //moves the camera to face the nearest objective and turns the circle guide on so it can show it better. 
     public override void HatAbility()
     {
-        cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), 1);
-        cameraForward.GetComponent<CameraLogic>().turn.x = (cameraForward.transform.rotation.eulerAngles.y);
-        cameraForward.GetComponent<CameraLogic>().turn.y = (cameraForward.transform.rotation.eulerAngles.x);
+        if (timeElapsed < lerpDuration)
+        {
+            cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+        }
+        cameraForward.GetComponent<CameraLogic>().turn.y = cameraForward.transform.localRotation.eulerAngles.x;
+        cameraForward.GetComponent<CameraLogic>().turn.x = cameraForward.transform.localRotation.eulerAngles.y;
+
+
         base.HatAbility();
     }
 }

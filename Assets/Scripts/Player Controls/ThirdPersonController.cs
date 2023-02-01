@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool Targeted;
     public bool inWater;
     public PlayerAnimation playerAnimation;
-            public AudioClip HurtClip;
+    public AudioClip HurtClip;
 
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
@@ -56,13 +57,14 @@ public class ThirdPersonController : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public SaveGeneral save;
+    private bool jumpInAir;
 
     //public GameObject healthBar;
     //public GameObject staminaBar;
 
     private AudioSource caw;
-    
 
+    public bool godMode { get; private set;}
 
     // Start is called before the first frame update
     private void Awake()
@@ -70,7 +72,6 @@ public class ThirdPersonController : MonoBehaviour
         // Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonControl();
-
 
         //playerInputs.Enable();
         controls = new ControlsforPlayer();
@@ -86,6 +87,7 @@ public class ThirdPersonController : MonoBehaviour
         currentHealth = maxHealth;
 
         caw = GetComponent<AudioSource>();
+        godMode = false;
         
     }
     private void FixedUpdate()
@@ -119,28 +121,18 @@ public class ThirdPersonController : MonoBehaviour
         Vector3 MaxRotation = new Vector3(0, 10, 0);
         bool Left = controls.Actions.GlideLeft.ReadValue<float>() > 0.1f;
         bool Right = controls.Actions.GlideRight.ReadValue<float>() > 0.1f;
-
-        if (Left)
-        {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3(0, -10, 0);
-        }
-        else
-        {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3(0, 0, 0);
-        }
-        if (Right)
-        {
-            GetComponent<ConstantForce>().relativeTorque = new Vector3(0, 10, 0);
-        }
         Vector3 velocity = rb.velocity;
         Vector3 lastPosition = transform.position;
 
+        //If the player is diving this code sets the animator and player in the diving state.
         bool dive = false;
         if (dive == false)
         {
             oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
             animator.SetBool("IsDiving", false);
         }
+
+        //This code regenerates the stamina when the player lands on the ground.
         if (isGrounded == true)
         {
             Stamina += Time.fixedDeltaTime;
@@ -154,6 +146,7 @@ public class ThirdPersonController : MonoBehaviour
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
         bool diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
+        //This code makes the player dive using velocity calculations and the constant force component on the gameobject.
         if (diving && isGrounded == false)
         {
             diveTim += Time.fixedDeltaTime;
@@ -163,10 +156,13 @@ public class ThirdPersonController : MonoBehaviour
             flyingEffets.SetActive(false);
             
         }
+
+        //When the player has glided for long enough it stores energy and when the player stops diving and is still flying it releases the energy in an upwards momentum.
         else
         {
             glideSpeed.z = glideSpeed.z + diveTim - Time.fixedDeltaTime;
             glideSpeed.y = glideSpeed.y + diveTim - (Time.fixedDeltaTime * 2);
+            //The code below makes sure that each part of the glidespeed Vector3 does not add to much momentum after the player stops diving. These are caps for each float so that it does not exceed to much.
             if (diveTim > 10)
             {
                 diveTim = 0;
@@ -188,15 +184,19 @@ public class ThirdPersonController : MonoBehaviour
             {
                 glideSpeed.y = 9.8f;
             }
+            //This makes the players momentum slowely return to what it normally is when the player flies.
             diveTim -= Time.fixedDeltaTime;
             GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z) + oldHVelocity;
         }
+        //This lets the float for calculating how long the player dives not go below zero.
         if (diveTim <= 0)
         {
             diveTim = 0;
         }
-        if (isGrounded == false && canMove)
+
+        //This lets the player fly after jumping in the air.
+        if (isGrounded == false && canMove && jumpInAir == true)
         {
             Stamina += (Time.fixedDeltaTime * 0.5f);
             if (Stamina >= 4)
@@ -207,9 +207,11 @@ public class ThirdPersonController : MonoBehaviour
 
             flyingEffets.SetActive(true);
         }
+        //This makes the flying stop.
         else 
         { 
-            GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); }
+            GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); 
+        }
 
     }
 
@@ -230,18 +232,6 @@ public class ThirdPersonController : MonoBehaviour
             animator.SetBool("IsDiving", false);
         }
 
-        //Code commented below can be deleted: 
-
-        //if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == true && !diving)
-        //{
-        //    
-        //}
-        //if (controls.Actions.Jump.WasPressedThisFrame() && Stamina > 0 && isGrounded == false && !diving)
-        //{
-        //    animator.SetTrigger("JumpAir");
-        //}
-        // End of delete code
-
         if (controls.Test.HeathTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
@@ -259,16 +249,28 @@ public class ThirdPersonController : MonoBehaviour
         //}
     }
 
-
+    public InteractionpromptUI Interactionprompt;
+    public bool damaged;
     public void TakeDamage(int damage)
     {
-        playerAnimation.PlaySound(HurtClip);
-        currentHealth -= damage;
-        Debug.Log(currentHealth);
-
-        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
-        Debug.Log("In TakeDamage");
+        if(!godMode)
+        {
+            playerAnimation.PlaySound(HurtClip);
+            currentHealth -= damage;
+            Debug.Log(currentHealth);
+            damaged = true;
+            Interactionprompt.Setup("Ouch, That hurt!");
+            StartCoroutine(tookDamage());
+            //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+            Debug.Log("In TakeDamage");
+        }
         
+    }
+    IEnumerator tookDamage()
+    {
+        yield return new WaitForSeconds(2);
+        Interactionprompt.Close();
+        damaged = false;
     }
 
     private void LookAt()
@@ -303,6 +305,7 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.Enable();
         //controls.Actions.Jump.started += DoJump;
         controls.Actions.Caw.started += Caw;
+        controls.Actions.GodMode.started += GodMode;
         move = controls.Actions.Movement;
         //playerInputs.PlayerOnGround.Enable();
         controls.Enable();
@@ -317,6 +320,7 @@ public class ThirdPersonController : MonoBehaviour
         //controls.Actions.Jump.started -= DoJump;
         controls.Actions.Caw.started -= Caw;
         //playerInputs.PlayerOnGround.Disable();
+        controls.Actions.GodMode.started-=GodMode;
         controls.Disable();
 
         camGround.SetActive(false);
@@ -334,6 +338,7 @@ public class ThirdPersonController : MonoBehaviour
             camGround.SetActive(true);
             camFly.SetActive(false);
             animator.SetBool("Grounded", true);
+            jumpInAir = false;
         }
         else
         {
@@ -346,27 +351,30 @@ public class ThirdPersonController : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Checkpoint")){
-        }
+        //This pushes the player back when they hit a wall.
         if(other.gameObject.CompareTag("wall")){
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
+        //This pushes the player back when they hit an enemy.
         if(other.gameObject.CompareTag("enemy")){
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
+        //This stops the player from moving when they are in the water
         if(other.gameObject.CompareTag("Water")){
         moveForce = 0.5f;
             isGrounded = false;
             inWater = true;
         }
+        //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
         if (other.gameObject.CompareTag("Attackpos"))
         {
             TakeDamage(4);
         }
+        //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
         {
             TakeDamage(1);
@@ -374,6 +382,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     void OnCollisionExit(Collision other)
     {
+        //This lets the player move again when they jump out of water.
         if(other.gameObject.CompareTag("Water")){
             inWater = false;
             moveForce = 3.5f;
@@ -382,22 +391,49 @@ public class ThirdPersonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //This saves a checkpoint.
         if (other.gameObject.tag == "Checkpoint")
         {
             Checkpoint();
+        }
+        //In the fire level this lets the dragon know what room the player is in.
+        if(other.gameObject.CompareTag("RoomEnter"))
+        {
+            other.GetComponent<FireDragonPerch>().playerInRoom = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        //Im the fire level this lets the dragon know when they exited the room they were in.
+        if(other.gameObject.CompareTag("RoomEnter"))
+        {
+            other.GetComponent<FireDragonPerch>().playerInRoom = false;
         }
     }
 
     private void DoJump()
     {
-            if (Stamina > 0)
+        if (Stamina > 0)
+        {
+            animator.SetTrigger("Jump");    
+            forceDirection += Vector3.up * jumpForce;
+            if(!godMode)
+            {
+                Stamina -= 1;
+            }
+            if (Stamina > 0 && isGrounded == false)
             {
                 animator.SetTrigger("Jump");    
                 forceDirection += Vector3.up * jumpForce;
                 Stamina -= 1;
                 //StaminaBar.instance.UseStamina(1);
                 Debug.Log("In DoJump Function");
+                jumpInAir = true;
             }
+                
+            //StaminaBar.instance.UseStamina(1);
+            Debug.Log("In DoJump Function");
+        }
     }
     public void SavePlayer ()
     {
@@ -416,10 +452,6 @@ public class ThirdPersonController : MonoBehaviour
         Stamina = data.Stamina;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
-    }
-    public void ResetJump()
-    {
-        // animator.SetBool("glide", false);
     }
 
     public void Checkpoint ()
@@ -446,6 +478,21 @@ public class ThirdPersonController : MonoBehaviour
     private void Caw(InputAction.CallbackContext obj)
     {
         caw.Play();
+    }
+    private void GodMode(InputAction.CallbackContext obj)
+    {
+        if(!godMode)
+        {
+            godMode = true;
+            maxSpeed *= 2;
+            moveForce *= 2;
+        }
+        else
+        {
+            maxSpeed /= 2;
+            moveForce /= 2;
+            godMode = false;
+        }
     }
 
 }

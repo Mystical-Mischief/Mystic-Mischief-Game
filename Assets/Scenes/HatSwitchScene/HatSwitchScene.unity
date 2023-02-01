@@ -1340,8 +1340,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268261202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.033239793, y: -0.68675375, z: -0.03146685, w: 0.72544765}
+  m_LocalPosition: {x: 9.998989, y: 0.099999905, z: -0.54835033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1419,6 +1419,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1319802891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2824919397565853515, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+  m_PrefabInstance: {fileID: 1933068549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f578cac43fb4fb14b9b67cbd53487c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1331855054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,20 +1463,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allFaces:
-  - EmotionMaterial: {fileID: 2100000, guid: 74850e4d5ab88fa498c42b4c93c281f6, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 0
-  - EmotionMaterial: {fileID: 2100000, guid: 6961b776b1b9f7345a0f10725055787f, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 1
-  - EmotionMaterial: {fileID: 2100000, guid: 7905e405d1859444aacfb5c8bc836a12, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 2
-  - EmotionMaterial: {fileID: 2100000, guid: 895d4e40ee9d2f44f861c2c8c76d8124, type: 2}
+  - EmotionTexture: {fileID: 0}
     emotion: 3
-  - EmotionMaterial: {fileID: 0}
-    emotion: 0
-  currentFace:
-    EmotionMaterial: {fileID: 0}
+  - EmotionTexture: {fileID: 0}
     emotion: 0
   currentEmotion: 0
+  EmotionMaterial: {fileID: 0}
 --- !u!65 &1331855056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2400,6 +2409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider Bite Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2952459167832264263, guid: e7246cb3b22245745a9d10a1f7b6c3ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7246cb3b22245745a9d10a1f7b6c3ce, type: 3}
 --- !u!1 &1856260253
@@ -2602,6 +2615,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2824919397565853515, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: quest
+      value: 
+      objectReference: {fileID: 1993490363}
+    - target: {fileID: 5859998147865097046, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: expHat
+      value: 
+      objectReference: {fileID: 1319802891}
     - target: {fileID: 7510103832691703385, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
       propertyPath: playerCamera
       value: 
@@ -2666,7 +2687,8 @@ MonoBehaviour:
   - questName: Talk To Bird
     questDescription: Talk to the clever bird in the level
     questType: 1
-    objectiveItems: []
+    objectiveItems:
+    - {fileID: 1926524723}
     turnInQuest: 1
     NPC: {fileID: 1926524723}
     rewards: []
@@ -2757,7 +2779,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993490363}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
   m_Name: 
@@ -2895,6 +2917,7 @@ MonoBehaviour:
   patrolNum: 0
   SightDistance: 2
   EnemyType: 
+  isStunned: 0
   Player: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}

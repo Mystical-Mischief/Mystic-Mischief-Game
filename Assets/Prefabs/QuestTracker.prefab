@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3902544299311345769}
   - component: {fileID: 3902544299311345685}
   - component: {fileID: 3902544299311345686}
+  - component: {fileID: 8340303615475355860}
   - component: {fileID: 3902544299311345771}
   m_Layer: 0
   m_Name: QuestTracker
@@ -56,7 +57,7 @@ MonoBehaviour:
   - {fileID: 3902544299311345685}
   - {fileID: 3902544299311345686}
   text: {fileID: 0}
-  questText: {fileID: 0}
+  nextQuestText: {fileID: 0}
   allQuests:
   - questName: Talk To Bird
     questDescription: Talk to the clever bird in the level
@@ -64,6 +65,16 @@ MonoBehaviour:
     objectiveItems: []
     turnInQuest: 1
     NPC: {fileID: 0}
+    input:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
     active: 0
     completed: 0
     submitQuest: 0
@@ -75,6 +86,16 @@ MonoBehaviour:
     - {fileID: 0}
     turnInQuest: 0
     NPC: {fileID: 0}
+    input:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
     active: 0
     completed: 0
     submitQuest: 0
@@ -86,6 +107,16 @@ MonoBehaviour:
     objectiveItems: []
     turnInQuest: 0
     NPC: {fileID: 0}
+    input:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
     active: 0
     completed: 0
     submitQuest: 0
@@ -139,6 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetDistance: 5
+--- !u!114 &8340303615475355860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a902417b804e7848a3b8dfb931be443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3902544299311345771
 MonoBehaviour:
   m_ObjectHideFlags: 0
