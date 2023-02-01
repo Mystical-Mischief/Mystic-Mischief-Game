@@ -18,6 +18,7 @@ public class Item : MonoBehaviour
     public Color spriteColor;
     public bool canDrop;
     public bool dropped;
+    private int value = 1;
 
     [SerializeField] private GameObject itemEffect;
 
@@ -51,6 +52,20 @@ public class Item : MonoBehaviour
             if(itemType == ItemType.Collectable)
             {
                 //Instantiate(itemEffect, this.transform.position, Quaternion.identity) as GameObject;
+            }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Clever Bird")
+        {
+            if (itemType == ItemType.Objective)
+            {
+                other.gameObject.GetComponent<BirdInteraction>().ticketCount = other.gameObject.GetComponent<BirdInteraction>().ticketCount + value;
+                value = 0;
+                // other.gameObject.GetComponent<BirdInteraction>().ticketCount = other.gameObject.GetComponent<BirdInteraction>().ticketCount - 1;
+                other.gameObject.GetComponent<BirdInteraction>().StoredItems.Add(this.gameObject);
             }
         }
     }

@@ -12,6 +12,9 @@ public class Snatching : MonoBehaviour
     ThirdPersonController TPController;
     ControlsforPlayer controls;
     private bool snatching;
+    public GameObject hat1;
+    public GameObject hat2;
+    public GameObject hat3;
     void Start()
     {
         TPController = GetComponent<ThirdPersonController>();
@@ -75,6 +78,29 @@ public class Snatching : MonoBehaviour
             {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawCube(airHitbox.transform.position, airHitbox.GetComponent<BoxCollider>().size);
+            }
+        }
+    }
+
+    public PlayerHatLogic playerHatLogic;
+    private void OnTriggerStay(Collider other)
+    {
+            if (other.gameObject.tag == "Hat" && isSnatching == true)
+        {
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.first)
+            {
+            playerHatLogic.hats[0] = hat1;
+            other.gameObject.SetActive(false);
+            }
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.second)
+            {
+            playerHatLogic.hats[1] = hat2;
+            other.gameObject.SetActive(false);
+            }
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.third)
+            {
+            playerHatLogic.hats[2] = hat3;
+            other.gameObject.SetActive(false);
             }
         }
     }
