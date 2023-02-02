@@ -11,7 +11,8 @@ public enum QuestType
     TalkToNPC,
     Collection,
     Escort,
-    Input
+    Input,
+    PickUp
 }
 [Serializable]
 public class QuestInfo
@@ -120,6 +121,10 @@ public class Quest : MonoBehaviour
                 questScript[4].enabled = true;
                 questScript[4].GetComponent<ButtonQuest>().startQuest(activeQuest, this, activeQuest.input);
                 break;
+            case QuestType.PickUp:
+                questScript[5].enabled = true;
+                questScript[5].GetComponent<PickUpQuest>().startQuest(activeQuest, this);
+                break;
             default:
                 print("quest not found");
                 break;
@@ -168,6 +173,7 @@ public class Quest : MonoBehaviour
                 activeQuest.active = false;
             }
         }
+        UpdateText();
     }
     //Update the text of both the active quests and the other quests
     public void UpdateText()
@@ -184,7 +190,7 @@ public class Quest : MonoBehaviour
                 }
             }
         }
-        else
+        if(currentQuests.Count == 0)
         {
             text.text = "No Active Quests";
         }
