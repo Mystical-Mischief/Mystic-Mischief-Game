@@ -17,7 +17,7 @@ public class ButtonQuest : MonoBehaviour
     private void Update()
     {
         //if you press the button given, finish the quest
-        if (correctInput.WasPressedThisFrame())
+        if (correctInput != null && correctInput.WasPressedThisFrame())
         {
             finishQuest();
         }
