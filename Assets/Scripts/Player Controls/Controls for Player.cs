@@ -605,7 +605,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c16c2f09-610b-4b04-a596-e4b3c989eeeb"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
