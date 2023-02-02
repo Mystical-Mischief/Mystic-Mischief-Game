@@ -15,6 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     [HideInInspector]
     public string EnemyType;
     private int Health;
+    // public Animator anim;
 
     public GameObject Player;
     public bool stunned;
@@ -27,6 +28,8 @@ public class BaseEnemyAI : MonoBehaviour
     public Transform target;
     internal NavMeshAgent ai;
     private Rigidbody ai_Rb;
+    public ParticleSystem ps;
+    ParticleSystem.Particle[] _Particles;
 
     [SerializeField]
     private float stunTime;
@@ -119,7 +122,6 @@ public class BaseEnemyAI : MonoBehaviour
     {
         if(stunned && time > 0)
         {
-            
             Transform stunnedPos = ai_Rb.transform;
             targetPosition = stunnedPos.position;
             UpdateDestination(targetPosition);
