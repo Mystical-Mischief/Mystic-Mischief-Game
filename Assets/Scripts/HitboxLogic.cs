@@ -17,10 +17,7 @@ public class HitboxLogic : MonoBehaviour
             GameObject enemy = other.gameObject;
             //stun the enemy
             //if the enemy is an item holder snatch the item the ai is holding
-            if(enemy.GetComponent<BaseEnemyAI>().EnemyType == "ItemHolder")
-            {
-               
-            }
+            enemy.GetComponent<BaseEnemyAI>().Stun(3);
         }
     }
     //run the hold item function in the inventory script

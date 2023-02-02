@@ -81,6 +81,7 @@ public class ExplorersHat : BaseHatScript
                 closestItem = quest.GetComponent<Quest>().activeQuest.objectiveItems[1];
             }
         }
+        //if you are NOT activating the hat. find the next closest item.
         else
         {
             if (!activateHat)
@@ -94,8 +95,10 @@ public class ExplorersHat : BaseHatScript
     //then it will rerun to see what the closest item is and what the next closest item is
     void detectNextClosestItem()
     {
+        //checks all items the hat can detect
         foreach (GameObject gO in currentDestinationItems)
         {
+            //nullifiers for weird bugs
             if(nextClosestItem == closestItem)
             {
                 nextClosestItem = null;
@@ -105,30 +108,35 @@ public class ExplorersHat : BaseHatScript
                 nextClosestItem = gO;
                 continue;
             }
+            //if its not active in the hierarchy skip it
             if (gO == closestItem || !gO.activeInHierarchy)
             {
                 continue;
             }
+            //if the item is closer then the next closest item. it is the 2nd closest item
             if(Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestItem.transform.position, transform.position))
             {
                 nextClosestItem = gO;
             }
         }
+        //if the 2nd closest item is the closest item. recalculate which item is the closest
         if(Vector3.Distance(nextClosestItem.transform.position, transform.position) < Vector3.Distance(closestItem.transform.position, transform.position))
         {
             findCloseItem = true;
         }
     }
     float timeElapsed;
-    float lerpDuration = 0.5f;
+    public float lerpDuration = 0.5f;
     //moves the camera to face the nearest objective and turns the circle guide on so it can show it better. 
     public override void HatAbility()
     {
+        //timer for the lerp. bigger the lerp duration is the slower it moves
         if (timeElapsed < lerpDuration)
         {
             cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), timeElapsed / lerpDuration);
             timeElapsed += Time.deltaTime;
         }
+        //changes the position so the camera doesnt jolt back to its old position
         cameraForward.GetComponent<CameraLogic>().turn.y = cameraForward.transform.localRotation.eulerAngles.x;
         cameraForward.GetComponent<CameraLogic>().turn.x = cameraForward.transform.localRotation.eulerAngles.y;
 
