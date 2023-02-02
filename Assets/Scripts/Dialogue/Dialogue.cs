@@ -4,19 +4,22 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+//set this up for all the characters who talk
 [Serializable]
 public class Character
 {
     public string CharacterName;
-    public Vector3 CameraPosition;
-    public Vector3 CameraRotation;
+    public GameObject CharacterObject;
 }
+//set this up for all the lines of dialogue the character will say
 [Serializable]
 public class DialogueLines
 {
     public string Line;
     public int TalkingCharacter;
+    public Vector3 CameraPosition;
 }
+//this holds all the dialogue interactions between the characters
 [Serializable]
 public class AllDialogue
 {
@@ -24,6 +27,7 @@ public class AllDialogue
 }
 public class Dialogue : MonoBehaviour
 {
+    public Camera mainCamera;
     public TextMeshProUGUI textComponent;
     public bool DialogueIsRandom;
     public Character[] Characters;
@@ -33,8 +37,13 @@ public class Dialogue : MonoBehaviour
     
     private int index;
     private int convoNumber;
+    ControlsforPlayer controls;
 
-    // Start is called before the first frame update
+    void Start()
+    {
+        controls = new ControlsforPlayer();
+        controls.Enable();
+    }
     void OnEnable()
     {
         textComponent.text = string.Empty;
@@ -44,7 +53,7 @@ public class Dialogue : MonoBehaviour
     void Update()
     {
         //if you press the interact button run the dialogue 
-        if (Input.GetMouseButtonDown(0))
+        if (controls.Actions.Interact.WasPerformedThisFrame())
         {
             DialogueLines[] currentConversation = AllDialogues[convoNumber-1].Interaction;
             //shows the talking character sprite as well as the line they are saying
@@ -64,6 +73,8 @@ public class Dialogue : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
+        GetComponent<SphereCollider>().enabled = false;
+        mainCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
         if (DialogueIsRandom)
         {
             System.Random rnd = new System.Random();
@@ -78,6 +89,7 @@ public class Dialogue : MonoBehaviour
             }
         }
         DialogueLines[] currentConversation = AllDialogues[convoNumber - 1].Interaction;
+        updateCamera(currentConversation);
         //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
     }
@@ -92,6 +104,11 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
     }
+    void updateCamera(DialogueLines[] currentConversation)
+    {
+        mainCamera.transform.position = Characters[currentConversation[index].TalkingCharacter - 1].CharacterObject.transform.position + currentConversation[index].CameraPosition;
+        mainCamera.transform.LookAt(Characters[currentConversation[index].TalkingCharacter - 1].CharacterObject.transform.position);
+    }
     //goes to the next line by clearing the current line and typing the next line
     void NextLine(DialogueLines[] currentConversation)
     {
@@ -99,11 +116,12 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
+            updateCamera(currentConversation);
             StartCoroutine(TypeLine(currentConversation));
         }
         else
         {
+            mainCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = true;
             GetComponent<ActivateDialogue>().dialogueCanvas.SetActive(false);
             StartCoroutine(delayDialogueBox());
             this.enabled = false;
@@ -112,7 +130,7 @@ public class Dialogue : MonoBehaviour
     //delays the dialogue so you can walk away from it without activating it again by accident. 
     IEnumerator delayDialogueBox()
     {
-        yield return new WaitForSeconds(0.5f);
-        GetComponent<BoxCollider2D>().enabled = true;
+        yield return new WaitForSeconds(2f);
+        GetComponent<SphereCollider>().enabled = true;
     }
 }

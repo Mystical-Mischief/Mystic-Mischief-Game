@@ -14,7 +14,7 @@ public class QuestUI : MonoBehaviour
         controls.Enable();
     }
 
-    // Update is called once per frame
+    //if the player presses the quest button. open if its closed and close it if its open
     void Update()
     {
         if (controls.Pause.QuestAction.WasPerformedThisFrame())

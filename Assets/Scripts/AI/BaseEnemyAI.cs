@@ -50,36 +50,16 @@ public class BaseEnemyAI : MonoBehaviour
         }
         Player = GameObject.FindGameObjectWithTag("Player");
         ai_Rb = GetComponent<Rigidbody>();
-        stunned = false;
         timer = stunTime;
     }
 
     public void Update()
     {
-        if(!stunned)
-        {
-            if(stunned)
-            {
-                Transform stunnedPos = ai_Rb.transform;
-                targetPosition = stunnedPos.position;
-                ai_Rb.transform.position = targetPosition;
-                return;
-            }
             if (target == Player)
             {
                 Player.GetComponent<ThirdPersonController>().Targeted = true;
             }
             targetPosition = target.transform.position;
-            // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
-            // {
-            //     SaveEnemy();
-            //     Saved = true;
-            // }
-            // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
-            // {
-            //     Saved = false;
-            //     LoadEnemy();
-            // }
             //if the ai doesnt see the player then it will patrol and look for it
             if (!spottedPlayer)
             {
@@ -91,12 +71,6 @@ public class BaseEnemyAI : MonoBehaviour
             {
                 FoundPlayer();
             }
-        }
-        else
-        {
-            timer-=Time.deltaTime;
-            Stun(timer);
-        }
     }
     //updates where the player goes to save code
     public virtual void UpdateDestination(Vector3 newDestination)
@@ -140,6 +114,7 @@ public class BaseEnemyAI : MonoBehaviour
                 atDestination = false;
             }
     }
+    //stun function to be used to stun enemies for a specified amount of time
     public virtual void Stun(float time)
     {
         if(stunned && time > 0)
