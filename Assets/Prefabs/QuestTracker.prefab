@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3902544299311345685}
   - component: {fileID: 3902544299311345686}
   - component: {fileID: 8340303615475355860}
+  - component: {fileID: 6481651515438773035}
   - component: {fileID: 3902544299311345771}
   m_Layer: 0
   m_Name: QuestTracker
@@ -56,20 +57,24 @@ MonoBehaviour:
   - {fileID: 3902544299311345769}
   - {fileID: 3902544299311345685}
   - {fileID: 3902544299311345686}
+  - {fileID: 8340303615475355860}
+  - {fileID: 6481651515438773035}
   text: {fileID: 0}
   nextQuestText: {fileID: 0}
   allQuests:
-  - questName: Talk To Bird
-    questDescription: Talk to the clever bird in the level
-    questType: 1
-    objectiveItems: []
-    turnInQuest: 1
+  - questName: How to move
+    questDescription: Go to the wizard. WASD/ control stick.
+    questType: 3
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
     NPC: {fileID: 0}
     input:
-      m_Name: 
+      m_Name: Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: ed62623f-ba90-49d0-a47e-d3bdcce5d92a
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -78,8 +83,9 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
-  - questName: Escort Boat
-    questDescription: Take the boat to the red dot
+  - questName: How to Fly
+    questDescription: Space bar & mouse/ A & joy sticks to fly to the tree near the
+      mast
     questType: 3
     objectiveItems:
     - {fileID: 0}
@@ -87,10 +93,153 @@ MonoBehaviour:
     turnInQuest: 0
     NPC: {fileID: 0}
     input:
-      m_Name: 
+      m_Name: Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 6000c005-a1c9-4158-b742-a1a2d2a1c132
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: How to dive
+    questDescription: Hold shift/Press B
+    questType: 4
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 108d1121-f8a5-4399-b29f-9d7fe1d51f32
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 6c09c89d-fe0e-4a13-9811-462a494fceba
+        m_Path: <Keyboard>/shift
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      m_Flags: 0
+    rewards:
+    - {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Pick Up/Drop Items
+    questDescription: E/X  to drop and pick up. Go find tracker hat.
+    questType: 4
+    objectiveItems: []
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 385b62be-295c-4026-ae09-7540788f0777
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 8eebee0a-32e2-495e-8ccf-dcf7109d060a
+        m_Path: <Keyboard>/e
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Input
+        m_Flags: 0
+      m_Flags: 0
+    rewards: []
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Tracker Hat
+    questDescription: Press Tab/Right D-Pad to switch to the explorers hat.  Use
+      this to focus on where you need to go by pressing 1/LT. if you can't figure
+      out where to go next! Look for the tree to go to.
+    questType: 3
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d9eec64e-f3ba-4571-bd70-634dc48c27cd
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards:
+    - {fileID: 0}
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Pick up wizard food
+    questDescription: Go to his room and get food
+    questType: 2
+    objectiveItems:
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 305ee6f8-3c1b-4f3b-9acc-f3b60ef4646f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Chase Rat
+    questDescription: Get the item from the rat.
+    questType: 3
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cfc30ccb-f45f-4ca1-95a9-fce74b7ce8df
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    rewards: []
+    active: 0
+    completed: 0
+    submitQuest: 0
+  - questName: Go back to wizard
+    questDescription: Go bring the item to the wizard
+    questType: 3
+    objectiveItems:
+    - {fileID: 0}
+    - {fileID: 0}
+    turnInQuest: 0
+    NPC: {fileID: 0}
+    input:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b96025db-1a39-43dd-9385-64fb963916b7
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -132,7 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb010a0387be8945a1c0be2e51ae86c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjDescriptions: []
+  ObjDescriptions:
+  - Pick Up Mechanics
+  - Fly Mechanics
 --- !u!114 &3902544299311345769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25963f8d5d5f1749a3ed81ad3b5600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDistance: 5
+  targetDistance: 10
 --- !u!114 &8340303615475355860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +333,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a902417b804e7848a3b8dfb931be443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3902544299311345771
+  correctInput:
+    m_Name: Correct Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0dff2b0a-3ad1-43ae-a2d1-7391245e0978
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+--- !u!114 &6481651515438773035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,11 +351,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 3902544299311345682}
   m_Enabled: 0
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74159593292fe884ba2ebfa387de5bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3902544299311345771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startQuests:
-  - Talk To Bird
+  - How to move
+  - how to fly
+  - how to dive
+  - pick up/drop items
+  - Tracker Hat
+  - Pick up wizard food
+  - chase rat
+  - go back to wizard
   questsToActivate:
-  - Escort Boat
-  questScript: {fileID: 0}
+  - How to move
+  - How to fly
+  - How to dive
+  - Tracker Hat
+  - pick up/drop items
+  - Pick up wizard food
+  - chase rat
+  - go back to wizard
+  questScript: {fileID: 3902544299311345684}

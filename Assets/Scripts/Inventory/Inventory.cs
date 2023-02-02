@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     public GameObject hat1;
     public GameObject hat2;
     public GameObject hat3;
+    public GameObject hat4;
     // public Text Weight;
     // public GameObject InventorySlot;
     public GameObject InventoryUI;
@@ -333,6 +334,11 @@ public class Inventory : MonoBehaviour
             {
             playerHatLogic.hats[2] = hat3;
             other.gameObject.SetActive(false);
+            }
+            if (other.gameObject.GetComponent<HatPickup>().hatType == HatPickup.HatType.forth)
+            {
+                playerHatLogic.hats[3] = hat4;
+                other.gameObject.SetActive(false);
             }
         }
         if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false)
