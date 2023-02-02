@@ -139,7 +139,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             //if the player is at the last point go to the first one
             else
             {
-                patrolNum = 0;
+                // patrolNum = 0;
                 finishedPatrolling = true;
             }
             target = base.PatrolPoints[patrolNum];
@@ -159,7 +159,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
         }
-        else
+        else if (randomNumber == 1 && inAir == false && onGround == true)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
@@ -170,7 +170,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
         }
-        else
+        else if (randomNumber == 2 && inAir == false && onGround == true)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
@@ -181,7 +181,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
         }
-        else
+        else if (randomNumber == 3 && inAir == false && onGround == true)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
@@ -205,7 +205,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             //if the player is at the last point go to the first one
             else
             {
-                patrolNum = 0;
+                // patrolNum = 0;
                 finishedPatrolling = true;
             }
             target = base.PatrolPoints[patrolNum];
@@ -225,7 +225,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
         // Transform startGround = WanderPointsGround[1].WanderPoints[1].position;
         transform.position = Vector3.MoveTowards(transform.position, WanderPointsGround[0].WanderPoints[0].transform.position, Speed * Time.deltaTime);
-        if (dist < 0.5f && atDestination == false)
+        if (dist < 1f)
         {
             inAir = false;
             rb.useGravity = true;

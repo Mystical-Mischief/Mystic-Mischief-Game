@@ -19,12 +19,13 @@ public class FireDragonPerch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float dist = Vector3.Distance(perch.transform.position, Dragon.transform.position);
         if (playerInRoom == true)
         {
             Dragon.target = perch.transform;
             Dragon.UpdateDestination(perch.position);
             dragonFace.transform.LookAt(Player.transform);
-            if (Dragon.ai.enabled && Dragon.ai.remainingDistance < 0.5f && Dragon.atDestination == false)
+            if (dist <= 0.5f)
             {
                 Debug.Log("AtDestination");
                 Dragon.canMove = false;
