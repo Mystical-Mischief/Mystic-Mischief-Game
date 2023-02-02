@@ -40,6 +40,8 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     private float previousSpeed;
     private float previousAISpeed;
     public bool canMove;
+    private float lostPlayerTime;
+    public float chaseTime;
 
     public new void Start()
     {
@@ -56,18 +58,24 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     {
 
         //if the ai doesnt see the player then it will patrol and look for it
-        if (!spottedPlayer)
+        if (!base.spottedPlayer)
         {
-            EnemyDetection();
+            // EnemyDetection();
             if(canMove == true && onGround == true && inAir == false)
             {
-            Patrol();
+                base.EnemyDetection();
+                Patrol();
             }
 
             if (inAir == true && onGround == false)
             {
+                base.EnemyDetection();
                 PatrolAir();
             }
+        }
+        if (base.spottedPlayer == true)
+        {
+            FoundPlayer();
         }
         IsGrounded();
         if (finishedPatrolling)
@@ -87,6 +95,34 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (isGroundedD == true)
         {
             
+        }
+
+        if (lostPlayerTime == chaseTime)
+        {
+            ResetTarget();
+        }
+    }
+
+    public override void FoundPlayer()
+    {
+        EnemyVision.FieldOfView();
+        spottedPlayer = EnemyVision.PlayerDetected;
+        if(spottedPlayer)
+        {
+            target = Player.transform;
+            UpdateDestination(target.position);
+            //checks if the ai can see the player
+            EnemyVision.FieldOfView();
+            spottedPlayer = EnemyVision.PlayerDetected;
+            //This would happen if the player goes out of range while the ai was targeting the player
+            if(!spottedPlayer)
+            {
+                LostPlayer();
+            }
+        }
+        else
+        {
+            LostPlayer();
         }
     }
 
@@ -198,27 +234,17 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             NewRandomNumber();
         }
     }
-    //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
-    public override void FoundPlayer()
+    
+    public override void LostPlayer()
     {
-        Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
-        RaycastHit hit;
+        lostPlayerTime += Time.deltaTime;
+    }
 
-        if (Physics.Raycast(transform.position, target.position - transform.position, out hit, SightDistance))
-        {
-            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.green, 100, false);
-            UpdateDestination(target.position);
-            //if the ai cant see the player
-            if (hit.transform.gameObject.tag != "Player")
-            {
-                LostPlayer();
-            }
-        }
-        //if the ai cant see the player
-        else
-        {
-            LostPlayer();
-        }
+    public void ResetTarget()
+    {
+        spottedPlayer = false;
+        target = PatrolPoints[0];
+        lostPlayerTime = 0;
     }
 
     public void StopMoving()
