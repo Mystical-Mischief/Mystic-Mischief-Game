@@ -9,13 +9,15 @@ public class ButtonQuest : MonoBehaviour
     Quest questScript;
     public void startQuest(QuestInfo quest, Quest questScr, UnityEngine.InputSystem.InputAction input)
     {
+        //reads inputs and script
         correctInput = input;
         questScript = questScr;
         correctInput.Enable();
     }
     private void Update()
     {
-        if (correctInput.WasPressedThisFrame())
+        //if you press the button given, finish the quest
+        if (correctInput != null && correctInput.WasPressedThisFrame())
         {
             finishQuest();
         }

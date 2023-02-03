@@ -11,7 +11,8 @@ public enum QuestType
     TalkToNPC,
     Collection,
     Escort,
-    Input
+    Input,
+    PickUp
 }
 [Serializable]
 public class QuestInfo
@@ -55,15 +56,20 @@ public class Quest : MonoBehaviour
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
     }
+    //activates the quest based off the name
     public void ActivateQuest(string nameOfQuest)
     {
         nameOfQuest = nameOfQuest.ToUpper();
+        //checks all the quests in the quest list to find it
         foreach (QuestInfo quest in allQuests)
         {
+            //checks to see if the names match
             if(quest.questName.ToUpper() == nameOfQuest)
             {
+                //if so activate the quest and add it to the list of current quests
                 quest.active = true;
                 currentQuests.Add(quest);
+                //if there is no active quest make it the active quest
                 if (activeQuest.questName == string.Empty)
                 {
                     activeQuest = quest;
@@ -74,12 +80,15 @@ public class Quest : MonoBehaviour
         }
         UpdateText();
     }
+    //Updates the quest and sees if its ready to be complete or not
     public void UpdateQuest()
     {
+        //if its a npc quest finish the quest
         if (activeQuest.questType == QuestType.TalkToNPC)
         {
             activeQuest.completed = true;
         }
+        //updates the quest
         if (activeQuest.completed)
         {
             print("quest updated");
@@ -89,6 +98,7 @@ public class Quest : MonoBehaviour
     }
     void processQuest(QuestInfo quest)
     {
+        //checks to see which quest to activate out of all the quests
         switch (quest.questType)
         {
             case QuestType.Tutorial:
@@ -111,12 +121,17 @@ public class Quest : MonoBehaviour
                 questScript[4].enabled = true;
                 questScript[4].GetComponent<ButtonQuest>().startQuest(activeQuest, this, activeQuest.input);
                 break;
+            case QuestType.PickUp:
+                questScript[5].enabled = true;
+                questScript[5].GetComponent<PickUpQuest>().startQuest(activeQuest, this);
+                break;
             default:
                 print("quest not found");
                 break;
         }
         UpdateText();
     }
+    //moves onto the next quest and sees if its ready to turn in or not
     public void NextQuest()
     {
         if (!activeQuest.completed)
@@ -131,8 +146,10 @@ public class Quest : MonoBehaviour
         {
             text.text = $"Return to {activeQuest.NPC.name}";
         }
+        //checks to see if the quest is ready to be turned in
         if (activeQuest.submitQuest == true)
         {
+            //if there are rewards activate them
             if(activeQuest.rewards.Length != 0)
             {
                 foreach(GameObject gO in activeQuest.rewards)
@@ -140,7 +157,9 @@ public class Quest : MonoBehaviour
                     gO.SetActive(true);
                 }
             }
+            //remove the quest from the list
             currentQuests.Remove(activeQuest);
+            //if there is another quest activate the next quest on the list
             if (currentQuests.Count != 0)
             {
                 activeQuest = currentQuests[0];
@@ -148,12 +167,15 @@ public class Quest : MonoBehaviour
                 processQuest(activeQuest);
                 print(activeQuest.questName);
             }
+            //otherwise move on
             else
             {
                 activeQuest.active = false;
             }
         }
+        UpdateText();
     }
+    //Update the text of both the active quests and the other quests
     public void UpdateText()
     {
         if(activeQuest.active)
@@ -168,7 +190,7 @@ public class Quest : MonoBehaviour
                 }
             }
         }
-        else
+        if(currentQuests.Count == 0)
         {
             text.text = "No Active Quests";
         }

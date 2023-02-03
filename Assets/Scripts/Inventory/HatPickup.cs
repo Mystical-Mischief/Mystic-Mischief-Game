@@ -9,6 +9,7 @@ public class HatPickup : MonoBehaviour
         first,
         second,
         third,
+        forth,
     }
 
     public HatType hatType;
