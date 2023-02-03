@@ -8,28 +8,37 @@ public class ActivateDialogue : MonoBehaviour
     public Dialogue dialogueScript;
     private GameObject player;
     private ControlsforPlayer controls;
+    bool inArea;
 
     private void Start()
     {
         controls = new ControlsforPlayer();
         controls.Enable();
     }
+    private void Update()
+    {
+        if(inArea && controls.Actions.Interact.WasPerformedThisFrame())
+        {
+            dialogueCanvas.SetActive(true);
+            dialogueScript.enabled = true;
+            player.GetComponent<ThirdPersonController>().canMove = false;
+        }
+    }
     private void OnTriggerEnter(Collider collision)
     {  
         //if the player is in the range and they press the interact buttion activate the dialouge part of the canvas and enable the script.
-        if (collision.gameObject.tag == "Player" && controls.Actions.Interact.WasPerformedThisFrame())
+        if (collision.gameObject.tag == "Player")
         {
-            dialogueCanvas.SetActive(true);
-            dialogueScript.enabled = true;
+            player = collision.gameObject;
+            inArea = true;
         }
     }
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        //if the player is in the range and they press the interact buttion activate the dialouge part of the canvas and enable the script.
-        if (collision.gameObject.tag == "Player" && controls.Actions.Interact.WasPerformedThisFrame())
+        if (other.gameObject.tag == "Player")
         {
-            dialogueCanvas.SetActive(true);
-            dialogueScript.enabled = true;
+            player = null;
+            inArea = false;
         }
     }
 }
