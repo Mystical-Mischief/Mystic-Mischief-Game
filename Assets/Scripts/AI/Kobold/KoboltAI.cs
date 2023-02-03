@@ -50,6 +50,11 @@ public class KoboltAI : BaseEnemyAI
         {
             anim.SetTrigger("Bite");
         }
+
+        if (base.stunned == true)
+        {
+            anim.SetTrigger("Hurt");
+        }
     }
     // Start is called before the first frame update
     private void OnCollisionEnter (Collision collision)

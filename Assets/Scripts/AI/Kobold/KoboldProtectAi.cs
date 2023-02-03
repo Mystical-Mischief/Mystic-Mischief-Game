@@ -75,6 +75,11 @@ public class KoboldProtectAi : BaseEnemyAI
             }
             
         }
+
+        if(base.stunned == true)
+        {
+            anim.SetTrigger("Hurt");
+        }
         
                 if (base.spottedPlayer == true)
         {

@@ -48,7 +48,11 @@ public class ThirdPersonController : MonoBehaviour
     public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
     [SerializeField] private GameObject camFly;
+    [SerializeField] private GameObject dragonCamGround;
+    [SerializeField] private GameObject dragonCamFly;
     [SerializeField] private GameObject flyingEffets;
+
+    public bool lockOnCamera;
 
 
     //[HideInInspector]
@@ -88,7 +92,8 @@ public class ThirdPersonController : MonoBehaviour
 
         caw = GetComponent<AudioSource>();
         godMode = false;
-        
+        lockOnCamera = false;
+
     }
     private void FixedUpdate()
     {
@@ -306,6 +311,7 @@ public class ThirdPersonController : MonoBehaviour
         //controls.Actions.Jump.started += DoJump;
         controls.Actions.Caw.started += Caw;
         controls.Actions.GodMode.started += GodMode;
+        controls.Actions.DragonLockOn.started += LockOnCamera;
         move = controls.Actions.Movement;
         //playerInputs.PlayerOnGround.Enable();
         controls.Enable();
@@ -319,6 +325,7 @@ public class ThirdPersonController : MonoBehaviour
         playerInputs.Disable();
         //controls.Actions.Jump.started -= DoJump;
         controls.Actions.Caw.started -= Caw;
+        controls.Actions.DragonLockOn.started -= LockOnCamera;
         //playerInputs.PlayerOnGround.Disable();
         controls.Actions.GodMode.started-=GodMode;
         controls.Disable();
@@ -335,8 +342,20 @@ public class ThirdPersonController : MonoBehaviour
         if(Physics.Raycast(transform.position,-transform.up, out hit,groundCheckDistance))
         {
             isGrounded=true;
-            camGround.SetActive(true);
-            camFly.SetActive(false);
+            if(!lockOnCamera) //check if camera is not lock to the dragon
+            {
+                camGround.SetActive(true);
+                camFly.SetActive(false);
+                dragonCamFly.SetActive(false);
+                dragonCamGround.SetActive(false);
+            }
+            else //check if camera is locked to the dragon
+            {
+                camGround.SetActive(false) ;
+                camFly.SetActive(false);
+                dragonCamFly.SetActive(false);
+                dragonCamGround.SetActive(true);
+            }
             animator.SetBool("Grounded", true);
             jumpInAir = false;
         }
@@ -344,8 +363,20 @@ public class ThirdPersonController : MonoBehaviour
         {
             isGrounded = false;
             animator.SetBool("Grounded", false);
-            camGround.SetActive(false);
-            camFly.SetActive(true);
+            if (!lockOnCamera) //check if camera is not lock to the dragon
+            {
+                camGround.SetActive(false);
+                camFly.SetActive(true);
+                dragonCamFly.SetActive(false);
+                dragonCamGround.SetActive(false);
+            }
+            else //check if camera is locked to the dragon
+            {
+                camGround.SetActive(false);
+                camFly.SetActive(false);
+                dragonCamFly.SetActive(true);
+                dragonCamGround.SetActive(false) ;
+            }
         }
     }
 
@@ -478,6 +509,18 @@ public class ThirdPersonController : MonoBehaviour
     private void Caw(InputAction.CallbackContext obj)
     {
         caw.Play();
+    }
+
+    private void LockOnCamera(InputAction.CallbackContext obj)
+    {
+        if(!lockOnCamera)
+        {
+            lockOnCamera = true; //locks camera to the dragon
+        }
+        else
+        {
+            lockOnCamera = false; 
+        }
     }
     private void GodMode(InputAction.CallbackContext obj)
     {

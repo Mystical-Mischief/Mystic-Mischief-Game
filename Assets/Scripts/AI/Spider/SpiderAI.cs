@@ -78,6 +78,10 @@ public class SpiderAI : BaseEnemyAI
                 }
             }
         }
+        if(base.stunned == true)
+        {
+            anim.SetTrigger("Hurt");
+        }
     }
     public override void Patrol()
     {
