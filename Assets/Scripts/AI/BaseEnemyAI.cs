@@ -33,7 +33,7 @@ public class BaseEnemyAI : MonoBehaviour
 
     [SerializeField]
     private float stunTime;
-    float timer;
+    public float timer;
 
     
     
@@ -58,6 +58,8 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        if(!stunned)
+        {
             if (target == Player)
             {
                 Player.GetComponent<ThirdPersonController>().Targeted = true;
@@ -74,6 +76,13 @@ public class BaseEnemyAI : MonoBehaviour
             {
                 FoundPlayer();
             }
+        }
+        else
+        {
+            Stun(timer);
+            timer-=Time.fixedDeltaTime;
+        }
+            
     }
     //updates where the player goes to save code
     public virtual void UpdateDestination(Vector3 newDestination)
@@ -128,8 +137,8 @@ public class BaseEnemyAI : MonoBehaviour
         }
         else
         {
-            stunned = false;
             timer = stunTime;
+            stunned = false;
         }
     }
 
