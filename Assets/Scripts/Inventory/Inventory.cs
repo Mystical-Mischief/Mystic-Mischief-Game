@@ -341,7 +341,7 @@ public class Inventory : MonoBehaviour
                 other.gameObject.SetActive(false);
             }
         }
-        if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false)
+        if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false && other.gameObject.GetComponent<Item>().enabled == true)
         {
             HoldItem(other.gameObject);
         }
