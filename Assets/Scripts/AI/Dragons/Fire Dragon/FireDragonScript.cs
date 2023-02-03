@@ -22,6 +22,7 @@ public class FireDragonScript : BasicfireDragonAI
     public float attackDist;
     public float agressionMeter;
     public bool fireBreath;
+    public EnemyVision ev;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,8 @@ public class FireDragonScript : BasicfireDragonAI
     // Update is called once per frame
     void Update()
     {
+
+        ev.viewRadius = agressionMeter;
         float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
         RaycastHit hit;
@@ -60,7 +63,8 @@ public class FireDragonScript : BasicfireDragonAI
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             // Debug.Log("Hit Player");
         }
-        if (dist <= attackDist && base.inAir == true && attacked == false)
+        //dist <= attackDist && 
+        if (base.inAir == true && base.spottedPlayer == true)
         {
             ps.Play(true);
         }

@@ -15,6 +15,7 @@ public class BaseEnemyAI : MonoBehaviour
     [HideInInspector]
     public string EnemyType;
     private int Health;
+    // public Animator anim;
 
     public GameObject Player;
     public bool stunned;
@@ -27,10 +28,12 @@ public class BaseEnemyAI : MonoBehaviour
     public Transform target;
     internal NavMeshAgent ai;
     private Rigidbody ai_Rb;
+    public ParticleSystem ps;
+    ParticleSystem.Particle[] _Particles;
 
     [SerializeField]
     private float stunTime;
-    float timer;
+    public float timer;
 
     
     
@@ -55,6 +58,8 @@ public class BaseEnemyAI : MonoBehaviour
 
     public void Update()
     {
+        if(!stunned)
+        {
             if (target == Player)
             {
                 Player.GetComponent<ThirdPersonController>().Targeted = true;
@@ -71,6 +76,13 @@ public class BaseEnemyAI : MonoBehaviour
             {
                 FoundPlayer();
             }
+        }
+        else
+        {
+            Stun(timer);
+            timer-=Time.fixedDeltaTime;
+        }
+            
     }
     //updates where the player goes to save code
     public virtual void UpdateDestination(Vector3 newDestination)
@@ -119,15 +131,14 @@ public class BaseEnemyAI : MonoBehaviour
     {
         if(stunned && time > 0)
         {
-            
             Transform stunnedPos = ai_Rb.transform;
             targetPosition = stunnedPos.position;
             UpdateDestination(targetPosition);
         }
         else
         {
-            stunned = false;
             timer = stunTime;
+            stunned = false;
         }
     }
 

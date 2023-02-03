@@ -23,60 +23,71 @@ public class SpiderAI : BaseEnemyAI
 
     new void Update()
     {
-        PlayerCanMove = player.canMove;
-        if (target == Player && PlayerCanMove)
+           
+        if(!stunned)
         {
-            Player.GetComponent<ThirdPersonController>().Targeted = true;
-        }
-        
-        // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
-        // {
-        //     SaveEnemy();
-        //     Saved = true;
-        // }
-        // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
-        // {
-        //     Saved = false;
-        //     LoadEnemy();
-        // }
-        //if the ai doesnt see the player then it will patrol and look for it
-        if (!spottedPlayer)
-        {
-            EnemyDetection();
-            Patrol();
-        }
-        //if the ai finds the player it will do what it does when it sees the player
-        else
-        {
-            FoundPlayer();
-        }
-
-        if (!PlayerCanMove)
-        {
-            LostPlayer();
-            spottedPlayer = false;
-        }
-        if (spottedPlayer == true && PlayerCanMove)
-        {
-            if (timeBetweenShots <= 0)
+            PlayerCanMove = player.canMove;
+            if (target == Player && PlayerCanMove)
             {
-                //fires projectile at the location the player was located at when the spider first shot. It does not follow player
-                ShootAnim();
-                if (!PlayerCanMove)
-                {
-                    LostPlayer();
-                    spottedPlayer = false;
-                }
+                Player.GetComponent<ThirdPersonController>().Targeted = true;
             }
+
+            // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
+            // {
+            //     SaveEnemy();
+            //     Saved = true;
+            // }
+            // if (Player.GetComponent<ThirdPersonController>().Loaded == true)
+            // {
+            //     Saved = false;
+            //     LoadEnemy();
+            // }
+            //if the ai doesnt see the player then it will patrol and look for it
+            if (!spottedPlayer)
+            {
+                EnemyDetection();
+                Patrol();
+            }
+            //if the ai finds the player it will do what it does when it sees the player
             else
             {
-                timeBetweenShots -= Time.deltaTime;
-                if (!PlayerCanMove)
+                FoundPlayer();
+            }
+
+            if (!PlayerCanMove)
+            {
+                LostPlayer();
+                spottedPlayer = false;
+            }
+            if (spottedPlayer == true && PlayerCanMove)
+            {
+                if (timeBetweenShots <= 0)
                 {
-                    LostPlayer();
-                    spottedPlayer = false;
+                    //fires projectile at the location the player was located at when the spider first shot. It does not follow player
+                    ShootAnim();
+                    if (!PlayerCanMove)
+                    {
+                        LostPlayer();
+                        spottedPlayer = false;
+                    }
+                }
+                else
+                {
+                    timeBetweenShots -= Time.deltaTime;
+                    if (!PlayerCanMove)
+                    {
+                        LostPlayer();
+                        spottedPlayer = false;
+                    }
                 }
             }
+        }
+        else
+        {
+            anim.SetTrigger("Hurt");
+            Stun(timer);
+            timer -= Time.deltaTime;
+            
         }
     }
     public override void Patrol()
@@ -160,16 +171,5 @@ public class SpiderAI : BaseEnemyAI
             LostPlayer();
         }
     }
-    public override void UpdateDestination(Vector3 newDestination)
-    {
-        if(PlayerCanMove && target != null)
-        {
-            ai.destination = newDestination;
-        }
-        else
-        {
-            LostPlayer();
-            ai.destination = newDestination;
-        }
-    }
+    
 }
