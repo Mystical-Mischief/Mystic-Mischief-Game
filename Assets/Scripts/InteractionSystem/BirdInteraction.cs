@@ -33,6 +33,7 @@ public class BirdInteraction : MonoBehaviour
         if (ticketCount >= TicketAmount)
         {
             Hat.SetActive(true);
+            this.enabled = false;
         }
         foreach (GameObject items in StoredItems)
         {
