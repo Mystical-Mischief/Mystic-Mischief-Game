@@ -26,11 +26,11 @@ public class Chest : MonoBehaviour, IInteractable
             quest.ActivateQuest(questToActivate);
             quest.UpdateQuest();
             questAccepted = true;
-            if (dissapear)
-            {
-                gameObject.SetActive(false);
-            }
             
+        }
+        if (dissapear)
+        {
+            gameObject.SetActive(false);
         }
         return true;
     }
