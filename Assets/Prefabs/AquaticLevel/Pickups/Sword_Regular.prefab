@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -109.328125, y: 20.09, z: 60.530334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4748858222964971600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 7.559, y: 20.842, z: 77.931}
@@ -148,6 +149,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
+  dropped: 0
   itemEffect: {fileID: 0}
 --- !u!114 &3913878979851055937
 MonoBehaviour:
@@ -167,3 +169,69 @@ MonoBehaviour:
   finishQuest: 0
   _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
+--- !u!1001 &8474066433379514554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5296645679300081077}
+    m_Modifications:
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32000375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.64391685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1697397
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.77053314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.16391098
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.09956356
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.60786426
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291243, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Name
+      value: Pickup_Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+--- !u!4 &4748858222964971600 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+  m_PrefabInstance: {fileID: 8474066433379514554}
+  m_PrefabAsset: {fileID: 0}
