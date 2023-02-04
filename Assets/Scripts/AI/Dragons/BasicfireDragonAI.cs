@@ -58,6 +58,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
     public new void Update()
     {
+        if (target == Player)
+        {
+            Player.GetComponent<ThirdPersonController>().Targeted = true;
+        }
+        Debug.Log(patrolNum);
 
         //if the ai doesnt see the player then it will patrol and look for it
         if (!base.spottedPlayer)
@@ -94,7 +99,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             GoToGround();
         }
-        base.Update();
+        // base.Update();
         if (isGroundedD == true)
         {
             
@@ -109,6 +114,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             onGround = false;
             inAir = true;
+            atDestination = false;
             NewRandomNumber();
             NewPath();
             // groundToAir = false;
@@ -143,6 +149,21 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         }
     }
 
+    public void NewPath()
+    {
+        if (inAir == false && onGround == true)
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        }
+        else if (inAir == true && onGround == false)
+        {
+            base.PatrolPoints.Clear();
+            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        }
+        groundToAir = false;
+    }
+
     public override void Patrol()
     {
         if (ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
@@ -168,43 +189,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             atDestination = false;
         }
     }
-
-    public void NewPath()
-    {
-        if (inAir == false && onGround == true)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }
-        else if (inAir == true && onGround == false)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
-        }
-
-        // if (randomNumber == 2 && inAir == false)
-        // {
-        //     base.PatrolPoints.Clear();
-        //     base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        // }
-        // else if (randomNumber == 2 && inAir == false && onGround == true)
-        // {
-        //     base.PatrolPoints.Clear();
-        //     base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
-        // } 
-
-        // if (randomNumber == 3 && inAir == false)
-        // {
-        //     base.PatrolPoints.Clear();
-        //     base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        // }
-        // else if (randomNumber == 3 && inAir == false && onGround == true)
-        // {
-        //     base.PatrolPoints.Clear();
-        //     base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
-        // }
-        groundToAir = false;
-    }
     
     public void PatrolAir()
     {
@@ -229,7 +213,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             target = base.PatrolPoints[patrolNum];
             if (target != null)
                 {
-
+                    // transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
                 }
         }
         else
