@@ -59,13 +59,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
     public new void Update()
     {
-        dist = Vector3.Distance(base.target.position, transform.position);
         //Sets the player to targeted so they dont save.
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
         }
-        Debug.Log(patrolNum);
 
         //if the ai doesnt see the player then it will patrol and look for it
         if (!base.spottedPlayer)
@@ -122,7 +120,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         //If the Dragon does not see the player for a set amount of time it gives up. Used for when the player goes into the buildings.
         if (lostPlayerTime == chaseTime)
         {
-            ResetTarget();
+            //ResetTarget();
         }
 
         //If the bool is true the dragon goes to the air and patrols. Disables the NavMesh Agent.
@@ -169,16 +167,18 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This generates a new path that chooses from a list of on ground or in air patrol points from a random number generator.
     public void NewPath()
     {
+        patrolNum = 0;
         if (inAir == false && onGround == true)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
         }
-        else if (inAir == true && onGround == false)
+        if (inAir == true && onGround == false)
         {
             base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);    
         }
+        target = PatrolPoints[patrolNum];
         groundToAir = false;
     }
 
@@ -214,23 +214,24 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     {
         rb.useGravity = false;
         base.ai.enabled = false;
-        transform.position = Vector3.MoveTowards(transform.position, base.target.position, Speed * Time.deltaTime);
+        dist = Vector3.Distance(target.position, transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
         if (dist < 1f && atDestination == false)
         {
             atDestination = true;
             //if the player isnt at the last point
-            if (patrolNum < base.PatrolPoints.Count - 1)
+            if (patrolNum <=  PatrolPoints.Count - 1)
             {
                 patrolNum++;
+                print(patrolNum);
+                target = PatrolPoints[patrolNum];
             }
             //if the player is at the last point go to the first one
-            else
+            if(patrolNum == PatrolPoints.Count - 1)
             {
                 // patrolNum = 0;
                 finishedPatrolling = true;
             }
-            target = PatrolPoints[patrolNum];
-            dist = Vector3.Distance(target.position, transform.position);
             if (target != null)
             {
                 atDestination = false;
