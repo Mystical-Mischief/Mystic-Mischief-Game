@@ -325,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7001620512148059269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.193, z: 0}
+  m_LocalPosition: {x: 0, y: 2.908, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -350,7 +350,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -1840,7 +1840,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: d38f1fe301f7a7840aa965ad668c760e, type: 3}
+    - sprite: {fileID: 21300000, guid: 406650784799dd740960e138b209a496, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -5447,6 +5447,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 827609950427303711}
     m_Modifications:
+    - target: {fileID: 1058567613500773288, guid: f421b78fdac0604418d03c434151b311, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1058567613500773290, guid: f421b78fdac0604418d03c434151b311, type: 3}
       propertyPath: m_Name
       value: Stun_Stars_Particles

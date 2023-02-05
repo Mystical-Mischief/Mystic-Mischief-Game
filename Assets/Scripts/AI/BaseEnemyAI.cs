@@ -131,6 +131,7 @@ public class BaseEnemyAI : MonoBehaviour
     {
         if(stunned && time > 0)
         {
+            ps.Play(true);
             Debug.Log("Stunned");
             Transform stunnedPos = ai_Rb.transform;
             targetPosition = stunnedPos.position;
