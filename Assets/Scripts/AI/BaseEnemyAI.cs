@@ -193,4 +193,5 @@ public class BaseEnemyAI : MonoBehaviour
         spottedPlayer = data.spottedPlayer;
     }
 
+
 }
