@@ -7,10 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bleachers_Foam
-  m_Shader: {fileID: 4800000, guid: 6f96e15504e47ce4eaef4f132ce29de3, type: 3}
+  m_Name: Bleachers_Metal_Mat
+  m_Shader: {fileID: 4800000, guid: 3c9ea415026ba514587da3b93bfae775, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _METALLICGLOSSMAP
   - _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -22,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: ab976fa472746224bb6d6ffa0cf420dc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 16bcea28e9ddd77418ffced0813f1a95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -42,11 +43,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9048bf6163c132f4ea806f8662452be1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 98e94cd1e1fb0fb4e87f4b0413754e9d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2279da3afcbb62f4e83b9a925e854ba0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -57,11 +58,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShadowMapTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DivideValue: 0.3
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
