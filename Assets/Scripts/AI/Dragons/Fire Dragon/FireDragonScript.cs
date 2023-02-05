@@ -13,7 +13,7 @@ public class FireDragonScript : BasicfireDragonAI
     public LayerMask layerMask;
     private float dist;
     public bool spotsPlayer;
-    public ParticleSystem ps;
+    // public ParticleSystem ps;
     public float maxDistance;
     public float meleeDist;
     private bool meleeAttack;

@@ -6,38 +6,23 @@ using UnityEngine.InputSystem;
 
 public class DragonLockOn : MonoBehaviour
 {
-    public  GameObject dragonAi;
-    public bool canActivate;
-    CinemachineVirtualCamera virtualCamera;
-    private GameObject playerFollow;
-    ControlsforPlayer controls;
-    bool lockedToDragon;
-    // Start is called before the first frame update
-    void Start()
+    private EnemyVision dragon;
+    private WaterDragonAi water;
+    public bool CanLockOn; //{ get; set; }
+
+    private void Start()
     {
-        dragonAi = GameObject.FindGameObjectWithTag("Dragon");
-        canActivate = false;
-        virtualCamera = GetComponent<CinemachineVirtualCamera>();
-        playerFollow = GameObject.FindGameObjectWithTag("PlayerFollow");
-        lockedToDragon = false;
+        dragon = GameObject.FindGameObjectWithTag("Dragon").GetComponent<EnemyVision>();
+        water = GameObject.FindGameObjectWithTag("Dragon").GetComponent <WaterDragonAi>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //canActivate = controls.Actions.DragonLockOn.IsPressed();
-        if (canActivate && !lockedToDragon)
-        {
-            virtualCamera.LookAt = dragonAi.transform;
-            lockedToDragon=true;
-            
-        }
-        else 
-        {
-            virtualCamera.LookAt = playerFollow.transform;
-            lockedToDragon = false;
-            
-        }
+        if (water != null)
+            CanLockOn = water.PlayerDetect();
+        else if (dragon != null)
+            CanLockOn = dragon.PlayerDetected;
 
     }
 }

@@ -42,6 +42,8 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     public bool canMove;
     private float lostPlayerTime;
     public float chaseTime;
+    public bool airToGround;
+    public bool groundToAir;
 
     public new void Start()
     {
@@ -82,12 +84,13 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             print("points cleared");
             NewRandomNumber();
+            NewPath();
             UpdateDestination(base.PatrolPoints[0].position);
             lastPosition = base.PatrolPoints.Count - 1;
             patrolNum = 0;
             finishedPatrolling = false;
         }
-        if (onGround == true && inAir == true)
+        if (airToGround == true)
         {
             GoToGround();
         }
@@ -101,6 +104,20 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             ResetTarget();
         }
+
+        if (groundToAir == true)
+        {
+            onGround = false;
+            inAir = true;
+            NewRandomNumber();
+            NewPath();
+            // groundToAir = false;
+        }
+        // if (airToGround == true)
+        // {
+        //     inAir = false;
+
+        // }
     }
 
     public override void FoundPlayer()
@@ -139,7 +156,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             //if the player is at the last point go to the first one
             else
             {
-                patrolNum = 0;
+                // patrolNum = 0;
                 finishedPatrolling = true;
             }
             target = base.PatrolPoints[patrolNum];
@@ -154,38 +171,39 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
     public void NewPath()
     {
-        if (randomNumber == 1 && inAir == false)
+        if (inAir == false && onGround == true)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
         }
-        else
+        else if (inAir == true && onGround == false)
         {
             base.PatrolPoints.Clear();
             base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
         }
 
-        if (randomNumber == 2 && inAir == false)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }
-        else
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
-        } 
+        // if (randomNumber == 2 && inAir == false)
+        // {
+        //     base.PatrolPoints.Clear();
+        //     base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        // }
+        // else if (randomNumber == 2 && inAir == false && onGround == true)
+        // {
+        //     base.PatrolPoints.Clear();
+        //     base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        // } 
 
-        if (randomNumber == 3 && inAir == false)
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
-        }
-        else
-        {
-            base.PatrolPoints.Clear();
-            base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
-        }
+        // if (randomNumber == 3 && inAir == false)
+        // {
+        //     base.PatrolPoints.Clear();
+        //     base.PatrolPoints.AddRange(WanderPointsGround[randomNumber].WanderPoints);
+        // }
+        // else if (randomNumber == 3 && inAir == false && onGround == true)
+        // {
+        //     base.PatrolPoints.Clear();
+        //     base.PatrolPoints.AddRange(WanderPointsAir[randomNumber].WanderPointsInAir);
+        // }
+        groundToAir = false;
     }
     
     public void PatrolAir()
@@ -205,7 +223,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             //if the player is at the last point go to the first one
             else
             {
-                patrolNum = 0;
+                // patrolNum = 0;
                 finishedPatrolling = true;
             }
             target = base.PatrolPoints[patrolNum];
@@ -225,13 +243,14 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
         // Transform startGround = WanderPointsGround[1].WanderPoints[1].position;
         transform.position = Vector3.MoveTowards(transform.position, WanderPointsGround[0].WanderPoints[0].transform.position, Speed * Time.deltaTime);
-        if (dist < 0.5f && atDestination == false)
+        if (dist < 1f)
         {
             inAir = false;
             rb.useGravity = true;
             base.ai.enabled = true;
             onGround = true;
             NewRandomNumber();
+            airToGround = false;
         }
     }
     
