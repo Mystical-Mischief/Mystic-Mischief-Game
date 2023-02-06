@@ -234,7 +234,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             }
             if (target != null)
             {
-                atDestination = false;
+                // atDestination = false;
                 // transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
             }
         }
