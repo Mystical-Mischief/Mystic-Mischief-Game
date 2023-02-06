@@ -233,7 +233,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             dist = Vector3.Distance(target.position, transform.position);
             if (target != null)
             {
-                atDestination = false;
+                // atDestination = false;
                 // transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
             }
         }
