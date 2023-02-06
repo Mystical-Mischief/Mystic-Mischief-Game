@@ -65,6 +65,8 @@ public class WaterDragonAi : BasicDragonAI
     private float StartWaterSp;
     public bool attacking;
 
+    private bool canSeePlayer;
+
     private UnityEngine.AI.NavMeshAgent ai2;
 
     // Start is called before the first frame update
@@ -133,7 +135,12 @@ public class WaterDragonAi : BasicDragonAI
                 // anim.SetFloat("Speed", 0f);
                 anim.SetTrigger("Scream");
                 canScream = false;
+                canSeePlayer = true;
                 Invoke(nameof(ResetScream), ResetAttackTime);
+            }
+            else
+            {
+                canSeePlayer = false;
             }
         }
         //         if (Player.transform.position.y < (transform.position.y + heightDist) && dist > jumpDist)
@@ -332,6 +339,7 @@ public class WaterDragonAi : BasicDragonAI
         anim.SetTrigger("Spit");
         Rigidbody clone;
         Vector3 jumpVec = Player.transform.position - transform.position;
+        canSeePlayer = true;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
         base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
@@ -443,6 +451,6 @@ public class WaterDragonAi : BasicDragonAI
     }
     public override bool PlayerDetect()
     {
-        return FoundPlayer;
+        return canSeePlayer;
     }
 }
