@@ -20,10 +20,6 @@ public class CollectionQuest : MonoBehaviour
         questScript = questScr;
         totalNumberOfItems = quest.objectiveItems.Length;
         NPC = quest.NPC;
-        foreach(GameObject gO in quest.objectiveItems)
-        {
-            allItems.Add(gO);
-        }
     }
     private void Update()
     {
@@ -41,12 +37,21 @@ public class CollectionQuest : MonoBehaviour
                     currentNumberOfItems++;
                 }
             }
+            if(currentNumberOfItems == totalNumberOfItems)
+            {
+                questComplete();
+            }
             updateList = false;
         }
         if (NPC.GetComponent<BirdInteraction>().ticketCount == NPC.GetComponent<BirdInteraction>().TicketAmount)
         {
             questComplete();
         }
+    }
+    public void CollectedItem(GameObject item) 
+    {
+        allItems.Add(item);
+        item.SetActive(false);
     }
     public void questComplete()
     {

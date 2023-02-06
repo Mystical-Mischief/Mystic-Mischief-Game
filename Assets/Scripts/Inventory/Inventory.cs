@@ -258,6 +258,7 @@ public class Inventory : MonoBehaviour
     }
     public void HoldItem(GameObject Item)
     {
+        Item.GetComponent<Item>().ps.Play(true);
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
         // Item.GetComponent<Item>().inInventory = true;
