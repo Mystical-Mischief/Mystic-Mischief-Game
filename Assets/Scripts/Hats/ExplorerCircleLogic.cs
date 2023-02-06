@@ -18,8 +18,8 @@ public class ExplorerCircleLogic : MonoBehaviour
     private void Start()
     {
         //temporary location for auto lock for cowboy hat if the object is far from reach
-        cowboyAutoLock = GameObject.FindGameObjectWithTag("CowboyHatLockOn");
-        cowboyAutoLockPos = cowboyAutoLock.transform.position;
+        //cowboyAutoLock = GameObject.FindGameObjectWithTag("CowboyHatLockOn");
+        //cowboyAutoLockPos = cowboyAutoLock.transform.position;
     }
 
     private void Update()
