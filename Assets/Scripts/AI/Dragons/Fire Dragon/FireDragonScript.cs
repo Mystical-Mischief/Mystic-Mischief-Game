@@ -13,7 +13,7 @@ public class FireDragonScript : BasicfireDragonAI
     public LayerMask layerMask;
     private float dist;
     public bool spotsPlayer;
-    public ParticleSystem ps;
+    // public ParticleSystem ps;
     public float maxDistance;
     public float meleeDist;
     private bool meleeAttack;
@@ -35,7 +35,7 @@ public class FireDragonScript : BasicfireDragonAI
     // Update is called once per frame
     void Update()
     {
-
+        //This sets the enemy vision range it can detect tot the agression meter.
         ev.viewRadius = agressionMeter;
         float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
@@ -64,6 +64,7 @@ public class FireDragonScript : BasicfireDragonAI
             // Debug.Log("Hit Player");
         }
         //dist <= attackDist && 
+        //If the dragon is in the air and spots the player it shoots fire breath.
         if (base.inAir == true && base.spottedPlayer == true)
         {
             ps.Play(true);

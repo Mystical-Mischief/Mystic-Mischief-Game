@@ -19,6 +19,7 @@ public class Item : MonoBehaviour
     public bool canDrop;
     public bool dropped;
     private int value = 1;
+    public ParticleSystem ps;
 
     [SerializeField] private GameObject itemEffect;
 

@@ -513,7 +513,9 @@ public class ThirdPersonController : MonoBehaviour
 
     private void LockOnCamera(InputAction.CallbackContext obj)
     {
-        if(!lockOnCamera)
+        DragonLockOn dragonLockOn = GetComponent<DragonLockOn>();
+        bool canLockOn = dragonLockOn.CanLockOn;
+        if(canLockOn && lockOnCamera==false)
         {
             lockOnCamera = true; //locks camera to the dragon
         }
