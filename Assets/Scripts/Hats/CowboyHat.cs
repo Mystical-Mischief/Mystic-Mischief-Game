@@ -25,25 +25,25 @@ public class CowboyHat : BaseHatScript
         originalLocalPosition = transform.localPosition;
         rb = GetComponent<Rigidbody>();
         //adds all objects the player can use the whip on in a list for later
-        foreach(GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
-        {
-            print(gO.name);
-            if (gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
-            {
 
-                allObjects.Add(gO);
-            }
-        }
     }
     //enables and disables the circle object tool when the object is activated or disabled
     new void OnEnable()
     {
         base.OnEnable();
         circleObject.SetActive(true);
+        foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
+        {
+            if (gO.GetComponent<Item>() && gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
+            {
+                allObjects.Add(gO);
+            }
+        }
     }
     void OnDisable()
     {
         circleObject.SetActive(false);
+        allObjects.Clear();
     }
     new void Update()
     {
