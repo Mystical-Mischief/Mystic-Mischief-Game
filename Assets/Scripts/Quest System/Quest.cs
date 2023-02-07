@@ -33,6 +33,7 @@ public class QuestInfo
     public bool completed;
     [HideInInspector]
     public bool submitQuest;
+    public bool priorityQuest;
 }
 public class Quest : MonoBehaviour
 {
@@ -48,7 +49,6 @@ public class Quest : MonoBehaviour
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
-    [HideInInspector]
     public QuestInfo activeQuest;
 
     private void Start()
@@ -59,7 +59,8 @@ public class Quest : MonoBehaviour
     //activates the quest based off the name
     public void ActivateQuest(string nameOfQuest)
     {
-        nameOfQuest = nameOfQuest.ToUpper();
+        if(nameOfQuest != null)
+            nameOfQuest = nameOfQuest.ToUpper();
         //checks all the quests in the quest list to find it
         foreach (QuestInfo quest in allQuests)
         {
@@ -70,8 +71,12 @@ public class Quest : MonoBehaviour
                 quest.active = true;
                 currentQuests.Add(quest);
                 //if there is no active quest make it the active quest
-                if (activeQuest.questName == string.Empty)
+                if (activeQuest.questName == string.Empty || quest.priorityQuest)
                 {
+                    if(activeQuest.questName != null)
+                    {
+                        activeQuest.active = false;
+                    }
                     activeQuest = quest;
                     print(activeQuest.questName);
                     processQuest(activeQuest);
@@ -87,6 +92,7 @@ public class Quest : MonoBehaviour
         if (activeQuest.questType == QuestType.TalkToNPC)
         {
             activeQuest.completed = true;
+            NextQuest();
         }
         //updates the quest
         if (activeQuest.completed)
