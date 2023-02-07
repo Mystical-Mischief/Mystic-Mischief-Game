@@ -448,10 +448,10 @@ public class ThirdPersonController : MonoBehaviour
         {
             animator.SetTrigger("Jump");    
             forceDirection += Vector3.up * jumpForce;
-            if(!godMode)
+            /*if(!godMode)
             {
                 Stamina -= 1;
-            }
+            }*/
             if (Stamina > 0 && isGrounded == false)
             {
                 animator.SetTrigger("Jump");    
