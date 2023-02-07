@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 public static class SaveSystem 
 {
@@ -8,7 +9,7 @@ public static class SaveSystem
     public static void SavePlayer (ThirdPersonController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.fun";
+        string path = Application.persistentDataPath + "/player." + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
@@ -21,7 +22,7 @@ public static class SaveSystem
         public static void SaveCamera (CameraLogic camera)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/camera.fun";
+        string path = Application.persistentDataPath + "/camera." + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         CameraData data = new CameraData(camera);
@@ -34,7 +35,7 @@ public static class SaveSystem
         public static void Checkpoint (ThirdPersonController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.checkpoint";
+        string path = Application.persistentDataPath + "/player.checkpoint" + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
@@ -48,7 +49,7 @@ public static class SaveSystem
         public static void SaveEnemy (BaseEnemyAI enemy)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + enemy.name;
+        string path = Application.persistentDataPath + enemy.name + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         EnemyData data = new EnemyData(enemy);
@@ -61,7 +62,7 @@ public static class SaveSystem
         public static void SaveDragon (WaterDragonAi dragon)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + dragon.name;
+        string path = Application.persistentDataPath + dragon.name + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         DragonData data = new DragonData(dragon);
@@ -75,7 +76,7 @@ public static class SaveSystem
     public static void SaveItem(Item item)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + item.name;
+        string path = Application.persistentDataPath + item.name + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         ItemData data = new ItemData(item);
@@ -89,7 +90,7 @@ public static class SaveSystem
     public static void SaveInventory (Inventory inv)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/Inventory.fun";
+        string path = Application.persistentDataPath + "/Inventory." + SceneManager.GetActiveScene().name;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         InventoryData data = new InventoryData(inv);
@@ -102,7 +103,7 @@ public static class SaveSystem
     //Loads the player.
     public static PlayerData LoadPlayer ()
     {
-        string path = Application.persistentDataPath + "/player.fun";
+        string path = Application.persistentDataPath + "/player." + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -121,7 +122,7 @@ public static class SaveSystem
 
         public static CameraData LoadCamera ()
     {
-        string path = Application.persistentDataPath + "/camera.fun";
+        string path = Application.persistentDataPath + "/camera." + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -141,7 +142,7 @@ public static class SaveSystem
     //Loads a checkpoint.
         public static PlayerData LoadCheckpoint ()
     {
-        string path = Application.persistentDataPath + "/player.checkpoint";
+        string path = Application.persistentDataPath + "/player.checkpoint" + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -161,7 +162,7 @@ public static class SaveSystem
     //Loads the enemies.
         public static EnemyData LoadEnemy (BaseEnemyAI enemy)
     {
-        string path = Application.persistentDataPath + enemy.name;
+        string path = Application.persistentDataPath + enemy.name + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -181,7 +182,7 @@ public static class SaveSystem
         //Loads the dragon.
         public static DragonData LoadDragon (WaterDragonAi dragon)
     {
-        string path = Application.persistentDataPath + dragon.name;
+        string path = Application.persistentDataPath + dragon.name + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -201,7 +202,7 @@ public static class SaveSystem
     //Loads the items.
     public static ItemData LoadItem(Item item)
     {
-        string path = Application.persistentDataPath + item.name;
+        string path = Application.persistentDataPath + item.name + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -221,7 +222,7 @@ public static class SaveSystem
     //Loads the inventory.
     public static InventoryData LoadInventory ()
     {
-        string path = Application.persistentDataPath + "/Inventory.fun";
+        string path = Application.persistentDataPath + "/Inventory." + SceneManager.GetActiveScene().name;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

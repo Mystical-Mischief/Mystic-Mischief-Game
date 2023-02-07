@@ -9,6 +9,7 @@ public class FireDragonPerch : MonoBehaviour
     public FireDragonScript Dragon;
     public GameObject dragonFace;
     public GameObject Player;
+    public bool perchInAir;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +20,17 @@ public class FireDragonPerch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float dist = Vector3.Distance(perch.transform.position, Dragon.transform.position);
         if (playerInRoom == true)
         {
+            if(perchInAir == true)
+            {
+                Dragon.groundToAir = true;
+            }
             Dragon.target = perch.transform;
             Dragon.UpdateDestination(perch.position);
             dragonFace.transform.LookAt(Player.transform);
-            if (Dragon.ai.enabled && Dragon.ai.remainingDistance < 0.5f && Dragon.atDestination == false)
+            if (dist <= 1f)
             {
                 Debug.Log("AtDestination");
                 Dragon.canMove = false;
