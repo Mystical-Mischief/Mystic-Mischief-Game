@@ -68,6 +68,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private AudioSource caw;
 
+    public GameObject LockOnVisual;
+
     public bool godMode { get; private set;}
 
     // Start is called before the first frame update
@@ -93,6 +95,7 @@ public class ThirdPersonController : MonoBehaviour
         caw = GetComponent<AudioSource>();
         godMode = false;
         lockOnCamera = false;
+        LockOnVisual.SetActive(false);
 
     }
     private void FixedUpdate()
@@ -515,13 +518,15 @@ public class ThirdPersonController : MonoBehaviour
     {
         DragonLockOn dragonLockOn = GetComponent<DragonLockOn>();
         bool canLockOn = dragonLockOn.CanLockOn;
-        if(canLockOn && lockOnCamera==false)
+        if(canLockOn && lockOnCamera == false)
         {
             lockOnCamera = true; //locks camera to the dragon
+            LockOnVisual.SetActive(true);
         }
         else
         {
-            lockOnCamera = false; 
+            lockOnCamera = false;
+            LockOnVisual.SetActive(false);
         }
     }
     private void GodMode(InputAction.CallbackContext obj)
