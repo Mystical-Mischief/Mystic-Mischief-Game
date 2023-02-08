@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SkipSceneScript : MonoBehaviour
 {
     ControlsforPlayer controls;
+    
 
     private void Start()
     {
@@ -17,7 +18,18 @@ public class SkipSceneScript : MonoBehaviour
         if (controls.MenuActions.SkipScene.WasPerformedThisFrame())
         {
             print("skipping scene");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+
+    }
+    IEnumerator LoadLevelASync(int levelIndex)
+    {
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelIndex);
+
+        while (!loadOperation.isDone)
+        {
+            yield return null;
         }
     }
+
 }
