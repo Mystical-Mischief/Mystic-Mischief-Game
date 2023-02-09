@@ -11,8 +11,15 @@ public class CollectionQuest : MonoBehaviour
     private bool updateList;
     Quest questScript;
     Inventory inv;
+    ControlsforPlayer controls;
     TextMeshProUGUI questText;
     GameObject NPC;
+    QuestInfo Quest;
+    private void Start()
+    {
+        controls = new ControlsforPlayer();
+        controls.Enable();
+    }
     public void startQuest(QuestInfo quest, Quest questScr)
     {
         questText = questScr.text;
@@ -20,11 +27,16 @@ public class CollectionQuest : MonoBehaviour
         questScript = questScr;
         totalNumberOfItems = quest.objectiveItems.Length;
         NPC = quest.NPC;
+        Quest = quest;
     }
     private void Update()
     {
-        if (inv.controls.Actions.Interact.WasReleasedThisFrame())
+        if (inv.controls.Actions.Interact.WasReleasedThisFrame() || Quest.objectiveItems.Length == 1)
         {
+            if(inv.currentHeldItem == Quest.objectiveItems[0] && Quest.objectiveItems.Length == 1)
+            {
+                questComplete();
+            }
             updateList = true;
         }
         if (updateList)
@@ -43,9 +55,11 @@ public class CollectionQuest : MonoBehaviour
             }
             updateList = false;
         }
-        if (NPC.GetComponent<BirdInteraction>().ticketCount == NPC.GetComponent<BirdInteraction>().TicketAmount)
+        if (NPC.GetComponent<BirdInteraction>().ticketCount >= NPC.GetComponent<BirdInteraction>().TicketAmount)
         {
             questComplete();
+            Destroy(NPC.GetComponent<BirdInteraction>());
+            Destroy(NPC.GetComponent<Chest>());
         }
     }
     public void CollectedItem(GameObject item) 

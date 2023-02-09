@@ -19,6 +19,15 @@ public class VideoScript : MonoBehaviour
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
         //the scene that you want to load after the video has ended.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+    IEnumerator LoadLevelASync(int levelIndex)
+    {
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelIndex);
+
+        while (!loadOperation.isDone)
+        {
+            yield return null;
+        }
     }
 }

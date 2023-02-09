@@ -12,8 +12,17 @@ public class DragonLockOn : MonoBehaviour
 
     private void Start()
     {
-        dragon = GameObject.FindGameObjectWithTag("Dragon").GetComponent<EnemyVision>();
-        water = GameObject.FindGameObjectWithTag("Dragon").GetComponent <WaterDragonAi>();
+        if (GameObject.FindGameObjectWithTag("Dragon"))
+        {
+            if (GameObject.FindGameObjectWithTag("Dragon").GetComponent<EnemyVision>())
+                dragon = GameObject.FindGameObjectWithTag("Dragon").GetComponent<EnemyVision>();
+            if (GameObject.FindGameObjectWithTag("Dragon").GetComponent<WaterDragonAi>())
+                water = GameObject.FindGameObjectWithTag("Dragon").GetComponent<WaterDragonAi>();
+        }
+        else
+        {
+            enabled = false;
+        }
     }
 
     // Update is called once per frame

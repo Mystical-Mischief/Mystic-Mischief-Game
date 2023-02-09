@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3902544299311345687}
+  - component: {fileID: 3902544299311345771}
   - component: {fileID: 3902544299311345684}
   - component: {fileID: 3902544299311345768}
   - component: {fileID: 3902544299311345769}
@@ -16,7 +17,6 @@ GameObject:
   - component: {fileID: 3902544299311345686}
   - component: {fileID: 8340303615475355860}
   - component: {fileID: 6481651515438773035}
-  - component: {fileID: 3902544299311345771}
   m_Layer: 0
   m_Name: QuestTracker
   m_TagString: Untagged
@@ -39,6 +39,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3902544299311345771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startQuests:
+  - How to move
+  - how to fly
+  - how to dive
+  - pick up/drop items
+  - Tracker Hat
+  - Pick up wizard food
+  - chase rat
+  - go back to wizard
+  questsToActivate:
+  - How to move
+  - How to fly
+  - How to dive
+  - Tracker Hat
+  - pick up/drop items
+  - Pick up wizard food
+  - chase rat
+  - go back to wizard
+  questScript: {fileID: 3902544299311345684}
 --- !u!114 &3902544299311345684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +114,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: How to Fly
     questDescription: Space bar & mouse/ A & joy sticks to fly to the tree near the
       mast
@@ -105,6 +137,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: How to dive
     questDescription: Hold shift/Press B
     questType: 4
@@ -135,6 +168,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Pick Up/Drop Items
     questDescription: E/X  to drop and pick up. Go find tracker hat.
     questType: 4
@@ -162,6 +196,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Tracker Hat
     questDescription: Press Tab/Right D-Pad to switch to the explorers hat.  Use
       this to focus on where you need to go by pressing 1/LT. if you can't figure
@@ -186,6 +221,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Pick up wizard food
     questDescription: Go to his room and get food
     questType: 2
@@ -206,6 +242,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Chase Rat
     questDescription: Get the item from the rat.
     questType: 3
@@ -227,6 +264,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Go back to wizard
     questDescription: Go bring the item to the wizard
     questType: 3
@@ -248,6 +286,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   currentQuests: []
   activeQuest:
     questName: 
@@ -269,6 +308,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
 --- !u!114 &3902544299311345768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,34 +394,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74159593292fe884ba2ebfa387de5bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3902544299311345771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3902544299311345682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc12911e404ddd4c98013007c522bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startQuests:
-  - How to move
-  - how to fly
-  - how to dive
-  - pick up/drop items
-  - Tracker Hat
-  - Pick up wizard food
-  - chase rat
-  - go back to wizard
-  questsToActivate:
-  - How to move
-  - How to fly
-  - How to dive
-  - Tracker Hat
-  - pick up/drop items
-  - Pick up wizard food
-  - chase rat
-  - go back to wizard
-  questScript: {fileID: 3902544299311345684}

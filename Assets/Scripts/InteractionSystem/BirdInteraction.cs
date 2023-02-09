@@ -33,7 +33,7 @@ public class BirdInteraction : MonoBehaviour
         if (ticketCount >= TicketAmount)
         {
             Hat.SetActive(true);
-            this.enabled = false;
+            Destroy(GetComponent<Chest>());
         }
         foreach (GameObject items in StoredItems)
         {
