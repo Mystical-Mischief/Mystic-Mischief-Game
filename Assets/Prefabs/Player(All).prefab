@@ -1782,6 +1782,7 @@ GameObject:
   - component: {fileID: 7510103832551456073}
   - component: {fileID: 7510103832551456070}
   - component: {fileID: 7510103832551456071}
+  - component: {fileID: 3696812256830887183}
   m_Layer: 0
   m_Name: Hitbox1
   m_TagString: Untagged
@@ -1827,6 +1828,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eb6c94833ff8cd49adf17c9a6fde0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3696812256830887183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510103832551456072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8e3b384b76163428e75747b283f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7510103832691703391
@@ -1983,6 +1996,7 @@ MonoBehaviour:
   currentHealth: 0
   animator: {fileID: 452932293499459628}
   save: {fileID: 0}
+  LockOnVisual: {fileID: 0}
   Interactionprompt: {fileID: 0}
   damaged: 0
 --- !u!54 &7510103832691703382
@@ -2272,7 +2286,7 @@ BoxCollider:
   m_GameObject: {fileID: 7510103832891790656}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 3}
   m_Center: {x: 0, y: 0, z: 0}

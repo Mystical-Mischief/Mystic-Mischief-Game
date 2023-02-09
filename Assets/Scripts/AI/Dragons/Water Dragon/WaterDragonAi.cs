@@ -64,6 +64,7 @@ public class WaterDragonAi : BasicDragonAI
     private float StartSpeed;
     private float StartWaterSp;
     public bool attacking;
+    public Transform firePosition;
 
     private bool canSeePlayer;
 
@@ -338,9 +339,9 @@ public class WaterDragonAi : BasicDragonAI
     {
         anim.SetTrigger("Spit");
         Rigidbody clone;
-        Vector3 jumpVec = Player.transform.position - transform.position;
+        // Vector3 jumpVec = Player.transform.position - transform.position;
         canSeePlayer = true;
-        clone = Instantiate(projectile, transform.position, Player.transform.rotation);
+        clone = Instantiate(projectile, firePosition.position, Player.transform.rotation);
         base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
         var step =  speed * Time.deltaTime; // calculate distance to move
