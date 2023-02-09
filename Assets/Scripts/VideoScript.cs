@@ -13,6 +13,7 @@ public class VideoScript : MonoBehaviour
         video = GetComponent<VideoPlayer>();
         video.Play();
         video.loopPointReached += CheckOver;
+        
     }
 
 
