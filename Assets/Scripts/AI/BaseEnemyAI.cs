@@ -32,7 +32,7 @@ public class BaseEnemyAI : MonoBehaviour
     ParticleSystem.Particle[] _Particles;
 
     [SerializeField]
-    private float stunTime;
+    internal float stunTime;
     public float timer;
 
     

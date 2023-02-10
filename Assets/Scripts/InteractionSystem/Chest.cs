@@ -16,13 +16,15 @@ public class Chest : MonoBehaviour, IInteractable
 
     public virtual bool Interact(Interactor interactor)
     {
-        Debug.Log( "opening Chest!");
-        if(quest != null && (questAccepted || questToActivate == string.Empty))
+
+        if(quest != null && quest.activeQuest.questName == questToFinish)
         {
-            quest.UpdateQuest();
+            questToFinish = null;
+            quest.NextQuest();
         }
         if (quest != null && questToActivate != string.Empty && !questAccepted)
         {
+            print(questToActivate);
             quest.ActivateQuest(questToActivate);
             quest.UpdateQuest();
             questAccepted = true;

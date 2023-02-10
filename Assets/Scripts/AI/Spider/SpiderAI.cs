@@ -10,6 +10,8 @@ public class SpiderAI : BaseEnemyAI
     float timeBetweenShots;
     public float startTimeBetweenShots;
     public float wanderRange;
+    private Transform stunLocation;
+    private float Speed;
 
     new void Start()
     {
@@ -19,13 +21,16 @@ public class SpiderAI : BaseEnemyAI
         //Essentially starts a cooldown for how often the spider can fire its web projectile
         timeBetweenShots = startTimeBetweenShots;
         PlayerCanMove = player.canMove;
+        Speed = ai.speed;
     }
 
     new void Update()
     {
            
-        if(!stunned)
-        {
+        // if(!stunned)
+        // {
+
+            base.Update();
             PlayerCanMove = player.canMove;
             if (target == Player && PlayerCanMove)
             {
@@ -81,13 +86,37 @@ public class SpiderAI : BaseEnemyAI
                     }
                 }
             }
+        // }
+        if (base.stunned == true)
+        {
+            anim.SetBool("Hurt", true);
+            // Stun(timer);
+            // timer -= Time.deltaTime;
         }
         else
         {
-            anim.SetTrigger("Hurt");
-            Stun(timer);
-            timer -= Time.deltaTime;
-            
+            anim.SetBool("Hurt", false);
+            stunLocation = transform;
+        }
+    }
+
+        //stun function to be used to stun enemies for a specified amount of time
+    public override void Stun(float time)
+    {
+        if(stunned && time > 0)
+        {
+            ps.Play(true);
+            Debug.Log("Stunned");
+            // Transform stunnedPos = base.ps.transform;
+            targetPosition = stunLocation.position;
+            base.ai.speed = 0;
+            UpdateDestination(targetPosition);
+        }
+        else
+        {
+            base.ai.speed = Speed;
+            timer = stunTime;
+            stunned = false;
         }
     }
     public override void Patrol()
@@ -171,5 +200,7 @@ public class SpiderAI : BaseEnemyAI
             LostPlayer();
         }
     }
-    
+
+   
+
 }
