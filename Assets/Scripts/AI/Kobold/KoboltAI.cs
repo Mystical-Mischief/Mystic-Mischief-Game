@@ -53,7 +53,11 @@ public class KoboltAI : BaseEnemyAI
 
         if (base.stunned == true)
         {
-            anim.SetTrigger("Hurt");
+            anim.SetBool("Hurt",true);
+        }
+        else
+        {
+            anim.SetBool("Hurt",false);
         }
     }
     // Start is called before the first frame update
