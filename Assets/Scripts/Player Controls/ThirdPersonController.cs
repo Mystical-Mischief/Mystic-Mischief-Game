@@ -95,7 +95,8 @@ public class ThirdPersonController : MonoBehaviour
         caw = GetComponent<AudioSource>();
         godMode = false;
         lockOnCamera = false;
-        LockOnVisual.SetActive(false);
+        if(LockOnVisual != null)
+            LockOnVisual.SetActive(false);
 
     }
     private void FixedUpdate()

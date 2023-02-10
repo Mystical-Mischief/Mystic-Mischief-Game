@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2440294603513139122, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0326
+      objectReference: {fileID: 0}
     - target: {fileID: 2461111054194249688, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -55,6 +59,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider Bite Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4876372627396587104, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0896
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876372627396587104, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0896
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876372627396587104, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0896
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876372627396587104, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876372627396587111, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2714867981466484252, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
@@ -81,8 +105,12 @@ MonoBehaviour:
   SightDistance: 20
   EnemyType: 
   Player: {fileID: 0}
+  stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  ps: {fileID: 4771890581891511618}
+  stunTime: 0
+  timer: 0
   attackedPlayer: 0
   knockbackForce: 300
   anim: {fileID: 4770379008171381727}
@@ -90,5 +118,10 @@ MonoBehaviour:
 --- !u!95 &4770379008171381727 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4874786286903003386, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
+  m_PrefabInstance: {fileID: 114122856606309157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4771890581891511618 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4876372627396587111, guid: b386b78477361f14fbb763b0788e3a9a, type: 3}
   m_PrefabInstance: {fileID: 114122856606309157}
   m_PrefabAsset: {fileID: 0}
