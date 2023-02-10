@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 332809768}
   - component: {fileID: 332809767}
   - component: {fileID: 332809766}
-  - component: {fileID: 332809765}
+  - component: {fileID: 332809770}
   m_Layer: 0
   m_Name: RandomObject
   m_TagString: Untagged
@@ -261,18 +261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &332809765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332809764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1455b09a51a4654baa878d844a769d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &332809766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -344,13 +332,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332809764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.22, y: 0.48, z: 5.19}
+  m_LocalPosition: {x: -4.22, y: 1.5, z: 5.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &332809770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332809764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1455b09a51a4654baa878d844a769d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemProperties:
+  - properties: 0
+    updatedVector3: {x: 90, y: 90, z: 0}
+    time: 2
+    propertyNumber: 0
+  runProperties: 0
 --- !u!1001 &341032721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1353,7 +1359,7 @@ GameObject:
   - component: {fileID: 1268261207}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1450,8 +1456,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268261202}
-  m_LocalRotation: {x: -0.05883666, y: -0.6707087, z: -0.053512175, w: 0.7374446}
-  m_LocalPosition: {x: 49.725792, y: -1.4338304, z: -4.7238636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1568,7 +1574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1331855055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,8 +2622,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2352274647880217443, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.49999887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352274647880217443, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.7599125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352274647880217443, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.001524
       objectReference: {fileID: 0}
     - target: {fileID: 2352274647880217443, guid: eff672c2dd207c34b9656fd3de4c8462, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2747,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1993490364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,6 +2815,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   - questName: Escort Boat
     questDescription: Take the boat to the red dot
     questType: 3
@@ -2822,6 +2837,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
   currentQuests: []
   activeQuest:
     questName: 
@@ -2843,6 +2859,7 @@ MonoBehaviour:
     active: 0
     completed: 0
     submitQuest: 0
+    priorityQuest: 0
 --- !u!4 &1993490366
 Transform:
   m_ObjectHideFlags: 0
@@ -3045,7 +3062,9 @@ MonoBehaviour:
   stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  ps: {fileID: 0}
   stunTime: 0
+  timer: 0
   attackedPlayer: 0
   knockbackForce: 0
   anim: {fileID: 0}
