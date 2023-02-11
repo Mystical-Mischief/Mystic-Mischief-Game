@@ -226,9 +226,9 @@ ParticleSystem:
       maxColor: {r: 0.6544912, g: 0.60754716, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.4888953, g: 0.44716978, b: 1, a: 0.39215687}
-        key1: {r: 0.2992663, g: 0.107547104, b: 1, a: 0.39215687}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.3705681, g: 0.24873616, b: 0.9622642, a: 1}
+        key1: {r: 0.2992663, g: 0.107547104, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -242,9 +242,9 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 1151
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -255,9 +255,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.58373535, g: 0.30566037, b: 1, a: 0.39215687}
-        key1: {r: 0.88954455, g: 0.40943396, b: 1, a: 0.39215687}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.58373535, g: 0.30566037, b: 1, a: 1}
+        key1: {r: 0.88954455, g: 0.40943396, b: 1, a: 1}
+        key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -271,9 +271,9 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 1343
         atime1: 65535
-        atime2: 0
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
@@ -977,7 +977,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 3
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1364,9 +1364,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 1, b: 1, a: 0.5882353}
-        key2: {r: 1, g: 1, b: 1, a: 0.5882353}
-        key3: {r: 0, g: 0, b: 0, a: 0.6117647}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1384,7 +1384,7 @@ ParticleSystem:
         atime2: 32230
         atime3: 53334
         atime4: 65535
-        atime5: 0
+        atime5: 65535
         atime6: 0
         atime7: 0
         m_Mode: 0
@@ -1540,9 +1540,11 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 128401824, guid: 7a45bbf877d44fc4b931a6664aebecba, type: 3}
-    - sprite: {fileID: -1239549345, guid: 7a45bbf877d44fc4b931a6664aebecba, type: 3}
-    - sprite: {fileID: 1991671039, guid: 7a45bbf877d44fc4b931a6664aebecba, type: 3}
+    - sprite: {fileID: 1162368351, guid: 0ec2e1bc6fb500440802a5380d585738, type: 3}
+    - sprite: {fileID: 128430284, guid: 0ec2e1bc6fb500440802a5380d585738, type: 3}
+    - sprite: {fileID: -1456677047, guid: 0ec2e1bc6fb500440802a5380d585738, type: 3}
+    - sprite: {fileID: -857693402, guid: 0ec2e1bc6fb500440802a5380d585738, type: 3}
+    - sprite: {fileID: -1314247114, guid: 0ec2e1bc6fb500440802a5380d585738, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4844,7 +4846,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
-  m_SortMode: 0
+  m_SortMode: 3
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
