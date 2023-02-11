@@ -9,6 +9,7 @@ public class ActivateDialogue : MonoBehaviour
     private GameObject player;
     private ControlsforPlayer controls;
     bool inArea;
+    public bool killDialouge;
 
     private void Start()
     {
@@ -22,6 +23,10 @@ public class ActivateDialogue : MonoBehaviour
             dialogueCanvas.SetActive(true);
             dialogueScript.enabled = true;
             player.GetComponent<ThirdPersonController>().canMove = false;
+            if (killDialouge)
+            {
+                this.enabled = false;
+            }
         }
     }
     private void OnTriggerEnter(Collider collision)

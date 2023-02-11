@@ -178,8 +178,8 @@ public class Inventory : MonoBehaviour
         //     InventoryUI.GetComponent<InventoryUI>().DropLastItemUI();
         //     // Item.GetComponent<Item>().inInventory = false;
         //     holdingItem = false;
-        //     MassText = MassText - Item.GetComponent<Item>().Weight;
-        //     rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+            // MassText = MassText - Item.GetComponent<Item>().Weight;
+            // rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         //     Item.transform.position = transform.position;
         //     Item.transform.parent = null;
         //     Item.GetComponent<Rigidbody>().isKinematic = false;
@@ -266,6 +266,8 @@ public class Inventory : MonoBehaviour
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
         // Item.GetComponent<Item>().inInventory = true;
+        MassText = MassText + Item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
         Item.transform.rotation = HoldItemPosition.rotation;
@@ -279,6 +281,8 @@ public class Inventory : MonoBehaviour
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
+        MassText = MassText - Item.GetComponent<Item>().Weight;
+        rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
         currentHeldItem = null;
