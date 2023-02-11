@@ -38,6 +38,10 @@ public class CowboyHat : BaseHatScript
             {
                 allObjects.Add(gO);
             }
+            if (gO.GetComponent<WhippableObject>())
+            {
+                allObjects.Add(gO);
+            }
         }
     }
     void OnDisable()
@@ -62,10 +66,6 @@ public class CowboyHat : BaseHatScript
                 {
                     continue;
                 }
-                if (gO.GetComponent<Item>().inInventory)
-                {
-                    continue;
-                }
                 if (closestItem == null)
                 {
                     closestItem = gO;
@@ -84,7 +84,7 @@ public class CowboyHat : BaseHatScript
             detectNextClosestItem();
         }
         //if the closest item has been grabbed or stored in the inventory clear the closest item
-        if (closestItem != null && (closestItem.GetComponent<Item>().inInventory || !closestItem.activeInHierarchy))
+        if (closestItem != null && !closestItem.activeInHierarchy)
         {
             findCloseItem = true;
             closestItem = null;
@@ -102,10 +102,6 @@ public class CowboyHat : BaseHatScript
         foreach (GameObject gO in allObjects)
         {
             if (!gO.activeInHierarchy)
-            {
-                continue;
-            }
-            if (gO.GetComponent<Item>().inInventory)
             {
                 continue;
             }
@@ -152,10 +148,17 @@ public class CowboyHat : BaseHatScript
     //trigger logic for when it hits an object to pick up the item
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PickUp" && !GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem)
+        if(other.gameObject.tag == "PickUp")
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
-            ResetHat();
+            if (other.gameObject.GetComponent<Item>() && !GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem)
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
+                ResetHat();
+            }
+            if (other.gameObject.GetComponent<WhippableObject>())
+            {
+                other.GetComponent<WhippableObject>().runProperties = true;
+            }
         }
     }
 

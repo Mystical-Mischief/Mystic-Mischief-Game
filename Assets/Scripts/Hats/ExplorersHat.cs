@@ -40,6 +40,7 @@ public class ExplorersHat : BaseHatScript
             circleTool.SetActive(false);
             updateList = true;
             timeElapsed = 0;
+            cameraForward.GetComponent<CameraLogic>().enabled = true;
         }
         if (activateHat)
         {
@@ -126,15 +127,21 @@ public class ExplorersHat : BaseHatScript
         }
     }
     float timeElapsed;
-    public float lerpDuration = 0.5f;
+    public float lerpDuration;
     //moves the camera to face the nearest objective and turns the circle guide on so it can show it better. 
     public override void HatAbility()
     {
+        cameraForward.GetComponent<CameraLogic>().enabled = false;
         //timer for the lerp. bigger the lerp duration is the slower it moves
         if (timeElapsed < lerpDuration)
         {
-            cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.position, closestItem.transform.position - (transform.position + offsetHeight), timeElapsed / lerpDuration);
+            print(timeElapsed / lerpDuration);
+            cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.forward, closestItem.transform.position - (transform.position + offsetHeight), (timeElapsed / lerpDuration));
             timeElapsed += Time.deltaTime;
+        }
+        else
+        {
+            cameraForward.transform.forward = closestItem.transform.position - (transform.position + offsetHeight);
         }
         //changes the position so the camera doesnt jolt back to its old position
         cameraForward.GetComponent<CameraLogic>().turn.y = cameraForward.transform.localRotation.eulerAngles.x;
