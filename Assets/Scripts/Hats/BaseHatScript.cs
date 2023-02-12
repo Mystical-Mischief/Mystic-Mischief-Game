@@ -10,10 +10,13 @@ public class BaseHatScript : MonoBehaviour
     public float AbilityCooldownTime;
     public float SwitchCooldownTime;
 
-    ControlsforPlayer controls;
+    internal ControlsforPlayer controls;
     [HideInInspector]
     public bool activateHat;
     protected bool canUseHat = true;
+
+    [SerializeField]
+    internal int SkillLevel = 1;
     public void Start()
     {
         controls = new ControlsforPlayer();

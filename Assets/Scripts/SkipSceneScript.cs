@@ -17,7 +17,6 @@ public class SkipSceneScript : MonoBehaviour
     {
         if (controls.MenuActions.SkipScene.WasPerformedThisFrame())
         {
-            print("skipping scene");
             StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
         }
 
