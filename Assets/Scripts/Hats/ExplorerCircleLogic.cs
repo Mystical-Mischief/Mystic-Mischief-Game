@@ -14,13 +14,6 @@ public class ExplorerCircleLogic : MonoBehaviour
     private Vector3 cowboyAutoLockPos;
     private Transform closestItem;
 
-    private void Start()
-    {
-        //temporary location for auto lock for cowboy hat if the object is far from reach
-        //cowboyAutoLock = GameObject.FindGameObjectWithTag("CowboyHatLockOn");
-        //cowboyAutoLockPos = cowboyAutoLock.transform.position;
-    }
-
     private void Update()
     {
         //looks at camera

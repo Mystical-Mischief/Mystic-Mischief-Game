@@ -6,18 +6,15 @@ public class SmokeBombLogic : MonoBehaviour
 {
     public GameObject smokeScreen;
     public float stunTimer;
-    private Rigidbody rb;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-
-        rb.AddForce(new Vector3(transform.forward.x, 1, transform.forward.z).normalized * 10, ForceMode.Impulse);
-    }
+    public GameObject wizHat;
     private void OnCollisionEnter(Collision collision)
     {
-        print("poof! smoke bomb here");
-        Instantiate(smokeScreen, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        smokeScreen.SetActive(true);
+        smokeScreen.transform.parent = null;
+        gameObject.SetActive(false);
+        gameObject.transform.parent = wizHat.transform;
+        transform.localPosition = Vector3.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
     private void OnTriggerEnter(Collider other)
     {
