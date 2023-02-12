@@ -30,9 +30,8 @@ public class BaseHatScript : MonoBehaviour
     }
     public void Update()
     {
-        activateHat = controls.Actions.ActivateHat.IsPressed();
         //if you can use the hat use the hat and start the cooldown
-        if (activateHat && canUseHat)
+        if (controls.Actions.ActivateHat.IsPressed() && canUseHat)
         {
             canUseHat = false;
             HatAbility();
@@ -41,7 +40,6 @@ public class BaseHatScript : MonoBehaviour
     //hat ability is activated. runs a basic print and cooldown function
     public virtual void HatAbility()
     {
-        print("hat activate");
         if (HasCooldown)
         {
             StartCoroutine(HatCooldown(AbilityCooldownTime));
@@ -56,7 +54,6 @@ public class BaseHatScript : MonoBehaviour
     public virtual IEnumerator HatCooldown(float cooldownTime)
     {
         yield return new WaitForSeconds(cooldownTime);
-        print("cooldown done!");
         canUseHat = true;
     }
 

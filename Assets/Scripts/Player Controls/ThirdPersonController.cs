@@ -244,7 +244,6 @@ public class ThirdPersonController : MonoBehaviour
         if (controls.Test.HeathTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
-            Debug.Log("Taking Damage...");
         }
         if (currentHealth <= 0)
         {
@@ -271,7 +270,6 @@ public class ThirdPersonController : MonoBehaviour
             Interactionprompt.Setup("Ouch, That hurt!");
             StartCoroutine(tookDamage());
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
-            Debug.Log("In TakeDamage");
         }
         
     }
@@ -467,7 +465,6 @@ public class ThirdPersonController : MonoBehaviour
             }
                 
             //StaminaBar.instance.UseStamina(1);
-            Debug.Log("In DoJump Function");
         }
     }
     public void SavePlayer ()
