@@ -75,6 +75,7 @@ public class CameraPan : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, activeCameraPoints[0].position, Speed * Time.deltaTime);
             lastPosition = activeCameraPoints.Count - 1;
             patrolNum = 0;
+            target = activeCameraPoints[patrolNum];
             finished = false;
         }
         if (finished && listNum >= lastWaypoints)
