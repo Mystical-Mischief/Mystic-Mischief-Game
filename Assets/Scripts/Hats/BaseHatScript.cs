@@ -63,4 +63,9 @@ public class BaseHatScript : MonoBehaviour
         canUseHat = true;
     }
 
+    public virtual void LevelUp()
+    {
+        SkillLevel++;
+    }
+
 }

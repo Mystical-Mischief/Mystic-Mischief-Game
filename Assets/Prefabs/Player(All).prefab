@@ -212,8 +212,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2352274647880217441}
-  m_LocalRotation: {x: -0.031417135, y: -0.053641103, z: -0.0016885202, w: 0.9980645}
-  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
+  m_LocalRotation: {x: -0.048803717, y: -0.031860948, z: -0.0015575867, w: 0.99829894}
+  m_LocalPosition: {x: 0.49996936, y: -0.7599144, z: -10.001439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1853,6 +1853,7 @@ GameObject:
   - component: {fileID: 7510103832691703387}
   - component: {fileID: 7510103832691703386}
   - component: {fileID: 7510103832691703384}
+  - component: {fileID: 8589126131911735565}
   - component: {fileID: 7510103832691703376}
   - component: {fileID: 7510103832691703385}
   - component: {fileID: 7510103832691703382}
@@ -1920,6 +1921,21 @@ MonoBehaviour:
   hat2: {fileID: 0}
   hat3: {fileID: 0}
   playerHatLogic: {fileID: 0}
+--- !u!114 &8589126131911735565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510103832691703391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2022a379f476154c915360f9b3443ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CowboyHat: {fileID: 2161613212596205028}
+  InvisibilityHat: {fileID: 2384129248123723391}
+  WizardHat: {fileID: 7945804657408397554}
 --- !u!114 &7510103832691703376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,6 +2491,7 @@ MonoBehaviour:
   AbilityCooldownTime: 1
   SwitchCooldownTime: 2
   activateHat: 0
+  SkillLevel: 1
   InvisMaterials:
   - {fileID: 2100000, guid: 1a03ccf8d848cbd4c96b8e5eb0b57ae2, type: 2}
   - {fileID: 2100000, guid: 1347a8c51f0f6b54dbb6156626d2bdd9, type: 2}
@@ -2485,6 +2502,7 @@ MonoBehaviour:
   models:
   - {fileID: 7619498870445360262}
   - {fileID: 2525785484994000302}
+  _timer: 3
 --- !u!4 &7594214907129926770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7821066638524093649, guid: 67f547f059e5c2f4dafcf76f4cfbd004, type: 3}
@@ -3662,6 +3680,7 @@ MonoBehaviour:
   AbilityCooldownTime: 0
   SwitchCooldownTime: 1
   activateHat: 0
+  SkillLevel: 1
   currentDestinationItems: []
   cameraForward: {fileID: 2352274647002553976}
   circleTool: {fileID: 4970793329419835047}
@@ -3895,6 +3914,7 @@ MonoBehaviour:
   AbilityCooldownTime: 3
   SwitchCooldownTime: 0.5
   activateHat: 0
+  SkillLevel: 1
   smokeBomb: {fileID: 4312630136759915681, guid: 309bd784840edc64096cbc56dae8fe2c, type: 3}
 --- !u!4 &7929542585734011518 stripped
 Transform:
@@ -4023,6 +4043,7 @@ MonoBehaviour:
   AbilityCooldownTime: 1
   SwitchCooldownTime: 2
   activateHat: 0
+  SkillLevel: 1
   maxWhipDistance: 10
   whipStrength: 10
   circleObject: {fileID: 4970793329419835047}

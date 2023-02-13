@@ -6,6 +6,7 @@ public class CowboyHat : BaseHatScript
 {
     [SerializeField]
     private float maxWhipDistance;
+    private float _increasedWhipDistance;
     [SerializeField]
     private float whipStrength;
     [SerializeField]
@@ -25,6 +26,7 @@ public class CowboyHat : BaseHatScript
         originalLocalPosition = transform.localPosition;
         rb = GetComponent<Rigidbody>();
         //adds all objects the player can use the whip on in a list for later
+        _increasedWhipDistance = maxWhipDistance * 2;
 
     }
     //enables and disables the circle object tool when the object is activated or disabled
@@ -43,6 +45,8 @@ public class CowboyHat : BaseHatScript
                 allObjects.Add(gO);
             }
         }
+
+        
     }
     void OnDisable()
     {
@@ -52,6 +56,10 @@ public class CowboyHat : BaseHatScript
     new void Update()
     {
         base.Update();
+        if(SkillLevel > 1)
+        {
+            maxWhipDistance = _increasedWhipDistance; // increase max whip distance when the level in skill tree is greater than 1
+        }
         //checks to see if the hat has moved too far for the whip distance. if it did reset the hat
         if (Vector3.Distance(originalWorldPosition, transform.position) > maxWhipDistance)
         {
@@ -165,5 +173,11 @@ public class CowboyHat : BaseHatScript
     public float MaxWhipDis()
     {
         return maxWhipDistance;
+    }
+
+    public float IncreasedWhipDis()
+    {
+        float addedDis = maxWhipDistance * 2;
+        return addedDis;
     }
 }
