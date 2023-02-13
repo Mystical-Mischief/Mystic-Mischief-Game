@@ -41,7 +41,6 @@ public class InvisibilityHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        print("invisible hat poof!");
         //flips like a toggle. if player is invisible become visible. if player is visible become invisible
         isInvisible = !isInvisible;
         if (isInvisible)
