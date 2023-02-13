@@ -61,7 +61,8 @@ public class ThirdPersonController : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public SaveGeneral save;
-    private bool jumpInAir;
+    [HideInInspector]
+    public bool jumpInAir;
 
     //public GameObject healthBar;
     //public GameObject staminaBar;
@@ -485,6 +486,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
@@ -507,6 +510,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }

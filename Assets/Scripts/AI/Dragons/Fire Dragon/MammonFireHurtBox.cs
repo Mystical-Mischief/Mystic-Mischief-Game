@@ -5,11 +5,7 @@ using UnityEngine;
 public class MammonFireHurtBox : MonoBehaviour
 {
     public GameObject Player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //This code is because Mammon needs a seperate object for the dragons fire breath to collide with him. I don't know why the particles dont collide with anything in Player(new).
 
     // Update is called once per frame
     void Update()

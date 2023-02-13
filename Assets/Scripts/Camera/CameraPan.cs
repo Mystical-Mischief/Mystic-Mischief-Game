@@ -37,6 +37,7 @@ public class CameraPan : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+        //Sets a new set of waypoints.
         NewPath();
         if (Pan == true)
         {
