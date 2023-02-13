@@ -260,7 +260,7 @@ public class Inventory : MonoBehaviour
     {
         if (Item.GetComponent<Item>().ps != null)
         {
-            Item.GetComponent<Item>().ps.Play(true);
+            Item.GetComponent<Item>().ps.Stop();
         }
         
         Item.GetComponent<SphereCollider>().enabled = false;
@@ -278,6 +278,10 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(GameObject Item)
     {
+        if (Item.GetComponent<Item>().ps != null)
+        {
+            Item.GetComponent<Item>().ps.Play();
+        }
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
@@ -285,6 +289,7 @@ public class Inventory : MonoBehaviour
         rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
+        Item.GetComponent<Rigidbody>().useGravity = true;
         currentHeldItem = null;
         heldItem.dropped = true;
         StartCoroutine(dropTimer(0.5f, false));
