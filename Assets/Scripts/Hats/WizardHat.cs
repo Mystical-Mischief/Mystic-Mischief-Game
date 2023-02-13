@@ -9,7 +9,6 @@ public class WizardHat : BaseHatScript
     {
         base.Start();
     }
-
     new void Update()
     {
         base.Update();
@@ -20,11 +19,12 @@ public class WizardHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        print("wizard hat ability wooosh");
-        GameObject thisBomb = Instantiate(smokeBomb, transform.position, Quaternion.identity);
-        thisBomb.transform.forward = transform.forward;
-        thisBomb.GetComponent<SphereCollider>().isTrigger = true;
-        StartCoroutine(activateSmokeBomb(thisBomb));
+        smokeBomb.SetActive(true);
+        smokeBomb.transform.forward = transform.forward;
+        smokeBomb.GetComponent<SphereCollider>().isTrigger = true;
+        smokeBomb.GetComponent<Rigidbody>().AddForce(new Vector3(transform.forward.x, 1, transform.forward.z).normalized * 10, ForceMode.Impulse);
+        smokeBomb.transform.parent = null;
+        StartCoroutine(activateSmokeBomb(smokeBomb));
         base.HatAbility();
     }
     IEnumerator activateSmokeBomb(GameObject bomb)

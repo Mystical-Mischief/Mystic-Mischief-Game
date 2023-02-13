@@ -13,6 +13,9 @@ public class InvisibilityHat : BaseHatScript
     public GameObject[] models;
     private GameObject Player;
     private bool isInvisible;
+    private bool _snatching;
+    
+
     new void Start()
     {
         //finds player
@@ -36,7 +39,6 @@ public class InvisibilityHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        print("invisible hat poof!");
         //flips like a toggle. if player is invisible become visible. if player is visible become invisible
         isInvisible = !isInvisible;
         if (isInvisible)
@@ -48,6 +50,8 @@ public class InvisibilityHat : BaseHatScript
             becomeVisible();
         }
         base.HatAbility();
+
+
     }
     //changes materials to look invisible and changes tag so enemies cant detect the player since they look for the "player" tag
     void becomeInvisible()
@@ -57,6 +61,11 @@ public class InvisibilityHat : BaseHatScript
         models[1].GetComponent<MeshRenderer>().material = InvisMaterials[1];
         Player.transform.tag = "Untagged";
         Player.layer = 0;
+        if(SkillLevel > 1)
+        {
+            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            playerController.IncreaseSpeed(2);
+        }
     }
     //changes materials to look visible and changes tag so enemies can see player again
     void becomeVisible()
@@ -66,5 +75,20 @@ public class InvisibilityHat : BaseHatScript
         models[1].GetComponent<MeshRenderer>().material = NormalMaterials[1];
         Player.transform.tag = "Player";
         Player.layer = 8;
+        if (SkillLevel > 1)
+        {
+            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            playerController.SetSpeedToNormal();
+        }
+    }
+
+    private new void Update()
+    {
+        base.Update();
+        _snatching = controls.Actions.Snatch.IsPressed();
+        if(_snatching && isInvisible)
+        {
+            becomeVisible();
+        }
     }
 }

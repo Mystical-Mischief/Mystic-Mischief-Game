@@ -18,6 +18,9 @@ public class ThirdPersonController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private float moveForce = 3.5f;
+
+    private float originalMoveForce;
+    private float originalMaxSpeed;
     
     public float jumpForce = 10f;
     [SerializeField]
@@ -76,6 +79,8 @@ public class ThirdPersonController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        originalMaxSpeed = maxSpeed;
+        originalMoveForce = moveForce;
         // Checkpoint();
         rb = this.GetComponent<Rigidbody>();
         playerInputs = new ThirdPersonControl();
@@ -245,7 +250,6 @@ public class ThirdPersonController : MonoBehaviour
         if (controls.Test.HeathTest.WasPerformedThisFrame())
         {
             TakeDamage(1);
-            Debug.Log("Taking Damage...");
         }
         if (currentHealth <= 0)
         {
@@ -272,7 +276,6 @@ public class ThirdPersonController : MonoBehaviour
             Interactionprompt.Setup("Ouch, That hurt!");
             StartCoroutine(tookDamage());
             //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
-            Debug.Log("In TakeDamage");
         }
         
     }
@@ -468,7 +471,6 @@ public class ThirdPersonController : MonoBehaviour
             }
                 
             //StaminaBar.instance.UseStamina(1);
-            Debug.Log("In DoJump Function");
         }
     }
     public void SavePlayer ()
@@ -540,15 +542,27 @@ public class ThirdPersonController : MonoBehaviour
         if(!godMode)
         {
             godMode = true;
-            maxSpeed *= 2;
-            moveForce *= 2;
+            //maxSpeed *= 2;
+            //moveForce *= 2;
         }
         else
         {
-            maxSpeed /= 2;
-            moveForce /= 2;
+            //maxSpeed /= 2;
+            //moveForce /= 2;
             godMode = false;
         }
+    }
+
+    public void IncreaseSpeed(float speedBoost)
+    {
+        maxSpeed *= speedBoost;
+        moveForce *= speedBoost;
+    }
+
+    public void SetSpeedToNormal()
+    {
+        maxSpeed = originalMaxSpeed;
+        moveForce = originalMoveForce;
     }
 
 }
