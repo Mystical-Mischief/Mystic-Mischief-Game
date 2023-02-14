@@ -5,13 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class ASyncLoadManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _loadScreen;
+
+    private void Awake()
+    {
+        if(_loadScreen != null )
+        {
+            _loadScreen.SetActive( false );
+        }
+    }
     public void PlayGame()
     {
+        if (_loadScreen != null)
+        {
+            _loadScreen.SetActive(true);
+        }
         StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void GoToLevel(string name)
     {
+        if (_loadScreen != null)
+        {
+            _loadScreen.SetActive(true);
+        }
         StartCoroutine(LoadLevelASync(name));
     }
 
