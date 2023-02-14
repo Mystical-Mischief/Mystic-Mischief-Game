@@ -33,8 +33,9 @@ public class BaseHatScript : MonoBehaviour
     }
     public void Update()
     {
+        activateHat = controls.Actions.ActivateHat.IsPressed();
         //if you can use the hat use the hat and start the cooldown
-        if (controls.Actions.ActivateHat.IsPressed() && canUseHat)
+        if (activateHat && canUseHat)
         {
             canUseHat = false;
             HatAbility();
