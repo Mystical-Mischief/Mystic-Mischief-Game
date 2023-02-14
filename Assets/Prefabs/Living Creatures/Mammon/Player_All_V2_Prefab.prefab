@@ -1613,6 +1613,37 @@ MonoBehaviour:
   CircleVisual: {fileID: 4970793329419835047}
   Camera: {fileID: 0}
   Scale: 0.04
+--- !u!1 &5270784891170151031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4157954534775050449}
+  m_Layer: 8
+  m_Name: PoopPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4157954534775050449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5270784891170151031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7510103832691703387}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5576519722902304868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,6 +2043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7510103832691703387}
+  - component: {fileID: 5687350498292948910}
   - component: {fileID: 7510103832691703386}
   - component: {fileID: 7510103832691703384}
   - component: {fileID: 7510103832691703376}
@@ -2050,9 +2082,26 @@ Transform:
   - {fileID: 1144424611564788215}
   - {fileID: 4970793328322430257}
   - {fileID: 4970793328147390327}
+  - {fileID: 4157954534775050449}
   m_Father: {fileID: 2352274648369216911}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5687350498292948910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510103832691703391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d993f66b4b5dfb4448c7db3c1e694ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poop: {fileID: 8596426487253530810, guid: 6485dd89c7a9d0d408784621c4fd91db, type: 3}
+  poopPosition: {fileID: 4157954534775050449}
+  resetPoopTime: 3
+  Pooped: 0
 --- !u!33 &7510103832691703386
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2157,6 +2206,7 @@ MonoBehaviour:
   currentHealth: 0
   animator: {fileID: 452932293499459628}
   save: {fileID: 0}
+  jumpInAir: 0
   LockOnVisual: {fileID: 0}
   Interactionprompt: {fileID: 4970793328147390326}
   damaged: 0
@@ -2636,6 +2686,7 @@ MonoBehaviour:
   AbilityCooldownTime: 1
   SwitchCooldownTime: 2
   activateHat: 0
+  SkillLevel: 1
   InvisMaterials:
   - {fileID: 2100000, guid: 1a03ccf8d848cbd4c96b8e5eb0b57ae2, type: 2}
   - {fileID: 2100000, guid: 1347a8c51f0f6b54dbb6156626d2bdd9, type: 2}
@@ -3827,6 +3878,7 @@ MonoBehaviour:
   AbilityCooldownTime: 0
   SwitchCooldownTime: 1
   activateHat: 0
+  SkillLevel: 1
   currentDestinationItems: []
   cameraForward: {fileID: 2352274647002553976}
   circleTool: {fileID: 4970793329419835047}
@@ -4060,6 +4112,7 @@ MonoBehaviour:
   AbilityCooldownTime: 3
   SwitchCooldownTime: 0.5
   activateHat: 0
+  SkillLevel: 1
   smokeBomb: {fileID: 1926046836079681103}
 --- !u!4 &7929542585734011518 stripped
 Transform:
@@ -4188,6 +4241,7 @@ MonoBehaviour:
   AbilityCooldownTime: 1
   SwitchCooldownTime: 2
   activateHat: 0
+  SkillLevel: 1
   maxWhipDistance: 10
   whipStrength: 10
   circleObject: {fileID: 4970793329419835047}
