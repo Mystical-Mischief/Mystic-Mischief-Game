@@ -19,7 +19,7 @@ public class ExplorerCircleLogic : MonoBehaviour
         //looks at camera
         transform.LookAt(Camera.main.transform);
         //if the explorer hat is active go to the closest explorer hat item
-        if (exploreHat.gameObject.activeSelf)
+        if (exploreHat.closestItem != null && exploreHat.gameObject.activeSelf)
         {
             transform.position = exploreHat.closestItem.transform.position;
         }
