@@ -65,5 +65,9 @@ public class BaseHatScript : MonoBehaviour
     {
         SkillLevel++;
     }
+    public int getLevel()
+    {
+        return SkillLevel;
+    }
 
 }
