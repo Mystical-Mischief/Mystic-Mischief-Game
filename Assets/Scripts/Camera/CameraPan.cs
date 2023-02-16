@@ -15,10 +15,6 @@ public class CameraPan : MonoBehaviour
     public float Speed;
     public List<Transform> activeCameraPoints = new List<Transform>();
     public List<AllCamraPoints> cameraPointss = new List<AllCamraPoints>();
-    // public List<Transform> cameraPoints = new List<Transform>();
-    // public List<Transform> cameraPoints = new List<Transform>();
-    // public List<Transform> cameraPoints = new List<Transform>();
-    // public List<Transform> cameraPoints = new List<Transform>();
     public bool Pan;
     public bool finished;
     public Transform target;
@@ -31,11 +27,13 @@ public class CameraPan : MonoBehaviour
     public int lastWaypoints;
     private GameObject Player;
     private bool done;
+    public GameObject pMenu;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        pMenu = GameObject.Find("PauseMenu");
         Player = GameObject.FindGameObjectWithTag("Player");
         //Sets a new set of waypoints.
         NewPath();
@@ -54,7 +52,7 @@ public class CameraPan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Pan == true)
+        if (Pan == true && pMenu.GetComponent<PauseMenu>().Paused == false)
         {
             camgameobject.SetActive(false);
             cLogicScript.enabled = false;

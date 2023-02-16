@@ -19,8 +19,19 @@ public class CowboyHat : BaseHatScript
     Vector3 originalLocalPosition;
     Vector3 originalWorldPosition;
     Rigidbody rb;
+    public bool isGrounded;
+    public float l1HatUseTime;
+    private GameObject Player;
+    public bool gunSlinger;
+    public bool pullEnemy;
+    public Transform HoldItemPosition;
+    private Item heldItem;
+    public bool holdingItem;
+    public GameObject currentHeldItem;
+
     new void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         GetComponent<SphereCollider>().enabled = false;
         base.Start();
         originalLocalPosition = transform.localPosition;
@@ -45,6 +56,13 @@ public class CowboyHat : BaseHatScript
                 allObjects.Add(gO);
             }
         }
+        if (pullEnemy == true)
+        {
+            foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
+        {
+                allObjects.Add(gO);
+        }
+        }
 
         
     }
@@ -55,7 +73,53 @@ public class CowboyHat : BaseHatScript
     }
     new void Update()
     {
-        base.Update();
+        if (SkillLevel <= 1 && isGrounded == false)
+        {
+            canUseHat = false;
+        }
+        if (SkillLevel <= 1 && isGrounded == true)
+        {
+            canUseHat = true;
+        }
+        // base.Update();
+        if (Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        {
+            isGrounded = true;
+        }
+        if (Player.GetComponent<ThirdPersonController>().isGrounded == false)
+        {
+            isGrounded = false;
+        }
+
+        //if you can use the hat use the hat and start the cooldown
+        if (controls.Actions.ActivateHat.IsPressed() && canUseHat)
+        {
+            canUseHat = false;
+            if (SkillLevel <= 1)
+            {
+                Invoke(nameof(HatAbility), l1HatUseTime);
+            }
+            if (SkillLevel >= 2 && holdingItem == false && Player.GetComponent<Inventory>().holdingItem == false)
+            {
+                HatAbility();
+            }
+            if (SkillLevel >= 2 && holdingItem == true)
+            {
+                DropItem(currentHeldItem);
+            }
+            // if (SkillLevel == 3 && Player.GetComponent<Inventory>().holdingItem == false)
+            // {
+            //     HatAbility();
+            // }
+            // if (SkillLevel == 3 && Player.GetComponent<Inventory>().holdingItem == true)
+            // {
+            //     HatAbilityHoldingItem();
+            // }
+            // if (SkillLevel == 4)
+            // {
+            //     HatAbility();
+            // }
+        }
         if(SkillLevel > 1)
         {
             maxWhipDistance = _increasedWhipDistance; // increase max whip distance when the level in skill tree is greater than 1
@@ -163,6 +227,11 @@ public class CowboyHat : BaseHatScript
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
                 ResetHat();
             }
+            if (other.gameObject.GetComponent<Item>() && GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem == true && SkillLevel > 2 && gunSlinger == false && holdingItem == false)
+            {
+                HoldItem(other.gameObject);
+                ResetHat();
+            }
             if (other.gameObject.GetComponent<WhippableObject>())
             {
                 other.GetComponent<WhippableObject>().runProperties = true;
@@ -170,6 +239,14 @@ public class CowboyHat : BaseHatScript
         }
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "enemy")
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddForce(Player.transform.position * whipStrength, ForceMode.Impulse);
+            other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
+        }
+    }
     public float MaxWhipDis()
     {
         return maxWhipDistance;
@@ -179,5 +256,55 @@ public class CowboyHat : BaseHatScript
     {
         float addedDis = maxWhipDistance * 2;
         return addedDis;
+    }
+
+
+        public void HoldItem(GameObject Item)
+    {
+        if (Item.GetComponent<Item>().ps != null)
+        {
+            Item.GetComponent<Item>().ps.Stop();
+        }
+        
+        Item.GetComponent<SphereCollider>().enabled = false;
+        Item.GetComponent<BoxCollider>().enabled = false;
+        // Item.GetComponent<Item>().inInventory = true;
+        // Player.GetComponent<Inventory>().MassText = Player.GetComponent<Inventory>().MassText + Item.GetComponent<Item>().Weight;
+        // Player.GetComponent<Inventory>().rb.mass = Player.GetComponent<Inventory>().rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
+        Item.transform.parent = gameObject.transform;
+        Item.transform.position = HoldItemPosition.position;
+        Item.transform.rotation = HoldItemPosition.rotation;
+        Item.GetComponent<Rigidbody>().isKinematic = true;
+        holdingItem = true;
+        currentHeldItem = Item;
+        heldItem = Item.GetComponent<Item>();
+    }
+
+    public void DropItem(GameObject Item)
+    {
+        if (Item.GetComponent<Item>().ps != null)
+        {
+            Item.GetComponent<Item>().ps.Play();
+        }
+        // Item.GetComponent<Item>().inInventory = false;
+        Item.GetComponent<SphereCollider>().enabled = true;
+        Item.GetComponent<BoxCollider>().enabled = true;
+        int LayerPickUp = LayerMask.NameToLayer("PickUp");
+        Item.gameObject.layer = LayerPickUp;
+        Item.gameObject.tag="PickUp";
+        // MassText = MassText - Item.GetComponent<Item>().Weight;
+        // rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+        Item.transform.parent = null;
+        Item.GetComponent<Rigidbody>().isKinematic = false;
+        Item.GetComponent<Rigidbody>().useGravity = true;
+        currentHeldItem = null;
+        heldItem.dropped = true;
+        holdingItem = false;
+        // StartCoroutine(dropTimer(0.5f, false));
+
+        // if (storeParticles != null)
+        // {
+        //     Instantiate(storeParticles, transform.position, transform.rotation);
+        // }
     }
 }
