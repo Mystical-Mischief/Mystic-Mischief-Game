@@ -228,6 +228,22 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        // Return the current Active Scene in order to get the current Scene name.
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            ReloadNum.LastLevelNum = 1;
+        }
+        if (scene.name == "Level 2")
+        {
+            ReloadNum.LastLevelNum = 2;
+        }
+        if (scene.name == "Level 3")
+        {
+            ReloadNum.LastLevelNum = 3;
+        }
+
+        
         if (playerInputs.PlayerOnGround.Jump.triggered)
         {
             DoJump();
@@ -251,7 +267,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             //LoadCheckpoint();
             // currentHealth = maxHealth;
-            SceneManager.LoadScene("LoseScreen");
+            SceneManager.LoadScene("Lose Screen");
         }
         //if(staminaBar != null)
         //{
@@ -492,7 +508,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Checkpoint ()
     {
-        // save.SaveEnemyCheckPoint();
+        save.SaveEnemy();
         SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;

@@ -31,8 +31,23 @@ public class SaveGeneral : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
+        {
+            if (gO.activeSelf == true)
+            {
+                Enemies.Add(gO);
+            }
+        }
+
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("PickUp"))
+        {
+            if (item.activeSelf == true)
+            {
+                Items.Add(item);
+            }
+        }
         //Saves the checkpoint when the level starts.
-        // SaveEnemyCheckPoint();
+        SaveEnemyCheckPoint();
         controls.Enable();
     }
 
@@ -41,7 +56,7 @@ public class SaveGeneral : MonoBehaviour
     {
         if (reload.retrying == true)
         {
-            LoadCheckpoint();
+            LoadEnemy();
             reload.reloaded = true;
         }
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;

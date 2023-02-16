@@ -28,13 +28,11 @@ public class CowboyHat : BaseHatScript
     private Item heldItem;
     public bool holdingItem;
     public GameObject currentHeldItem;
+    Inventory playerInv;
 
     new void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-    Inventory playerInv;
-    new void Start()
-    {
         playerInv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         GetComponent<SphereCollider>().enabled = false;
         base.Start();
