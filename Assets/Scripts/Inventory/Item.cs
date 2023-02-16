@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     {
         Objective,
         Collectable,
+        WhipOnly
     }
 
     public ItemType itemType;
@@ -45,17 +46,6 @@ public class Item : MonoBehaviour
         transform.position = position;
     }
 
-    public void PlayEffect()
-    {
-        if(itemEffect != null)
-        {
-           
-            if(itemType == ItemType.Collectable)
-            {
-                //Instantiate(itemEffect, this.transform.position, Quaternion.identity) as GameObject;
-            }
-        }
-    }
 
     public void OnTriggerEnter(Collider other)
     {
