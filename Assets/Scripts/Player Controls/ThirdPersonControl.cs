@@ -158,7 +158,7 @@ public partial class @ThirdPersonControl : IInputActionCollection2, IDisposable
                     ""id"": ""fde2b296-143b-4c44-a299-d370f4677a8e"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=8,y=8)"",
+                    ""processors"": ""ScaleVector2(x=12,y=12)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,

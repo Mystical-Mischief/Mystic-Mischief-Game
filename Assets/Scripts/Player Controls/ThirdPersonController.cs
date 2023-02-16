@@ -13,7 +13,6 @@ public class ThirdPersonController : MonoBehaviour
     private ThirdPersonControl playerInputs;
     private InputAction move;
     ControlsforPlayer controls;
-    private CapsuleCollider CapsuleCollider;
 
     private Rigidbody rb;
     [SerializeField]
@@ -31,8 +30,6 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField]
     private Camera playerCamera;
     public float Stamina;
-    public float runSpeed;
-    public float applySpeed;
     private bool flying;
     private Vector3 oldHVelocity;
     public Vector3 glideSpeed;
@@ -89,7 +86,6 @@ public class ThirdPersonController : MonoBehaviour
         controls.Enable();
         move = controls.Actions.Movement;
         Stamina = 4;
-        CapsuleCollider = transform.GetComponent<CapsuleCollider>();
         isGrounded = true;
         //if(healthBar != null)
         //{
