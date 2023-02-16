@@ -362,7 +362,11 @@ public class Inventory : MonoBehaviour
         }
         if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false && other.gameObject.GetComponent<Item>().enabled == true)
         {
-            HoldItem(other.gameObject);
+            if(other.gameObject.GetComponent<Item>().itemType != Item.ItemType.WhipOnly)
+            {
+                HoldItem(other.gameObject);
+            }
+            
         }
         if (other.gameObject.tag == "Goal")
         {

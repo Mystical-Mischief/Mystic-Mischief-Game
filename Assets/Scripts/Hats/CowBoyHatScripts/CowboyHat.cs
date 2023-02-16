@@ -32,6 +32,10 @@ public class CowboyHat : BaseHatScript
     new void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
+    Inventory playerInv;
+    new void Start()
+    {
+        playerInv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         GetComponent<SphereCollider>().enabled = false;
         base.Start();
         originalLocalPosition = transform.localPosition;
@@ -47,7 +51,7 @@ public class CowboyHat : BaseHatScript
         circleObject.SetActive(true);
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         {
-            if (gO.GetComponent<Item>() && gO.GetComponent<Item>().itemType == Item.ItemType.Collectable)
+            if (gO.GetComponent<Item>() && (gO.GetComponent<Item>().itemType == Item.ItemType.Collectable || gO.GetComponent<Item>().itemType == Item.ItemType.WhipOnly))
             {
                 allObjects.Add(gO);
             }
@@ -222,9 +226,9 @@ public class CowboyHat : BaseHatScript
     {
         if(other.gameObject.tag == "PickUp")
         {
-            if (other.gameObject.GetComponent<Item>() && !GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem)
+            if (other.gameObject.GetComponent<Item>() && !playerInv.holdingItem)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().HoldItem(other.gameObject);
+                playerInv.HoldItem(other.gameObject);
                 ResetHat();
             }
             if (other.gameObject.GetComponent<Item>() && GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem == true && SkillLevel > 2 && gunSlinger == false && holdingItem == false)
