@@ -144,6 +144,14 @@ public class BaseEnemyAI : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Poop")
+        {
+            stunned = true;
+        }
+    }
+
  
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     private Vector3 PlayerDirection;
