@@ -139,6 +139,15 @@ public class SpiderAI : BaseEnemyAI
             }
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Poop")
+        {
+            stunned = true;
+        }
+    }
+    
     public virtual void ShootAnim()
     {
         anim.SetTrigger("Web");

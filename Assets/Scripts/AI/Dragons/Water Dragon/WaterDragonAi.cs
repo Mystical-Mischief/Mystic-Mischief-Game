@@ -368,7 +368,7 @@ public class WaterDragonAi : BasicDragonAI
         if (isGroundedD == true)
         {
             Jumped = false;
-            print("Touched Ground");
+            // print("Touched Ground");
             gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         }
     }

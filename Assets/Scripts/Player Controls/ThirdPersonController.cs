@@ -61,7 +61,8 @@ public class ThirdPersonController : MonoBehaviour
     public int currentHealth;
     public Animator animator;
     public SaveGeneral save;
-    private bool jumpInAir;
+    [HideInInspector]
+    public bool jumpInAir;
 
     //public GameObject healthBar;
     //public GameObject staminaBar;
@@ -227,6 +228,22 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        // Return the current Active Scene in order to get the current Scene name.
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            ReloadNum.LastLevelNum = 1;
+        }
+        if (scene.name == "Level 2")
+        {
+            ReloadNum.LastLevelNum = 2;
+        }
+        if (scene.name == "Level 3")
+        {
+            ReloadNum.LastLevelNum = 3;
+        }
+
+        
         if (playerInputs.PlayerOnGround.Jump.triggered)
         {
             DoJump();
@@ -250,7 +267,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             //LoadCheckpoint();
             // currentHealth = maxHealth;
-            SceneManager.LoadScene("LoseScreen");
+            SceneManager.LoadScene("Lose Screen");
         }
         //if(staminaBar != null)
         //{
@@ -483,13 +500,15 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
 
     public void Checkpoint ()
     {
-        // save.SaveEnemyCheckPoint();
+        save.SaveEnemy();
         SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
@@ -505,6 +524,8 @@ public class ThirdPersonController : MonoBehaviour
         position.z = data.position[2];
         transform.position = position;
         Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }

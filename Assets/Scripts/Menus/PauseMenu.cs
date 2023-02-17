@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     static bool GameIsPaused = false;
+    public bool Paused;
 
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private Button defaultBtn;
@@ -20,6 +21,15 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if (GameIsPaused == true)
+        {
+            Paused = true;
+        }
+        if (GameIsPaused == false)
+        {
+            Paused = false;
+        }
+        
         if (playerControls.Pause.PauseGame.triggered)
         {
             if (GameIsPaused)

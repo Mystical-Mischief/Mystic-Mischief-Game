@@ -107,6 +107,10 @@ public class KoboldProtectAi : BaseEnemyAI
             collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
 
         }
+        if (collision.gameObject.tag == "Poop")
+        {
+            stunned = true;
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
