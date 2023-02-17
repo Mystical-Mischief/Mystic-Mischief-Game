@@ -141,7 +141,10 @@ public class ThirdPersonController : MonoBehaviour
             oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
             animator.SetBool("IsDiving", false);
         }
-
+        if(godMode)
+        {
+            Stamina = 4;
+        }
         //This code regenerates the stamina when the player lands on the ground.
         if (isGrounded == true)
         {
@@ -222,6 +225,7 @@ public class ThirdPersonController : MonoBehaviour
         { 
             GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); 
         }
+        
 
     }
 
@@ -533,13 +537,13 @@ public class ThirdPersonController : MonoBehaviour
         if(!godMode)
         {
             godMode = true;
-            //maxSpeed *= 2;
-            //moveForce *= 2;
+            maxSpeed *= 2;
+            moveForce *= 2;
         }
         else
         {
-            //maxSpeed /= 2;
-            //moveForce /= 2;
+            maxSpeed /= 2;
+            moveForce /= 2;
             godMode = false;
         }
     }
