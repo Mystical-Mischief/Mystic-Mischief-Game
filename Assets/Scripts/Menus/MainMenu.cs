@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public void GoToLevel1(string name)
     {
         //SceneManager.LoadScene(2);
-        StartCoroutine(LoadLevelASync(2));
+        StartCoroutine(LoadLevelASync("Level 1"));
     }
     
     public void GoToLevel2()
@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadLevelASync("Level 3"));
     }
 
-    public void GoToWizardHub() => SceneManager.LoadScene(8);
+    public void GoToWizardHub() => SceneManager.LoadScene("Wizard Hub");
 
     public void LoadGame()
     {
