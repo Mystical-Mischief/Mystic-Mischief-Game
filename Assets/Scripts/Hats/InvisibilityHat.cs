@@ -14,6 +14,8 @@ public class InvisibilityHat : BaseHatScript
     private GameObject Player;
     private bool isInvisible;
     private bool _snatching;
+    [SerializeField]
+    private float _timer;
     
 
     new void Start()
@@ -86,9 +88,22 @@ public class InvisibilityHat : BaseHatScript
     {
         base.Update();
         _snatching = controls.Actions.Snatch.IsPressed();
-        if(_snatching && isInvisible)
+        if(isInvisible)
         {
-            becomeVisible();
+            if(_snatching)
+            {
+                becomeVisible();
+                isInvisible = false;
+                return;
+            }
+            //StartCoroutine(TimeInvisible(_timer));
+            //isInvisible = false;
         }
+        
+    }
+    IEnumerator TimeInvisible(float time)
+    {
+        yield return new WaitForSeconds(time);
+        becomeVisible();
     }
 }

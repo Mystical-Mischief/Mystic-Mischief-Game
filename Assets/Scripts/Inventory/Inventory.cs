@@ -260,9 +260,11 @@ public class Inventory : MonoBehaviour
     {
         if (Item.GetComponent<Item>().ps != null)
         {
-            Item.GetComponent<Item>().ps.Play(true);
+            Item.GetComponent<Item>().ps.Stop();
         }
-        
+        int LayerPickedUpItem = LayerMask.NameToLayer("DragonOnly");
+        Item.gameObject.layer = LayerPickedUpItem;
+        Item.gameObject.tag ="Gold";
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
         // Item.GetComponent<Item>().inInventory = true;
@@ -278,13 +280,21 @@ public class Inventory : MonoBehaviour
     }
     public void DropItem(GameObject Item)
     {
+        if (Item.GetComponent<Item>().ps != null)
+        {
+            Item.GetComponent<Item>().ps.Play();
+        }
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
+        int LayerPickUp = LayerMask.NameToLayer("PickUp");
+        Item.gameObject.layer = LayerPickUp;
+        Item.gameObject.tag="PickUp";
         MassText = MassText - Item.GetComponent<Item>().Weight;
         rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = null;
         Item.GetComponent<Rigidbody>().isKinematic = false;
+        Item.GetComponent<Rigidbody>().useGravity = true;
         currentHeldItem = null;
         heldItem.dropped = true;
         StartCoroutine(dropTimer(0.5f, false));
@@ -352,7 +362,11 @@ public class Inventory : MonoBehaviour
         }
         if (other.gameObject.tag == "PickUp" && PickUp && holdingItem == false && other.gameObject.GetComponent<Item>().enabled == true)
         {
-            HoldItem(other.gameObject);
+            if(other.gameObject.GetComponent<Item>().itemType != Item.ItemType.WhipOnly)
+            {
+                HoldItem(other.gameObject);
+            }
+            
         }
         if (other.gameObject.tag == "Goal")
         {

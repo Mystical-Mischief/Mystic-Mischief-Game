@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+
+ public class ReloadNum {
+     public static int LastLevelNum;
+ }
 public class Reload : MonoBehaviour
 {
     public static bool loadFromCheckPoint;
@@ -9,10 +14,12 @@ public class Reload : MonoBehaviour
     public bool retrying;
     public bool reloaded;
 
+    // public static int LastLevelNum;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -33,4 +40,14 @@ public class Reload : MonoBehaviour
             retrying = false;
         }
     }
+
+     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayerPrefs.SetString("_last_scene_", scene.name);
+    }
+     public static void LoadLastScene()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetString("_last_scene_"));
+    }
+
 }
