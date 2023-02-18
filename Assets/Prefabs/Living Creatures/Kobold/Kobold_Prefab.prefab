@@ -39,6 +39,7 @@ Transform:
   - {fileID: 6342483855531859533}
   - {fileID: 3382944415309939940}
   - {fileID: 827609950427303711}
+  - {fileID: 5267646666100260449}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 164.703, z: 0}
@@ -276,7 +277,7 @@ MonoBehaviour:
   timer: 0
   attackedPlayer: 0
   knockbackForce: 300
-  anim: {fileID: 5980609982658558602}
+  anim: {fileID: 1326769306198214029}
 --- !u!114 &5904533983049128167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +565,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kolbold_Animated
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4568ad6be7a8a384db133af2cab7a9f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4568ad6be7a8a384db133af2cab7a9f9, type: 3}
 --- !u!1 &2718329921138105950 stripped
@@ -675,4 +680,91 @@ ParticleSystem:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1058567613500773295, guid: f421b78fdac0604418d03c434151b311, type: 3}
   m_PrefabInstance: {fileID: 4019859776262187003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5661246586824448394
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 705782220495552150}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4874611
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.99555725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.094158225
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -349.194
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_Name
+      value: Komodo_Animated
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+--- !u!1 &4778776701697877211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+  m_PrefabInstance: {fileID: 5661246586824448394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1326769306198214029
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778776701697877211}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2325394166219848a7c49f708f8253f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &5267646666100260449 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+  m_PrefabInstance: {fileID: 5661246586824448394}
   m_PrefabAsset: {fileID: 0}

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverMenu : MonoBehaviour
 {
     public Reload reload;
+    public int LastScene;
 
     private void Start()
     {
@@ -13,9 +14,26 @@ public class GameOverMenu : MonoBehaviour
     }
     public void Retry()
     {
+        // ReloadNum.LastLevelNum;
         reload.retry = true;
-        SceneManager.LoadScene(2);
+        if (ReloadNum.LastLevelNum == 1)
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+        if (ReloadNum.LastLevelNum == 2)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        if (ReloadNum.LastLevelNum == 3)
+        {
+            SceneManager.LoadScene("Level 3");
+        }
         Debug.Log("In retry function");
+    }
+
+    void Update()
+    {
+        LastScene = ReloadNum.LastLevelNum;
     }
 
     public void QuitToMainMenu()
