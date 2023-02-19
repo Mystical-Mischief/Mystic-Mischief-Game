@@ -75,6 +75,10 @@ public class KoboltAI : BaseEnemyAI
             }
             
         }
+        if (collision.gameObject.tag == "Poop")
+        {
+            stunned = true;
+        }
     }
 
 }
