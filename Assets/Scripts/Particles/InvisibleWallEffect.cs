@@ -11,9 +11,9 @@ public class InvisibleWallEffect : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.layer == 15)
+        if(collision.gameObject.layer == 16)
         {
-            windEffect.transform.localPosition = this.transform.position;
+            windEffect.transform.position = this.transform.position;
             windEffect.transform.LookAt(this.transform);
             windEffect.enableEmission = true;
         }
