@@ -27,13 +27,17 @@ public class QuestInfo
     [Header("Use only if input quest")]
     public UnityEngine.InputSystem.InputAction input;
     public GameObject[] rewards;
+    [SerializeField]
+    public GameObject[] ObjToDeactivate;
+    public bool priorityQuest;
+
     [HideInInspector]
     public bool active;
     [HideInInspector]
     public bool completed;
     [HideInInspector]
     public bool submitQuest;
-    public bool priorityQuest;
+
 }
 public class Quest : MonoBehaviour
 {
@@ -41,9 +45,6 @@ public class Quest : MonoBehaviour
     public Interactor interactor;
     //tutorial is 0, Talk to NPC is 1, Collection is 2, Escort is 3 
     public MonoBehaviour[] questScript;
-    //public Image questItem;
-    //public Color completedColor;
-    //public Color currentColor;
     public TextMeshProUGUI text;
     public TextMeshProUGUI nextQuestText;
 
@@ -160,7 +161,20 @@ public class Quest : MonoBehaviour
             {
                 foreach(GameObject gO in activeQuest.rewards)
                 {
-                    gO.SetActive(true);
+                    if(gO != null)
+                    {
+                        gO.SetActive(true);
+                    }
+                }
+            }
+            if(activeQuest.ObjToDeactivate.Length != 0)
+            {
+                foreach(GameObject gO in activeQuest.ObjToDeactivate)
+                {
+                    if (gO != null)
+                    {
+                        gO.SetActive(false);
+                    }
                 }
             }
             //remove the quest from the list

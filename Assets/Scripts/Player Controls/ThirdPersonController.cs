@@ -129,11 +129,7 @@ public class ThirdPersonController : MonoBehaviour
         LookAt();
 
         Vector3 Turn = new Vector3(0, 0, 0);
-        Vector3 MaxRotation = new Vector3(0, 10, 0);
-        bool Left = controls.Actions.GlideLeft.ReadValue<float>() > 0.1f;
-        bool Right = controls.Actions.GlideRight.ReadValue<float>() > 0.1f;
         Vector3 velocity = rb.velocity;
-        Vector3 lastPosition = transform.position;
 
         //If the player is diving this code sets the animator and player in the diving state.
         bool dive = false;

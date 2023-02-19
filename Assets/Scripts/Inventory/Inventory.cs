@@ -264,7 +264,7 @@ public class Inventory : MonoBehaviour
         }
         int LayerPickedUpItem = LayerMask.NameToLayer("DragonOnly");
         Item.gameObject.layer = LayerPickedUpItem;
-        Item.gameObject.tag ="Gold";
+        // Item.gameObject.tag ="Gold";
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
         // Item.GetComponent<Item>().inInventory = true;
@@ -287,9 +287,9 @@ public class Inventory : MonoBehaviour
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
-        int LayerPickUp = LayerMask.NameToLayer("PickUp");
+        int LayerPickUp = LayerMask.NameToLayer("Default");
         Item.gameObject.layer = LayerPickUp;
-        Item.gameObject.tag="PickUp";
+        // Item.gameObject.tag="PickUp";
         MassText = MassText - Item.GetComponent<Item>().Weight;
         rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = null;
