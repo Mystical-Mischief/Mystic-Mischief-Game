@@ -14,6 +14,7 @@ public class BirdInteraction : MonoBehaviour
     public float TicketAmount;
     public CleverBirdFaceChange faceChange;
     public List<GameObject> StoredItems = new List<GameObject>();
+    public MonoBehaviour dialouge;
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class BirdInteraction : MonoBehaviour
         }
         if (ticketCount >= TicketAmount)
         {
+            dialouge.enabled = true;
             Hat.SetActive(true);
             Destroy(GetComponent<Chest>());
         }
