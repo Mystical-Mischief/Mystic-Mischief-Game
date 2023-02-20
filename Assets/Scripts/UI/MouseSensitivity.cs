@@ -12,7 +12,14 @@ public class MouseSensitivity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(!PlayerPrefs.HasKey("Sensitivity")){
+            PlayerPrefs.SetFloat("Sensitivity", 1);
+            Load();
+        }
+
+        else{
+            Load();
+        }
     }
 
     public Rect SliderLocation;
@@ -26,5 +33,14 @@ public class MouseSensitivity : MonoBehaviour
     {
         mouseSensitivity = sensitivitySlider.value;
         Update();
+        Save();
+    }
+
+    private void Load(){
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+    }
+    
+    private void Save(){
+        PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
     }
 }
