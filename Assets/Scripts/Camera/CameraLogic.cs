@@ -24,8 +24,8 @@ public class CameraLogic : MonoBehaviour
         //if the player is flying use the fly camera
         if (isFlying)
         {
-            turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity;
-            turn.y += inputs.PlayerOnGround.Look.ReadValue<Vector2>().y / sensitivity;
+            turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x * sensitivity;
+            turn.y += inputs.PlayerOnGround.Look.ReadValue<Vector2>().y * sensitivity;
 
             if (turn.x > 360)
             {
@@ -49,8 +49,8 @@ public class CameraLogic : MonoBehaviour
         //if the player is grounded use the ground camera
         else
         {
-            turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x / sensitivity;
-            turn.y += inputs.PlayerOnGround.Look.ReadValue<Vector2>().y / sensitivity;
+            turn.x += inputs.PlayerOnGround.Look.ReadValue<Vector2>().x * sensitivity;
+            turn.y += inputs.PlayerOnGround.Look.ReadValue<Vector2>().y * sensitivity;
             if (turn.y > groundMaxYRotation)
             {
                 turn.y = groundMaxYRotation;
