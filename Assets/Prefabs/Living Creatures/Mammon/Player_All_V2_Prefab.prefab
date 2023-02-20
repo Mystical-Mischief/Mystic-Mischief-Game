@@ -1240,8 +1240,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2352274647880217441}
-  m_LocalRotation: {x: -0.048840374, y: -0.024941772, z: -0.0012200009, w: 0.99849445}
-  m_LocalPosition: {x: 0.49996936, y: -0.7599144, z: -10.001439}
+  m_LocalRotation: {x: -0.088506706, y: -0.024874687, z: -0.0022109486, w: 0.9957625}
+  m_LocalPosition: {x: 0.49999875, y: -0.7599125, z: -10.001522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4767,6 +4767,7 @@ GameObject:
   - component: {fileID: 7510103832691703387}
   - component: {fileID: 7510103832691703386}
   - component: {fileID: 4178627768840028315}
+  - component: {fileID: 7063993801101885665}
   - component: {fileID: 7510103832691703384}
   - component: {fileID: 7510103832691703376}
   - component: {fileID: 7510103832691703385}
@@ -4832,6 +4833,19 @@ MonoBehaviour:
   InvisibilityHat: {fileID: 2384129248123723391}
   WizardHat: {fileID: 7945804657408397554}
   SkillTree: {fileID: 5867310116141448897}
+--- !u!114 &7063993801101885665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7510103832691703391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59015db67f35dad489e14b19c3fc1b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InvisibilityHat: {fileID: 2384129248123723391}
 --- !u!114 &7510103832691703384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6906,7 +6920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasCooldown: 1
   AbilityCooldownTime: 1
-  SwitchCooldownTime: 2
+  SwitchCooldownTime: 1
   activateHat: 0
   SkillLevel: 1
   InvisMaterials:
@@ -6919,7 +6933,7 @@ MonoBehaviour:
   models:
   - {fileID: 7619498870445360262}
   - {fileID: 2525785484994000302}
-  _timer: 0
+  _timer: 3
 --- !u!4 &7594214907129926770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7821066638524093649, guid: 67f547f059e5c2f4dafcf76f4cfbd004, type: 3}
