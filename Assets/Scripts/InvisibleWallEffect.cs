@@ -13,8 +13,7 @@ public class InvisibleWallEffect : MonoBehaviour
     {
         if(collision.gameObject.layer == 15)
         {
-            windEffect.transform.localPosition = this.transform.position;
-            windEffect.transform.LookAt(this.transform);
+            windEffect.transform.position = this.transform.position;
             windEffect.enableEmission = true;
         }
     }

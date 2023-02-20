@@ -22,55 +22,32 @@ public enum Emotion
 public class FaceChanger : MonoBehaviour
 {
     public Face[] allFaces;
-
-
-
-    [SerializeField] private Emotion _currentEmotion;
-    public Emotion CurrentEmotion
-    {
-        get
-        {
-            return _currentEmotion;
-        }
-        set
-        {
-            if(_currentEmotion != value)
-            {
-                _currentEmotion = value;
-                OnEmotionChange?.Invoke(this, _currentEmotion);
-            }
-        }
-    }
-
+    public Emotion currentEmotion;
+    
     private Texture currentTexture;
     private Face currentFace;
 
     public Material EmotionMaterial;
 
-
-    public event EventHandler<Emotion> OnEmotionChange;
-
-
     //finds face on start
     private void Start()
     {
-        //findNewFace();
-        OnEmotionChange += findNewFace;
-
-        CurrentEmotion = Emotion.Neutral; 
+        findNewFace();
     }
                           //Made a slightly better if statement - Corey
-    private void FixedUpdate() //Could be turned into event, does not need to check the face every frame. 
+    private void Update() //Could be turned into event, does not need to check the face every frame. 
     {
-        OnEmotionChange?.Invoke(this, _currentEmotion);
+        if(currentEmotion != currentFace.emotion)
+        {
+            findNewFace();
+        }
+        
     }
-    public void findNewFace(object sender, Emotion emotion) //Finds a face that has the correct emotion, then changes the texture of the Material that shows the emotion. 
+    void findNewFace() //Finds a face that has the correct emotion, then changes the texture of the Material that shows the emotion. 
     {
-
-
         foreach (Face face in allFaces)
         {
-            if (emotion == face.emotion)
+            if (currentEmotion == face.emotion)
             {
                 currentFace = face;
                 currentTexture = face.EmotionTexture;
@@ -78,7 +55,5 @@ public class FaceChanger : MonoBehaviour
                 return;
             }
         }
-
-
     }
 }
