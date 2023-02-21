@@ -226,8 +226,6 @@ public class ThirdPersonController : MonoBehaviour
         { 
             GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); 
         }
-        
-
     }
 
     private void Update()

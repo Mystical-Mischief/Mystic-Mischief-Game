@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, 
         _interactableMask);
 
-        if (_numFound > 0 || GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>().damaged == true)
+        if (_numFound > 0 || GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().damaged == true)
        {
             if(_numFound > 0)
             {
