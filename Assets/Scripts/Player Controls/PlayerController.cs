@@ -5,17 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //public variables
+    //public variables -CC
     public int maxHealth = 4;
     public bool canMove;
     public bool godMode;
+    //public but doesnt need to be seen in the inspector -CC
     [HideInInspector] public bool onGround;
     [HideInInspector] public float stamina;
     [HideInInspector] public bool damaged;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool inWater;
 
-    //private but can see in editor
+    //private but can see in editor -CC
     [SerializeField] float maxStamina;
     [SerializeField] float moveForce;
     [SerializeField] float jumpForce;
@@ -23,14 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] float powerValue;
     [SerializeField] private Vector3 diveSpeed;
-    PlayerAnimation playerAnimation;
 
-    //Input actions
+    //Input actions -CC
     private InputAction move;
     private InputAction jump;
     private InputAction flying;
 
-    //Private variables
+    //Private variables -CC
     ControlsforPlayer controls;
     Rigidbody rb;
     float diveTim;
@@ -54,18 +54,18 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
+        //Sets up controls for jump, caw and godmode
         controls = new ControlsforPlayer();
         controls.Enable();
         controls.Actions.Jump.started += DoJump;
-        controls.Actions.Caw.started += Caw;
         controls.Actions.GodMode.started += GodMode;
         move = controls.Actions.Movement;
     }
     private void OnDisable()
     {
+        //takes away controls
         controls.Disable();
-        controls.Actions.Caw.started -= Caw;
-        controls.Actions.Jump.started += DoJump;
+        controls.Actions.Jump.started -= DoJump;
         controls.Actions.GodMode.started -= GodMode;
         controls.Disable();
     }
@@ -73,11 +73,13 @@ public class PlayerController : MonoBehaviour
     Vector3 horizontalVelocity;
     private void FixedUpdate()
     {
+        //basic playermovement like walking -CC
         if (canMove)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCam) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCam) * moveForce;
         }
+        //adds force to move player -CC
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
@@ -88,10 +90,13 @@ public class PlayerController : MonoBehaviour
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
         }
 
+        //Ground Logic -CC
         IsGrounded();
+        //Camera Looking Logic -CC
         LookAt();
-
+        //Diving Logic- CC
         DivingLogic();
+        //Gliding Logic - CC
         GlidingLogic();
     }
 
@@ -100,9 +105,11 @@ public class PlayerController : MonoBehaviour
     RaycastHit hit;
     private void IsGrounded()
     {
+        //gets the distance for the ground check based off the players collider -CC
         groundCheckDistance = (GetComponent<CapsuleCollider>().height / 2) + bufferDistance;
         if (Physics.Raycast(transform.position, -transform.up, out hit, groundCheckDistance))
         {
+            //if the raycast hits the ground, you are on the ground and regen stamina faster -CC
             onGround = true;
             jumpInAir = false;
             stamina += Time.fixedDeltaTime;
@@ -111,11 +118,13 @@ public class PlayerController : MonoBehaviour
                 stamina = 4;
             }
         }
+        //otherwise you are not on the ground -CC
         else
         {
             onGround = false;
         }
     }
+    //Look at adjusts the players direction so they move forward and glide forwad based on where the camera is facing -CC
     Vector3 direction;
     private void LookAt()
     {
@@ -133,17 +142,20 @@ public class PlayerController : MonoBehaviour
     Vector3 glideSpeed;
     private void DivingLogic()
     {
+        //if you can move - CC
         if (canMove)
         {
+            //checks to see if you are diving - CC
             diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
             if (diving && onGround == false)
             {
+                //if so dive and keep track of how long you are diving -CC
                 diveTim += Time.fixedDeltaTime;
-                Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 GetComponent<ConstantForce>().force = diveSpeed;
             }
             else
             {
+                //afterwards apply speed based on how long you have been diving for -CC
                 glideSpeed.z = glideSpeed.z + diveTim - Time.fixedDeltaTime;
                 glideSpeed.y = glideSpeed.y + diveTim - (Time.fixedDeltaTime * 2);
                 //The code below makes sure that each part of the glidespeed Vector3 does not add to much momentum after the player stops diving. These are caps for each float so that it does not exceed to much.
@@ -191,48 +203,56 @@ public class PlayerController : MonoBehaviour
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed;
         }
-        //This makes the flying stop.
+        //This makes the flying stop. 
         else
         {
             GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);
         }
     }
+    //gets the camera's right so you can determine the right direction for the player to move - CC
     private Vector3 GetCameraRight(Camera playerCamera)
     {
         Vector3 right = playerCamera.transform.right;
         right.y = 0;
         return right.normalized;
     }
-
+    //gets the camera's forward so you can determine the forward direction for the player to move - CC
     private Vector3 GetCameraForward(Camera playerCamera)
     {
         Vector3 forward = playerCamera.transform.forward;
         forward.y = 0;
         return forward.normalized;
     }
+    //logic for taking damage -CC
     public void TakeDamage(int damage)
     {
+        //if you arent in godmode
         if (!godMode)
         {
+            //take damage
             currentHealth -= damage;
-            Debug.Log(currentHealth);
             damaged = true;
             StartCoroutine(tookDamage());
         }
 
     }
+    //timer so you dont take damage constantly -CC
     IEnumerator tookDamage()
     {
         yield return new WaitForSeconds(2);
         damaged = false;
     }
+    //jump function that only triggers when you use jump -CC
     private void DoJump(InputAction.CallbackContext obj)
     {
         if (canMove)
         {
+            //if you have stamina - CC
             if (stamina > 0)
             {
+                //jump
                 forceDirection += Vector3.up * jumpForce;
+                //jump for when you jump the 2nd time and start gliding - CC
                 if (stamina > 0 && onGround == false)
                 {
                     forceDirection += Vector3.up * jumpForce;
@@ -245,11 +265,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void Caw(InputAction.CallbackContext obj)
-    {
-        //caw.Play();
-        print("caw");
-    }
+    //enables god mode which makes the player faster and invincible - CC
     private void GodMode(InputAction.CallbackContext obj)
     {
         if (!godMode)
@@ -329,6 +345,7 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<FireDragonPerch>().playerInRoom = false;
         }
     }
+    //not sure what this is for, this was set up by someone else I just translated it over - CC
     public void IncreaseSpeed(float speedBoost)
     {
         maxSpeed *= speedBoost;
