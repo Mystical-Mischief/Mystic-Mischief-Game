@@ -3657,6 +3657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 916845150355414321}
+  - component: {fileID: 3674384650068894831}
   - component: {fileID: 916845150355414320}
   - component: {fileID: 6736542516986848241}
   - component: {fileID: 916845150355414322}
@@ -3670,6 +3671,7 @@ GameObject:
   - component: {fileID: 916845150355414331}
   - component: {fileID: 916845150355414328}
   - component: {fileID: 916845150355414278}
+  - component: {fileID: 8237981857204998154}
   m_Layer: 8
   m_Name: Player New
   m_TagString: Player
@@ -3701,6 +3703,23 @@ Transform:
   m_Father: {fileID: 4910193801809501925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3674384650068894831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916845150355414325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d993f66b4b5dfb4448c7db3c1e694ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poop: {fileID: 8596426487253530810, guid: 6485dd89c7a9d0d408784621c4fd91db, type: 3}
+  poopPosition: {fileID: 6129932597663600557}
+  resetPoopTime: 2
+  Pooped: 0
+  PoopClip: {fileID: 8300000, guid: 382082ce2efc9794b8aecf791d12ab0e, type: 3}
 --- !u!33 &916845150355414320
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3797,17 +3816,13 @@ MonoBehaviour:
   stamina: 0
   damaged: 0
   currentHealth: 0
+  inWater: 0
   maxStamina: 4
   moveForce: 5
   jumpForce: 10
   maxSpeed: 5
   playerCam: {fileID: 0}
   powerValue: 100
-  camGround: {fileID: 4910193802093039627}
-  camFly: {fileID: 4910193801861698644}
-  dragonCamGround: {fileID: 7670762203204244373}
-  dragonCamFly: {fileID: 2376362370099816422}
-  flyingEffets: {fileID: 3018451129598417678}
   diveSpeed: {x: 0, y: -100, z: 10}
 --- !u!114 &1658966539584756804
 MonoBehaviour:
@@ -3956,6 +3971,102 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!82 &8237981857204998154
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916845150355414325}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5260441629367834860, guid: 4907803f1c73143449389c74ade16e1a, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &951899675124240966
 GameObject:
   m_ObjectHideFlags: 0
@@ -18020,8 +18131,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.023337137, y: -0.024965972, z: -0.00058297534, w: 0.99941576}
-  m_LocalPosition: {x: 0.49999887, y: -0.7599125, z: -10.001524}
+  m_LocalRotation: {x: -0.04575059, y: -0.024946954, z: -0.0011428891, w: 0.9986407}
+  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20570,6 +20681,7 @@ MonoBehaviour:
   DropClip: {fileID: 8300000, guid: 44ec288dbfe29864bba697e48710b588, type: 3}
   PlayerCaw: {fileID: 8300000, guid: 99636ea246e17754a8297db89f98eece, type: 3}
   Player: {fileID: 916845150355414325}
+  flyingEffets: {fileID: 0}
 --- !u!1 &7000332795838514767
 GameObject:
   m_ObjectHideFlags: 0

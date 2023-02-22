@@ -11,9 +11,13 @@ public class PoopMechanic : MonoBehaviour
     private bool isPooping;
     ControlsforPlayer controls;
 
+    private AudioSource poopSound;
+    public AudioClip PoopClip;
+
     // Start is called before the first frame update
     void Start()
     {
+        poopSound = GetComponent<AudioSource>();
         controls = new ControlsforPlayer();
         controls.Enable();
     }
@@ -32,6 +36,7 @@ public class PoopMechanic : MonoBehaviour
 
     public void Poop()
     {
+        PlaySound(PoopClip);
         Rigidbody clone;
         clone = Instantiate(poop, poopPosition.position, transform.rotation);
         Invoke(nameof(ResetPoop), resetPoopTime);
@@ -41,5 +46,10 @@ public class PoopMechanic : MonoBehaviour
     public virtual void ResetPoop()
     {
         Pooped = false;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        poopSound.PlayOneShot(clip);
     }
 }
