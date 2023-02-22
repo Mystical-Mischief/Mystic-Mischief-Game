@@ -6,15 +6,18 @@ public class HatCircleVisualController : MonoBehaviour
 {
     //I obtain the two public gameobjects
     public GameObject CircleVisual;
-    public GameObject Camera;
+    public GameObject CirCamera;
     public float Scale;
     //the distance between the two gameobjects
     float distanceFromCamera;
 
 
-   
 
-    
+
+    private void Start()
+    {
+        CirCamera = Camera.main.gameObject;
+    }
     void Update()
     {
         //I made the code this way so that we can disable the method if we need to
@@ -25,10 +28,10 @@ public class HatCircleVisualController : MonoBehaviour
         //I check if the value is null in case the gameobject slots are empty
         if(CircleVisual != null)
         {
-            if(Camera != null)
+            if(CirCamera != null)
             {
                 //this function gives us the distance between the two gameobjects
-                distanceFromCamera = Vector3.Distance(CircleVisual.transform.position, Camera.transform.position);
+                distanceFromCamera = Vector3.Distance(CircleVisual.transform.position, CirCamera.transform.position);
             }
             
         }
@@ -42,7 +45,7 @@ public class HatCircleVisualController : MonoBehaviour
         
         
         
-        this.transform.LookAt(Camera.transform);
+        this.transform.LookAt(CirCamera.transform);
         
     }
 }
