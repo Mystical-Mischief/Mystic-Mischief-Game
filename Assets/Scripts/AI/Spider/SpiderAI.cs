@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class SpiderAI : BaseEnemyAI
 {
-    ThirdPersonController player;
+    PlayerController player;
     public GameObject projectile;
     public Animator anim;
     public Vector3 webOffset;
@@ -16,7 +16,7 @@ public class SpiderAI : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         //Essentially starts a cooldown for how often the spider can fire its web projectile
         timeBetweenShots = startTimeBetweenShots;
@@ -32,10 +32,6 @@ public class SpiderAI : BaseEnemyAI
 
             base.Update();
             PlayerCanMove = player.canMove;
-            if (target == Player && PlayerCanMove)
-            {
-                Player.GetComponent<ThirdPersonController>().Targeted = true;
-            }
 
             // if (Saved = false && Player.GetComponent<ThirdPersonController>().Saved == true)
             // {

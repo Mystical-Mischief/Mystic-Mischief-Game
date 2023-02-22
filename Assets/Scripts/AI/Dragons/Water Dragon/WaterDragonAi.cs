@@ -190,7 +190,7 @@ public class WaterDragonAi : BasicDragonAI
         transform.Rotate(new Vector3(0,0,0));
     }
         // If the player moves to fast and is close enough to the dragon it has found the player.
-        if (Player.GetComponent<ThirdPersonController>().rbSpeed >= 9 && dist < 17f)
+        if (dist < 17f)
         {
             FoundPlayer = true;
         }
@@ -252,7 +252,7 @@ public class WaterDragonAi : BasicDragonAI
             // else {anim.SetBool("Bite 0", false);}
          }
          else {anim.SetBool("Biting", false);}
-         if (Player.GetComponent<ThirdPersonController>().inWater == true && dist <= rangedDist)
+         if (Player.GetComponent<PlayerController>().inWater == true && dist <= rangedDist)
          {
             ChasePlayerWater();
          }

@@ -50,7 +50,11 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private GameObject camFly;
     [SerializeField] private GameObject dragonCamGround;
     [SerializeField] private GameObject dragonCamFly;
-    [SerializeField] private GameObject flyingEffets;
+    
+    
+    //Particle Effects and VFX GameObjects - Emilie 
+    [SerializeField] private GameObject glideVFX;
+    [SerializeField] private ParticleSystem hurtVFX; 
 
     public bool lockOnCamera;
 
@@ -151,7 +155,7 @@ public class ThirdPersonController : MonoBehaviour
                 Stamina = 4;
             }
             animator.SetBool("IsDiving", false);
-            flyingEffets.SetActive(false);
+            glideVFX.SetActive(false);
         }
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
@@ -163,7 +167,7 @@ public class ThirdPersonController : MonoBehaviour
             dive = true;
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             GetComponent<ConstantForce>().force = diveSpeed;
-            flyingEffets.SetActive(false);
+            glideVFX.SetActive(false);
             
         }
 
@@ -215,15 +219,13 @@ public class ThirdPersonController : MonoBehaviour
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
 
-            flyingEffets.SetActive(true);
+            glideVFX.SetActive(true);
         }
         //This makes the flying stop.
         else 
         { 
             GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); 
         }
-        
-
     }
 
     private void Update()
@@ -282,6 +284,9 @@ public class ThirdPersonController : MonoBehaviour
         if(!godMode)
         {
             playerAnimation.PlaySound(HurtClip);
+            hurtVFX.Play();
+
+
             currentHealth -= damage;
             Debug.Log(currentHealth);
             damaged = true;

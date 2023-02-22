@@ -1240,8 +1240,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2352274647880217441}
-  m_LocalRotation: {x: -0.088506706, y: -0.024874687, z: -0.0022109486, w: 0.9957625}
-  m_LocalPosition: {x: 0.49999875, y: -0.7599125, z: -10.001522}
+  m_LocalRotation: {x: -0.048840374, y: -0.024941772, z: -0.0012200009, w: 0.99849445}
+  m_LocalPosition: {x: 0.49996936, y: -0.7599144, z: -10.001439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3462,7 +3462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161382613882562033}
   m_Layer: 0
-  m_Name: FlyingVX
+  m_Name: ParticleEffects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4933,7 +4933,8 @@ MonoBehaviour:
   camFly: {fileID: 2352274648186533694}
   dragonCamGround: {fileID: 1077613746402193663}
   dragonCamFly: {fileID: 4934536266608641164}
-  flyingEffets: {fileID: 5576519722902304868}
+  glideVFX: {fileID: 7534175037352664407}
+  hurtVFX: {fileID: 5453667362418367833}
   lockOnCamera: 0
   rbSpeed: 0
   maxHealth: 4
@@ -6933,6 +6934,7 @@ MonoBehaviour:
   models:
   - {fileID: 7619498870445360262}
   - {fileID: 2525785484994000302}
+  isInvisible: 0
   _timer: 3
 --- !u!4 &7594214907129926770 stripped
 Transform:
@@ -7478,7 +7480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3345180840784374398, guid: c5ed26109f66b534fa5aa28f2f3d48ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00003790855
       objectReference: {fileID: 0}
     - target: {fileID: 3345180840784374398, guid: c5ed26109f66b534fa5aa28f2f3d48ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7523,6 +7525,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3345180840784374398, guid: c5ed26109f66b534fa5aa28f2f3d48ac, type: 3}
   m_PrefabInstance: {fileID: 2305257051953858233}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &5453667362418367833 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6076123912464899040, guid: c5ed26109f66b534fa5aa28f2f3d48ac, type: 3}
+  m_PrefabInstance: {fileID: 2305257051953858233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3655811044210340953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7540,11 +7547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813385501954019706, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.000037938356
       objectReference: {fileID: 0}
     - target: {fileID: 4813385501954019706, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.41999814
+      value: -0.41999742
       objectReference: {fileID: 0}
     - target: {fileID: 4813385501954019706, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7584,6 +7591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}
+--- !u!1 &7534175037352664407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6499477672268015886, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}
+  m_PrefabInstance: {fileID: 3655811044210340953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8102143242271155491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4813385501954019706, guid: d5c177019e87a7c4a9c962481cf1c987, type: 3}

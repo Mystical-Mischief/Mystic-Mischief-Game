@@ -26,11 +26,6 @@ public class MouseSensitivity : MonoBehaviour
 
     public Rect SliderLocation;
     // Update is called once per frame
-    void Update()
-    {
-        mouseSensitivity = sensitivitySlider.value;
-        cameraScript.sensitivity = mouseSensitivity;
-    }
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
@@ -47,6 +42,11 @@ public class MouseSensitivity : MonoBehaviour
     public float GetFloat(string KeyName)
     {
         return PlayerPrefs.GetFloat(KeyName);
+        if(cameraScript != null)
+        {
+            cameraScript.sensitivity = sensitivitySlider.value;
+        }
+        Save();
     }
 
     private void Load(){
