@@ -22,7 +22,8 @@ public class ActivateDialogue : MonoBehaviour
         {
             dialogueCanvas.SetActive(true);
             dialogueScript.enabled = true;
-            player.GetComponent<ThirdPersonController>().canMove = false;
+            player.GetComponent<PlayerController>().canMove = false;
+
             if (killDialouge)
             {
                 this.enabled = false;

@@ -56,13 +56,13 @@ public class CameraPan : MonoBehaviour
         {
             camgameobject.SetActive(false);
             cLogicScript.enabled = false;
-            Player.GetComponent<ThirdPersonController>().canMove = false;
+            Player.GetComponent<PlayerController>().canMove = false;
             PanCamera();
         }
         if (Pan == false && done == false)
         {
             camgameobject.SetActive(true);
-            Player.GetComponent<ThirdPersonController>().canMove = true;
+            Player.GetComponent<PlayerController>().canMove = true;
             cLogicScript.enabled = true;
             done = true;
         }

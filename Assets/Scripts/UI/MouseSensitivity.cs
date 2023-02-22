@@ -12,18 +12,16 @@ public class MouseSensitivity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (FindObjectOfType<CameraLogic>())
-        {
-            cameraScript = FindObjectOfType<CameraLogic>();
-        }
-        if(!PlayerPrefs.HasKey("Sensitivity")){
-            PlayerPrefs.SetFloat("Sensitivity", 1);
-            Load();
-        }
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
+        mouseSensitivity = sensitivitySlider.value;
+        // if(!PlayerPrefs.HasKey("Sensitivity")){
+        //     PlayerPrefs.SetFloat("Sensitivity", 0.3f);
+        //     Load();
+        // }
 
-        else{
-            Load();
-        }
+        // else{
+        //     Load();
+        // }
     }
 
     public Rect SliderLocation;
@@ -31,6 +29,19 @@ public class MouseSensitivity : MonoBehaviour
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
+        // Update();
+        // Save();
+        SetFloat("Sensitivity", sensitivitySlider.value);
+    }
+
+    public void SetFloat(string KeyName, float Value)
+    {
+        PlayerPrefs.SetFloat(KeyName, Value);
+    }
+
+    public float GetFloat(string KeyName)
+    {
+        return PlayerPrefs.GetFloat(KeyName);
         if(cameraScript != null)
         {
             cameraScript.sensitivity = sensitivitySlider.value;

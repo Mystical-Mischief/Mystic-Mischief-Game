@@ -9,7 +9,7 @@ public class Snatching : MonoBehaviour
     public GameObject airHitbox;
 
     private bool isSnatching;
-    ThirdPersonController TPController;
+    PlayerController TPController;
     ControlsforPlayer controls;
     private bool snatching;
     public GameObject hat1;
@@ -17,7 +17,7 @@ public class Snatching : MonoBehaviour
     public GameObject hat3;
     void Start()
     {
-        TPController = GetComponent<ThirdPersonController>();
+        TPController = GetComponent<PlayerController>();
         controls = new ControlsforPlayer();
         controls.Enable();
     }
@@ -30,7 +30,7 @@ public class Snatching : MonoBehaviour
         {
             isSnatching = true;
             // if the player is on the ground use the ground hitbox. 
-            if (TPController.isGrounded)
+            if (TPController)
             {
                 print("snatch em ground");
                 StartCoroutine(snatchingHitboxLogic(groundHitboxes));
@@ -69,7 +69,7 @@ public class Snatching : MonoBehaviour
     {
         if (isSnatching)
         {
-            if (TPController.isGrounded)
+            if (TPController.onGround)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawCube(groundHitboxes[hitboxNumber].transform.position, groundHitboxes[hitboxNumber].GetComponent<BoxCollider>().size);

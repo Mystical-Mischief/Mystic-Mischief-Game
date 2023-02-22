@@ -428,7 +428,11 @@ public class ThirdPersonController : MonoBehaviour
         //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
         if (other.gameObject.CompareTag("Attackpos"))
         {
-            TakeDamage(4);
+            TakeDamage(2);
+        }
+        if (other.gameObject.CompareTag("Dragon"))
+        {
+            TakeDamage(2);
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
@@ -492,7 +496,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     public void SavePlayer ()
     {
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
         Saved = true;
     }
     public void LoadPlayer ()
@@ -514,7 +518,7 @@ public class ThirdPersonController : MonoBehaviour
     public void Checkpoint ()
     {
         save.SaveEnemy();
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
         Debug.Log("Saved");

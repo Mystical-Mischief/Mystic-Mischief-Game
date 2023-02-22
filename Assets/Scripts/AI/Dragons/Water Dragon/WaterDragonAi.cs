@@ -219,10 +219,10 @@ public class WaterDragonAi : BasicDragonAI
             if (CanAttack == true)
             {
             transform.LookAt(PlayerPos);
-            if (rangedAttacked == false && WaterChase == false && attacked == false)
-            {attacking = true; Ranged();}
-            ///attackTimes = attackTimes + 1;
-            //Debug.Log("Ranged");
+            if (rangedAttacked == false && WaterChase == false && attacked == false && dist > meleeDist)
+            {
+                attacking = true; Ranged();
+            }
             }
          }
          // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
@@ -239,7 +239,7 @@ public class WaterDragonAi : BasicDragonAI
             ChasePlayer();
         }
         // If it is close to the dragon it sets the attack to true.
-         if (dist > 2f && dist <= meleeDist)
+         if (dist <= meleeDist)
          {
             anim.SetBool("Biting", true);
             //transform.LookAt(PlayerPos);
@@ -337,6 +337,7 @@ public class WaterDragonAi : BasicDragonAI
     }
     void Ranged()
     {
+        base.Speed = 0;
         anim.SetTrigger("Spit");
         Rigidbody clone;
         // Vector3 jumpVec = Player.transform.position - transform.position;
@@ -360,6 +361,7 @@ public class WaterDragonAi : BasicDragonAI
         attackTimes += 1;
         base.ai.speed = Speed;
         attacking = false;
+        Speed = 30;
     }
 
     public override void IsGrounded()

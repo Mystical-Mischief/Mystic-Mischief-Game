@@ -10,7 +10,7 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     bool attackedPlayer = false;
 
-    ThirdPersonController player;
+    PlayerController player;
 
     [SerializeField]
     GameObject Item;
@@ -37,7 +37,7 @@ public class KoboldProtectAi : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Protect = false;
         holdingItem = false;
         flee = false;
