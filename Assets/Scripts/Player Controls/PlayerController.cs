@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 4;
     public bool canMove;
     public bool godMode;
+    public SaveGeneral save;
     //public but doesnt need to be seen in the inspector -CC
     [HideInInspector] public bool onGround;
     [HideInInspector] public float stamina;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private float originalMaxSpeed;
     Vector3 forceDirection = Vector3.zero;
     bool diving;
+    bool Saved;
 
     private void Start()
     {
@@ -389,7 +391,7 @@ public class PlayerController : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
-        Stamina = data.Stamina;
+        stamina = data.Stamina;
         jumpInAir = data.jumpInAir;
         godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
@@ -413,7 +415,7 @@ public class PlayerController : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
-        Stamina = data.Stamina;
+        stamina = data.Stamina;
         jumpInAir = data.jumpInAir;
         godMode = data.godMode;
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
