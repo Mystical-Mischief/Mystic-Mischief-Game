@@ -69,6 +69,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        controls = new ControlsforPlayer();
         controls.Enable();
     }
 

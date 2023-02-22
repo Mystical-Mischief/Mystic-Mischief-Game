@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 4;
     public bool canMove;
     public bool godMode;
+    [HideInInspector] public bool onGround;
+    [HideInInspector] public float stamina;
+    [HideInInspector] public bool damaged;
+    [HideInInspector] public int currentHealth;
+    [HideInInspector] public bool inWater;
 
     //private but can see in editor
     [SerializeField] float maxStamina;
@@ -17,11 +22,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxSpeed;
     [SerializeField] Camera playerCam;
     [SerializeField] float powerValue;
-    [SerializeField] private GameObject camGround;
-    [SerializeField] private GameObject camFly;
-    [SerializeField] private GameObject dragonCamGround;
-    [SerializeField] private GameObject dragonCamFly;
-    [SerializeField] private GameObject flyingEffets;
     [SerializeField] private Vector3 diveSpeed;
     PlayerAnimation playerAnimation;
 
@@ -34,27 +34,17 @@ public class PlayerController : MonoBehaviour
     ControlsforPlayer controls;
     Rigidbody rb;
     float diveTim;
-    float stamina;
     private float originalMoveForce;
     private float originalMaxSpeed;
     Vector3 forceDirection = Vector3.zero;
-    bool onGround;
-    bool inWater;
     bool jumpInAir;
-    bool damaged;
     bool diving;
-    int currentHealth;
-
-    //Scripts to make to seperate this shit
-    //1) Audio manager & Animations
-    //2) Lock on function
 
     private void Start()
     {
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
         rb = GetComponent<Rigidbody>();
-        controls = new ControlsforPlayer();
         controls.Enable();
         stamina = maxStamina;
         move = controls.Actions.Movement;
@@ -62,19 +52,31 @@ public class PlayerController : MonoBehaviour
         flying = controls.Actions.Glide;
         currentHealth = maxHealth;
     }
+    private void OnEnable()
+    {
+        controls = new ControlsforPlayer();
+        controls.Enable();
+        controls.Actions.Jump.started += DoJump;
+        controls.Actions.Caw.started += Caw;
+        controls.Actions.GodMode.started += GodMode;
+        move = controls.Actions.Movement;
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+        controls.Actions.Caw.started -= Caw;
+        controls.Actions.Jump.started += DoJump;
+        controls.Actions.GodMode.started -= GodMode;
+        controls.Disable();
+    }
     //Variables only used in this function
     Vector3 horizontalVelocity;
-    private void Update()
+    private void FixedUpdate()
     {
         if (canMove)
         {
             forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCam) * moveForce;
             forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCam) * moveForce;
-
-            if (jump.triggered)
-            {
-                DoJump();
-            }
         }
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -90,10 +92,7 @@ public class PlayerController : MonoBehaviour
         LookAt();
 
         DivingLogic();
-    }
-    private void FixedUpdate()
-    {
-        
+        GlidingLogic();
     }
 
     float bufferDistance = 0.1f;
@@ -120,41 +119,82 @@ public class PlayerController : MonoBehaviour
     Vector3 direction;
     private void LookAt()
     {
+        direction = rb.velocity;
         direction.y = 0f;
         if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f)
         {
-            this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+            rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }
         else
         {
             rb.angularVelocity = Vector3.zero;
         }
     }
-    private void DoJump()
+    Vector3 glideSpeed;
+    private void DivingLogic()
     {
-        if (stamina > 0)
+        if (canMove)
         {
-            forceDirection += Vector3.up * jumpForce;
-            if (stamina > 0 && onGround == false)
+            diving = controls.Actions.Dive.ReadValue<float>() > 0.1f;
+            if (diving && onGround == false)
             {
-                forceDirection += Vector3.up * jumpForce;
-                if (!godMode)
+                diveTim += Time.fixedDeltaTime;
+                Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                GetComponent<ConstantForce>().force = diveSpeed;
+            }
+            else
+            {
+                glideSpeed.z = glideSpeed.z + diveTim - Time.fixedDeltaTime;
+                glideSpeed.y = glideSpeed.y + diveTim - (Time.fixedDeltaTime * 2);
+                //The code below makes sure that each part of the glidespeed Vector3 does not add to much momentum after the player stops diving. These are caps for each float so that it does not exceed to much.
+                if (diveTim > 10)
                 {
-                    stamina -= 1;
+                    diveTim = 0;
+                    glideSpeed.z = 100;
                 }
-                jumpInAir = true;
+                if (glideSpeed.z <= 100)
+                {
+                    glideSpeed.z = 100;
+                }
+                if (glideSpeed.y <= 9.8f)
+                {
+                    glideSpeed.y = 9.8f;
+                }
+                if (glideSpeed.z >= 130)
+                {
+                    glideSpeed.z = 100;
+                }
+                if (glideSpeed.y >= 25)
+                {
+                    glideSpeed.y = 9.8f;
+                }
+                //This makes the players momentum slowely return to what it normally is when the player flies.
+                diveTim -= Time.fixedDeltaTime;
+                GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
+            }
+            //This lets the float for calculating how long the player dives not go below zero.
+            if (diveTim <= 0)
+            {
+                diveTim = 0;
             }
         }
     }
-    private void DivingLogic()
+    void GlidingLogic()
     {
-        if (diving && onGround == false)
+        //This lets the player fly after jumping in the air.
+        if (onGround == false && canMove && jumpInAir == true)
         {
-            diveTim += Time.fixedDeltaTime;
-            Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            GetComponent<ConstantForce>().force = diveSpeed;
-            flyingEffets.SetActive(false);
-
+            stamina += (Time.fixedDeltaTime * 0.5f);
+            if (stamina >= 4)
+            {
+                stamina = 4;
+            }
+            GetComponent<ConstantForce>().relativeForce = glideSpeed;
+        }
+        //This makes the flying stop.
+        else
+        {
+            GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0);
         }
     }
     private Vector3 GetCameraRight(Camera playerCamera)
@@ -185,5 +225,118 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         damaged = false;
+    }
+    private void DoJump(InputAction.CallbackContext obj)
+    {
+        if (canMove)
+        {
+            if (stamina > 0)
+            {
+                forceDirection += Vector3.up * jumpForce;
+                if (stamina > 0 && onGround == false)
+                {
+                    forceDirection += Vector3.up * jumpForce;
+                    if (!godMode)
+                    {
+                        stamina -= 1;
+                    }
+                    jumpInAir = true;
+                }
+            }
+        }
+    }
+    private void Caw(InputAction.CallbackContext obj)
+    {
+        //caw.Play();
+        print("caw");
+    }
+    private void GodMode(InputAction.CallbackContext obj)
+    {
+        if (!godMode)
+        {
+            godMode = true;
+            maxSpeed *= 2;
+            moveForce *= 2;
+        }
+        else
+        {
+            maxSpeed /= 2;
+            moveForce /= 2;
+            godMode = false;
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        //This pushes the player back when they hit a wall.
+        if (other.gameObject.CompareTag("wall"))
+        {
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+        //This pushes the player back when they hit an enemy.
+        if (other.gameObject.CompareTag("enemy"))
+        {
+            Vector3 direction = other.contacts[0].point - transform.position;
+            direction = -direction.normalized;
+            rb.AddForce((-transform.forward * 1000) * powerValue);
+        }
+        //This stops the player from moving when they are in the water
+        if (other.gameObject.CompareTag("Water"))
+        {
+            moveForce = moveForce * 0.5f;
+            onGround = false;
+            inWater = true;
+        }
+        //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
+        if (other.gameObject.CompareTag("Attackpos"))
+        {
+            TakeDamage(4);
+        }
+        //This makes the player take damage when they are hit by a projectile.
+        if (other.gameObject.CompareTag("Projectile"))
+        {
+            TakeDamage(1);
+        }
+    }
+    void OnCollisionExit(Collision other)
+    {
+        //This lets the player move again when they jump out of water.
+        if (other.gameObject.CompareTag("Water"))
+        {
+            inWater = false;
+            moveForce = moveForce * 2f;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //This saves a checkpoint.
+        if (other.gameObject.tag == "Checkpoint")
+        {
+            //Checkpoint();
+        }
+        //In the fire level this lets the dragon know what room the player is in.
+        if (other.gameObject.CompareTag("RoomEnter"))
+        {
+            other.GetComponent<FireDragonPerch>().playerInRoom = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        //Im the fire level this lets the dragon know when they exited the room they were in.
+        if (other.gameObject.CompareTag("RoomEnter"))
+        {
+            other.GetComponent<FireDragonPerch>().playerInRoom = false;
+        }
+    }
+    public void IncreaseSpeed(float speedBoost)
+    {
+        maxSpeed *= speedBoost;
+        moveForce *= speedBoost;
+    }
+    public void SetSpeedToNormal()
+    {
+        maxSpeed = originalMaxSpeed;
+        moveForce = originalMoveForce;
     }
 }

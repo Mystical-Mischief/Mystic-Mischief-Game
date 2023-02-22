@@ -12,6 +12,10 @@ public class MouseSensitivity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (FindObjectOfType<CameraLogic>())
+        {
+            cameraScript = FindObjectOfType<CameraLogic>();
+        }
         if(!PlayerPrefs.HasKey("Sensitivity")){
             PlayerPrefs.SetFloat("Sensitivity", 1);
             Load();
@@ -24,15 +28,13 @@ public class MouseSensitivity : MonoBehaviour
 
     public Rect SliderLocation;
     // Update is called once per frame
-    void Update()
-    {
-        mouseSensitivity = sensitivitySlider.value;
-        cameraScript.sensitivity = mouseSensitivity;
-    }
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
-        Update();
+        if(cameraScript != null)
+        {
+            cameraScript.sensitivity = sensitivitySlider.value;
+        }
         Save();
     }
 

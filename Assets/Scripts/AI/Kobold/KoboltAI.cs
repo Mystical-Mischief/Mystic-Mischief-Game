@@ -10,7 +10,7 @@ public class KoboltAI : BaseEnemyAI
     [SerializeField]
     bool attackedPlayer = false;
 
-    ThirdPersonController player;
+    PlayerController player;
 
     [SerializeField]
     private float knockbackForce;
@@ -19,7 +19,7 @@ public class KoboltAI : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         currentAttack = attackCooldown;
     } 
 

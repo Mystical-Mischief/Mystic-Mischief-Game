@@ -12,18 +12,18 @@ public class StaminaBar : MonoBehaviour
     public float CurrentStamina = 4;
     private float MaxStamina = 4;
 
-    ThirdPersonController Player;
+    PlayerController Player;
 
     private void Start()
     {
         Stamina = GetComponent<Image>();
-        Player = FindObjectOfType<ThirdPersonController>();
+        Player = FindObjectOfType<PlayerController>();
         CurrentStamina = MaxStamina;
     }
 
     private void Update()
     {
-        CurrentStamina = Player.Stamina;
+        CurrentStamina = Player.stamina;
         Stamina.fillAmount = CurrentStamina/MaxStamina; //updates the amount of stamina the player has in the UI
 
         for(int i = 0; i < staminaPoints.Length; i++)

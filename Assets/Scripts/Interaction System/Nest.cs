@@ -5,6 +5,15 @@ public class Nest : MonoBehaviour
 {
     public float treasure;
 
+    [SerializeField] ParticleSystem storeVFX;
+
+
+    private void Start()
+    {
+       storeVFX.Stop();
+    }
+
+
     private void Update()
     {
         treasure = Treasure.treasureValue;
@@ -18,10 +27,15 @@ public class Nest : MonoBehaviour
             float value = item.Weight;
             if(item.dropped)
             {
+ 
+                storeVFX.Play();
+                
+
                 item = null;
                 Treasure.AddValue(value);
                 Destroy(other.gameObject);
             }
         }
     }
+
 }
