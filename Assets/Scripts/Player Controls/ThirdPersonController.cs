@@ -423,7 +423,11 @@ public class ThirdPersonController : MonoBehaviour
         //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
         if (other.gameObject.CompareTag("Attackpos"))
         {
-            TakeDamage(4);
+            TakeDamage(2);
+        }
+        if (other.gameObject.CompareTag("Dragon"))
+        {
+            TakeDamage(2);
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
