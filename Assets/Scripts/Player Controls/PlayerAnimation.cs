@@ -5,13 +5,16 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public Rigidbody rb;
+    public AudioClip CollectClip;
+    public AudioClip DropClip;
+    public AudioClip PlayerCaw;
+    public GameObject Player;
+    [SerializeField] private GameObject flyingEffets;
     Animator animator;
     private ThirdPersonControl playerInputs;
     ControlsforPlayer controls;
-    public GameObject Player;
     AudioSource audioSource;
-    public AudioClip collectClip;
-        public AudioClip DropClip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,37 +47,49 @@ public class PlayerAnimation : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Player.GetComponent<ThirdPersonController>().Stamina > 0)
+        Animations();
+
+        SoundFXs();
+    }
+    void Animations()
+    {
+        if(animator.GetBool("Grounded") != Player.GetComponent<PlayerController>().onGround)
+        {
+            animator.SetBool("Grounded", Player.GetComponent<PlayerController>().onGround);
+            if (Player.GetComponent<PlayerController>().onGround)
+            {
+                flyingEffets.SetActive(false);
+            }
+            else
+            {
+                flyingEffets.SetActive(true);
+            }
+        }
+        if (playerInputs.PlayerOnGround.Jump.WasPressedThisFrame() && Player.GetComponent<PlayerController>().stamina > 0)
         {
             animator.SetTrigger("Jump");
         }
-        // if (rb.velocity.magnitude >= 8 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
-        // {
-        //     animator.SetFloat("RunSpeed", 2f);
-        // // animator.SetTrigger("Launch");
-        // }
-                if (rb.velocity.magnitude >=1 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        if (rb.velocity.magnitude >= 1 && Player.GetComponent<PlayerController>().onGround == true)
         {
             animator.SetFloat("RunSpeed", 1f);
-        // animator.SetTrigger("Launch");
         }
-            if (rb.velocity.magnitude < 6 && Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        if (rb.velocity.magnitude < 6 && Player.GetComponent<PlayerController>().onGround == true)
         {
             animator.SetFloat("RunSpeed", 0f);
-        // animator.SetTrigger("Launch");
         }
-            if (Player.GetComponent<ThirdPersonController>().isGrounded == false)
+        if (Player.GetComponent<PlayerController>().onGround == false)
         {
             animator.SetFloat("RunSpeed", 0f);
-        // animator.SetTrigger("Launch");
         }
-        if (controls.Actions.Dive.WasPressedThisFrame())
+        if (controls.Actions.Dive.IsPressed())
         {
-            Debug.Log("Diving");
+            animator.SetBool("IsDiving", true);
+        }
+        if (controls.Actions.Dive.WasReleasedThisFrame())
+        {
+            animator.SetBool("IsDiving", false);
         }
         if (controls.Actions.Snatch.WasPressedThisFrame())
         {
@@ -84,16 +99,22 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger("Pick");
         }
-
+    }
+    void SoundFXs()
+    {
         if (controls.Inv.Drop.WasPerformedThisFrame())
         {
             PlaySound(DropClip);
             animator.SetTrigger("Drop");
         }
-        if (controls.Inv.Store.WasPressedThisFrame())
+        if (controls.Inv.Store.WasPerformedThisFrame())
         {
-            PlaySound(collectClip);
+            PlaySound(CollectClip);
             animator.SetTrigger("Store");
+        }
+        if (controls.Actions.Caw.WasPerformedThisFrame())
+        {
+            PlaySound(PlayerCaw);
         }
     }
 }

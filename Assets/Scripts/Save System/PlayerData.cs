@@ -12,10 +12,10 @@ public class PlayerData {
     public bool jumpInAir;
     public bool godMode;
     
-    public PlayerData (ThirdPersonController player)
+    public PlayerData (PlayerController player)
     {
         health = player.currentHealth;
-        Stamina = player.Stamina;
+        Stamina = player.stamina;
 
         position = new float[3];
         position[0] = player.transform.position.x;

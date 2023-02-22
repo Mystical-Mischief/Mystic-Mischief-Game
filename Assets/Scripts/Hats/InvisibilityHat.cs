@@ -30,6 +30,15 @@ public class InvisibilityHat : BaseHatScript
         base.OnEnable();
         Player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(HatCooldown(SwitchCooldownTime));
+        if (SkillLevel == 4)
+        {
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
+        if (SkillLevel ==5)
+        {
+            Item.FindInvisibilityHat(this);
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
     }
     void OnDisable()
     {
@@ -65,7 +74,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 0;
         if(SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.IncreaseSpeed(2);
         }
     }
@@ -79,7 +88,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 8;
         if (SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.SetSpeedToNormal();
         }
     }

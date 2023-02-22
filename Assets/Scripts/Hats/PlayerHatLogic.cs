@@ -14,7 +14,7 @@ public class PlayerHatLogic : MonoBehaviour
     public GameObject currentHatObject;
     private bool canSwitchHat = true;
 
-    private ThirdPersonController player;
+    private PlayerController player;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerHatLogic : MonoBehaviour
         controls = new ControlsforPlayer();
         controls.Enable();
         currentHatNum = 0;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         foreach(GameObject hat in hats)
         {
             hat.SetActive(false);

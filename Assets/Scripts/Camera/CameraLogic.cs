@@ -21,7 +21,7 @@ public class CameraLogic : MonoBehaviour
     }
     void Update()
     {
-        isFlying = !player.GetComponent<ThirdPersonController>().isGrounded;
+        isFlying = !player.GetComponent<PlayerController>().onGround;
         //if the player is flying use the fly camera
         if (isFlying)
         {

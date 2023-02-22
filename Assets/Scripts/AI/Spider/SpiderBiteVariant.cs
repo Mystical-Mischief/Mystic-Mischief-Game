@@ -10,7 +10,7 @@ public class SpiderBiteVariant : BaseEnemyAI
     [SerializeField]
     bool attackedPlayer = false;
 
-    ThirdPersonController player;
+    PlayerController player;
 
     [SerializeField]
     private float knockbackForce;
@@ -23,7 +23,7 @@ public class SpiderBiteVariant : BaseEnemyAI
         base.Start();
 
         //grabs the Player Controller
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         //sets current attack to 0
         currentAttack = attackCooldown;
