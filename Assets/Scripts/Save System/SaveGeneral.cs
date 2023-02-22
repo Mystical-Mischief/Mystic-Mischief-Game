@@ -100,7 +100,7 @@ public class SaveGeneral : MonoBehaviour
             items.GetComponent<Item>().SaveItem();
         }
         //Saves the player usings the players save function.
-        Player.GetComponent<ThirdPersonController>().SavePlayer();
+        Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
         if (DragonType == "Water Dragon")
         {
@@ -121,7 +121,7 @@ public class SaveGeneral : MonoBehaviour
             Inv.GetComponent<Item>().inInventory = true;
         }
         //Saves the player usings the players save function.
-        Player.GetComponent<ThirdPersonController>().SavePlayer();
+        Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
         if (DragonType == "Water Dragon")
         {
@@ -167,7 +167,7 @@ public class SaveGeneral : MonoBehaviour
             // }
         }
         // Loads the player usings the players load function
-        Player.GetComponent<ThirdPersonController>().LoadPlayer();
+        Player.GetComponent<PlayerController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
         if (DragonType == "Water Dragon")
         {
@@ -198,7 +198,7 @@ public class SaveGeneral : MonoBehaviour
             }
         }
         // Loads the player usings the players load function
-        Player.GetComponent<ThirdPersonController>().LoadPlayer();
+        Player.GetComponent<PlayerController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
         if (DragonType == "Water Dragon")
         {

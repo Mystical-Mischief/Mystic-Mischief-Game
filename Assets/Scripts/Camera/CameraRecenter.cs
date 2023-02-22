@@ -5,7 +5,7 @@ using Cinemachine;
 public class CameraRecenter : MonoBehaviour
 {
     private CinemachineFreeLook cam;
-    public ThirdPersonController player;
+    public PlayerController player;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class CameraRecenter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.isGrounded == false)
+        if(player.onGround == false)
         {
             cam.m_RecenterToTargetHeading.m_enabled = true;
         }

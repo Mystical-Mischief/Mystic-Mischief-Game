@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public static class SaveSystem 
 {
     //Saves the player.
-    public static void SavePlayer (ThirdPersonController player)
+    public static void SavePlayer (PlayerController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player." + SceneManager.GetActiveScene().name;
@@ -32,7 +32,7 @@ public static class SaveSystem
 
     }
     //Saves a checkpoint.
-        public static void Checkpoint (ThirdPersonController player)
+        public static void Checkpoint (PlayerController player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.checkpoint" + SceneManager.GetActiveScene().name;

@@ -125,7 +125,7 @@ public class Dialogue : MonoBehaviour
             GetComponent<ActivateDialogue>().dialogueCanvas.SetActive(false);
             StartCoroutine(delayDialogueBox());
             this.enabled = false;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>().canMove = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
         }
     }
     //delays the dialogue so you can walk away from it without activating it again by accident. 

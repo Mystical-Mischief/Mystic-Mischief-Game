@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool damaged;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool inWater;
+    [HideInInspector] public bool jumpInAir;
 
     //private but can see in editor -CC
     [SerializeField] float maxStamina;
@@ -38,7 +39,6 @@ public class PlayerController : MonoBehaviour
     private float originalMoveForce;
     private float originalMaxSpeed;
     Vector3 forceDirection = Vector3.zero;
-    bool jumpInAir;
     bool diving;
 
     private void Start()
@@ -373,5 +373,50 @@ public class PlayerController : MonoBehaviour
     {
         maxSpeed = originalMaxSpeed;
         moveForce = originalMoveForce;
+    }
+    //Checkpoints and Loads
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+        Saved = true;
+    }
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+    }
+
+    public void Checkpoint()
+    {
+        save.SaveEnemy();
+        SaveSystem.SavePlayer(this);
+        // SaveSystem.Checkpoint(this);
+        // Saved = true;
+        Debug.Log("Saved");
+    }
+    public void LoadCheckpoint()
+    {
+        PlayerData data = SaveSystem.LoadCheckpoint();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        Stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
 }
