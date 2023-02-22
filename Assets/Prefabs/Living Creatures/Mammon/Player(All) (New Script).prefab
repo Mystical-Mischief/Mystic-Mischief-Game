@@ -393,10 +393,10 @@ RectTransform:
   - {fileID: 321548183275710774}
   - {fileID: 321548183330088790}
   - {fileID: 321548183260484769}
-  - {fileID: 7700886854673027091}
   - {fileID: 3624072215172349277}
   - {fileID: 2697641219852688900}
   - {fileID: 7241918403781699797}
+  - {fileID: 7700886854673027091}
   m_Father: {fileID: 916845150355414321}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1971,11 +1971,13 @@ MonoBehaviour:
   maxHealth: 4
   canMove: 1
   godMode: 0
+  save: {fileID: 0}
   onGround: 0
   stamina: 0
   damaged: 0
   currentHealth: 0
   inWater: 0
+  jumpInAir: 0
   maxStamina: 4
   moveForce: 5
   jumpForce: 10
@@ -4562,7 +4564,7 @@ RectTransform:
   - {fileID: 79968008608862253}
   - {fileID: 5530910884968009707}
   m_Father: {fileID: 321548182572571438}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11210,7 +11212,7 @@ RectTransform:
   - {fileID: 6922718247513756952}
   - {fileID: 3686215158200841387}
   m_Father: {fileID: 321548182572571438}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13305,8 +13307,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.05935, y: -0.02492878, z: -0.0014825966, w: 0.99792486}
-  m_LocalPosition: {x: 0.49999875, y: -0.7599124, z: -10.001522}
+  m_LocalRotation: {x: -0.04575059, y: -0.024946954, z: -0.0011428891, w: 0.9986407}
+  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15790,7 +15792,7 @@ RectTransform:
   - {fileID: 9058900104250529902}
   - {fileID: 6779458870953276746}
   m_Father: {fileID: 321548182572571438}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18351,7 +18353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1207942701989572276, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1207942701989572276, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18399,7 +18401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1207942701989572276, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1207942701989572276, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_LocalRotation.w
