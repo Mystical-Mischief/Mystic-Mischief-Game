@@ -30,6 +30,15 @@ public class InvisibilityHat : BaseHatScript
         base.OnEnable();
         Player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(HatCooldown(SwitchCooldownTime));
+        if (SkillLevel == 4)
+        {
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
+        if (SkillLevel ==5)
+        {
+            Item.FindInvisibilityHat(this);
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
     }
     void OnDisable()
     {
