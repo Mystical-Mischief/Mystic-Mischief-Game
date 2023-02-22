@@ -24,6 +24,10 @@ public class Item : MonoBehaviour
 
     [SerializeField] private GameObject itemEffect;
 
+    private static InvisibilityHat _invisibilityHat;
+
+    public bool Invisible;
+
     void Start()
     {
         Player = GameObject.Find("Player");
@@ -58,6 +62,23 @@ public class Item : MonoBehaviour
                 // other.gameObject.GetComponent<BirdInteraction>().ticketCount = other.gameObject.GetComponent<BirdInteraction>().ticketCount - 1;
                 other.gameObject.GetComponent<BirdInteraction>().StoredItems.Add(this.gameObject);
             }
+        }
+    }
+
+    public static void FindInvisibilityHat(InvisibilityHat hat)
+    {
+        _invisibilityHat = hat;
+    }
+
+    private void Update()
+    {
+        if (_invisibilityHat != null && _invisibilityHat.IsInvisible())
+        {
+            Invisible = true;
+        }
+        else
+        {
+            Invisible = false;
         }
     }
 }

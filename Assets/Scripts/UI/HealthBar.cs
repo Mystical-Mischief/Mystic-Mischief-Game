@@ -12,12 +12,12 @@ public class HealthBar : MonoBehaviour
     public float CurrentHealth;
     private float MaxHealth;
 
-    ThirdPersonController Player;
+    PlayerController Player;
 
     private void Start()
     {
         Health = GetComponent<Image>();
-        Player = FindObjectOfType<ThirdPersonController>();
+        Player = FindObjectOfType<PlayerController>();
         MaxHealth = Player.maxHealth;
         CurrentHealth = MaxHealth;
     }

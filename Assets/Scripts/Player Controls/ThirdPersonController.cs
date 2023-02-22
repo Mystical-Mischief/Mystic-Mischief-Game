@@ -50,7 +50,11 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] private GameObject camFly;
     [SerializeField] private GameObject dragonCamGround;
     [SerializeField] private GameObject dragonCamFly;
-    [SerializeField] private GameObject flyingEffets;
+    
+    
+    //Particle Effects and VFX GameObjects - Emilie 
+    [SerializeField] private GameObject glideVFX;
+    [SerializeField] private ParticleSystem hurtVFX; 
 
     public bool lockOnCamera;
 
@@ -129,11 +133,7 @@ public class ThirdPersonController : MonoBehaviour
         LookAt();
 
         Vector3 Turn = new Vector3(0, 0, 0);
-        Vector3 MaxRotation = new Vector3(0, 10, 0);
-        bool Left = controls.Actions.GlideLeft.ReadValue<float>() > 0.1f;
-        bool Right = controls.Actions.GlideRight.ReadValue<float>() > 0.1f;
         Vector3 velocity = rb.velocity;
-        Vector3 lastPosition = transform.position;
 
         //If the player is diving this code sets the animator and player in the diving state.
         bool dive = false;
@@ -155,7 +155,7 @@ public class ThirdPersonController : MonoBehaviour
                 Stamina = 4;
             }
             animator.SetBool("IsDiving", false);
-            flyingEffets.SetActive(false);
+            glideVFX.SetActive(false);
         }
 
         flying = controls.Actions.Glide.ReadValue<float>() > 0.1f;
@@ -167,7 +167,7 @@ public class ThirdPersonController : MonoBehaviour
             dive = true;
             Vector3 newHVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             GetComponent<ConstantForce>().force = diveSpeed;
-            flyingEffets.SetActive(false);
+            glideVFX.SetActive(false);
             
         }
 
@@ -219,15 +219,13 @@ public class ThirdPersonController : MonoBehaviour
             }
             GetComponent<ConstantForce>().relativeForce = glideSpeed + Turn;
 
-            flyingEffets.SetActive(true);
+            glideVFX.SetActive(true);
         }
         //This makes the flying stop.
         else 
         { 
             GetComponent<ConstantForce>().relativeForce = new Vector3(0, 0, 0); 
         }
-        
-
     }
 
     private void Update()
@@ -286,6 +284,9 @@ public class ThirdPersonController : MonoBehaviour
         if(!godMode)
         {
             playerAnimation.PlaySound(HurtClip);
+            hurtVFX.Play();
+
+
             currentHealth -= damage;
             Debug.Log(currentHealth);
             damaged = true;
@@ -427,7 +428,11 @@ public class ThirdPersonController : MonoBehaviour
         //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
         if (other.gameObject.CompareTag("Attackpos"))
         {
-            TakeDamage(4);
+            TakeDamage(2);
+        }
+        if (other.gameObject.CompareTag("Dragon"))
+        {
+            TakeDamage(2);
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
@@ -491,7 +496,7 @@ public class ThirdPersonController : MonoBehaviour
     }
     public void SavePlayer ()
     {
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
         Saved = true;
     }
     public void LoadPlayer ()
@@ -513,7 +518,7 @@ public class ThirdPersonController : MonoBehaviour
     public void Checkpoint ()
     {
         save.SaveEnemy();
-        SaveSystem.SavePlayer(this);
+        //SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
         Debug.Log("Saved");

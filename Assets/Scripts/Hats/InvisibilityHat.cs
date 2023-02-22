@@ -12,7 +12,7 @@ public class InvisibilityHat : BaseHatScript
     public Material faceMaterial;
     public GameObject[] models;
     private GameObject Player;
-    private bool isInvisible;
+    public bool isInvisible;
     private bool _snatching;
     [SerializeField]
     private float _timer;
@@ -30,6 +30,15 @@ public class InvisibilityHat : BaseHatScript
         base.OnEnable();
         Player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(HatCooldown(SwitchCooldownTime));
+        if (SkillLevel == 4)
+        {
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
+        if (SkillLevel ==5)
+        {
+            Item.FindInvisibilityHat(this);
+            ItemProtectAi.FindInvisibilityHat(this);
+        }
     }
     void OnDisable()
     {
@@ -65,7 +74,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 0;
         if(SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.IncreaseSpeed(2);
         }
     }
@@ -79,7 +88,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 8;
         if (SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.SetSpeedToNormal();
         }
     }
@@ -90,20 +99,30 @@ public class InvisibilityHat : BaseHatScript
         _snatching = controls.Actions.Snatch.IsPressed();
         if(isInvisible)
         {
-            if(_snatching)
+            StartCoroutine(TimeInvisible(_timer));
+            if (_snatching)
             {
+                StopCoroutine(TimeInvisible(_timer));
                 becomeVisible();
                 isInvisible = false;
                 return;
             }
-            //StartCoroutine(TimeInvisible(_timer));
-            //isInvisible = false;
+            
         }
         
     }
     IEnumerator TimeInvisible(float time)
     {
+        if(SkillLevel>1 && SkillLevel!=5)
+        {
+            time +=time;
+        }
         yield return new WaitForSeconds(time);
         becomeVisible();
+    }
+
+    public bool IsInvisible()
+    {
+        return isInvisible;
     }
 }

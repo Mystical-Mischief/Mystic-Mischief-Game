@@ -84,11 +84,11 @@ public class CowboyHat : BaseHatScript
             canUseHat = true;
         }
         // base.Update();
-        if (Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        if (Player.GetComponent<PlayerController>().onGround == true)
         {
             isGrounded = true;
         }
-        if (Player.GetComponent<ThirdPersonController>().isGrounded == false)
+        if (Player.GetComponent<PlayerController>().onGround == false)
         {
             isGrounded = false;
         }
