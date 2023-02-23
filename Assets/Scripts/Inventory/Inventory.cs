@@ -263,8 +263,10 @@ public class Inventory : MonoBehaviour
         {
             Item.GetComponent<Item>().ps.Stop();
         }
-        int LayerPickedUpItem = LayerMask.NameToLayer("DragonOnly");
-        Item.gameObject.layer = LayerPickedUpItem;
+
+        // hat2.GetComponent<CowboyHat>().allObjects.Remove(item);
+        // int LayerPickedUpItem = LayerMask.NameToLayer("DragonOnly");
+        // Item.gameObject.layer = LayerPickedUpItem;
         // Item.gameObject.tag ="Gold";
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
@@ -285,6 +287,7 @@ public class Inventory : MonoBehaviour
         {
             Item.GetComponent<Item>().ps.Play();
         }
+        // hat2.GetComponent<CowboyHat>().allObjects.Add(Item);
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;

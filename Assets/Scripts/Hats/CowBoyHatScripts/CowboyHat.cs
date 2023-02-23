@@ -11,6 +11,7 @@ public class CowboyHat : BaseHatScript
     private float whipStrength;
     [SerializeField]
     private GameObject circleObject;
+    // [HideInInspector]
     private List<GameObject> allObjects = new List<GameObject>();
     [HideInInspector]
     public GameObject closestItem;
@@ -93,9 +94,15 @@ public class CowboyHat : BaseHatScript
             isGrounded = false;
         }
 
+        if (controls.Actions.ActivateHat.IsPressed())
+        {
+            Debug.Log("CowBoy");
+        }
+
         //if you can use the hat use the hat and start the cooldown
         if (controls.Actions.ActivateHat.IsPressed() && canUseHat)
         {
+            Debug.Log("CowBoy");
             canUseHat = false;
             if (SkillLevel <= 1)
             {

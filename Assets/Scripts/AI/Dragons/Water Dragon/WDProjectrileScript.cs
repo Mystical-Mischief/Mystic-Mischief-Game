@@ -36,6 +36,11 @@ public class WDProjectrileScript : MonoBehaviour
             // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "Untagged")
+        {  
+            // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+            Destroy(gameObject);
+        }
         // else
         // {
         //     Destroy(gameObject);
