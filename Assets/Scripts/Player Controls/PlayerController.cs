@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 4;
     public bool canMove;
     public bool godMode;
+    public SaveGeneral save;
     //public but doesnt need to be seen in the inspector -CC
     [HideInInspector] public bool onGround;
     [HideInInspector] public float stamina;
     [HideInInspector] public bool damaged;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool inWater;
+    [HideInInspector] public bool jumpInAir;
 
     //private but can see in editor -CC
     [SerializeField] float maxStamina;
@@ -37,8 +40,8 @@ public class PlayerController : MonoBehaviour
     private float originalMoveForce;
     private float originalMaxSpeed;
     Vector3 forceDirection = Vector3.zero;
-    bool jumpInAir;
     bool diving;
+    bool Saved;
 
     private void Start()
     {
@@ -231,6 +234,23 @@ public class PlayerController : MonoBehaviour
         {
             //take damage
             currentHealth -= damage;
+            if(currentHealth < 1)
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                if (scene.name == "Level 1")
+                {
+                    ReloadNum.LastLevelNum = 1;
+                }
+                if (scene.name == "Level 2")
+                {
+                    ReloadNum.LastLevelNum = 2;
+                }
+                if (scene.name == "Level 3")
+                {
+                    ReloadNum.LastLevelNum = 3;
+                }
+                SceneManager.LoadScene("Lose Screen");
+            }
             damaged = true;
             StartCoroutine(tookDamage());
         }
@@ -355,5 +375,50 @@ public class PlayerController : MonoBehaviour
     {
         maxSpeed = originalMaxSpeed;
         moveForce = originalMoveForce;
+    }
+    //Checkpoints and Loads
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+        Saved = true;
+    }
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
+    }
+
+    public void Checkpoint()
+    {
+        save.SaveEnemy();
+        SaveSystem.SavePlayer(this);
+        // SaveSystem.Checkpoint(this);
+        // Saved = true;
+        Debug.Log("Saved");
+    }
+    public void LoadCheckpoint()
+    {
+        PlayerData data = SaveSystem.LoadCheckpoint();
+        currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+        stamina = data.Stamina;
+        jumpInAir = data.jumpInAir;
+        godMode = data.godMode;
+        //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
+        //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
 }

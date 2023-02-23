@@ -7,6 +7,8 @@ public class Teleport_Wizard_Hub : MonoBehaviour
     public GameObject Player;
     public GameObject TeleportTo;
     public GameObject StartTeleporter;
+    public GameObject TeleportHub;
+    public GameObject HubTeleport; 
  
     private void OnTriggerEnter(Collider collision)
     {

@@ -7,7 +7,7 @@ public class SnakeAI : BaseEnemyAI
     
     bool attackedPlayer = false;
 
-    ThirdPersonController player;
+    PlayerController player;
     
     float attackCooldown = 3f;
     float currentAttack;
@@ -18,7 +18,7 @@ public class SnakeAI : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player =  GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player =  GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         currentAttack = attackCooldown;
     }
 
@@ -44,10 +44,7 @@ public class SnakeAI : BaseEnemyAI
         {
             LostPlayer();
             attackedPlayer = true;
-            if(player.godMode==false)
-            {
-                player.currentHealth--;
-            }
+            player.TakeDamage(1);
             //Knockback
             collision.transform.position+= transform.forward*Time.deltaTime*knockbackForce;
             
