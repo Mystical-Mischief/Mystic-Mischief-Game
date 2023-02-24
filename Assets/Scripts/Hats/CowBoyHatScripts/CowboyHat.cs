@@ -82,6 +82,13 @@ public class CowboyHat : BaseHatScript
     new void Update()
     {
 
+        if (pullEnemy == true)
+        {
+            foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
+        {
+                allObjects.Add(gO);
+        }
+        }
         // foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         // {
         //     if (gO.GetComponent<Item>().inInventory == true)
@@ -201,6 +208,11 @@ public class CowboyHat : BaseHatScript
         }
         
     }
+
+            public override void LevelUp()
+        {
+            SkillLevel += 1;
+        }
     //If the player has the gunSlinger skill it shoots something from the gun.
     void Shoot()
     {
