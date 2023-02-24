@@ -94,6 +94,7 @@ public class WaterDragonAi : BasicDragonAI
     // Update is called once per frame
     new void Update()
     {
+        // ResetBite();
         if (isGroundedD == true)
         {
             anim.SetBool("Grounded", true);
@@ -343,7 +344,7 @@ public class WaterDragonAi : BasicDragonAI
         // Vector3 jumpVec = Player.transform.position - transform.position;
         canSeePlayer = true;
         clone = Instantiate(projectile, firePosition.position, Player.transform.rotation);
-        base.ai.speed = 0;
+        // base.ai.speed = 0;
         //projectile.LookAt(Player.transform);
         var step =  speed * Time.deltaTime; // calculate distance to move
 
@@ -359,9 +360,14 @@ public class WaterDragonAi : BasicDragonAI
         rangedAttacked = false;
         attacked = false;
         attackTimes += 1;
-        base.ai.speed = Speed;
         attacking = false;
         Speed = 30;
+        base.ai.speed = Speed;
+    }
+
+    public void ResetBite()
+    {
+        attackPos.SetActive(false);
     }
 
     public override void IsGrounded()
@@ -381,7 +387,7 @@ public class WaterDragonAi : BasicDragonAI
         CanAttack = false;
         meleeAttack = false;
         attacked = false;
-        attackPos.SetActive(false);
+        attackPos.SetActive(true);
         attackTimes = 0;
         HitPlayer = false;
         NewRandomNumber();
@@ -393,9 +399,9 @@ public class WaterDragonAi : BasicDragonAI
     //This resets the Speed of the dragon
     public virtual void ResetMovement()
     {
-        base.Speed = StartSpeed;
-        waterSpeed = StartWaterSp;
-        ai.speed = StartSpeed;
+        // base.Speed = StartSpeed;
+        // waterSpeed = StartWaterSp;
+        // ai.speed = StartSpeed;
         canScream = false;
         Invoke(nameof(ResetScream), ResetAttackTime);
     }
