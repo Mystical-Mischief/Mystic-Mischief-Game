@@ -91,6 +91,7 @@ public class SkillTreeLeveling : MonoBehaviour
         if (cowboyLv == 3)
         {
             CowboyHat.LevelUp();
+            CowboyHat.gunSlinger = true;
         }
     }
 
@@ -101,6 +102,7 @@ public class SkillTreeLeveling : MonoBehaviour
         {
             CowboyHat.LevelUp();
             CowboyHat.LevelUp();
+            CowboyHat.pullEnemy = true;
         }
     }
 
