@@ -9,36 +9,32 @@ public class WDAttackScript : MonoBehaviour
     public Animator anim;
     public float maxHeight;
     private Vector3 height;
+    private bool attackedPlayer;
+    // private bool stunned;
+    private bool attacked;
+    public float knockbackForce;
 
     void Update()
     {
-        // height =  new Vector3 (transform.position.x, Base.GetComponent<WaterDragonAi>().Player.transform.position.y, transform.position.z);
-        // transform.position = height;
-        // if (transform.position.y >= maxHeight)
-        // {
-        //     transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
-        // }
+        if (attackedPlayer == true)
+        {
+            attacked = true;
+        }
     }
     
     private void OnCollisionEnter(Collision other)
     {
-            if (other.gameObject.tag == "Player")
-        {  
-            other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
-            float force = 100;
-            Debug.Log("DAMAGED!");
-            gameObject.GetComponentInParent<WaterDragonAi>().rangedAttacked = false;
-            HitPlayer = true;
-            Base.GetComponent<WaterDragonAi>().HitPlayer = true;
-            Base.GetComponent<WaterDragonAi>().attacked = true;
-            // anim.SetTrigger("Bite");
-        // Vector3 dir = other.contacts[0].point - transform.position;
-        // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(2);
-        //  // We then get the opposite (-Vector3) and normalize it
-        //  dir = -dir.normalized;
-        //  // And finally we add force in the direction of dir and multiply it by force. 
-        //  // This will push back the player
-        //  GetComponent<Rigidbody>().AddForce(dir*force);
+        if(!attackedPlayer && other.gameObject.tag == "Player")
+        {
+            if(!attacked)
+            {
+                // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+                attackedPlayer = true;
+                // canAttack = true;
+                //Knockback
+                other.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+            }
+            
         }
 
     }

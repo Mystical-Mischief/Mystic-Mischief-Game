@@ -190,6 +190,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "CowBoyHatShot",
+                    "type": "Button",
+                    "id": "b24af90e-fe17-4666-84d8-fd56076a4f40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CowBoyHatUse",
+                    "type": "Button",
+                    "id": "0dcc801f-3a77-40f3-a996-bdb6c41786e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ActivateHat",
                     "type": "Button",
                     "id": "740d3fcf-da47-42bd-a6e4-47e15688a7ba",
@@ -610,6 +628,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "GodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5b55a03-797b-4aa7-95b7-5f2ab2459fca",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CowBoyHatShot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f8c4558-ab22-4bc8-a3c4-7eaff4f813f7",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CowBoyHatShot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "056afddb-ed95-4d1b-8d15-af493f6b99ef",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CowBoyHatUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ce64d90-c11c-458d-aea4-bf067a973032",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CowBoyHatUse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

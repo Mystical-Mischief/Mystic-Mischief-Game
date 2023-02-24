@@ -72,13 +72,19 @@ public class KoboltAI : BaseEnemyAI
                 player.TakeDamage(1);
                 //Knockback
                 collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
-            }
-            
+            } 
         }
         if (collision.gameObject.tag == "Poop")
         {
             stunned = true;
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+            if (other.gameObject.tag == "Whip")
+        {
+            stunned = true;
+            base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
+        }
+    }
 }
