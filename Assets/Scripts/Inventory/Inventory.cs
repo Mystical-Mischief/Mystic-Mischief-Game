@@ -14,7 +14,8 @@ public class Inventory : MonoBehaviour
     public float weightFloat;
     [HideInInspector]
     public ControlsforPlayer controls;
-    private Rigidbody rb;
+    [HideInInspector]
+    public Rigidbody rb;
     public List<GameObject> PickedUpItems = new List<GameObject>();
     public List<GameObject> Objective = new List<GameObject>();
     public GameObject currentHeldItem;
@@ -257,20 +258,24 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
+    private GameObject Whip;
     public void HoldItem(GameObject Item)
     {
         if (Item.GetComponent<Item>().ps != null)
         {
             Item.GetComponent<Item>().ps.Stop();
         }
-
-        // hat2.GetComponent<CowboyHat>().allObjects.Remove(item);
-        // int LayerPickedUpItem = LayerMask.NameToLayer("DragonOnly");
-        // Item.gameObject.layer = LayerPickedUpItem;
-        // Item.gameObject.tag ="Gold";
+        if (hat2.activeInHierarchy)
+        {
+        Whip = GameObject.FindGameObjectWithTag("Whip");
+        Whip.GetComponent<CowboyHat>().allObjects.Remove(Item);
+        Whip.GetComponent<CowboyHat>().findCloseItem = true;
+        Whip.GetComponent<CowboyHat>().closestItem = null;
+        }
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
-        // Item.GetComponent<Item>().inInventory = true;
+        Item.GetComponent<Item>().inInventory = true;
         MassText = MassText + Item.GetComponent<Item>().Weight;
         rb.mass = rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
         Item.transform.parent = gameObject.transform;
@@ -280,6 +285,7 @@ public class Inventory : MonoBehaviour
         holdingItem = true;
         currentHeldItem = Item;
         heldItem = Item.GetComponent<Item>();
+        // hat2.GetComponent<CowboyHat>().allObjects.Remove(Item);
     }
     public void DropItem(GameObject Item)
     {
@@ -287,12 +293,16 @@ public class Inventory : MonoBehaviour
         {
             Item.GetComponent<Item>().ps.Play();
         }
-        // hat2.GetComponent<CowboyHat>().allObjects.Add(Item);
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
-        int LayerPickUp = LayerMask.NameToLayer("Default");
-        Item.gameObject.layer = LayerPickUp;
+        if (hat2.activeInHierarchy)
+        {
+        Whip.GetComponent<CowboyHat>().allObjects.Add(Item);
+        Whip.GetComponent<CowboyHat>().findCloseItem = true;
+        Whip.GetComponent<CowboyHat>().closestItem = null;
+        }
+        Item.GetComponent<Item>().inInventory = false;
         // Item.gameObject.tag="PickUp";
         MassText = MassText - Item.GetComponent<Item>().Weight;
         rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
@@ -307,6 +317,7 @@ public class Inventory : MonoBehaviour
         {
             Instantiate(storeParticles, transform.position, transform.rotation);
         }
+        // hat2.GetComponent<CowboyHat>().allObjects.Add(Item);
     }
     IEnumerator dropTimer(float time, bool value)
     {

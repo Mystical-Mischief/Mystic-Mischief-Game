@@ -1877,6 +1877,7 @@ MonoBehaviour:
   poopPosition: {fileID: 6129932597663600557}
   resetPoopTime: 2
   Pooped: 0
+  poopSound: {fileID: 0}
   PoopClip: {fileID: 8300000, guid: 382082ce2efc9794b8aecf791d12ab0e, type: 3}
 --- !u!33 &916845150355414320
 MeshFilter:
@@ -1937,6 +1938,7 @@ MonoBehaviour:
   Weight: {fileID: 0}
   MassText: 0
   weightFloat: 0
+  rb: {fileID: 0}
   PickedUpItems: []
   Objective: []
   currentHeldItem: {fileID: 0}
@@ -13308,8 +13310,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.05935, y: -0.02492878, z: -0.0014825966, w: 0.99792486}
-  m_LocalPosition: {x: 0.49999875, y: -0.7599124, z: -10.001522}
+  m_LocalRotation: {x: -0.04575059, y: -0.024946954, z: -0.0011428891, w: 0.9986407}
+  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17596,16 +17598,21 @@ MonoBehaviour:
   activateHat: 0
   SkillLevel: 1
   maxWhipDistance: 10
+  canShoot: 0
   whipStrength: 10
   circleObject: {fileID: 2340667125400171981}
+  allObjects: []
   closestItem: {fileID: 0}
   isGrounded: 0
-  l1HatUseTime: 0
+  l1HatUseTime: 1
   gunSlinger: 0
   pullEnemy: 0
-  HoldItemPosition: {fileID: 0}
+  HoldItemPosition: {fileID: 5136777436681128906}
   holdingItem: 0
   currentHeldItem: {fileID: 0}
+  bullet: {fileID: 8596426487253530810, guid: eb1cd8e9c22649344b9d1dd46b28f016, type: 3}
+  projectileSpeed: 100
+  speed: 1
 --- !u!1 &8855194059573257928
 GameObject:
   m_ObjectHideFlags: 0

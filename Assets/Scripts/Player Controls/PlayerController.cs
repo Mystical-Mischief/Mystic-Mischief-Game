@@ -325,9 +325,15 @@ public class PlayerController : MonoBehaviour
             inWater = true;
         }
         //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
-        if (other.gameObject.CompareTag("Attackpos"))
+        if (other.gameObject.CompareTag("attackpos"))
         {
-            TakeDamage(4);
+            other.gameObject.SetActive(false);
+            other.gameObject.GetComponentInParent<WaterDragonAi>().ResetBite();
+            TakeDamage(2);
+        }
+        if (other.gameObject.CompareTag("Dragon"))
+        {
+            TakeDamage(2);
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
