@@ -12,7 +12,7 @@ public class SkillTreeLeveling : MonoBehaviour
 
     private void Start()
     {
-        SkillTree.SetActive(false);
+        // SkillTree.SetActive(false);
     }
     private void OnTriggerEnter(Collider other) // The skill tree ui pops up
     {
@@ -71,17 +71,19 @@ public class SkillTreeLeveling : MonoBehaviour
     public void CowboyLv2()
     {
         int cowboyLv = CowboyHat.getLevel();
+        CowboyHat.SkillLevel = 2;
         if(cowboyLv == 1)
         {
-            CowboyHat.LevelUp();
+            CowboyHat.SkillLevel = 2;
         }
     }
     public void CowboyLv3()
     {
         int cowboyLv = CowboyHat.getLevel();
+        CowboyHat.SkillLevel = 3;
         if (cowboyLv == 2)
         {
-            CowboyHat.LevelUp();
+            CowboyHat.SkillLevel = 3;
         }
     }
 
