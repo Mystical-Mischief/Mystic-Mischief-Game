@@ -817,6 +817,7 @@ MonoBehaviour:
   HitPlayer: 0
   anim: {fileID: 2377402647901535875}
   maxHeight: 5
+  knockbackForce: 0
 --- !u!135 &3891166670867413959
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5882,8 +5883,10 @@ MonoBehaviour:
   stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  ai_Rb: {fileID: 0}
   ps: {fileID: 3891166671795136097}
   stunTime: 0
+  timer: 0
   WanderPointsGround:
   - WanderPoints:
     - {fileID: 0}
@@ -5916,6 +5919,9 @@ MonoBehaviour:
   onGround: 1
   canMove: 0
   chaseTime: 0
+  airToGround: 0
+  groundToAir: 0
+  anim: {fileID: 0}
   SeesPlayer: 0
   layerMask:
     serializedVersion: 2
