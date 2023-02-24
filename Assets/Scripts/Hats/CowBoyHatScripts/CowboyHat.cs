@@ -7,15 +7,18 @@ public class CowboyHat : BaseHatScript
     [SerializeField]
     private float maxWhipDistance;
     private float _increasedWhipDistance;
+    public bool canShoot;
     [SerializeField]
     private float whipStrength;
     [SerializeField]
     private GameObject circleObject;
-    private List<GameObject> allObjects = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> allObjects = new List<GameObject>();
     [HideInInspector]
     public GameObject closestItem;
     GameObject nextClosestItem;
-    bool findCloseItem = true;
+    [HideInInspector]
+    public bool findCloseItem = true;
     Vector3 originalLocalPosition;
     Vector3 originalWorldPosition;
     Rigidbody rb;
@@ -29,6 +32,9 @@ public class CowboyHat : BaseHatScript
     public bool holdingItem;
     public GameObject currentHeldItem;
     Inventory playerInv;
+    public Rigidbody bullet;
+    public float projectileSpeed;
+    public float speed;
 
     new void Start()
     {
@@ -75,6 +81,14 @@ public class CowboyHat : BaseHatScript
     }
     new void Update()
     {
+
+        // foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
+        // {
+        //     if (gO.GetComponent<Item>().inInventory == true)
+        //     {
+        //         allObjects.Remove(gO);
+        //     }
+        // }
         if (SkillLevel <= 1 && isGrounded == false)
         {
             canUseHat = false;
@@ -84,30 +98,32 @@ public class CowboyHat : BaseHatScript
             canUseHat = true;
         }
         // base.Update();
-        if (Player.GetComponent<ThirdPersonController>().isGrounded == true)
+        if (Player.GetComponent<PlayerController>().onGround == true)
         {
             isGrounded = true;
         }
-        if (Player.GetComponent<ThirdPersonController>().isGrounded == false)
+        if (Player.GetComponent<PlayerController>().onGround == false)
         {
             isGrounded = false;
         }
 
         //if you can use the hat use the hat and start the cooldown
-        if (controls.Actions.ActivateHat.IsPressed() && canUseHat)
+        if (controls.Actions.ActivateHat.IsPressed() && canUseHat && gunSlinger == false)
         {
+            Debug.Log("CowBoy");
             canUseHat = false;
-            if (SkillLevel <= 1)
+            if (SkillLevel <= 1 || pullEnemy == true)
             {
                 Invoke(nameof(HatAbility), l1HatUseTime);
             }
-            if (SkillLevel >= 2 && holdingItem == false && Player.GetComponent<Inventory>().holdingItem == false)
+            if (SkillLevel >= 2 && holdingItem == false && pullEnemy == false)
             {
                 HatAbility();
             }
             if (SkillLevel >= 2 && holdingItem == true)
             {
                 DropItem(currentHeldItem);
+                holdingItem = false;
             }
             // if (SkillLevel == 3 && Player.GetComponent<Inventory>().holdingItem == false)
             // {
@@ -121,6 +137,14 @@ public class CowboyHat : BaseHatScript
             // {
             //     HatAbility();
             // }
+        }
+        if (gunSlinger == true && controls.Actions.CowBoyHatUse.WasPerformedThisFrame() && playerInv.holdingItem == false)
+        {
+            HatAbility();
+        }
+        if (controls.Actions.CowBoyHatShot.WasPerformedThisFrame() && gunSlinger == true && canShoot == true)
+        {
+            Shoot();
         }
         if(SkillLevel > 1)
         {
@@ -139,6 +163,13 @@ public class CowboyHat : BaseHatScript
                 if (!gO.activeInHierarchy)
                 {
                     continue;
+                }
+                if (gO.tag == "PickUp")
+                {
+                    if (gO.GetComponent<Item>().inInventory == true)
+                    {
+                        continue;
+                    }
                 }
                 if (closestItem == null)
                 {
@@ -170,6 +201,20 @@ public class CowboyHat : BaseHatScript
         }
         
     }
+    //If the player has the gunSlinger skill it shoots something from the gun.
+    void Shoot()
+    {
+        canShoot = false;
+        Rigidbody clone;
+        clone = Instantiate(bullet, HoldItemPosition.position, closestItem.transform.rotation);
+        var step =  speed * Time.deltaTime; // calculate distance to move
+        clone.velocity = (closestItem.transform.position - clone.position).normalized * projectileSpeed;
+        Invoke(nameof(ResetShoot), 2f);
+    }
+    void ResetShoot()
+    {
+        canShoot = true;
+    }
     //finds the 2nd closest item out of the list and updates it while the player moves around
     void detectNextClosestItem()
     {
@@ -183,6 +228,13 @@ public class CowboyHat : BaseHatScript
             {
                 nextClosestItem = null;
             }
+            if (gO.tag == "PickUp")
+                {
+                    if (gO.GetComponent<Item>().inInventory == true)
+                    {
+                        continue;
+                    }
+                }
             if (nextClosestItem == null)
             {
                 nextClosestItem = gO;
@@ -210,6 +262,10 @@ public class CowboyHat : BaseHatScript
         rb.isKinematic = false;
         rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
         base.HatAbility();
+        if (gunSlinger == true)
+        {
+
+        }
     }
     //sets it to where it cant move and moves it back to the original position
     void ResetHat()
@@ -224,20 +280,37 @@ public class CowboyHat : BaseHatScript
     {
         if(other.gameObject.tag == "PickUp")
         {
-            if (other.gameObject.GetComponent<Item>() && !playerInv.holdingItem)
+            if (other.gameObject.GetComponent<Item>() && other.gameObject.GetComponent<Item>().inInventory == false)
             {
+                if (!playerInv.holdingItem)
+                {
                 playerInv.HoldItem(other.gameObject);
                 ResetHat();
+                allObjects.Remove(other.gameObject);
+                }
+                else
+                {
+                    if (SkillLevel > 2 && gunSlinger == false)
+                    {
+                        HoldItem(other.gameObject);
+                        ResetHat();
+                    }
+                }
             }
-            if (other.gameObject.GetComponent<Item>() && GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().holdingItem == true && SkillLevel > 2 && gunSlinger == false && holdingItem == false)
-            {
-                HoldItem(other.gameObject);
-                ResetHat();
-            }
+            // else if (playerInv.holdingItem == true && SkillLevel > 2 && gunSlinger == false && holdingItem == false)
+            // {
+                
+            // }
             if (other.gameObject.GetComponent<WhippableObject>())
             {
                 other.GetComponent<WhippableObject>().runProperties = true;
             }
+        }
+        if (other.gameObject.tag == "enemy")
+        {
+            // other.gameObject.GetComponent<Rigidbody>().AddForce(Player.transform.position * whipStrength, ForceMode.Impulse);
+            ResetHat();
+            // other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
         }
     }
 
@@ -245,8 +318,8 @@ public class CowboyHat : BaseHatScript
     {
         if(other.gameObject.tag == "enemy")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(Player.transform.position * whipStrength, ForceMode.Impulse);
-            other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
+            // other.gameObject.GetComponent<Rigidbody>().AddForce(Player.transform.position * whipStrength, ForceMode.Impulse);
+            // other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
         }
     }
     public float MaxWhipDis()
@@ -270,9 +343,16 @@ public class CowboyHat : BaseHatScript
         
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
+        allObjects.Remove(Item);
+        findCloseItem = true;
+        closestItem = null;
+        // circleObject.SetActive(false);
         // Item.GetComponent<Item>().inInventory = true;
         // Player.GetComponent<Inventory>().MassText = Player.GetComponent<Inventory>().MassText + Item.GetComponent<Item>().Weight;
-        // Player.GetComponent<Inventory>().rb.mass = Player.GetComponent<Inventory>().rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
+        if (pullEnemy == true)
+        {
+        Player.GetComponent<Inventory>().rb.mass = Player.GetComponent<Inventory>().rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
+        }
         Item.transform.parent = gameObject.transform;
         Item.transform.position = HoldItemPosition.position;
         Item.transform.rotation = HoldItemPosition.rotation;
@@ -288,9 +368,14 @@ public class CowboyHat : BaseHatScript
         {
             Item.GetComponent<Item>().ps.Play();
         }
+        if (pullEnemy == true)
+        {
+        Player.GetComponent<Inventory>().rb.mass = Player.GetComponent<Inventory>().rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
+        }
         // Item.GetComponent<Item>().inInventory = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.GetComponent<BoxCollider>().enabled = true;
+        // circleObject.SetActive(true);
         int LayerPickUp = LayerMask.NameToLayer("PickUp");
         Item.gameObject.layer = LayerPickUp;
         Item.gameObject.tag="PickUp";
@@ -302,6 +387,7 @@ public class CowboyHat : BaseHatScript
         currentHeldItem = null;
         heldItem.dropped = true;
         holdingItem = false;
+        base.HatAbility();
         // StartCoroutine(dropTimer(0.5f, false));
 
         // if (storeParticles != null)

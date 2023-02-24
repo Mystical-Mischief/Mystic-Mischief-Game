@@ -10,7 +10,7 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     bool attackedPlayer = false;
 
-    ThirdPersonController player;
+    PlayerController player;
 
     [SerializeField]
     GameObject Item;
@@ -37,7 +37,7 @@ public class KoboldProtectAi : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Protect = false;
         holdingItem = false;
         flee = false;
@@ -107,6 +107,12 @@ public class KoboldProtectAi : BaseEnemyAI
             collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
 
         }
+        if (collision.gameObject.tag == "Whip")
+        {
+            stunned = true;
+            // base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
+        }
+           
         if (collision.gameObject.tag == "Poop")
         {
             stunned = true;
@@ -123,6 +129,11 @@ public class KoboldProtectAi : BaseEnemyAI
             HeldItem.transform.SetParent(this.transform, true);
             holdingItem = true;
             flee = true;
+        }
+        if (collider.gameObject.tag == "Whip")
+        {
+            stunned = true;
+            base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
         }
     }
 

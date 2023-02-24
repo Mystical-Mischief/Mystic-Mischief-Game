@@ -66,7 +66,7 @@ public class Web : MonoBehaviour
         //allows the player to break out of a stun with a single snatch button press
         if (controls.Actions.Snatch.IsPressed() && isStun == true)
         {
-                player.GetComponent<ThirdPersonController>().canMove = true;
+                player.GetComponent<PlayerController>().canMove = true;
                 isStun = false;
                 DestroyProjectile();
         }
@@ -89,9 +89,9 @@ public class Web : MonoBehaviour
     IEnumerator StunTimer(GameObject player)
     {
         print("player stunned");
-        player.GetComponent<ThirdPersonController>().canMove = false;
+        player.GetComponent<PlayerController>().canMove = false;
         yield return new WaitForSeconds(stun);
-        player.GetComponent<ThirdPersonController>().canMove = true;
+        player.GetComponent<PlayerController>().canMove = true;
         DestroyProjectile();
         stunCounter = 0;
 

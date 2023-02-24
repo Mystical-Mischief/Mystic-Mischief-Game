@@ -11,7 +11,7 @@ public class PoopMechanic : MonoBehaviour
     private bool isPooping;
     ControlsforPlayer controls;
 
-    private AudioSource poopSound;
+    public AudioSource poopSound;
     public AudioClip PoopClip;
 
     // Start is called before the first frame update

@@ -27,7 +27,8 @@ public class BaseEnemyAI : MonoBehaviour
 
     public Transform target;
     internal NavMeshAgent ai;
-    private Rigidbody ai_Rb;
+    [HideInInspector]
+    public Rigidbody ai_Rb;
     public ParticleSystem ps;
     ParticleSystem.Particle[] _Particles;
 

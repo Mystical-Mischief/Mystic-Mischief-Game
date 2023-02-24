@@ -208,7 +208,25 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""72f8dc6b-8a82-445e-92db-761c708e2da6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CowBoyHatShot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b24af90e-fe17-4666-84d8-fd56076a4f40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CowBoyHatUse"",
+                    ""type"": ""Button"",
+                    ""id"": ""0dcc801f-3a77-40f3-a996-bdb6c41786e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -375,7 +393,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""121eff01-9e0c-4dba-a137-c457a43b42da"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
@@ -632,6 +650,50 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GodMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5b55a03-797b-4aa7-95b7-5f2ab2459fca"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CowBoyHatShot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f8c4558-ab22-4bc8-a3c4-7eaff4f813f7"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CowBoyHatShot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""056afddb-ed95-4d1b-8d15-af493f6b99ef"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CowBoyHatUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ce64d90-c11c-458d-aea4-bf067a973032"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CowBoyHatUse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -892,6 +954,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_GlideRight = m_Actions.FindAction("GlideRight", throwIfNotFound: true);
         m_Actions_Jump = m_Actions.FindAction("Jump", throwIfNotFound: true);
         m_Actions_SwitchHat = m_Actions.FindAction("SwitchHat", throwIfNotFound: true);
+        m_Actions_CowBoyHatShot = m_Actions.FindAction("CowBoyHatShot", throwIfNotFound: true);
+        m_Actions_CowBoyHatUse = m_Actions.FindAction("CowBoyHatUse", throwIfNotFound: true);
         m_Actions_ActivateHat = m_Actions.FindAction("ActivateHat", throwIfNotFound: true);
         m_Actions_Snatch = m_Actions.FindAction("Snatch", throwIfNotFound: true);
         m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
@@ -1046,6 +1110,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_GlideRight;
     private readonly InputAction m_Actions_Jump;
     private readonly InputAction m_Actions_SwitchHat;
+    private readonly InputAction m_Actions_CowBoyHatShot;
+    private readonly InputAction m_Actions_CowBoyHatUse;
     private readonly InputAction m_Actions_ActivateHat;
     private readonly InputAction m_Actions_Snatch;
     private readonly InputAction m_Actions_Interact;
@@ -1065,6 +1131,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @GlideRight => m_Wrapper.m_Actions_GlideRight;
         public InputAction @Jump => m_Wrapper.m_Actions_Jump;
         public InputAction @SwitchHat => m_Wrapper.m_Actions_SwitchHat;
+        public InputAction @CowBoyHatShot => m_Wrapper.m_Actions_CowBoyHatShot;
+        public InputAction @CowBoyHatUse => m_Wrapper.m_Actions_CowBoyHatUse;
         public InputAction @ActivateHat => m_Wrapper.m_Actions_ActivateHat;
         public InputAction @Snatch => m_Wrapper.m_Actions_Snatch;
         public InputAction @Interact => m_Wrapper.m_Actions_Interact;
@@ -1101,6 +1169,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @SwitchHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
                 @SwitchHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
                 @SwitchHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnSwitchHat;
+                @CowBoyHatShot.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatShot;
+                @CowBoyHatShot.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatShot;
+                @CowBoyHatShot.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatShot;
+                @CowBoyHatUse.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatUse;
+                @CowBoyHatUse.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatUse;
+                @CowBoyHatUse.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnCowBoyHatUse;
                 @ActivateHat.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
                 @ActivateHat.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
                 @ActivateHat.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnActivateHat;
@@ -1150,6 +1224,12 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @SwitchHat.started += instance.OnSwitchHat;
                 @SwitchHat.performed += instance.OnSwitchHat;
                 @SwitchHat.canceled += instance.OnSwitchHat;
+                @CowBoyHatShot.started += instance.OnCowBoyHatShot;
+                @CowBoyHatShot.performed += instance.OnCowBoyHatShot;
+                @CowBoyHatShot.canceled += instance.OnCowBoyHatShot;
+                @CowBoyHatUse.started += instance.OnCowBoyHatUse;
+                @CowBoyHatUse.performed += instance.OnCowBoyHatUse;
+                @CowBoyHatUse.canceled += instance.OnCowBoyHatUse;
                 @ActivateHat.started += instance.OnActivateHat;
                 @ActivateHat.performed += instance.OnActivateHat;
                 @ActivateHat.canceled += instance.OnActivateHat;
@@ -1344,6 +1424,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnGlideRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSwitchHat(InputAction.CallbackContext context);
+        void OnCowBoyHatShot(InputAction.CallbackContext context);
+        void OnCowBoyHatUse(InputAction.CallbackContext context);
         void OnActivateHat(InputAction.CallbackContext context);
         void OnSnatch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);

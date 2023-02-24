@@ -74,7 +74,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 0;
         if(SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.IncreaseSpeed(2);
         }
     }
@@ -88,7 +88,7 @@ public class InvisibilityHat : BaseHatScript
         Player.layer = 8;
         if (SkillLevel > 1)
         {
-            ThirdPersonController playerController = Player.GetComponent<ThirdPersonController>();
+            PlayerController playerController = Player.GetComponent<PlayerController>();
             playerController.SetSpeedToNormal();
         }
     }
