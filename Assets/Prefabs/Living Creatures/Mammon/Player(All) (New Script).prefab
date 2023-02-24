@@ -1877,6 +1877,7 @@ MonoBehaviour:
   poopPosition: {fileID: 6129932597663600557}
   resetPoopTime: 2
   Pooped: 0
+  poopSound: {fileID: 0}
   PoopClip: {fileID: 8300000, guid: 382082ce2efc9794b8aecf791d12ab0e, type: 3}
 --- !u!33 &916845150355414320
 MeshFilter:
@@ -1937,6 +1938,7 @@ MonoBehaviour:
   Weight: {fileID: 0}
   MassText: 0
   weightFloat: 0
+  rb: {fileID: 0}
   PickedUpItems: []
   Objective: []
   currentHeldItem: {fileID: 0}
@@ -2954,9 +2956,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5039389076184938933}
   - component: {fileID: 1534129429032396146}
+  - component: {fileID: 7181419896470386122}
   m_Layer: 0
   m_Name: RopeEnd
-  m_TagString: Untagged
+  m_TagString: Whip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3039,6 +3042,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.8821485, y: 0.010934517, z: -0.001060009}
     m_Extent: {x: 0.06295323, y: 0.07984327, z: 0.065424606}
   m_DirtyAABB: 0
+--- !u!65 &7181419896470386122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305064034998365441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13084933, y: 0.16213302, z: 0.1290243}
+  m_Center: {x: 0.12264202, y: -0.007420524, z: 0.044380844}
 --- !u!1 &1328894638271584589
 GameObject:
   m_ObjectHideFlags: 0
@@ -13308,8 +13324,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.05935, y: -0.02492878, z: -0.0014825966, w: 0.99792486}
-  m_LocalPosition: {x: 0.49999875, y: -0.7599124, z: -10.001522}
+  m_LocalRotation: {x: -0.04575059, y: -0.024946954, z: -0.0011428891, w: 0.9986407}
+  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17596,16 +17612,22 @@ MonoBehaviour:
   activateHat: 0
   SkillLevel: 1
   maxWhipDistance: 10
+  canShoot: 0
   whipStrength: 10
   circleObject: {fileID: 2340667125400171981}
+  allObjects: []
   closestItem: {fileID: 0}
+  findCloseItem: 1
   isGrounded: 0
-  l1HatUseTime: 0
+  l1HatUseTime: 1
   gunSlinger: 0
   pullEnemy: 0
-  HoldItemPosition: {fileID: 0}
+  HoldItemPosition: {fileID: 5136777436681128906}
   holdingItem: 0
   currentHeldItem: {fileID: 0}
+  bullet: {fileID: 8596426487253530810, guid: eb1cd8e9c22649344b9d1dd46b28f016, type: 3}
+  projectileSpeed: 100
+  speed: 1
 --- !u!1 &8855194059573257928
 GameObject:
   m_ObjectHideFlags: 0
