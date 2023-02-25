@@ -15,7 +15,7 @@ public class InvisibilityHat : BaseHatScript
     public bool isInvisible;
     private bool _snatching;
     [SerializeField]
-    private float _timer;
+    private float _timer = 3;
     
 
     new void Start()
