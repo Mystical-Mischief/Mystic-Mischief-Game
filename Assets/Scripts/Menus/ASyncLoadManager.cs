@@ -48,7 +48,7 @@ public class ASyncLoadManager : MonoBehaviour
 
         transitionMask.SetTrigger("Shrink");
 
-        yield return new WaitForSeconds(transitionDelay);    //Gives time for the trasition animation to fully play -Emilie 
+        yield return new WaitForSeconds(transitionDelay);    //Gives time for the trasition animation to fully play. It does artifically increase load time though -Emilie 
 
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelName);
 
@@ -58,26 +58,48 @@ public class ASyncLoadManager : MonoBehaviour
         {
             if(loadOperation.progress >= 0.9f)
             {
-                loadOperation.allowSceneActivation = true; 
+                loadOperation.allowSceneActivation = true;
+                yield return new WaitForSeconds(transitionDelay);
+
                 transitionMask.SetTrigger("Grow");
             }
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(transitionDelay);  //Delay before destroying objects below -Emilie 
-        Destroy(this);
+        yield return new WaitForSeconds(transitionDelay);  //Resuing delay for destroying objects below -Emilie 
+        Destroy(this);                                     //Every scene may end up requiring a load screen, so we might want to consider not deleting these at all in the future. -Emilie
         Destroy(loadCanvas);
 
     }
 
     IEnumerator LoadLevelASync(int levelIndex)
     {
+        yield return null;
+
+        transitionMask.SetTrigger("Shrink");
+
+        yield return new WaitForSeconds(transitionDelay);    //Gives time for the trasition animation to fully play. It does artifically increase load time though -Emilie 
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelIndex);
+
+        loadOperation.allowSceneActivation = false; //Gives control on when to activate the level -Emilie 
 
         while (!loadOperation.isDone)
         {
+            if (loadOperation.progress >= 0.9f)
+            {
+                loadOperation.allowSceneActivation = true;
+                yield return new WaitForSeconds(transitionDelay);
+
+                transitionMask.SetTrigger("Grow");
+            }
+
             yield return null;
         }
-    }
+
+        yield return new WaitForSeconds(transitionDelay);  //Resuing delay for destroying objects below -Emilie 
+        Destroy(this);                                     //Every scene may end up requiring a load screen, so we might want to consider not deleting these at all in the future. -Emilie
+        Destroy(loadCanvas);
+    } //This is identical to function above, consider a way for one function to accept two different parameters: int or string? - Emilie
 }
