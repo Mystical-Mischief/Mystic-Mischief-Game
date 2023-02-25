@@ -45,6 +45,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     public bool airToGround;
     public bool groundToAir;
     float dist;
+    public Animator anim;
 
     public new void Start()
     {
@@ -63,6 +64,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
+            anim.SetBool("ChasePlayer", true);
+        }
+        else
+        {
+            anim.SetBool("ChasePlayer", false);
         }
 
         //if the ai doesnt see the player then it will patrol and look for it
@@ -185,6 +191,14 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is for patroling on the ground.
     public override void Patrol()
     {
+        if (atDestination == false && onGround == true)
+        {
+            anim.SetFloat("RunSpeed", 2f);
+        }
+        if (atDestination == true || onGround == false)
+        {
+            anim.SetFloat("RunSpeed", 0f);
+        }
         if (ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
         {
             atDestination = true;
