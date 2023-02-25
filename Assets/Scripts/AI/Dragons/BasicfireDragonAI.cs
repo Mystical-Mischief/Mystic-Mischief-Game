@@ -45,7 +45,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     public bool airToGround;
     public bool groundToAir;
     float dist;
-    public Animator anim;
+    // public Animator anim;
 
     public new void Start()
     {
@@ -64,12 +64,12 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
-            anim.SetBool("ChasePlayer", true);
+            // anim.SetBool("ChasePlayer", true);
         }
-        else
-        {
-            anim.SetBool("ChasePlayer", false);
-        }
+        // else
+        // {
+        //     // anim.SetBool("ChasePlayer", false);
+        // }
 
         //if the ai doesnt see the player then it will patrol and look for it
         if (!base.spottedPlayer)
@@ -92,7 +92,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             FoundPlayer();
         }
-        IsGrounded();
         //If the Dragon is at the last spot it will generate a new path to follow based on the random number generator.
         if (finishedPatrolling)
         {
@@ -111,24 +110,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             patrolNum = 0;
             finishedPatrolling = false;
         }
-
-        //If the bool is set to true it goes to the first patrol point and patrols on the ground.
-        if (airToGround == true)
-        {
-            GoToGround();
-        }
-        // base.Update();
-        if (isGroundedD == true)
-        {
-            
-        }
-
-        //If the Dragon does not see the player for a set amount of time it gives up. Used for when the player goes into the buildings.
-        if (lostPlayerTime == chaseTime)
-        {
-            //ResetTarget();
-        }
-
+    }
+    void FixedUpdate()
+    {
+        IsGrounded();
         //If the bool is true the dragon goes to the air and patrols. Disables the NavMesh Agent.
         if (groundToAir == true)
         {
@@ -139,11 +124,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             NewPath();
             // groundToAir = false;
         }
-        // if (airToGround == true)
-        // {
-        //     inAir = false;
-
-        // }
+        //If the bool is set to true it goes to the first patrol point and patrols on the ground.
+        if (airToGround == true)
+        {
+            GoToGround();
+        }
     }
 
     public override void FoundPlayer()
@@ -191,14 +176,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is for patroling on the ground.
     public override void Patrol()
     {
-        if (atDestination == false && onGround == true)
-        {
-            anim.SetFloat("RunSpeed", 2f);
-        }
-        if (atDestination == true || onGround == false)
-        {
-            anim.SetFloat("RunSpeed", 0f);
-        }
         if (ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
         {
             atDestination = true;
