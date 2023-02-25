@@ -15,8 +15,9 @@ public class BaseHatScript : MonoBehaviour
     public bool activateHat;
     protected bool canUseHat = true;
 
-    [SerializeField]
-    internal int SkillLevel = 1;
+    internal static int SkillLevel = 1;
+
+    public int currentLevel=SkillLevel; //its mainly there for testing purposes, can be deleted later
     public void Start()
     {
         controls = new ControlsforPlayer();
@@ -33,7 +34,11 @@ public class BaseHatScript : MonoBehaviour
     }
     public void Update()
     {
-        activateHat = controls.Actions.ActivateHat.IsPressed();
+        currentLevel = SkillLevel;
+        if(canUseHat)
+        {
+            activateHat = controls.Actions.ActivateHat.IsPressed();
+        }
         //if you can use the hat use the hat and start the cooldown
         if (activateHat && canUseHat)
         {
