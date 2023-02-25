@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WizardHat : BaseHatScript
 {
-    public GameObject smokeBomb;
+    public GameObject[] smokeBomb;
+    public Transform[] potionThrowPos;
     new void Start()
     {
         base.Start();
@@ -19,13 +20,29 @@ public class WizardHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        smokeBomb.SetActive(true);
-        smokeBomb.transform.forward = transform.forward;
-        smokeBomb.GetComponent<SphereCollider>().isTrigger = true;
-        smokeBomb.GetComponent<Rigidbody>().AddForce(new Vector3(transform.forward.x, 1, transform.forward.z).normalized * 10, ForceMode.Impulse);
-        smokeBomb.transform.parent = null;
-        StartCoroutine(activateSmokeBomb(smokeBomb));
-        base.HatAbility();
+        if(SkillLevel==2)
+        {
+            smokeBomb[0].SetActive(true);
+            smokeBomb[0].transform.forward = potionThrowPos[0].forward;
+            smokeBomb[0].GetComponent<SphereCollider>().isTrigger = true;
+            smokeBomb[0].GetComponent<Rigidbody>().AddForce(new Vector3(potionThrowPos[0].forward.x, 1, potionThrowPos[0].forward.z).normalized * 10, ForceMode.Impulse);
+            smokeBomb[0].transform.parent = null;
+            StartCoroutine(activateSmokeBomb(smokeBomb[0]));
+            base.HatAbility();
+        }
+        if(SkillLevel==3)
+        {
+            for(int i = 0; i < smokeBomb.Length; i++)
+            {
+                smokeBomb[i].SetActive(true);
+                smokeBomb[i].transform.forward = potionThrowPos[i].forward;
+                smokeBomb[i].GetComponent<SphereCollider>().isTrigger = true;
+                smokeBomb[i].GetComponent<Rigidbody>().AddForce(new Vector3(potionThrowPos[i].forward.x, 1, potionThrowPos[i].forward.z).normalized * 10, ForceMode.Impulse);
+                smokeBomb[i].transform.parent = null;
+                StartCoroutine(activateSmokeBomb(smokeBomb[i]));
+                base.HatAbility();
+            }
+        }
     }
     IEnumerator activateSmokeBomb(GameObject bomb)
     {
