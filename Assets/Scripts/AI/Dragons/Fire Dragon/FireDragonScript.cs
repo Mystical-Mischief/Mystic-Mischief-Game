@@ -28,7 +28,7 @@ public class FireDragonScript : BasicfireDragonAI
     void Start()
     {
         base.Start();
-        //ps = GetComponent<ParticleSystem>();
+        // ps = GetComponent<ParticleSystem>();
         
     }
 
@@ -67,7 +67,7 @@ public class FireDragonScript : BasicfireDragonAI
         //If the dragon is in the air and spots the player it shoots fire breath.
         if (base.inAir == true && base.spottedPlayer == true)
         {
-            ps.Play(true); //What is ps? What particle effect is it intended to play? Please be more specific with the name -Emilie 
+            ps.Play(true);
         }
         else 
         {
