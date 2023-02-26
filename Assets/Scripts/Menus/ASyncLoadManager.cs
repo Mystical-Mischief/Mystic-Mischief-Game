@@ -58,15 +58,16 @@ public class ASyncLoadManager : MonoBehaviour
         {
             if(loadOperation.progress >= 0.9f)
             {
-                loadOperation.allowSceneActivation = true; 
+                loadOperation.allowSceneActivation = true;
+                yield return new WaitForSeconds(transitionDelay);
                 transitionMask.SetTrigger("Grow");
             }
 
             yield return null;
         }
 
-        yield return new WaitForSeconds(transitionDelay);  //Delay before destroying objects below -Emilie 
-        Destroy(this);
+        yield return new WaitForSeconds(transitionDelay);  //Reusing delay before destroying objects below -Emilie 
+        Destroy(this);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
         Destroy(loadCanvas);
 
     }
