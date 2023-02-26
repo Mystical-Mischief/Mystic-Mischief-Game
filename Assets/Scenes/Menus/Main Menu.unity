@@ -3082,7 +3082,7 @@ MonoBehaviour:
   _loadScreen: {fileID: 1032652806}
   transitionMask: {fileID: 1482805745}
   loadCanvas: {fileID: 997510387}
-  transitionDelay: 3
+  transitionDelay: 2
 --- !u!4 &825106899
 Transform:
   m_ObjectHideFlags: 0
@@ -4240,7 +4240,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6718,6 +6718,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 997510388}
     m_Modifications:
+    - target: {fileID: 8948854690580093543, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8948854690580093543, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 85.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8948854690651822032, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_AspectRatio
       value: 1.877743
@@ -6734,6 +6742,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8948854690865902289, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a1e755bff1e8ce54ab89f1de087cb09c, type: 2}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6764,11 +6776,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -98.49994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -52.456573
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_LocalScale.x
@@ -6792,7 +6804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11
+      value: -11.000003
       objectReference: {fileID: 0}
     - target: {fileID: 8948854691480498316, guid: 8ea8029bb5bf36a419e0cecf88a3e33e, type: 3}
       propertyPath: m_LocalRotation.w
