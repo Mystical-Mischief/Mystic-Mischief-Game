@@ -9,7 +9,7 @@ public class WizardHat : BaseHatScript
     static int SkillLevel = 1;
     public int currentLevel = SkillLevel;
 
-    private GameObject closestEnemy;
+    public GameObject closestEnemy;
     private GameObject nextClosestEnemy;
 
     private bool findCloseEnemy;
@@ -19,16 +19,11 @@ public class WizardHat : BaseHatScript
     {
         base.Start();
     }
-    private void Awake()
-    {
-        foreach(GameObject g0 in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Enemies.Add(g0);
-        }
-    }
+
     new void Update()
     {
         currentLevel = SkillLevel;
+        
         base.Update();
     }
     new void OnEnable()
@@ -79,7 +74,7 @@ public class WizardHat : BaseHatScript
         return SkillLevel;
     }
 
-    void detectNextClosestEnemy()
+    /**void detectNextClosestEnemy()
     {
         foreach (GameObject gO in Enemies)
         {
@@ -105,5 +100,5 @@ public class WizardHat : BaseHatScript
         {
             findCloseEnemy = true;
         }
-    }
+    }**/
 }
