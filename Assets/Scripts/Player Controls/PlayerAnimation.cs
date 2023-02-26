@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     public Rigidbody rb;
-    public AudioClip CollectClip;
     public AudioClip DropClip;
     public AudioClip PlayerCaw;
     public GameObject Player;
@@ -107,14 +106,9 @@ public class PlayerAnimation : MonoBehaviour
             PlaySound(DropClip);
             animator.SetTrigger("Drop");
         }
-        if (controls.Inv.Store.WasPerformedThisFrame())
-        {
-            PlaySound(CollectClip);
-            animator.SetTrigger("Store");
-        }
         if (controls.Actions.Caw.WasPerformedThisFrame())
         {
             PlaySound(PlayerCaw);
         }
     }
-}
+} //my butt hurts

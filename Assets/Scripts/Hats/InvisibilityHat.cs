@@ -16,7 +16,9 @@ public class InvisibilityHat : BaseHatScript
     private bool _snatching;
     [SerializeField]
     private float _timer = 3;
-    
+
+    static int SkillLevel = 1;
+    public int currentLevel = SkillLevel;
 
     new void Start()
     {
@@ -95,6 +97,7 @@ public class InvisibilityHat : BaseHatScript
 
     private new void Update()
     {
+        currentLevel = SkillLevel;
         base.Update();
         _snatching = controls.Actions.Snatch.IsPressed();
         if(isInvisible)
@@ -124,5 +127,14 @@ public class InvisibilityHat : BaseHatScript
     public bool IsInvisible()
     {
         return isInvisible;
+    }
+
+    public virtual void LevelUp()
+    {
+        SkillLevel++;
+    }
+    public int getLevel()
+    {
+        return SkillLevel;
     }
 }

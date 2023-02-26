@@ -71,19 +71,17 @@ public class SkillTreeLeveling : MonoBehaviour
     public void CowboyLv2()
     {
         int cowboyLv = CowboyHat.getLevel();
-        CowboyHat.SkillLevel = 2;
         if(cowboyLv == 1)
         {
-            CowboyHat.SkillLevel = 2;
+            CowboyHat.LevelUp();
         }
     }
     public void CowboyLv3()
     {
         int cowboyLv = CowboyHat.getLevel();
-        CowboyHat.SkillLevel = 3;
         if (cowboyLv == 2)
         {
-            CowboyHat.SkillLevel = 3;
+            CowboyHat.LevelUp();
         }
     }
 

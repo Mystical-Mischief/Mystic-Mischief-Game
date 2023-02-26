@@ -33,7 +33,7 @@ public class CameraPan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pMenu = GameObject.Find("PauseMenu");
+        // pMenu = GameObject.Find("PauseMenu");
         Player = GameObject.FindGameObjectWithTag("Player");
         //Sets a new set of waypoints.
         NewPath();
