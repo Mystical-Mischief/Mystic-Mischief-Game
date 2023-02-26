@@ -15,9 +15,8 @@ public class BaseHatScript : MonoBehaviour
     public bool activateHat;
     protected bool canUseHat = true;
 
-    internal static int SkillLevel = 1;
-
-    public int currentLevel=SkillLevel; //its mainly there for testing purposes, can be deleted later
+    
+     
     public void Start()
     {
         controls = new ControlsforPlayer();
@@ -34,7 +33,7 @@ public class BaseHatScript : MonoBehaviour
     }
     public void Update()
     {
-        currentLevel = SkillLevel;
+        
         if(canUseHat)
         {
             activateHat = controls.Actions.ActivateHat.IsPressed();
@@ -66,13 +65,6 @@ public class BaseHatScript : MonoBehaviour
         canUseHat = true;
     }
 
-    public virtual void LevelUp()
-    {
-        SkillLevel++;
-    }
-    public int getLevel()
-    {
-        return SkillLevel;
-    }
+    
 
 }

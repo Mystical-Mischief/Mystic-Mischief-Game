@@ -45,6 +45,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     public bool airToGround;
     public bool groundToAir;
     float dist;
+    private Transform targetPos;
     // public Animator anim;
 
     public new void Start()
@@ -64,12 +65,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (target == Player)
         {
             Player.GetComponent<ThirdPersonController>().Targeted = true;
-            // anim.SetBool("ChasePlayer", true);
         }
-        // else
-        // {
-        //     // anim.SetBool("ChasePlayer", false);
-        // }
+
+        // targetPos.position.x = target.transform.position.x;
+        // targetPos.position.z = target.transform.position.z;
+        // targetPos.position.y = transform.position.y;
 
         //if the ai doesnt see the player then it will patrol and look for it
         if (!base.spottedPlayer)
@@ -81,7 +81,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
                 Patrol();
             }
 
-            if (inAir == true && onGround == false)
+            if (inAir == true)
             {
                 base.EnemyDetection();
                 PatrolAir();
@@ -129,6 +129,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         {
             GoToGround();
         }
+        if (Player.transform.position.y > transform.position.y && base.spottedPlayer == true)
+        {
+            groundToAir = true;
+        }
     }
 
     public override void FoundPlayer()
@@ -138,7 +142,16 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if(spottedPlayer)
         {
             target = Player.transform;
+            if (onGround == true)
+            {
             UpdateDestination(target.position);
+            }
+            if (inAir == true)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+                var q = Quaternion.LookRotation(new Vector3(target.position.x,  transform.position.y, target.position.z) - transform.position);
+                transform.rotation = Quaternion.Lerp(transform.rotation, q, Speed * Time.deltaTime);
+            }
             //checks if the ai can see the player
             EnemyVision.FieldOfView();
             spottedPlayer = EnemyVision.PlayerDetected;
@@ -176,7 +189,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is for patroling on the ground.
     public override void Patrol()
     {
-        if (ai.enabled && ai.remainingDistance < 0.5f && atDestination == false)
+        if (ai.enabled && ai.remainingDistance < 1f && atDestination == false)
         {
             atDestination = true;
             //if the player isnt at the last point
@@ -207,6 +220,8 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         base.ai.enabled = false;
         dist = Vector3.Distance(target.position, transform.position);
         transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        var q = Quaternion.LookRotation(new Vector3(target.position.x,  transform.position.y, target.position.z) - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, q, Speed * Time.deltaTime);
         if (dist < 1f && atDestination == false)
         {
             atDestination = true;
@@ -268,6 +283,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This resets the target and timer to 0.
     public void ResetTarget()
     {
+        if (inAir == true)
+        {
+            groundToAir = true;
+        }
         spottedPlayer = false;
         target = PatrolPoints[0];
         lostPlayerTime = 0;

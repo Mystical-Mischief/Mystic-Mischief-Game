@@ -13,10 +13,11 @@ public class ExplorersHat : BaseHatScript
     public GameObject closestItem;
     private GameObject nextClosestItem;
     private bool findCloseItem;
-    public GameObject quest;
+    public Quest quest;
     private bool updateList = true;
     new void Start()
     {
+        quest = FindObjectOfType<Quest>();
         if (closestItem == null)
         {
             findCloseItem = true;
@@ -29,8 +30,8 @@ public class ExplorersHat : BaseHatScript
         if (updateList)
         {
             currentDestinationItems.Clear();
-            currentDestinationItems.AddRange(quest.GetComponent<Quest>().activeQuest.objectiveItems);
-            if(quest.GetComponent<Quest>().activeQuest.questType != QuestType.Escort)
+            currentDestinationItems.AddRange(quest.activeQuest.objectiveItems);
+            if(quest.activeQuest.questType != QuestType.Escort)
                 closestItem = null;
             updateList = false;
         }
@@ -56,7 +57,7 @@ public class ExplorersHat : BaseHatScript
         if (findCloseItem)
         {
             updateList = true;
-            if (quest.GetComponent<Quest>().activeQuest.questType != QuestType.Escort)
+            if (quest.activeQuest.questType != QuestType.Escort)
             {
                 foreach (GameObject gO in currentDestinationItems)
                 {
@@ -79,7 +80,7 @@ public class ExplorersHat : BaseHatScript
             }
             else
             {
-                closestItem = quest.GetComponent<Quest>().activeQuest.objectiveItems[1];
+                closestItem = quest.activeQuest.objectiveItems[1];
             }
         }
         //if you are NOT activating the hat. find the next closest item.
