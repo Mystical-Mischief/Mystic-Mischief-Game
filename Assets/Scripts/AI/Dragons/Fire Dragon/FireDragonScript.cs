@@ -68,10 +68,12 @@ public class FireDragonScript : BasicfireDragonAI
         if (base.inAir == true && base.spottedPlayer == true)
         {
             ps.Play(true);
+            fireBreath = true;
         }
         else 
         {
             ps.Stop(true);
+            fireBreath = false;
         }
 
         // If it is close to the dragon it sets the attack to true.
