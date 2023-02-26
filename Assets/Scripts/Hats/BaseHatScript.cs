@@ -15,9 +15,8 @@ public class BaseHatScript : MonoBehaviour
     public bool activateHat;
     protected bool canUseHat = true;
 
-    internal static int SkillLevel = 1;
-
-    public int currentLevel=SkillLevel; //its mainly there for testing purposes, can be deleted later
+    
+     
     public void Start()
     {
         controls = new ControlsforPlayer();
@@ -34,11 +33,11 @@ public class BaseHatScript : MonoBehaviour
     }
     public void Update()
     {
-        currentLevel = SkillLevel;
-        if(canUseHat)
-        {
+        
+        //if(canUseHat)
+        //{
             activateHat = controls.Actions.ActivateHat.IsPressed();
-        }
+        //}
         //if you can use the hat use the hat and start the cooldown
         if (activateHat && canUseHat)
         {
@@ -66,13 +65,6 @@ public class BaseHatScript : MonoBehaviour
         canUseHat = true;
     }
 
-    public virtual void LevelUp()
-    {
-        SkillLevel++;
-    }
-    public int getLevel()
-    {
-        return SkillLevel;
-    }
+    
 
 }

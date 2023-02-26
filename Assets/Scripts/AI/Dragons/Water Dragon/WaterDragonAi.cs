@@ -8,9 +8,9 @@ public class WaterDragonAi : BasicDragonAI
     //private CapsuleCollider Ranged;
     private SphereCollider jump;
     //private BoxCollider Melee;
-    public Rigidbody  projectile;
     private bool ranged;
     private Vector3 PlayerPos;
+    public Rigidbody projectile;
     // public float timeBetweenAttacks;
     // public float attackRange;
     // public bool detectedPlayer;

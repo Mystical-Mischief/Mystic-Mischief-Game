@@ -6,12 +6,24 @@ public class WizardHat : BaseHatScript
 {
     public GameObject[] smokeBomb;
     public Transform[] potionThrowPos;
+    static int SkillLevel = 1;
+    public int currentLevel = SkillLevel;
+
+    public GameObject closestEnemy;
+    private GameObject nextClosestEnemy;
+
+    private bool findCloseEnemy;
+
+    public List<GameObject> Enemies = new List<GameObject>();
     new void Start()
     {
         base.Start();
     }
+
     new void Update()
     {
+        currentLevel = SkillLevel;
+        
         base.Update();
     }
     new void OnEnable()
@@ -20,7 +32,7 @@ public class WizardHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        if(SkillLevel==2)
+        if(SkillLevel<3)
         {
             smokeBomb[0].SetActive(true);
             smokeBomb[0].transform.forward = potionThrowPos[0].forward;
@@ -43,10 +55,50 @@ public class WizardHat : BaseHatScript
                 base.HatAbility();
             }
         }
+        if(SkillLevel==5)
+        {
+            smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
+        }
     }
     IEnumerator activateSmokeBomb(GameObject bomb)
     {
         yield return new WaitForSeconds(0.5f);
         bomb.GetComponent<SphereCollider>().isTrigger = false;
     }
+    public virtual void LevelUp()
+    {
+        SkillLevel++;
+    }
+    public int getLevel()
+    {
+        return SkillLevel;
+    }
+
+    /**void detectNextClosestEnemy()
+    {
+        foreach (GameObject gO in Enemies)
+        {
+            if (!gO.activeInHierarchy)
+            {
+                continue;
+            }
+            if (nextClosestEnemy == null)
+            {
+                nextClosestEnemy = gO;
+                continue;
+            }
+            if (gO == closestEnemy)
+            {
+                continue;
+            }
+            if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestEnemy.transform.position, transform.position))
+            {
+                nextClosestEnemy = gO;
+            }
+        }
+        if (Vector3.Distance(nextClosestEnemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
+        {
+            findCloseEnemy = true;
+        }
+    }**/
 }
