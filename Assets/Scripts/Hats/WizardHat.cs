@@ -60,7 +60,7 @@ public class WizardHat : BaseHatScript
                 base.HatAbility();
             }
         }
-        if(SkillLevel!=5)
+        if(SkillLevel==5)
         {
             smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
         }
