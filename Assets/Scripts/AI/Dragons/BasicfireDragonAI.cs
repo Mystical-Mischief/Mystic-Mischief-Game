@@ -16,7 +16,7 @@ public class AllPatrolPointsAir
 {
     public List<Transform> WanderPointsInAir = new List<Transform>();
 }
-public abstract class BasicfireDragonAI : BaseEnemyAI //Why isn't this BasicDragonAI? -Emilie
+public abstract class BasicfireDragonAI : BaseEnemyAI
 {
     //update all arrays to lists
     public List<AllPatrolPointsGround> WanderPointsGround = new List<AllPatrolPointsGround>();
@@ -54,10 +54,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI //Why isn't this BasicDrag
         NewRandomNumber();
         rb = GetComponent<Rigidbody>();
         ai = this.GetComponent<NavMeshAgent>();
-
-        base.Start(); 
-
-
+        base.Start();
         NewPath();
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InvisibleWallEffect : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem windEffect;
+    [SerializeField] private ParticleSystem windEffect = null;
 
     private void Start()
     {

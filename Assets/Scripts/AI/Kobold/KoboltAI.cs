@@ -25,47 +25,40 @@ public class KoboltAI : BaseEnemyAI
 
     new void Update()
     {
-
-        if (player != null)
+        float dist = Vector3.Distance(player.transform.position, transform.position);
+        base.Update();
+        if(attackedPlayer)
         {
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-
-
-            base.Update();
-            if (attackedPlayer)
+            LostPlayer();
+            currentAttack-=Time.deltaTime;
+            if(currentAttack <= 0)
             {
-                LostPlayer();
-                currentAttack -= Time.deltaTime;
-                if (currentAttack <= 0)
-                {
-                    currentAttack = attackCooldown;
-                    attackedPlayer = false;
-                }
-            }
-            if (base.spottedPlayer == true)
-            {
-                anim.SetBool("FoundPlayer", true);
-            }
-            else { anim.SetBool("FoundPlayer", false); }
-            if (base.ai.speed > 0.1)
-            {
-                anim.SetFloat("RunSpeed", 1f);
-            }
-            if (dist <= 2f)
-            {
-                anim.SetTrigger("Bite");
-            }
-
-            if (base.stunned == true)
-            {
-                anim.SetBool("Hurt", true);
-            }
-            else
-            {
-                anim.SetBool("Hurt", false);
+                currentAttack = attackCooldown;
+                attackedPlayer = false;
             }
         }
+        if (base.spottedPlayer == true)
+        {
+            anim.SetBool("FoundPlayer", true);
+        }
+        else {anim.SetBool("FoundPlayer", false);}
+        if (base.ai.speed > 0.1)
+        {
+            anim.SetFloat("RunSpeed", 1f);
+        }
+        if (dist <= 2f)
+        {
+            anim.SetTrigger("Bite");
+        }
 
+        if (base.stunned == true)
+        {
+            anim.SetBool("Hurt",true);
+        }
+        else
+        {
+            anim.SetBool("Hurt",false);
+        }
     }
     // Start is called before the first frame update
     private void OnCollisionEnter (Collision collision)
