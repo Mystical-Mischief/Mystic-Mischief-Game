@@ -57,5 +57,14 @@ public class FireDragonAnimations : MonoBehaviour
         {
             anim.SetBool("FireBreath", false);
         }
+
+        if (dragon.stunned == true)
+        {
+            anim.SetBool("Stunned", true);
+        }
+        if (dragon.stunned == false)
+        {
+            anim.SetBool("Stunned", false);
+        }
     }
 }
