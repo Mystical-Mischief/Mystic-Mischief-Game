@@ -27,7 +27,7 @@ public class CameraPan : MonoBehaviour
     public int lastWaypoints;
     private GameObject Player;
     private bool done;
-    public GameObject pMenu;
+    public GameObject pauseMenu;
 
 
     // Start is called before the first frame update
@@ -52,7 +52,7 @@ public class CameraPan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Pan == true && pMenu.GetComponent<PauseMenu>().Paused == false)
+        if (Pan == true && pauseMenu.GetComponent<PauseMenu>().Paused == false)
         {
             camgameobject.SetActive(false);
             cLogicScript.enabled = false;
