@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SkillTreeLeveling : MonoBehaviour
 {
@@ -10,25 +11,56 @@ public class SkillTreeLeveling : MonoBehaviour
 
     public GameObject SkillTree;
 
+    public GameObject Text;
+
+    private ControlsforPlayer playerControls;
+    public bool _canOpenSkillTree;
+    public bool openSkilltree;
+
     private void Start()
     {
-        // SkillTree.SetActive(false);
+        playerControls = new ControlsforPlayer();
+        Text.SetActive(false);
+        _canOpenSkillTree = false;
+        playerControls.Enable();
     }
     private void OnTriggerEnter(Collider other) // The skill tree ui pops up
     {
         if(other.gameObject.tag=="LevelUp")
         {
-            SkillTree.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            Text.SetActive(true);
+            _canOpenSkillTree=true;
+            
         }
+    }
+   
+    private void Update()
+    {
+        if(_canOpenSkillTree && playerControls.Actions.Interact.IsPressed())
+            OpenSkillTree();
+            
+    }
+    private void OpenSkillTree()
+    {
+        Text.SetActive(false);
+        SkillTree.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
     }
     private void OnTriggerExit(Collider other) // The skill tree ui disappears
     {
         if (other.gameObject.tag == "LevelUp")
         {
-            SkillTree.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
+            Text.SetActive(false);
+            _canOpenSkillTree = false;
+            
         }
+    }
+    public void BackButton()
+    {
+        SkillTree.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void WizardLv2()

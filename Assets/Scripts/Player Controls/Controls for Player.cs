@@ -729,6 +729,15 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenSkillTree"",
+                    ""type"": ""Button"",
+                    ""id"": ""c66483df-25de-49ce-a541-4e606514d3c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -784,6 +793,28 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuestAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b74613f1-f7cf-42c6-ab75-fa66ee953b07"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenSkillTree"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23cd0dc3-87da-4675-866b-aa63bd16c44f"",
+                    ""path"": ""<Joystick>/stick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenSkillTree"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -970,6 +1001,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
         m_Pause_QuitGame = m_Pause.FindAction("QuitGame", throwIfNotFound: true);
         m_Pause_QuestAction = m_Pause.FindAction("QuestAction", throwIfNotFound: true);
+        m_Pause_OpenSkillTree = m_Pause.FindAction("OpenSkillTree", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_Quit = m_MenuActions.FindAction("Quit", throwIfNotFound: true);
@@ -1268,6 +1300,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Pause_PauseGame;
     private readonly InputAction m_Pause_QuitGame;
     private readonly InputAction m_Pause_QuestAction;
+    private readonly InputAction m_Pause_OpenSkillTree;
     public struct PauseActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -1275,6 +1308,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_Pause_PauseGame;
         public InputAction @QuitGame => m_Wrapper.m_Pause_QuitGame;
         public InputAction @QuestAction => m_Wrapper.m_Pause_QuestAction;
+        public InputAction @OpenSkillTree => m_Wrapper.m_Pause_OpenSkillTree;
         public InputActionMap Get() { return m_Wrapper.m_Pause; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1293,6 +1327,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuestAction.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
                 @QuestAction.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
                 @QuestAction.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnQuestAction;
+                @OpenSkillTree.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnOpenSkillTree;
+                @OpenSkillTree.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnOpenSkillTree;
+                @OpenSkillTree.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnOpenSkillTree;
             }
             m_Wrapper.m_PauseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1306,6 +1343,9 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @QuestAction.started += instance.OnQuestAction;
                 @QuestAction.performed += instance.OnQuestAction;
                 @QuestAction.canceled += instance.OnQuestAction;
+                @OpenSkillTree.started += instance.OnOpenSkillTree;
+                @OpenSkillTree.performed += instance.OnOpenSkillTree;
+                @OpenSkillTree.canceled += instance.OnOpenSkillTree;
             }
         }
     }
@@ -1441,6 +1481,7 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnQuitGame(InputAction.CallbackContext context);
         void OnQuestAction(InputAction.CallbackContext context);
+        void OnOpenSkillTree(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {
