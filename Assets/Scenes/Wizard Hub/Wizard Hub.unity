@@ -310,6 +310,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5449417670468411130, guid: 8621f044261df354a9ab0ea32bf2db57, type: 3}
   m_PrefabInstance: {fileID: 767418257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &22894280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6663483559782953025, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+  m_PrefabInstance: {fileID: 1312725869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &23185354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6512252220762147724, guid: 5f84205ce3972f747884feec8dc34af3, type: 3}
@@ -1951,26 +1956,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f84205ce3972f747884feec8dc34af3, type: 3}
---- !u!1 &151469640 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2202306429271243206, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
-  m_PrefabInstance: {fileID: 375959983}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &151469645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151469640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b877682a565f7f47985c819d5b3c001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Paused: 0
-  pauseMenuUI: {fileID: 0}
-  defaultBtn: {fileID: 0}
 --- !u!1001 &155460783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5334,6 +5319,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0022109447
       objectReference: {fileID: 0}
+    - target: {fileID: 6736542516986848241, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
+      propertyPath: Text
+      value: 
+      objectReference: {fileID: 22894280}
     - target: {fileID: 6736542516986848241, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: SkillTree
       value: 
@@ -18581,6 +18570,34 @@ PrefabInstance:
     - target: {fileID: 67421809819891209, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: InvisibilityLv2
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 654670062}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SkillTreeLeveling, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 339322676880228527, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1057010749339112307, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
