@@ -14,6 +14,7 @@ public class CowboyHat : BaseHatScript
     private GameObject circleObject;
     [HideInInspector]
     public List<GameObject> allObjects = new List<GameObject>();
+    [HideInInspector]
     public GameObject closestItem;
     GameObject nextClosestItem;
     [HideInInspector]
@@ -51,6 +52,7 @@ public class CowboyHat : BaseHatScript
     new void OnEnable()
     {
         base.OnEnable();
+        circleObject.SetActive(true);
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         {
             if (gO.GetComponent<Item>() && (gO.GetComponent<Item>().itemType == Item.ItemType.Collectable || gO.GetComponent<Item>().itemType == Item.ItemType.WhipOnly))
@@ -83,9 +85,9 @@ public class CowboyHat : BaseHatScript
         if (pullEnemy == true)
         {
             foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
-            {
+        {
                 allObjects.Add(gO);
-            }
+        }
         }
         // foreach (GameObject gO in GameObject.FindGameObjectsWithTag("PickUp"))
         // {
@@ -102,6 +104,7 @@ public class CowboyHat : BaseHatScript
         {
             canUseHat = true;
         }
+        // base.Update();
         if (Player.GetComponent<PlayerController>().onGround == true)
         {
             isGrounded = true;
@@ -150,7 +153,7 @@ public class CowboyHat : BaseHatScript
         {
             Shoot();
         }
-        if (SkillLevel > 1)
+        if(SkillLevel > 1)
         {
             maxWhipDistance = _increasedWhipDistance; // increase max whip distance when the level in skill tree is greater than 1
         }
@@ -168,6 +171,13 @@ public class CowboyHat : BaseHatScript
                 {
                     continue;
                 }
+                if (gO.tag == "PickUp")
+                {
+                    if (gO.GetComponent<Item>().inInventory == true)
+                    {
+                        continue;
+                    }
+                }
                 if (closestItem == null)
                 {
                     closestItem = gO;
@@ -178,14 +188,8 @@ public class CowboyHat : BaseHatScript
                     closestItem = gO;
                 }
             }
-            if (closestItem != null)
-            {
-                findCloseItem = false;
-            }
+            findCloseItem = false;
         }
-        circleObjectLogic();
-
-        
         //after finding the closest item it will find the next closest item.
         if (!findCloseItem)
         {
@@ -202,20 +206,10 @@ public class CowboyHat : BaseHatScript
         {
             transform.forward = closestItem.transform.position - transform.position;
         }
-        base.Update();
+        
     }
-    void circleObjectLogic()
-    {
-        if(Vector3.Distance(closestItem.transform.position, transform.position) <= maxWhipDistance)
-        {
-            circleObject.SetActive(true);
-        }
-        else
-        {
-            circleObject.SetActive(false);
-        }
-    }
-        public override void LevelUp()
+
+            public override void LevelUp()
         {
             SkillLevel += 1;
         }
@@ -242,6 +236,17 @@ public class CowboyHat : BaseHatScript
             {
                 continue;
             }
+            if (nextClosestItem == closestItem)
+            {
+                nextClosestItem = null;
+            }
+            if (gO.tag == "PickUp")
+                {
+                    if (gO.GetComponent<Item>().inInventory == true)
+                    {
+                        continue;
+                    }
+                }
             if (nextClosestItem == null)
             {
                 nextClosestItem = gO;
@@ -264,13 +269,10 @@ public class CowboyHat : BaseHatScript
     //makes whip able to move and moves it forward based off whip strength
     public override void HatAbility()
     {
-        if(closestItem != null)
-        {
-            GetComponent<SphereCollider>().enabled = true;
-            originalWorldPosition = transform.position;
-            rb.isKinematic = false;
-            rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
-        }
+        GetComponent<SphereCollider>().enabled = true;
+        originalWorldPosition = transform.position;
+        rb.isKinematic = false;
+        rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
         base.HatAbility();
         if (gunSlinger == true)
         {
