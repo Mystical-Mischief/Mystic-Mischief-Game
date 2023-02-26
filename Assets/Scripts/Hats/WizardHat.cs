@@ -8,9 +8,23 @@ public class WizardHat : BaseHatScript
     public Transform[] potionThrowPos;
     static int SkillLevel = 1;
     public int currentLevel = SkillLevel;
+
+    private GameObject closestEnemy;
+    private GameObject nextClosestEnemy;
+
+    private bool findCloseEnemy;
+
+    public List<GameObject> Enemies = new List<GameObject>();
     new void Start()
     {
         base.Start();
+    }
+    private void Awake()
+    {
+        foreach(GameObject g0 in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Enemies.Add(g0);
+        }
     }
     new void Update()
     {
@@ -23,7 +37,7 @@ public class WizardHat : BaseHatScript
     }
     public override void HatAbility()
     {
-        if(SkillLevel==2)
+        if(SkillLevel<3)
         {
             smokeBomb[0].SetActive(true);
             smokeBomb[0].transform.forward = potionThrowPos[0].forward;
@@ -46,6 +60,10 @@ public class WizardHat : BaseHatScript
                 base.HatAbility();
             }
         }
+        if(SkillLevel!=5)
+        {
+            smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
+        }
     }
     IEnumerator activateSmokeBomb(GameObject bomb)
     {
@@ -59,5 +77,33 @@ public class WizardHat : BaseHatScript
     public int getLevel()
     {
         return SkillLevel;
+    }
+
+    void detectNextClosestEnemy()
+    {
+        foreach (GameObject gO in Enemies)
+        {
+            if (!gO.activeInHierarchy)
+            {
+                continue;
+            }
+            if (nextClosestEnemy == null)
+            {
+                nextClosestEnemy = gO;
+                continue;
+            }
+            if (gO == closestEnemy)
+            {
+                continue;
+            }
+            if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestEnemy.transform.position, transform.position))
+            {
+                nextClosestEnemy = gO;
+            }
+        }
+        if (Vector3.Distance(nextClosestEnemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
+        {
+            findCloseEnemy = true;
+        }
     }
 }
