@@ -34,6 +34,8 @@ public class CowboyHat : BaseHatScript
     public Rigidbody bullet;
     public float projectileSpeed;
     public float speed;
+    static int SkillLevel = 1;
+    public int currentLevel = SkillLevel;
 
     new void Start()
     {
@@ -79,7 +81,7 @@ public class CowboyHat : BaseHatScript
     }
     new void Update()
     {
-
+        currentLevel = SkillLevel;
         if (pullEnemy == true)
         {
             foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
@@ -215,10 +217,7 @@ public class CowboyHat : BaseHatScript
             circleObject.SetActive(false);
         }
     }
-        public override void LevelUp()
-        {
-            SkillLevel += 1;
-        }
+    
     //If the player has the gunSlinger skill it shoots something from the gun.
     void Shoot()
     {
@@ -404,5 +403,13 @@ public class CowboyHat : BaseHatScript
         // {
         //     Instantiate(storeParticles, transform.position, transform.rotation);
         // }
+    }
+    public virtual void LevelUp()
+    {
+        SkillLevel++;
+    }
+    public int getLevel()
+    {
+        return SkillLevel;
     }
 }

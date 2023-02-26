@@ -6,12 +6,15 @@ public class WizardHat : BaseHatScript
 {
     public GameObject[] smokeBomb;
     public Transform[] potionThrowPos;
+    static int SkillLevel = 1;
+    public int currentLevel = SkillLevel;
     new void Start()
     {
         base.Start();
     }
     new void Update()
     {
+        currentLevel = SkillLevel;
         base.Update();
     }
     new void OnEnable()
@@ -48,5 +51,13 @@ public class WizardHat : BaseHatScript
     {
         yield return new WaitForSeconds(0.5f);
         bomb.GetComponent<SphereCollider>().isTrigger = false;
+    }
+    public virtual void LevelUp()
+    {
+        SkillLevel++;
+    }
+    public int getLevel()
+    {
+        return SkillLevel;
     }
 }
