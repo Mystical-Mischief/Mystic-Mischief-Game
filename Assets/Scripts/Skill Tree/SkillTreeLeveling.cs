@@ -14,15 +14,15 @@ public class SkillTreeLeveling : MonoBehaviour
     public GameObject Text;
 
     private ControlsforPlayer playerControls;
-    public bool _canOpenSkillTree;
-    public bool openSkilltree;
+    bool _canOpenSkillTree;
+    public static bool OpenSkilltree;
 
     private void Start()
     {
         playerControls = new ControlsforPlayer();
         Text.SetActive(false);
-        _canOpenSkillTree = false;
         playerControls.Enable();
+        OpenSkilltree = false;
     }
     private void OnTriggerEnter(Collider other) // The skill tree ui pops up
     {
@@ -42,10 +42,14 @@ public class SkillTreeLeveling : MonoBehaviour
     }
     private void OpenSkillTree()
     {
-        Text.SetActive(false);
-        SkillTree.SetActive(true);
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
+        if(PauseMenu.GameIsPaused == false)
+        {
+            OpenSkilltree = true;
+            Text.SetActive(false);
+            SkillTree.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     private void OnTriggerExit(Collider other) // The skill tree ui disappears
     {
@@ -61,6 +65,7 @@ public class SkillTreeLeveling : MonoBehaviour
         SkillTree.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+        OpenSkilltree = false;
     }
 
     public void WizardLv2()
