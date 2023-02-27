@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     private ControlsforPlayer playerControls;
 
-    private void Start()
+    private void Awake()
     {
         playerControls = new ControlsforPlayer();
     }
@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         
         if (playerControls.Pause.PauseGame.triggered)
         {
+
             if (GameIsPaused)
             {
                 Resume();
