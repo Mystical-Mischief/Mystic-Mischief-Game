@@ -12,6 +12,7 @@ public class FireDragonAnimations : MonoBehaviour
     {
         // dragon = GameObject.FindGameObjectWithTag("Dragon");
         anim = GetComponent<Animator>();
+        // anim.SetBool("Sleep", true);
     }
 
     // Update is called once per frame
@@ -48,6 +49,15 @@ public class FireDragonAnimations : MonoBehaviour
             anim.SetBool("Flying", false);
         }
 
+        if (dragon.playerDist < dragon.meleeDist)
+        {
+            anim.SetBool("Bite", true);
+        }
+        if (dragon.playerDist > dragon.meleeDist)
+        {
+            anim.SetBool("Bite", false);
+        }
+
         //This sets the fire breath animations to play.
         if (dragon.fireBreath == true)
         {
@@ -58,11 +68,11 @@ public class FireDragonAnimations : MonoBehaviour
             anim.SetBool("FireBreath", false);
         }
 
-        if (dragon.stunned == true)
+        if (dragon.stun == true)
         {
             anim.SetBool("Stunned", true);
         }
-        if (dragon.stunned == false)
+        if (dragon.stun == false)
         {
             anim.SetBool("Stunned", false);
         }

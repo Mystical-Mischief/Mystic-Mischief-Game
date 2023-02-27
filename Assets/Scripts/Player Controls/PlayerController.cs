@@ -355,7 +355,7 @@ public class PlayerController : MonoBehaviour
         //This saves a checkpoint.
         if (other.gameObject.tag == "Checkpoint")
         {
-            //Checkpoint();
+            Checkpoint();
         }
         //In the fire level this lets the dragon know what room the player is in.
         if (other.gameObject.CompareTag("RoomEnter"))

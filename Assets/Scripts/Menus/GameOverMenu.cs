@@ -26,7 +26,7 @@ public class GameOverMenu : MonoBehaviour
         }
         if (ReloadNum.LastLevelNum == 3)
         {
-            SceneManager.LoadScene("Level 3");
+            SceneManager.LoadScene("Level 3 but it has the redesigned cave");
         }
         Debug.Log("In retry function");
     }
