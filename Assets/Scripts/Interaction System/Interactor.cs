@@ -16,8 +16,10 @@ public class Interactor : MonoBehaviour
 
    private IInteractable _interactable;
     ControlsforPlayer controls;
+    PlayerController PC;
     private void Start()
     {
+        PC = FindObjectOfType<PlayerController>();
         controls = new ControlsforPlayer();
         controls.Enable();
     }
@@ -26,7 +28,7 @@ public class Interactor : MonoBehaviour
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, 
         _interactableMask);
 
-        if (_numFound > 0 || GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().damaged == true)
+        if (_numFound > 0 || PC.damaged == true)
        {
             if(_numFound > 0)
             {

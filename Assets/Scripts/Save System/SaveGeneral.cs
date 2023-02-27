@@ -46,8 +46,15 @@ public class SaveGeneral : MonoBehaviour
                 Items.Add(item);
             }
         }
-        //Saves the checkpoint when the level starts.
-        SaveEnemyCheckPoint();
+        if (reload != null)
+        {
+            if (reload.retrying == true)
+            {
+                //Saves the checkpoint when the level starts.
+                SaveEnemyCheckPoint();
+                reload.reloaded = true;
+            }
+        }
         controls.Enable();
     }
 
