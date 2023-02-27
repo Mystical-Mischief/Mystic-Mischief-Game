@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     private ControlsforPlayer playerControls;
 
-    private void Awake()
+    private void Start()
     {
         playerControls = new ControlsforPlayer();
     }

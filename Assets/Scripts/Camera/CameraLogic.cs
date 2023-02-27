@@ -9,10 +9,10 @@ public class CameraLogic : MonoBehaviour
     public float sensitivity;
     public float groundMaxYRotation, groundMinYRotation;
     private ThirdPersonControl inputs;
-    private GameObject player;
+    private PlayerController player;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = FindObjectOfType<PlayerController>();
         Cursor.lockState = CursorLockMode.Locked;
         inputs = new ThirdPersonControl();
         inputs.Enable();
@@ -21,7 +21,7 @@ public class CameraLogic : MonoBehaviour
     }
     void Update()
     {
-        isFlying = !player.GetComponent<PlayerController>().onGround;
+        isFlying = !player.onGround;
         //if the player is flying use the fly camera
         if (isFlying)
         {

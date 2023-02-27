@@ -7,17 +7,17 @@ public class LerpTarget : MonoBehaviour
     public Transform Target;
     public float CamSpeed;
     private float time;
-    private GameObject player;
+    private PlayerController player;
     bool isFlying;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = FindObjectOfType<PlayerController>();
         
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        isFlying = !player.GetComponent<PlayerController>().onGround;
+        isFlying = !player.onGround;
         if (!isFlying)
         {
             transform.position = Vector3.Lerp(transform.position, Target.position, Time.deltaTime * CamSpeed);
