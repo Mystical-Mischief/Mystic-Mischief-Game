@@ -42,7 +42,7 @@ public class WizardHat : BaseHatScript
             StartCoroutine(activateSmokeBomb(smokeBomb[0]));
             base.HatAbility();
         }
-        if(SkillLevel==3)
+        if(SkillLevel>=2)
         {
             for(int i = 0; i < smokeBomb.Length; i++)
             {

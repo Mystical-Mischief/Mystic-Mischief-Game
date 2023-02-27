@@ -15,7 +15,7 @@ public class FireDragonScript : BasicfireDragonAI
     public bool spotsPlayer;
     // public ParticleSystem ps;
     public float maxDistance;
-    public float meleeDist;
+    // public float meleeDist;
     private bool meleeAttack;
     public GameObject attackPos;
     private bool attacked;

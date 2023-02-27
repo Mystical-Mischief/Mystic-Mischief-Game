@@ -22,7 +22,7 @@ public class PlayerHatLogic : MonoBehaviour
         controls = new ControlsforPlayer();
         controls.Enable();
         currentHatNum = 0;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = FindObjectOfType<PlayerController>();
         foreach(GameObject hat in hats)
         {
             hat.SetActive(false);

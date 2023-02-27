@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    static bool GameIsPaused = false;
+    public static bool GameIsPaused = false;
     public bool Paused;
 
     [SerializeField] private GameObject pauseMenuUI;
@@ -21,30 +21,34 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (GameIsPaused == true)
+        if(SkillTreeLeveling.OpenSkilltree == false)
         {
-            Paused = true;
-        }
-        if (GameIsPaused == false)
-        {
-            Paused = false;
-        }
-        
-        if (playerControls.Pause.PauseGame.triggered)
-        {
-            if (GameIsPaused)
+            if (GameIsPaused == true)
             {
-                Resume();
+                Paused = true;
             }
-            else
+            if (GameIsPaused == false)
             {
-                Pause();
+                Paused = false;
             }
-        }
 
-        if(playerControls.Pause.QuitGame.triggered)
-        {
-            QuitGame();
+            if (playerControls.Pause.PauseGame.triggered)
+            {
+
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
+            }
+
+            if (playerControls.Pause.QuitGame.triggered)
+            {
+                QuitGame();
+            }
         }
     }
 
