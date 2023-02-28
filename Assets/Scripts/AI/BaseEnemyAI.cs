@@ -9,7 +9,7 @@ public class BaseEnemyAI : MonoBehaviour
 {
     [SerializeField]
     public List<Transform> PatrolPoints = new List<Transform>();
-    public bool spottedPlayer;
+    internal bool spottedPlayer;
     public int patrolNum;
     public float SightDistance;
     [HideInInspector]
