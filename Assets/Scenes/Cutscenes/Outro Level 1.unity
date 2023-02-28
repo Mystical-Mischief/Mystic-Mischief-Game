@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 85808234}
   - component: {fileID: 85808233}
   - component: {fileID: 85808232}
+  - component: {fileID: 85808236}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361e70bab6914fd4d95e254ea8cc33b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 3
 --- !u!328 &85808233
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -245,6 +247,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85808230}
   m_CullTransparentMesh: 1
+--- !u!95 &85808236
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85808230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8554ad9d7388944595d39ea15e5a751, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &196730339
 GameObject:
   m_ObjectHideFlags: 0
