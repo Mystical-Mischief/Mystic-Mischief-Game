@@ -46,8 +46,6 @@ public class Inventory : MonoBehaviour
     // public List<GameObject> InventorySlots = new List<GameObject>();
 
 
-    [SerializeField] private ParticleSystem storeParticles;
-
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody>();
@@ -235,11 +233,6 @@ public class Inventory : MonoBehaviour
         // rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
 
-        if (storeParticles != null)
-        {
-            Instantiate(storeParticles, transform.position, transform.rotation);
-        }
-
     }
 
     public void StoreObjective(GameObject item)
@@ -251,11 +244,6 @@ public class Inventory : MonoBehaviour
         Objective.Add(item);
         rb.mass = rb.mass + (item.GetComponent<Item>().Weight * 0.2f);
         MassText = MassText + item.GetComponent<Item>().Weight;
-
-        if (storeParticles != null)
-        {
-            Instantiate(storeParticles, transform.position, transform.rotation);
-        }
 
     }
 
@@ -312,11 +300,6 @@ public class Inventory : MonoBehaviour
         currentHeldItem = null;
         heldItem.dropped = true;
         StartCoroutine(dropTimer(0.5f, false));
-
-        if (storeParticles != null)
-        {
-            Instantiate(storeParticles, transform.position, transform.rotation);
-        }
         // hat2.GetComponent<CowboyHat>().allObjects.Add(Item);
     }
     IEnumerator dropTimer(float time, bool value)

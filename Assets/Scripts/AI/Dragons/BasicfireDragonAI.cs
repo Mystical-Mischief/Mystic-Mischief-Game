@@ -40,16 +40,23 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     private float previousSpeed;
     private float previousAISpeed;
     public bool canMove;
+    public bool active;
     private float lostPlayerTime;
     public float chaseTime;
     public bool airToGround;
     public bool groundToAir;
     float dist;
     private Transform targetPos;
+    public float meleeDist;
+    [HideInInspector]
+    public float playerDist;
+    [HideInInspector]
+    public bool stun;
     // public Animator anim;
 
     public new void Start()
     {
+        lostPlayerTime = chaseTime;
         // onGround = true;
         //base.Start();
         NewRandomNumber();
@@ -57,10 +64,29 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         ai = this.GetComponent<NavMeshAgent>();
         base.Start();
         NewPath();
+        // active = false;
     }
 
     public new void Update()
     {
+        playerDist = Vector3.Distance(Player.transform.position, transform.position);
+        if (active == false)
+        {
+            ai.speed = 0;
+        }
+        if (active == true)
+        {
+            ai.speed = Speed;
+        }
+
+        if (base.stunned == true)
+        {
+            stun = true;
+        }
+        if (base.stunned == false)
+        {
+            stun = false;
+        }
         //Sets the player to targeted so they dont save.
         if (target == Player)
         {
@@ -75,7 +101,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (!base.spottedPlayer)
         {
             // EnemyDetection();
-            if(canMove == true && onGround == true && inAir == false)
+            if(canMove == true && onGround == true && inAir == false && active == true)
             {
                 base.EnemyDetection();
                 Patrol();
@@ -91,6 +117,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         if (base.spottedPlayer == true)
         {
             FoundPlayer();
+            active = true;
         }
         //If the Dragon is at the last spot it will generate a new path to follow based on the random number generator.
         if (finishedPatrolling)
@@ -110,6 +137,20 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             patrolNum = 0;
             finishedPatrolling = false;
         }
+
+        if (chaseTime <= 0)
+        {
+            chaseTime = 0;
+            ResetTarget();
+        }
+
+        // // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
+        // if (HitPlayer == true)
+        // {
+        //     base.target = base.PatrolPoints[0].transform;
+        //     UpdateDestination(base.target.position);
+        //     Invoke(nameof(ResetAttack), 5f);
+        // }
     }
     void FixedUpdate()
     {
@@ -134,6 +175,11 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             groundToAir = true;
         }
     }
+
+    // public void ResetAttack()
+    // {
+    //     HitPlayer = false;
+    // }
 
     public override void FoundPlayer()
     {
@@ -277,7 +323,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is a timer for when it loses the player. When the timer meets the lost time it goes back to patroling.
     public override void LostPlayer()
     {
-        lostPlayerTime += Time.deltaTime;
+        chaseTime -= Time.deltaTime;
     }
 
     //This resets the target and timer to 0.
@@ -289,7 +335,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         }
         spottedPlayer = false;
         target = PatrolPoints[0];
-        lostPlayerTime = 0;
+        chaseTime = lostPlayerTime;
     }
 
     //This just stops the player moving.

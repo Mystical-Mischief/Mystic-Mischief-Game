@@ -15,7 +15,7 @@ public class FireDragonScript : BasicfireDragonAI
     public bool spotsPlayer;
     // public ParticleSystem ps;
     public float maxDistance;
-    public float meleeDist;
+    // public float meleeDist;
     private bool meleeAttack;
     public GameObject attackPos;
     private bool attacked;
@@ -23,11 +23,13 @@ public class FireDragonScript : BasicfireDragonAI
     public float agressionMeter;
     public bool fireBreath;
     public EnemyVision ev;
+    public ItemCollector iCollector;
 
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
+        ev.Player = GameObject.FindGameObjectWithTag("Player");
         // ps = GetComponent<ParticleSystem>();
         
     }
@@ -36,7 +38,15 @@ public class FireDragonScript : BasicfireDragonAI
     void Update()
     {
         //This sets the enemy vision range it can detect tot the agression meter.
-        ev.viewRadius = agressionMeter;
+        if (iCollector.numOfItems > 0)
+        {
+        ev.viewRadius = agressionMeter * iCollector.numOfItems;
+        }
+        if (iCollector.numOfItems < 1)
+        {
+            ev.viewRadius = agressionMeter;
+        }
+        spotsPlayer = ev.PlayerDetected;
         // float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
         // RaycastHit hit;
