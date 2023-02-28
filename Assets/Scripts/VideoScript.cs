@@ -42,7 +42,6 @@ public class VideoScript : MonoBehaviour
         }
     }
 
-
     IEnumerator DelayedVideo()
     {
         yield return new WaitForSeconds(delayTime);
