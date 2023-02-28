@@ -63,7 +63,7 @@ public class BaseEnemyAI : MonoBehaviour
         {
             if (target == Player)
             {
-                Player.GetComponent<ThirdPersonController>().Targeted = true;
+                //Player.GetComponent<ThirdPersonController>().Targeted = true;
             }
             targetPosition = target.transform.position;
             //if the ai doesnt see the player then it will patrol and look for it
@@ -104,8 +104,7 @@ public class BaseEnemyAI : MonoBehaviour
     //if the ai doesnt see the player it will patrol between all the points
     public virtual void Patrol()
     {
-
-            if (GetComponent<NavMeshAgent>().remainingDistance < 0.5f && atDestination == false && !stunned)
+            if (Vector3.Distance(transform.position, target.transform.position) < 3f && atDestination == false && !stunned)
             {
                 atDestination = true;
                 //if the player isnt at the last point
