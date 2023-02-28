@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,26 +44,11 @@ public class Reload : MonoBehaviour
 
      private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // SetString("_last_scene_", scene.name);
+        PlayerPrefs.SetString("_last_scene_", scene.name);
     }
      public static void LoadLastScene()
     {
-        // SceneManager.LoadScene(GetString("_last_scene_"));
+        SceneManager.LoadScene(PlayerPrefs.GetString("_last_scene_"));
     }
-
-    //     public void SetString(string KeyName, string name)
-    // {
-    //     PlayerPrefs.SetFloat(KeyName, Value);
-    // }
-
-    // public float GetString(string KeyName)
-    // {
-    //     // return PlayerPrefs.GetString(KeyName);
-    //     // if(cameraScript != null)
-    //     // {
-    //     //     cameraScript.sensitivity = sensitivitySlider.value;
-    //     // }
-    //     // Save();
-    // }
 
 }
