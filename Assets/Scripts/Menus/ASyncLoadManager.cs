@@ -74,11 +74,30 @@ public class ASyncLoadManager : MonoBehaviour
 
     IEnumerator LoadLevelASync(int levelIndex)
     {
+        yield return null;
+
+        transitionMask.SetTrigger("Shrink");
+
+        yield return new WaitForSeconds(transitionDelay);    //Gives time for the trasition animation to fully play -Emilie 
+
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelIndex);
+
+        loadOperation.allowSceneActivation = false; //Gives control on when to activate the level -Emilie 
 
         while (!loadOperation.isDone)
         {
+            if (loadOperation.progress >= 0.9f)
+            {
+                loadOperation.allowSceneActivation = true;
+                yield return new WaitForSeconds(transitionDelay);
+                transitionMask.SetTrigger("Grow");
+            }
+
             yield return null;
         }
+
+        yield return new WaitForSeconds(transitionDelay);  //Reusing delay before destroying objects below -Emilie 
+        Destroy(this);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
+        Destroy(loadCanvas);
     }
 }

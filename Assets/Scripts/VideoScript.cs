@@ -8,14 +8,24 @@ public class VideoScript : MonoBehaviour
 {
     VideoPlayer video;
 
+
+    [SerializeField] private float delayTime = 3f;
+
+    private Animator videoAnimator; //Added a fade in animation so the cutscene doesn't jumpcut on screen. 
+
     void Awake()
     {
         video = GetComponent<VideoPlayer>();
-        video.Play();
-        video.loopPointReached += CheckOver;
-        
+        videoAnimator = video.GetComponent<Animator>();
+        video.Pause();
     }
 
+
+    private void Start()  //Start seems to allow the Coroutine below to work. -Emilie
+    {
+        StartCoroutine(DelayedVideo()); //Starts a timer to delay the video allowing the load screen transition to finish. -Emilie
+        video.loopPointReached += CheckOver;
+    }
 
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
@@ -31,4 +41,16 @@ public class VideoScript : MonoBehaviour
             yield return null;
         }
     }
+
+
+    IEnumerator DelayedVideo()
+    {
+        yield return new WaitForSeconds(delayTime);
+        videoAnimator.Play("Intro_Cutscene_Fade_In");
+
+        video.Play();
+    }
 }
+
+
+
