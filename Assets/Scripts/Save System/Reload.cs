@@ -43,11 +43,26 @@ public class Reload : MonoBehaviour
 
      private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayerPrefs.SetString("_last_scene_", scene.name);
+        // SetString("_last_scene_", scene.name);
     }
      public static void LoadLastScene()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetString("_last_scene_"));
+        // SceneManager.LoadScene(GetString("_last_scene_"));
     }
+
+    //     public void SetString(string KeyName, string name)
+    // {
+    //     PlayerPrefs.SetFloat(KeyName, Value);
+    // }
+
+    // public float GetString(string KeyName)
+    // {
+    //     // return PlayerPrefs.GetString(KeyName);
+    //     // if(cameraScript != null)
+    //     // {
+    //     //     cameraScript.sensitivity = sensitivitySlider.value;
+    //     // }
+    //     // Save();
+    // }
 
 }
