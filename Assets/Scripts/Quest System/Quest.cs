@@ -52,8 +52,17 @@ public class Quest : MonoBehaviour
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
     public QuestInfo activeQuest;
 
+    private GameObject currQuestObj;
     private void Start()
     {
+        if(currQuestObj == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
     }
