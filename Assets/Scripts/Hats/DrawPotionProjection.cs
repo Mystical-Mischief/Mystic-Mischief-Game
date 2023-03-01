@@ -6,42 +6,40 @@ using UnityEngine;
 
 public class DrawPotionProjection : MonoBehaviour
 {
-    private LineRenderer _lineRenderer;
-    public Rigidbody SmokeBomb;
+    private LineRenderer lineRenderer;
 
-    [SerializeField]
-    private int numPoints = 50; //points in the line
+    [Range(3f, 100f)]
+    private int _lineSegments = 60;
 
-    [SerializeField]
-    private float _timeBetweenPoints = 0.1f;
+    [Range(1f, 10f)]
+    private float _timeOfTheFlight = 5;
 
-    public LayerMask CollideableLayers;
-
-    private void Start()
+    public void ShowTrajectoryLine(Vector3 startpoint, Vector3 startVelocity)
     {
-        _lineRenderer = GetComponent<LineRenderer>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        DrawProjection();
+        float timeStep = _timeOfTheFlight / _lineSegments;
+
+        Vector3 []lineRenderPoints = CalculateTrajectoryLine(startpoint, startVelocity, timeStep);
+        
+        lineRenderer.positionCount = _lineSegments;
+        lineRenderer.SetPositions(lineRenderPoints);
     }
 
-    void DrawProjection()
+    private Vector3[] CalculateTrajectoryLine(Vector3 startpoint, Vector3 startVelocity, float timeStep)
     {
-        _lineRenderer.positionCount = Mathf.CeilToInt(numPoints/_timeBetweenPoints) + 1;
-        Vector3 startPos = transform.forward;
-        Vector3 startVelocity =10*transform.forward/SmokeBomb.mass;
-        int i = 0;
-        _lineRenderer.SetPosition(i,startPos);
-        Vector3 point = Vector3.zero;
-        for(float time = 0; time < numPoints; time += _timeBetweenPoints)
+        Vector3[] lineRenderPoints = new Vector3[_lineSegments];
+        lineRenderPoints[0] = startpoint;
+
+        for(int i = 1; i < _lineSegments; i++)
         {
-            i++;
-            point = startPos + time * startVelocity;
-            point.y = startPos.y + startVelocity.y * time + (Physics.gravity.y / 2f * time * time);
+            float timeOffset = timeStep * 1;
 
-            _lineRenderer.SetPosition(i,point);
+            Vector3 progressBeforeGravity = startVelocity * timeOffset;
+            Vector3 gravityOffset = Vector3.up * -0.5f * Physics.gravity.y * timeOffset * timeOffset;
+            Vector3 newPosition = startpoint + progressBeforeGravity - gravityOffset;
+
+            lineRenderPoints[i] = newPosition;
         }
+        return lineRenderPoints;
+
     }
 }
