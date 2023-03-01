@@ -19,7 +19,7 @@ public class KoboltAI : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = FindObjectOfType<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         currentAttack = attackCooldown;
     } 
 
