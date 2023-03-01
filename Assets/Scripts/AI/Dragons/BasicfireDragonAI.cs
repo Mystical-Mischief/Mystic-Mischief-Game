@@ -56,7 +56,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
 
     public new void Start()
     {
-        lostPlayerTime = chaseTime;
         // onGround = true;
         //base.Start();
         NewRandomNumber();
@@ -136,12 +135,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             lastPosition = base.PatrolPoints.Count - 1;
             patrolNum = 0;
             finishedPatrolling = false;
-        }
-
-        if (chaseTime <= 0)
-        {
-            chaseTime = 0;
-            ResetTarget();
         }
 
         // // If the player was hit by a melee attack (in the WDAttackScript) Then it resets everything and goes back to patrolling.
@@ -323,7 +316,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is a timer for when it loses the player. When the timer meets the lost time it goes back to patroling.
     public override void LostPlayer()
     {
-        chaseTime -= Time.deltaTime;
+        lostPlayerTime += Time.deltaTime;
     }
 
     //This resets the target and timer to 0.
@@ -335,7 +328,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         }
         spottedPlayer = false;
         target = PatrolPoints[0];
-        chaseTime = lostPlayerTime;
+        lostPlayerTime = 0;
     }
 
     //This just stops the player moving.
