@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    private CameraLogic camLogic;
     public GameObject GroundCam;
     public GameObject FlyingCam;
     public GameObject DragonGroundCam;
@@ -14,6 +15,7 @@ public class CameraManager : MonoBehaviour
     private DragonLockOn dragonLO;
     private void Start()
     {
+        camLogic = FindObjectOfType<CameraLogic>();
         PC = GetComponent<PlayerController>();
         dragonLO = GetComponent<DragonLockOn>();
         currentCamera = GroundCam;
@@ -22,22 +24,22 @@ public class CameraManager : MonoBehaviour
     {
         if (PC.onGround)
         {
-            if (!dragonLO.lockOnCamera)
+            if (!dragonLO.lockOnCamera && currentCamera != GroundCam)
             {
                 ChangeCamera(GroundCam);
             }
-            else
+            if (dragonLO.lockOnCamera && currentCamera != DragonGroundCam)
             {
                 ChangeCamera(DragonGroundCam);
             }
         }
         else
         {
-            if (!dragonLO.lockOnCamera)
+            if (!dragonLO.lockOnCamera && currentCamera != FlyingCam)
             {
                 ChangeCamera(FlyingCam);
             }
-            else
+            if (dragonLO.lockOnCamera && currentCamera != DragonAirCam)
             {
                 ChangeCamera(DragonAirCam);
             }
