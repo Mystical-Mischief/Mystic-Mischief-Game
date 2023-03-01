@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour, IInteractable
     public string questToFinish;
     public string questToActivate;
     private bool questAccepted;
+    public bool hideTextBox;
     public bool finishQuest;
     [SerializeField] private string _prompt;
     public bool dissapear;
@@ -16,7 +17,6 @@ public class Chest : MonoBehaviour, IInteractable
 
     public virtual bool Interact(Interactor interactor)
     {
-
         if(quest != null && quest.activeQuest.questName == questToFinish)
         {
             questToFinish = null;

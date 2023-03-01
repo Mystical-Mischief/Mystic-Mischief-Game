@@ -99,6 +99,16 @@ public class KoboldProtectAi : BaseEnemyAI
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
+        if (Protect && collision.gameObject.tag == "PickUp")
+        {
+            anim.SetTrigger("Bite");
+            Protect = false;
+            HeldItem = collision.gameObject;
+            HeldItem.transform.SetParent(this.transform, true);
+            HeldItem.transform.position = ObjectNewLocation.position;
+            holdingItem = true;
+            flee = true;
+        }
         if (!attackedPlayer && collision.gameObject.tag == "Player")
         {
             attackedPlayer = true;
@@ -121,22 +131,13 @@ public class KoboldProtectAi : BaseEnemyAI
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (Protect && collider.gameObject.tag == "PickUp")
-        {
-            anim.SetTrigger("Bite");
-            Protect = false;
-            HeldItem = collider.gameObject;
-            HeldItem.transform.SetParent(this.transform, true);
-            holdingItem = true;
-            flee = true;
-        }
         if (collider.gameObject.tag == "Whip")
         {
             stunned = true;
             base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
         }
     }
-
+   
     private void ProtectObject(GameObject obj)
     {
         Vector3 itemDirection = obj.transform.position;

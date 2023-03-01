@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class BirdInteraction : MonoBehaviour
 {
@@ -15,12 +15,14 @@ public class BirdInteraction : MonoBehaviour
     public CleverBirdFaceChange faceChange;
     public List<GameObject> StoredItems = new List<GameObject>();
     public MonoBehaviour dialouge;
+    public GameObject ticketText;
 
     private void Start()
     {
         control = new ControlsforPlayer();
         control.Enable();
     }
+    
     void Update()
     {
         // if(inRange == true && control.Actions.Interact.WasPressedThisFrame())
@@ -36,6 +38,15 @@ public class BirdInteraction : MonoBehaviour
             dialouge.enabled = true;
             Hat.SetActive(true);
             Destroy(GetComponent<Chest>());
+            ticketText.SetActive(false);
+        }
+        if (ticketCount > 0 && ticketCount < TicketAmount)
+        {
+            if (!ticketText.activeInHierarchy)
+            {
+                ticketText.SetActive(true);
+            }
+            ticketText.GetComponent<TextMeshProUGUI>().text = $"{ticketCount} / {TicketAmount} Tickets";
         }
         foreach (GameObject items in StoredItems)
         {
