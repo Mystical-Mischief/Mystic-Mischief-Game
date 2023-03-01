@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject Saves;
+    public Reload reload;
     [SerializeField] EventSystem eventSystem;
 
     public void PlayGame()
@@ -35,8 +35,20 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
-        Saves.GetComponent<SaveGeneral>().Loadmenu();
+        // StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1;
+        reload.retry = true;
+        if (ReloadNum.LastLevelNum == 1)
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+        if (ReloadNum.LastLevelNum == 2)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        if (ReloadNum.LastLevelNum == 3)
+        {
+            SceneManager.LoadScene("Level 3 but it has the redesigned cave");
+        }
     }
 
     public void QuitGame()

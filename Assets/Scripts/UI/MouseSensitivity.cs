@@ -13,7 +13,7 @@ public class MouseSensitivity : MonoBehaviour
     void Start()
     {
         sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
-        mouseSensitivity = sensitivitySlider.value;
+        // mouseSensitivity = sensitivitySlider.value;
         // if(!PlayerPrefs.HasKey("Sensitivity")){
         //     PlayerPrefs.SetFloat("Sensitivity", 0.3f);
         //     Load();
@@ -29,6 +29,7 @@ public class MouseSensitivity : MonoBehaviour
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
+        cameraScript.sensitivity = mouseSensitivity;
         // Update();
         // Save();
         SetFloat("Sensitivity", sensitivitySlider.value);

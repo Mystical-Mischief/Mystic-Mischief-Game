@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemCollector : MonoBehaviour
 {
     public GameObject[] itemsToCollect;
-    private int numOfItems;
+    public int numOfItems;
     private void Start()
     {
         GetComponent<Chest>().dissapear = false;
