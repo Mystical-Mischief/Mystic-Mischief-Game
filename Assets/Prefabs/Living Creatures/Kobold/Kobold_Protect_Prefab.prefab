@@ -39,7 +39,6 @@ Transform:
   - {fileID: 7025044868455453662}
   - {fileID: 5741611140374280060}
   - {fileID: 20947329816537368}
-  - {fileID: 6596824570326161774}
   - {fileID: 8903812492770696839}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -252,12 +251,13 @@ MonoBehaviour:
   stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  ai_Rb: {fileID: 0}
   ps: {fileID: 964072521784166910}
   stunTime: 0
   timer: 0
   attackedPlayer: 1
   Item: {fileID: 0}
-  ObjectNewLocation: {fileID: 6596824570326161774}
+  ObjectNewLocation: {fileID: 0}
   Protect: 1
   HeldItem: {fileID: 0}
   anim: {fileID: 2525908756416955157}
@@ -503,39 +503,8 @@ Transform:
   m_Children:
   - {fileID: 964072521784166905}
   m_Father: {fileID: 3509306111444120325}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!1 &7899001875714794906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6596824570326161774}
-  m_Layer: 0
-  m_Name: EquipLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6596824570326161774
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7899001875714794906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.736}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3509306111444120325}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &275242373772696150
 PrefabInstance:
   m_ObjectHideFlags: 0
