@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -10,6 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     public AudioClip HurtClip;
     public PlayerController Player;
     [SerializeField] private GameObject flyingEffets;
+    [SerializeField] private ParticleSystem damageVFX;
     Animator animator;
     private ThirdPersonControl playerInputs;
     ControlsforPlayer controls;
@@ -25,7 +25,16 @@ public class PlayerAnimation : MonoBehaviour
         controls = new ControlsforPlayer();
         controls.Enable();
         playerInputs.Enable();
+
+
+        Player.GotHurt += PlayDamageVFX; //Subscribing to the GotHurt Event -Emilie
     }
+
+    private void PlayDamageVFX(object sender, EventArgs e)
+    {
+        damageVFX.Play();
+    }
+
     public void OnEnable()
     {
         if(playerInputs != null)
