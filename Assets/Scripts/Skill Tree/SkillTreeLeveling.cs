@@ -20,7 +20,8 @@ public class SkillTreeLeveling : MonoBehaviour
     private void Start()
     {
         playerControls = new ControlsforPlayer();
-        Text.SetActive(false);
+        if(Text !=null)
+            Text.SetActive(false);
         playerControls.Enable();
         OpenSkilltree = false;
     }

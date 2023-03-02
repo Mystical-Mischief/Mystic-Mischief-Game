@@ -26,7 +26,6 @@ public class CameraManager : MonoBehaviour
         {
             if (!dragonLO.lockOnCamera && currentCamera != GroundCam)
             {
-                camLogic.enabled = false;
                 ChangeCamera(GroundCam);
             }
             if (dragonLO.lockOnCamera && currentCamera != DragonGroundCam)
@@ -38,7 +37,6 @@ public class CameraManager : MonoBehaviour
         {
             if (!dragonLO.lockOnCamera && currentCamera != FlyingCam)
             {
-                camLogic.enabled = true;
                 ChangeCamera(FlyingCam);
             }
             if (dragonLO.lockOnCamera && currentCamera != DragonAirCam)

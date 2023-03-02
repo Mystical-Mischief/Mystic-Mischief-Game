@@ -31,7 +31,7 @@ public class CollectionQuest : MonoBehaviour
     }
     private void Update()
     {
-        if (inv.controls.Actions.Interact.WasReleasedThisFrame() || Quest.objectiveItems.Length == 1)
+        if (controls.Actions.Interact.WasReleasedThisFrame() || Quest.objectiveItems.Length == 1)
         {
             if(inv.currentHeldItem == Quest.objectiveItems[0] && Quest.objectiveItems.Length == 1)
             {
