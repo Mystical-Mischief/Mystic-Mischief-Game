@@ -10,7 +10,9 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     bool attackedPlayer = false;
 
-    PlayerController player;
+    PlayerController playerController;
+
+    GameObject player;
 
     [SerializeField]
     GameObject Item;
@@ -37,7 +39,8 @@ public class KoboldProtectAi : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         Protect = false;
         holdingItem = false;
         flee = false;
@@ -112,7 +115,7 @@ public class KoboldProtectAi : BaseEnemyAI
         if (!attackedPlayer && collision.gameObject.tag == "Player")
         {
             attackedPlayer = true;
-            player.currentHealth--;
+            playerController.currentHealth--;
             //Knockback
             collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
 
