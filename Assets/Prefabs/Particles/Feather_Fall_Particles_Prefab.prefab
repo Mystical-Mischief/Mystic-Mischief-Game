@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6076123912464899040}
   - component: {fileID: 4096520221295786192}
   m_Layer: 0
-  m_Name: Falling_Feathers_Particle_Prefab
+  m_Name: Feather_Fall_Particles_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,8 +41,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6114092541443648137}
   serializedVersion: 8
-  lengthInSec: 2
-  simulationSpeed: 1.5
+  lengthInSec: 3
+  simulationSpeed: 2.3
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4.61
+      scalar: 1.14
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -286,7 +286,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.2
-      minScalar: 0.3
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -623,8 +623,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.070299566
-          value: -0.02702713
+          time: 0.039031252
+          value: -0.054057747
           inSlope: 0.8742227
           outSlope: 0.8742227
           tangentMode: 0
@@ -632,8 +632,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.6598386
-          value: 1
+          time: 0.15955123
+          value: 0.08107948
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -670,7 +670,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 2
+    type: 4
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -754,10 +754,10 @@ ParticleSystem:
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
-    sphericalDirectionAmount: 0.67
-    randomPositionAmount: 1.57
+    sphericalDirectionAmount: 0
+    randomPositionAmount: 0
     radius:
-      value: 1.52
+      value: 0.01
       mode: 0
       spread: 0
       speed:
@@ -986,7 +986,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 7
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1553,11 +1553,11 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1609,8 +1609,8 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1662,8 +1662,8 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 1
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1673,6 +1673,24 @@ ParticleSystem:
           value: 0
           inSlope: 0
           outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.0261513
+          value: 0.6216228
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.16244109
+          value: -0.34059167
+          inSlope: -0.25255725
+          outSlope: -0.25255725
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -2747,7 +2765,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
     Vector3 forceDirection = Vector3.zero;
     bool diving;
     bool Saved;
+
+
+    public event EventHandler GotHurt;    
 
     private void Start()
     {
@@ -234,6 +238,11 @@ public class PlayerController : MonoBehaviour
         {
             //take damage
             currentHealth -= damage;
+
+
+            GotHurt?.Invoke(this, EventArgs.Empty);
+
+
             if(currentHealth < 1)
             {
                 Scene scene = SceneManager.GetActiveScene();
