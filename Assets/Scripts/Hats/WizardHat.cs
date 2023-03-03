@@ -36,10 +36,15 @@ public class WizardHat : BaseHatScript
         }
         else if(SkillLevel ==3)
         {
-            for(int i = 0; i < TrajectoryLine.Length; i++)
+            for(int i = 0; i < TrajectoryLine.Length/2; i++)
                 TrajectoryLine[i].ShowTrajectoryLine(potionThrowPos[i].position, (potionThrowPos[i].forward).normalized * _shotForce);
         }
-        
+        else if (SkillLevel == 4)
+        {
+            for (int i = 0; i < TrajectoryLine.Length; i++)
+                TrajectoryLine[i].ShowTrajectoryLine(potionThrowPos[i].position, (potionThrowPos[i].forward).normalized * _shotForce);
+        }
+
         base.Update();
     }
     new void OnEnable()
@@ -73,7 +78,7 @@ public class WizardHat : BaseHatScript
         }
         if(SkillLevel==3)
         {
-            for(int i = 0; i < smokeBomb.Length; i++)
+            for(int i = 0; i < smokeBomb.Length/2; i++)
             {
                 smokeBomb[i].SetActive(true);
                 smokeBomb[i].transform.forward = potionThrowPos[i].forward;
@@ -84,7 +89,20 @@ public class WizardHat : BaseHatScript
                 base.HatAbility();
             }
         }
-        if(SkillLevel==5)
+        if (SkillLevel == 4)
+        {
+            for (int i = 0; i < smokeBomb.Length; i++)
+            {
+                smokeBomb[i].SetActive(true);
+                smokeBomb[i].transform.forward = potionThrowPos[i].forward;
+                smokeBomb[i].GetComponent<SphereCollider>().isTrigger = true;
+                smokeBomb[i].GetComponent<Rigidbody>().AddForce((potionThrowPos[i].forward).normalized * _shotForce, ForceMode.Impulse);
+                smokeBomb[i].transform.parent = null;
+                StartCoroutine(activateSmokeBomb(smokeBomb[i]));
+                base.HatAbility();
+            }
+        }
+        if (SkillLevel==5)
         {
             smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
         }
