@@ -7,30 +7,32 @@ public class WizardHat : BaseHatScript
     public GameObject[] smokeBomb;
     public GameObject[] potionThrow;
     public Transform[] potionThrowPos;
-    public DrawPotionProjection[] TrajectoryLine; 
+    public DrawPotionProjection[] TrajectoryLine;
 
-    static int SkillLevel = 1;
+    public GameObject HomingPotion;
+
+    static int SkillLevel = 5;
     public int currentLevel = SkillLevel;
     [Range(10,50)]
     private int _shotForce = 20;
 
+    public GameObject[] Enemies;
     public GameObject closestEnemy;
-    private GameObject nextClosestEnemy;
 
-    private bool findCloseEnemy;
+    float distanceFromEnemy;
 
-    public List<GameObject> Enemies = new List<GameObject>();
     new void Start()
     {
         base.Start();
+        Enemies = GameObject.FindGameObjectsWithTag("enemy");
         
     }
 
     new void Update()
     {
         currentLevel = SkillLevel;
-
-        if(SkillLevel ==2)
+        detectClosestEnemy();
+        if (SkillLevel ==2)
         {
             TrajectoryLine[0].ShowTrajectoryLine(potionThrowPos[0].position, (potionThrowPos[0].forward).normalized * _shotForce);
         }
@@ -50,9 +52,12 @@ public class WizardHat : BaseHatScript
     new void OnEnable()
     {
         base.OnEnable();
-        foreach(GameObject gO in potionThrow)
+        if(SkillLevel !=5)
         {
-            gO.SetActive(true);
+            foreach (GameObject gO in potionThrow)
+            {
+                gO.SetActive(true);
+            }
         }
     }
 
@@ -104,7 +109,11 @@ public class WizardHat : BaseHatScript
         }
         if (SkillLevel==5)
         {
-            smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
+            //HomingPotion.SetActive(true);
+            GameObject homing = Instantiate(HomingPotion, potionThrowPos[0].position, Quaternion.identity);
+            homing.SetActive(true);
+            base.HatAbility();
+
         }
     }
     IEnumerator activateSmokeBomb(GameObject bomb)
@@ -115,37 +124,28 @@ public class WizardHat : BaseHatScript
     public virtual void LevelUp()
     {
         SkillLevel++;
+        if(SkillLevel==5)
+        {
+            foreach (GameObject gO in potionThrow)
+            {
+                gO.SetActive(false);
+            }
+        }
     }
     public int getLevel()
     {
         return SkillLevel;
     }
 
-    /**void detectNextClosestEnemy()
+    void detectClosestEnemy()
     {
-        foreach (GameObject gO in Enemies)
+       for(int i = 0; i< Enemies.Length; i++)
         {
-            if (!gO.activeInHierarchy)
+            distanceFromEnemy = Vector3.Distance(transform.position, Enemies[i].transform.position);
+            if(distanceFromEnemy <= 10000)
             {
-                continue;
-            }
-            if (nextClosestEnemy == null)
-            {
-                nextClosestEnemy = gO;
-                continue;
-            }
-            if (gO == closestEnemy)
-            {
-                continue;
-            }
-            if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestEnemy.transform.position, transform.position))
-            {
-                nextClosestEnemy = gO;
+                closestEnemy = Enemies[i];
             }
         }
-        if (Vector3.Distance(nextClosestEnemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
-        {
-            findCloseEnemy = true;
-        }
-    }**/
+    }
 }
