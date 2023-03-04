@@ -10,12 +10,9 @@ public class TalkToNPCQuest : MonoBehaviour
     public void startQuest(QuestInfo quest, Quest questScr)
     {
         questScript = questScr;
-        print(quest.NPC);
-        NPC = quest.NPC;
     }
     void questFinished()
     {
-        NPC = null;
         questScript.NextQuest();
     }
 }

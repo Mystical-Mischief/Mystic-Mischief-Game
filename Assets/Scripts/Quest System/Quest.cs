@@ -19,9 +19,11 @@ public class QuestInfo
 {
     public string questName;
     public string questDescription;
+    public Sprite questImage;
     public QuestType questType;
+    public bool mainQuest;
     public GameObject[] objectiveItems;
-    public bool turnInQuest;
+
     [Header("Use only if turn in quest is true")]
     public GameObject NPC;
     [Header("Use only if input quest")]
@@ -46,7 +48,8 @@ public class Quest : MonoBehaviour
     //tutorial is 0, Talk to NPC is 1, Collection is 2, Escort is 3 
     public MonoBehaviour[] questScript;
     public TextMeshProUGUI text;
-    public TextMeshProUGUI nextQuestText;
+    public Image questImage;
+    public TextMeshProUGUI sideQuestText;
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
@@ -55,14 +58,14 @@ public class Quest : MonoBehaviour
     private GameObject currQuestObj;
     private void Start()
     {
-        if(currQuestObj == null)
+        /*if(currQuestObj == null)
         {
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-        }
+        }*/
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
     }
@@ -150,21 +153,6 @@ public class Quest : MonoBehaviour
     //moves onto the next quest and sees if its ready to turn in or not
     public void NextQuest()
     {
-        if (!activeQuest.completed)
-        {
-            activeQuest.completed = true;
-        }
-        if (!activeQuest.turnInQuest)
-        {
-            activeQuest.submitQuest = true;
-        }
-        if (activeQuest.turnInQuest)
-        {
-            text.text = $"Return to {activeQuest.NPC.name}";
-        }
-        //checks to see if the quest is ready to be turned in
-        if (activeQuest.submitQuest == true)
-        {
             //if there are rewards activate them
             if(activeQuest.rewards.Length != 0)
             {
@@ -201,7 +189,6 @@ public class Quest : MonoBehaviour
             {
                 activeQuest.active = false;
             }
-        }
         UpdateText();
     }
     //Update the text of both the active quests and the other quests
@@ -210,30 +197,11 @@ public class Quest : MonoBehaviour
         if(activeQuest.active)
         {
             text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
-            nextQuestText.text = "";
-            foreach (QuestInfo quest in currentQuests)
-            {
-                if(quest != activeQuest)
-                {
-                    nextQuestText.text += $">{quest.questName}\n";
-                }
-            }
+            questImage.sprite = activeQuest.questImage;
         }
         if(currentQuests.Count == 0)
         {
             text.text = "No Active Quests";
         }
-    }
-
-    //rework this
-    public void onQuestClick()
-    {
-        /*
-        foreach(QuestInfo quest in allQuests)
-        {
-            //quest.questItem.color = quest.currentColor;
-        }
-        questItem.color = activeColor;
-        */
     }
 }
