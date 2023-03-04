@@ -19,6 +19,7 @@ public class QuestInfo
 {
     public string questName;
     public string questDescription;
+    public Image questImage;
     public QuestType questType;
     public GameObject[] objectiveItems;
     public bool turnInQuest;
@@ -46,7 +47,7 @@ public class Quest : MonoBehaviour
     //tutorial is 0, Talk to NPC is 1, Collection is 2, Escort is 3 
     public MonoBehaviour[] questScript;
     public TextMeshProUGUI text;
-    public TextMeshProUGUI nextQuestText;
+    public TextMeshProUGUI sideQuestText;
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
@@ -210,14 +211,6 @@ public class Quest : MonoBehaviour
         if(activeQuest.active)
         {
             text.text = $"{activeQuest.questName}:\n{activeQuest.questDescription}";
-            nextQuestText.text = "";
-            foreach (QuestInfo quest in currentQuests)
-            {
-                if(quest != activeQuest)
-                {
-                    nextQuestText.text += $">{quest.questName}\n";
-                }
-            }
         }
         if(currentQuests.Count == 0)
         {
