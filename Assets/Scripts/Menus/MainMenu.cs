@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
         }
         if (ReloadNum.LastLevelNum == 3)
         {
-            SceneManager.LoadScene("Level 3 but it has the redesigned cave");
+            SceneManager.LoadScene("Level 3");
         }
     }
 
