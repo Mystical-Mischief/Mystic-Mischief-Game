@@ -40,6 +40,7 @@ Transform:
   - {fileID: 5741611140374280060}
   - {fileID: 20947329816537368}
   - {fileID: 8903812492770696839}
+  - {fileID: 5782133552453622616}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 209.622, z: 0}
@@ -257,9 +258,11 @@ MonoBehaviour:
   timer: 0
   attackedPlayer: 1
   Item: {fileID: 0}
-  ObjectNewLocation: {fileID: 0}
+  ObjectNewLocation: {fileID: 5782133552453622616}
+  ItemToProtectPos: {fileID: 0}
   Protect: 1
   HeldItem: {fileID: 0}
+  ItemToProtect: {fileID: 0}
   anim: {fileID: 2525908756416955157}
   fleeLocation: {fileID: 0}
   knockbackForce: 3
@@ -390,6 +393,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4838442252829839939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5782133552453622616}
+  m_Layer: 0
+  m_Name: EquipLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5782133552453622616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838442252829839939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23, y: 1.520002, z: 0.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3509306111444120325}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6390895124931196688
 GameObject:
   m_ObjectHideFlags: 0
