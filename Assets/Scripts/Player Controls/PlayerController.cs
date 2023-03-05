@@ -240,8 +240,6 @@ public class PlayerController : MonoBehaviour
             currentHealth -= damage;
 
 
-            GotHurt?.Invoke(this, EventArgs.Empty);
-
 
             if(currentHealth < 1)
             {

@@ -7,19 +7,24 @@ public class ActivateQuest : MonoBehaviour
     public string[] startQuests;
     public string[] questsToActivate;
     public Quest questScript;
+    static bool loadStartQuests = true;
     void Start()
     {
-        questScript = GameObject.FindObjectOfType<Quest>();
-        foreach(string quest in startQuests)
+        questScript = FindObjectOfType<Quest>();
+        if (loadStartQuests)
         {
-            questScript.ActivateQuest(quest);
+            foreach (string quest in startQuests)
+            {
+                questScript.ActivateQuest(quest);
+            }
+            loadStartQuests = false;
         }
     }
-    public void activateQuest()
+    public void activateQuest(List<QuestInfo> quests)
     {
-        foreach(string quest in questsToActivate)
+        foreach(QuestInfo quest in quests)
         {
-            questScript.ActivateQuest(quest);
+            questScript.ActivateQuest(quest.questName);
         }
     }
 }

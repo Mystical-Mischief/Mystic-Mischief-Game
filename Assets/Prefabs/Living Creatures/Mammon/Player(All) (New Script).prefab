@@ -446,8 +446,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111482250}
-  m_LocalRotation: {x: 0.36018845, y: -0.5793616, z: 0.31663716, w: 0.6590488}
-  m_LocalPosition: {x: -1.5754395, y: 8.2201, z: 0.16558969}
+  m_LocalRotation: {x: 0.18140803, y: -0.6488826, z: 0.16333792, w: 0.7206687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -651,7 +651,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672481753}
-  m_LocalRotation: {x: 0.16826943, y: -0.65174633, z: 0.15150806, w: 0.7238491}
+  m_LocalRotation: {x: 0.1682694, y: -0.65174633, z: 0.15150802, w: 0.7238492}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2197,7 +2197,7 @@ MonoBehaviour:
   - {fileID: 2340667125529323397}
   - {fileID: 4114034642606119313}
   - {fileID: 5088516195170616250}
-  - {fileID: 7926990229802134450}
+  - {fileID: 1788109074627484492}
   godModeHats:
   - {fileID: 126314368587031470}
   - {fileID: 1351633595405457893}
@@ -3003,7 +3003,7 @@ GameObject:
   - component: {fileID: 3313811300096049949}
   - component: {fileID: 5256343604297638391}
   - component: {fileID: 1628969558722012975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PotionShot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12101,7 +12101,7 @@ GameObject:
   - component: {fileID: 4910193801809501925}
   m_Layer: 8
   m_Name: Player(All) (New Script)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12395,8 +12395,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.0500407, y: 0.03215623, z: 0.0016119797, w: 0.99822813}
-  m_LocalPosition: {x: 0.49999708, y: -0.7599124, z: -10.001525}
+  m_LocalRotation: {x: -0.088506706, y: -0.024874687, z: -0.0022109447, w: 0.9957626}
+  m_LocalPosition: {x: 0.49999887, y: -0.7599125, z: -10.001524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12871,7 +12871,7 @@ GameObject:
   - component: {fileID: 2047317424985420885}
   - component: {fileID: 2713687592132196462}
   - component: {fileID: 8908788627210698883}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PotionShot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15178,7 +15178,7 @@ GameObject:
   - component: {fileID: 1702231593217578091}
   - component: {fileID: 7351130246466026713}
   - component: {fileID: 7760840661781995733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PotionShot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16234,7 +16234,7 @@ GameObject:
   - component: {fileID: 8032669002662300001}
   - component: {fileID: 3456068278297629072}
   - component: {fileID: 4918731078280523036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmokeHatPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16411,7 +16411,7 @@ GameObject:
   - component: {fileID: 641341957490662736}
   - component: {fileID: 7214807221462627347}
   - component: {fileID: 748017173892830185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmokeHatPotion2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16588,7 +16588,7 @@ GameObject:
   - component: {fileID: 5216169514531454443}
   - component: {fileID: 4163904810248122373}
   - component: {fileID: 4693564342071328524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmokeHatPotion3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16728,6 +16728,10 @@ PrefabInstance:
     - target: {fileID: 62002809810089835, guid: db90ae9e8189fd544807578bd893ee5a, type: 3}
       propertyPath: m_Name
       value: HomingPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 62002809810089835, guid: db90ae9e8189fd544807578bd893ee5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7153369346319230756, guid: db90ae9e8189fd544807578bd893ee5a, type: 3}
       propertyPath: m_RootOrder
