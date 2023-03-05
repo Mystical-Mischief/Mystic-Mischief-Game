@@ -167,9 +167,16 @@ public class KoboldProtectAi : BaseEnemyAI
     {
         if (holdingItem)
         {
+            if (Vector3.Distance(transform.position, fleeLocation.position) <= 1)
+            {
+                //ContinuePatrol();
+                //flee = false;
+                ai.isStopped = true;
+                return;
+            }
             targetPosition = fleeLocation.position;
             UpdateDestination(targetPosition);
-            if(Vector3.Distance(transform.position, fleeLocation.position) < .1)
+            if(Vector3.Distance(transform.position, fleeLocation.position) <= 1)
             {
                 ContinuePatrol();
                 flee = false;
