@@ -58,14 +58,6 @@ public class Quest : MonoBehaviour
     private static GameObject currQuestObj;
     private void Start()
     {
-        if(currQuestObj == null)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
     }
