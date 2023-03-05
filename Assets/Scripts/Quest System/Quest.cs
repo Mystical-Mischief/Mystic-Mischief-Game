@@ -55,17 +55,17 @@ public class Quest : MonoBehaviour
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
     public QuestInfo activeQuest;
 
-    private GameObject currQuestObj;
+    private static GameObject currQuestObj;
     private void Start()
     {
-        /*if(currQuestObj == null)
+        if(currQuestObj == null)
         {
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-        }*/
+        }
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
         //currentColor = questItem.color;
     }
@@ -122,27 +122,27 @@ public class Quest : MonoBehaviour
         {
             case QuestType.Tutorial:
                 questScript[0].enabled = true;
-                questScript[0].GetComponent<TutorialQuest>().startQuest(activeQuest, this);
+                questScript[0].GetComponent<TutorialQuest>().startQuest(quest, this);
                 break;
             case QuestType.TalkToNPC:
                 questScript[1].enabled = true;
-                questScript[1].GetComponent<TalkToNPCQuest>().startQuest(activeQuest, this);
+                questScript[1].GetComponent<TalkToNPCQuest>().startQuest(quest, this);
                 break;
             case QuestType.Collection:
                 questScript[2].enabled = true;
-                questScript[2].GetComponent<CollectionQuest>().startQuest(activeQuest, this);
+                questScript[2].GetComponent<CollectionQuest>().startQuest(quest, this);
                 break;
             case QuestType.Escort:
                 questScript[3].enabled = true;
-                questScript[3].GetComponent<EscortQuest>().startQuest(activeQuest, this);
+                questScript[3].GetComponent<EscortQuest>().startQuest(quest, this);
                 break;
             case QuestType.Input:
                 questScript[4].enabled = true;
-                questScript[4].GetComponent<ButtonQuest>().startQuest(activeQuest, this, activeQuest.input);
+                questScript[4].GetComponent<ButtonQuest>().startQuest(quest, this, activeQuest.input);
                 break;
             case QuestType.PickUp:
                 questScript[5].enabled = true;
-                questScript[5].GetComponent<PickUpQuest>().startQuest(activeQuest, this);
+                questScript[5].GetComponent<PickUpQuest>().startQuest(quest, this);
                 break;
             default:
                 print("quest not found");

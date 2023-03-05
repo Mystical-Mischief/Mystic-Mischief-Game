@@ -9,9 +9,10 @@ public class ActivateQuest : MonoBehaviour
     public Quest questScript;
     void Start()
     {
-        questScript = GameObject.FindObjectOfType<Quest>();
+        questScript = FindObjectOfType<Quest>();
         foreach(string quest in startQuests)
         {
+            print(quest);
             questScript.ActivateQuest(quest);
         }
     }
