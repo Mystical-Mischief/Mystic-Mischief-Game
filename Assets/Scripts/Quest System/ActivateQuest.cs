@@ -12,18 +12,18 @@ public class ActivateQuest : MonoBehaviour
         questScript = FindObjectOfType<Quest>();
         if (loadStartQuests)
         {
-            foreach (string quest in startQuests)
+            foreach (string currquest in startQuests)
             {
-                questScript.ActivateQuest(quest);
+                questScript.ActivateQuest(currquest);
             }
             loadStartQuests = false;
         }
     }
     public void activateQuest(List<QuestInfo> quests)
     {
-        foreach(QuestInfo quest in quests)
+        foreach(QuestInfo currquest in quests)
         {
-            questScript.ActivateQuest(quest.questName);
+            questScript.ActivateQuest(currquest.questName);
         }
     }
 }

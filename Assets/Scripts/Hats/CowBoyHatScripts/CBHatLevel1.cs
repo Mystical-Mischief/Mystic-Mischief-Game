@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CBHatLevel1 : CowboyHat
 {
-    public bool isGrounded;
 
     // Start is called before the first frame update
     new void Start()

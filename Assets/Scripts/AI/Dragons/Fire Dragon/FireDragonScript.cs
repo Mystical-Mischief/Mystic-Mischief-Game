@@ -26,7 +26,7 @@ public class FireDragonScript : BasicfireDragonAI
     public ItemCollector iCollector;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         ev.Player = GameObject.FindGameObjectWithTag("Player");
@@ -35,7 +35,7 @@ public class FireDragonScript : BasicfireDragonAI
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         //This sets the enemy vision range it can detect tot the agression meter.
         if (iCollector.numOfItems > 0)
