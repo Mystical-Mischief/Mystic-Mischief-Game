@@ -14,6 +14,10 @@ public class SaveGeneral : MonoBehaviour
     public GameObject Dragon;
     public string DragonType;
     public Reload reload;
+    private float questNum;
+    public GameObject q;
+    public static List<QuestInfo> currentQuests = new List<QuestInfo>();
+    public List<QuestInfo> Quests = new List<QuestInfo>();
        
        void Awake()
        {
@@ -31,6 +35,7 @@ public class SaveGeneral : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        q = GameObject.Find("QuestTracker");
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
         {
             if (gO.activeSelf == true)
@@ -61,6 +66,7 @@ public class SaveGeneral : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Quests = currentQuests;
         if (reload.retrying == true)
         {
             LoadEnemy();
@@ -91,6 +97,7 @@ public class SaveGeneral : MonoBehaviour
     //Saves everything.
     public void SaveEnemy ()
     {
+        currentQuests.Clear();
         //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -113,10 +120,25 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().SaveDragon();
         }
+        foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
+        {
+            currentQuests.Add(quests);
+            // if (quests.completed)
+            // {
+            // currentQuests.Add(quests);
+            // // quests.completed = true;
+            // }
+            // if (!quests.completed)
+            // {
+            //   currentQuests.Add(quests); 
+            // }
+        }
+        // questNum = q.GetComponent<Quest>().
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
     {
+        currentQuests.Clear();
         //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -134,27 +156,32 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().SaveDragon();
         }
+        foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
+        {
+            currentQuests.Add(quests);
+        }
     }
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
+        q.GetComponent<Quest>().currentQuests.Clear();
+        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
+        // foreach(QuestInfo quests in currentQuests)
+        // {
+        //     q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
+        //     // q.GetComponent<Quest>().currentQuests.Add(quests);
+        //         // if (quests.questName == q.GetComponent<Quest>().activeQuest.currentQuests)
+        //         // {
+        //         // q.GetComponent<Quest>().activeQuest.completed = true;
+        //         // q.GetComponent<Quest>().UpdateQuest();
+        //         // }
+        // }
         // Player.GetComponent<Inventory>().PickedUpItems = null;
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
         }
-        //Loads the items
-        // foreach (GameObject Item in PickedUpItems)
-        // {
-        //     // if (Item.GetComponent<Item>().inInventory == false)
-        //     // {
-        //     //     Player.GetComponent<Inventory>().PickedUpItems.Remove(Item);
-        //     // }
-            
-        //     // Player.GetComponent<Inventory>().PickedUpItems.Add(Item);
-        //     // Item.GetComponent<Item>().inInventory = false;
-        // }
         //Loads the players inventory.
         foreach (GameObject items in Items)
         {
@@ -168,10 +195,6 @@ public class SaveGeneral : MonoBehaviour
                 }
 
             }
-            // if (items.GetComponent<Item>().inInventory == false)
-            // {
-            //         items.SetActive(true);
-            // }
         }
         // Loads the player usings the players load function
         Player.GetComponent<PlayerController>().LoadPlayer();
@@ -184,7 +207,6 @@ public class SaveGeneral : MonoBehaviour
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
     {
-        // Player.GetComponent<Inventory>().PickedUpItems = null;
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -211,6 +233,8 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         }
+        q.GetComponent<Quest>().currentQuests.Clear();
+        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
     }
     public virtual void Loadmenu()
     {

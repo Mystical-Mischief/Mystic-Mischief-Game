@@ -7,6 +7,7 @@ using UnityEngine.Video;
 public class VideoScript : MonoBehaviour
 {
     VideoPlayer video;
+    public string SceneName;
 
 
     [SerializeField] private float delayTime = 3f;
@@ -30,7 +31,8 @@ public class VideoScript : MonoBehaviour
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
         //the scene that you want to load after the video has ended.
-        StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
+        SceneManager.LoadScene(SceneName);
+        //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
     }
     IEnumerator LoadLevelASync(int levelIndex)
     {
