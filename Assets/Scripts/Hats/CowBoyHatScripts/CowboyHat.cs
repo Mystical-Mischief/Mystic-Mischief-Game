@@ -21,7 +21,6 @@ public class CowboyHat : BaseHatScript
     Vector3 originalLocalPosition;
     Vector3 originalWorldPosition;
     Rigidbody rb;
-    public bool isGrounded;
     public float l1HatUseTime;
     private GameObject Player;
     public bool gunSlinger;
@@ -96,23 +95,7 @@ public class CowboyHat : BaseHatScript
         //         allObjects.Remove(gO);
         //     }
         // }
-        if (SkillLevel <= 1 && isGrounded == false)
-        {
-            canUseHat = false;
-        }
-        if (SkillLevel <= 1 && isGrounded == true)
-        {
-            canUseHat = true;
-        }
-        if (Player.GetComponent<PlayerController>().onGround == true)
-        {
-            isGrounded = true;
-        }
-        if (Player.GetComponent<PlayerController>().onGround == false)
-        {
-            isGrounded = false;
-        }
-
+       
         //if you can use the hat use the hat and start the cooldown
         if (controls.Actions.ActivateHat.IsPressed() && canUseHat && gunSlinger == false)
         {
@@ -143,6 +126,11 @@ public class CowboyHat : BaseHatScript
             // {
             //     HatAbility();
             // }
+        }
+        if (controls.Actions.ActivateHat.WasReleasedThisFrame() && !canUseHat)
+        {
+            canUseHat = true;
+            ResetHat();
         }
         if (gunSlinger == true && controls.Actions.CowBoyHatUse.WasPerformedThisFrame() && playerInv.holdingItem == false)
         {
@@ -269,11 +257,6 @@ public class CowboyHat : BaseHatScript
             originalWorldPosition = transform.position;
             rb.isKinematic = false;
             rb.AddForce(transform.forward * whipStrength, ForceMode.Impulse);
-        }
-        base.HatAbility();
-        if (gunSlinger == true)
-        {
-
         }
     }
     //sets it to where it cant move and moves it back to the original position
