@@ -5,7 +5,6 @@ using UnityEngine;
 public class ActivateQuest : MonoBehaviour
 {
     public string[] startQuests;
-    public string[] questsToActivate;
     public Quest questScript;
     static bool loadStartQuests = true;
     void Start()
