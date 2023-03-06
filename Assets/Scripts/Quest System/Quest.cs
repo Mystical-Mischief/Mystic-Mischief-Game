@@ -21,8 +21,8 @@ public class QuestInfo
     public string questDescription;
     public Sprite questImage;
     public QuestType questType;
-    public bool mainQuest;
     public GameObject[] objectiveItems;
+    public bool mainQuest;
 
     [Header("Use only if turn in quest is true")]
     public GameObject NPC;
@@ -54,6 +54,7 @@ public class Quest : MonoBehaviour
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
     public QuestInfo activeQuest;
+    public List<GameObject> sideQuests;
 
     private static GameObject currQuestObj;
     private void Start()
@@ -176,10 +177,13 @@ public class Quest : MonoBehaviour
                 processQuest(activeQuest);
                 print(activeQuest.questName);
             }
-            //otherwise move on
+            //otherwise turn on all the side quests
             else
             {
-                activeQuest.active = false;
+                foreach(GameObject gO in sideQuests)
+                {
+                    gO.SetActive(true);
+                }
             }
         UpdateText();
     }
@@ -193,7 +197,7 @@ public class Quest : MonoBehaviour
         }
         if(currentQuests.Count == 0)
         {
-            text.text = "No Active Quests";
+            text.text = "No Active Quests.\nMaybe theres some sidequests around!";
         }
     }
 }
