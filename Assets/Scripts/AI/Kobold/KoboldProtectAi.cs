@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class KoboldProtectAi : BaseEnemyAI
 {
@@ -20,12 +21,15 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     Transform ObjectNewLocation;
 
+    public Transform ItemToProtectPos;
+
 
     public bool Protect;
 
     public bool holdingItem { get; private set; }
 
     public GameObject HeldItem;
+    public GameObject ItemToProtect;
     public Animator anim;
 
     [SerializeField]
@@ -34,7 +38,7 @@ public class KoboldProtectAi : BaseEnemyAI
     [SerializeField]
     private float knockbackForce;
 
-    private bool flee;
+    public bool flee;
 
     new void Start()
     {
@@ -44,6 +48,12 @@ public class KoboldProtectAi : BaseEnemyAI
         Protect = false;
         holdingItem = false;
         flee = false;
+        ItemToProtectPos = HeldItem.transform;
+        ItemToProtect = Instantiate(HeldItem, ItemToProtectPos.position, Quaternion.identity);
+        HeldItem.transform.SetParent(this.transform, false);
+        HeldItem.transform.position = ObjectNewLocation.position;
+        HeldItem.SetActive(false);
+        
     }
 
     new void Update()
@@ -60,17 +70,19 @@ public class KoboldProtectAi : BaseEnemyAI
                 attackedPlayer = false;
             }
         }
-        if (Item != null)
+        if (HeldItem != null)
         {
             if (Protect)
             {
                 anim.SetBool("HasItem", true);
-                ProtectObject(Item);
+                ProtectObject(ItemToProtect);
             }
-            if(flee)
+            else if(flee)
             {
                 Flee();
+                flee = false;
             }
+            
             else
             {
                 Patrol();
@@ -98,20 +110,22 @@ public class KoboldProtectAi : BaseEnemyAI
             anim.SetTrigger("Bite");
         }
 
+        if (ItemToProtect != null &&  Vector3.Distance(this.transform.position, ItemToProtect.transform.position) < 1)
+        {
+            anim.SetTrigger("Bite");
+            Protect = false;
+            Destroy(ItemToProtect);
+            holdingItem = true;
+            flee = true;
+            HeldItem.SetActive(true);
+        }
+
+
     }
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
-        if (Protect && collision.gameObject.tag == "PickUp")
-        {
-            anim.SetTrigger("Bite");
-            Protect = false;
-            HeldItem = collision.gameObject;
-            HeldItem.transform.SetParent(this.transform, true);
-            HeldItem.transform.position = ObjectNewLocation.position;
-            holdingItem = true;
-            flee = true;
-        }
+        
         if (!attackedPlayer && collision.gameObject.tag == "Player")
         {
             attackedPlayer = true;
@@ -145,6 +159,7 @@ public class KoboldProtectAi : BaseEnemyAI
     {
         Vector3 itemDirection = obj.transform.position;
         UpdateDestination(itemDirection);
+        
 
     }
 
@@ -152,11 +167,21 @@ public class KoboldProtectAi : BaseEnemyAI
     {
         if (holdingItem)
         {
-            UpdateDestination(fleeLocation.position);
-            HeldItem.transform.position = ObjectNewLocation.position;
-            flee = false;
+            if (Vector3.Distance(transform.position, fleeLocation.position) <= 1)
+            {
+                //ContinuePatrol();
+                //flee = false;
+                ai.isStopped = true;
+                return;
+            }
+            targetPosition = fleeLocation.position;
+            UpdateDestination(targetPosition);
+            if(Vector3.Distance(transform.position, fleeLocation.position) <= 1)
+            {
+                ContinuePatrol();
+                flee = false;
+            }
         }
-        ContinuePatrol();
     }
 
     private void ContinuePatrol()
@@ -164,6 +189,8 @@ public class KoboldProtectAi : BaseEnemyAI
         if(transform.position == fleeLocation.transform.position)
         {
             LostPlayer();
+            UpdateDestination(targetPosition);
+            Patrol();
         }
     }
 }
