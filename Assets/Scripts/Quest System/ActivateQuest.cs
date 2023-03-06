@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActivateQuest : MonoBehaviour
 {
     public string[] startQuests;
     public Quest questScript;
-    static bool loadStartQuests = true;
+    static string sceneName;
     void Start()
     {
         questScript = FindObjectOfType<Quest>();
-        if (loadStartQuests)
+        if(sceneName != SceneManager.GetActiveScene().name)
         {
-            foreach (string currquest in startQuests)
+            print(sceneName);
+            if (sceneName != "Lose Screen")
             {
-                questScript.ActivateQuest(currquest);
+                foreach (string currquest in startQuests)
+                {
+                    questScript.ActivateQuest(currquest);
+                }
+                sceneName = SceneManager.GetActiveScene().name;
             }
-            loadStartQuests = false;
         }
     }
     public void activateQuest(List<QuestInfo> quests)
