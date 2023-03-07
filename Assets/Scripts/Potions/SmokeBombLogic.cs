@@ -7,7 +7,6 @@ public class SmokeBombLogic : MonoBehaviour
     public GameObject smokeScreen;
     public float stunTimer;
     public GameObject wizHat;
-
     private void OnCollisionEnter(Collision collision)
     {
         smokeScreen.SetActive(true);
@@ -19,10 +18,9 @@ public class SmokeBombLogic : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "enemy")
+        if(other.gameObject.tag == "enemy")
         {
             other.gameObject.GetComponent<BaseEnemyAI>().Stun(stunTimer);
         }
     }
 }
-    

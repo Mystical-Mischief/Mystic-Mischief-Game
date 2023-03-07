@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC : Chest
 {
-    public Quest quest;
+    /*public Quest quest;
     public string QuestToFinish;
     public string QuestToActivate;
     private bool questAccepted;
@@ -23,5 +23,5 @@ public class NPC : Chest
             questAccepted = true;
         }
         return true;
-    }
+    }*/
 }

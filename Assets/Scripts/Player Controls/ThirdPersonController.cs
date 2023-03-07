@@ -45,7 +45,7 @@ public class ThirdPersonController : MonoBehaviour
     public PlayerAnimation playerAnimation;
     public AudioClip HurtClip;
 
-    public bool isGrounded{get; set;}
+    //public bool isGrounded{get; set;}
     [SerializeField] private GameObject camGround;
     [SerializeField] private GameObject camFly;
     [SerializeField] private GameObject dragonCamGround;
@@ -78,7 +78,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool godMode { get; private set;}
 
     // Start is called before the first frame update
-    private void Awake()
+    /*private void Awake()
     {
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
@@ -91,7 +91,7 @@ public class ThirdPersonController : MonoBehaviour
         controls.Enable();
         move = controls.Actions.Movement;
         Stamina = 4;
-        isGrounded = true;
+        //isGrounded = true;
         //if(healthBar != null)
         //{
         //    healthBar.GetComponent<HealthBar>().SetMaxHealth(4);
@@ -487,6 +487,7 @@ public class ThirdPersonController : MonoBehaviour
             {
                 Stamina -= 1;
             }*/
+    /*
             if (Stamina > 0 && isGrounded == false)
             {
                 animator.SetTrigger("Jump");    
@@ -590,6 +591,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         maxSpeed = originalMaxSpeed;
         moveForce = originalMoveForce;
-    }
+    }*/
 
 }

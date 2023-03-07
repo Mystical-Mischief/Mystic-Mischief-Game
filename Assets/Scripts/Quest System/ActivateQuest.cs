@@ -1,30 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActivateQuest : MonoBehaviour
 {
     public string[] startQuests;
-    public string[] questsToActivate;
     public Quest questScript;
-    static bool loadStartQuests = true;
+    static string sceneName;
+
     void Start()
     {
         questScript = FindObjectOfType<Quest>();
-        if (loadStartQuests)
+        if(sceneName != SceneManager.GetActiveScene().name)
         {
-            foreach (string quest in startQuests)
+            print(sceneName);
+            foreach (string currquest in startQuests)
             {
-                questScript.ActivateQuest(quest);
+                questScript.ActivateQuest(currquest);
             }
-            loadStartQuests = false;
+            sceneName = SceneManager.GetActiveScene().name;
         }
     }
     public void activateQuest(List<QuestInfo> quests)
     {
-        foreach(QuestInfo quest in quests)
+        foreach(QuestInfo currquest in quests)
         {
-            questScript.ActivateQuest(quest.questName);
+            questScript.ActivateQuest(currquest.questName);
         }
+    }
+    public void changeSceneName(string newName)
+    {
+        sceneName = newName;
     }
 }

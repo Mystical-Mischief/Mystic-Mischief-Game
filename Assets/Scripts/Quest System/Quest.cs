@@ -21,8 +21,8 @@ public class QuestInfo
     public string questDescription;
     public Sprite questImage;
     public QuestType questType;
-    public bool mainQuest;
     public GameObject[] objectiveItems;
+    public bool mainQuest;
 
     [Header("Use only if turn in quest is true")]
     public GameObject NPC;
@@ -54,6 +54,7 @@ public class Quest : MonoBehaviour
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
     public QuestInfo activeQuest;
+    public List<GameObject> sideQuests;
 
     private static GameObject currQuestObj;
     private void Start()
@@ -67,22 +68,22 @@ public class Quest : MonoBehaviour
         if(nameOfQuest != null)
             nameOfQuest = nameOfQuest.ToUpper();
         //checks all the quests in the quest list to find it
-        foreach (QuestInfo quest in allQuests)
+        foreach (QuestInfo currquest in allQuests)
         {
             //checks to see if the names match
-            if(quest.questName.ToUpper() == nameOfQuest)
+            if(currquest.questName.ToUpper() == nameOfQuest)
             {
                 //if so activate the quest and add it to the list of current quests
-                quest.active = true;
-                currentQuests.Add(quest);
+                currquest.active = true;
+                currentQuests.Add(currquest);
                 //if there is no active quest make it the active quest
-                if (activeQuest.questName == string.Empty || quest.priorityQuest)
+                if (activeQuest.questName == string.Empty || currquest.priorityQuest)
                 {
                     if(activeQuest.questName != null)
                     {
                         activeQuest.active = false;
                     }
-                    activeQuest = quest;
+                    activeQuest = currquest;
                     print(activeQuest.questName);
                     processQuest(activeQuest);
                 }
@@ -107,34 +108,34 @@ public class Quest : MonoBehaviour
             NextQuest();
         }
     }
-    void processQuest(QuestInfo quest)
+    void processQuest(QuestInfo currquest)
     {
         //checks to see which quest to activate out of all the quests
-        switch (quest.questType)
+        switch (currquest.questType)
         {
             case QuestType.Tutorial:
                 questScript[0].enabled = true;
-                questScript[0].GetComponent<TutorialQuest>().startQuest(quest, this);
+                questScript[0].GetComponent<TutorialQuest>().startQuest(currquest, this);
                 break;
             case QuestType.TalkToNPC:
                 questScript[1].enabled = true;
-                questScript[1].GetComponent<TalkToNPCQuest>().startQuest(quest, this);
+                questScript[1].GetComponent<TalkToNPCQuest>().startQuest(currquest, this);
                 break;
             case QuestType.Collection:
                 questScript[2].enabled = true;
-                questScript[2].GetComponent<CollectionQuest>().startQuest(quest, this);
+                questScript[2].GetComponent<CollectionQuest>().startQuest(currquest, this);
                 break;
             case QuestType.Escort:
                 questScript[3].enabled = true;
-                questScript[3].GetComponent<EscortQuest>().startQuest(quest, this);
+                questScript[3].GetComponent<EscortQuest>().startQuest(currquest, this);
                 break;
             case QuestType.Input:
                 questScript[4].enabled = true;
-                questScript[4].GetComponent<ButtonQuest>().startQuest(quest, this, activeQuest.input);
+                questScript[4].GetComponent<ButtonQuest>().startQuest(currquest, this, activeQuest.input);
                 break;
             case QuestType.PickUp:
                 questScript[5].enabled = true;
-                questScript[5].GetComponent<PickUpQuest>().startQuest(quest, this);
+                questScript[5].GetComponent<PickUpQuest>().startQuest(currquest, this);
                 break;
             default:
                 print("quest not found");
@@ -176,10 +177,13 @@ public class Quest : MonoBehaviour
                 processQuest(activeQuest);
                 print(activeQuest.questName);
             }
-            //otherwise move on
+            //otherwise turn on all the side quests
             else
             {
-                activeQuest.active = false;
+                foreach(GameObject gO in sideQuests)
+                {
+                    gO.SetActive(true);
+                }
             }
         UpdateText();
     }
@@ -193,7 +197,7 @@ public class Quest : MonoBehaviour
         }
         if(currentQuests.Count == 0)
         {
-            text.text = "No Active Quests";
+            text.text = "No Active Quests.\nMaybe theres some sidequests around!";
         }
     }
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PickUpQuest : MonoBehaviour
 {
-    GameObject player;
+    Inventory inv;
     Quest questScript;
     GameObject itemToHold;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        inv = FindObjectOfType<Inventory>();
     }
     public void startQuest(QuestInfo quest, Quest questScr)
     {
@@ -19,7 +19,7 @@ public class PickUpQuest : MonoBehaviour
 
     void Update()
     {
-        if(player.GetComponent<Inventory>().currentHeldItem == itemToHold)
+        if(inv.GetComponent<Inventory>().currentHeldItem == itemToHold)
         {
             questFinished();
         }

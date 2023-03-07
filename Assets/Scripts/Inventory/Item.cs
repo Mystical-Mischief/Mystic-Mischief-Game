@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
     public bool dropped;
     private int value = 1;
     public ParticleSystem ps;
+    private Rigidbody rb;
 
     [SerializeField] private GameObject itemEffect;
 
@@ -32,6 +33,7 @@ public class Item : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         dropped = false;
+        rb = GetComponent<Rigidbody>();
     }
     
     public void SaveItem()
@@ -62,6 +64,13 @@ public class Item : MonoBehaviour
                 // other.gameObject.GetComponent<BirdInteraction>().ticketCount = other.gameObject.GetComponent<BirdInteraction>().ticketCount - 1;
                 other.gameObject.GetComponent<BirdInteraction>().StoredItems.Add(this.gameObject);
             }
+        }
+    }
+    public void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "enemy" && rb.velocity.magnitude >= 5)
+        {
+            other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
         }
     }
 
