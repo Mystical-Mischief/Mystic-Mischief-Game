@@ -7,7 +7,9 @@ public class WizardHat : BaseHatScript
     public GameObject smokeBomb;
     public GameObject potionThrow;
     Transform potionThrowPos;
-    DrawPotionProjection TrajectoryLine; 
+    DrawPotionProjection TrajectoryLine;
+
+    private static float abilityCooldown;
 
     static int SkillLevel = 1;
     public int currentLevel = SkillLevel;
@@ -19,6 +21,7 @@ public class WizardHat : BaseHatScript
         base.Start();
         TrajectoryLine = potionThrow.GetComponent<DrawPotionProjection>();
         potionThrowPos = potionThrow.transform;
+        abilityCooldown = AbilityCooldownTime;
         
     }
 
@@ -64,4 +67,8 @@ public class WizardHat : BaseHatScript
         return SkillLevel;
     }
 
+    public static float getAbilityCooldown()
+    {
+        return abilityCooldown;
+    }
 }

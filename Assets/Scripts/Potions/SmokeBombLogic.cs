@@ -5,8 +5,13 @@ using UnityEngine;
 public class SmokeBombLogic : MonoBehaviour
 {
     public GameObject smokeScreen;
-    public float stunTimer;
+    private float stunTimer;
     public GameObject wizHat;
+
+    private void Start()
+    {
+        stunTimer = WizardHat.getAbilityCooldown() - 1f;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         smokeScreen.SetActive(true);
