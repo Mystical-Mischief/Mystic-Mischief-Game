@@ -36,7 +36,7 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     
     private int index;
-    private int convoNumber;
+    static int convoNumber;
     ControlsforPlayer controls;
 
     void Start()
