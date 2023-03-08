@@ -55,7 +55,7 @@ public class Item : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Clever Bird")
+        if (other.gameObject.name == "Interactions")
         {
             if (itemType == ItemType.Objective)
             {
