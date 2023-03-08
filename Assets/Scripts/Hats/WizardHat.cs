@@ -4,90 +4,51 @@ using UnityEngine;
 
 public class WizardHat : BaseHatScript
 {
-    public GameObject[] smokeBomb;
-    public GameObject[] potionThrow;
-    public Transform[] potionThrowPos;
-    public DrawPotionProjection[] TrajectoryLine; 
+    public GameObject smokeBomb;
+    public GameObject potionThrow;
+    Transform potionThrowPos;
+    DrawPotionProjection TrajectoryLine; 
 
     static int SkillLevel = 1;
     public int currentLevel = SkillLevel;
     [Range(10,50)]
     private int _shotForce = 20;
 
-    public GameObject closestEnemy;
-    private GameObject nextClosestEnemy;
-
-    private bool findCloseEnemy;
-
-    public List<GameObject> Enemies = new List<GameObject>();
     new void Start()
     {
         base.Start();
+        TrajectoryLine = potionThrow.GetComponent<DrawPotionProjection>();
+        potionThrowPos = potionThrow.transform;
         
     }
 
     new void Update()
     {
-        currentLevel = SkillLevel;
+        TrajectoryLine.ShowTrajectoryLine(potionThrowPos.position, (potionThrowPos.forward).normalized * _shotForce);
 
-        if(SkillLevel ==2)
-        {
-            TrajectoryLine[0].ShowTrajectoryLine(potionThrowPos[0].position, (potionThrowPos[0].forward).normalized * _shotForce);
-        }
-        else if(SkillLevel ==3)
-        {
-            for(int i = 0; i < TrajectoryLine.Length; i++)
-                TrajectoryLine[i].ShowTrajectoryLine(potionThrowPos[i].position, (potionThrowPos[i].forward).normalized * _shotForce);
-        }
-        
         base.Update();
     }
     new void OnEnable()
     {
         base.OnEnable();
-        foreach(GameObject gO in potionThrow)
-        {
-            gO.SetActive(true);
-        }
+        potionThrow.SetActive(true);
     }
 
     void OnDisable()
     {
-        foreach (GameObject gO in potionThrow)
-        {
-            gO.SetActive(false);
-        }
+        potionThrow.SetActive(false);
 
     }
     public override void HatAbility()
     {
-        if(SkillLevel<3)
-        {
-            smokeBomb[0].SetActive(true);
-            smokeBomb[0].transform.forward = potionThrowPos[0].forward;
-            smokeBomb[0].GetComponent<SphereCollider>().isTrigger = true;
-            smokeBomb[0].GetComponent<Rigidbody>().AddForce((potionThrowPos[0].forward).normalized * _shotForce, ForceMode.Impulse);
-            smokeBomb[0].transform.parent = null;
-            StartCoroutine(activateSmokeBomb(smokeBomb[0]));
-            base.HatAbility();
-        }
-        if(SkillLevel==3)
-        {
-            for(int i = 0; i < smokeBomb.Length; i++)
-            {
-                smokeBomb[i].SetActive(true);
-                smokeBomb[i].transform.forward = potionThrowPos[i].forward;
-                smokeBomb[i].GetComponent<SphereCollider>().isTrigger = true;
-                smokeBomb[i].GetComponent<Rigidbody>().AddForce((potionThrowPos[i].forward).normalized * _shotForce, ForceMode.Impulse);
-                smokeBomb[i].transform.parent = null;
-                StartCoroutine(activateSmokeBomb(smokeBomb[i]));
-                base.HatAbility();
-            }
-        }
-        if(SkillLevel==5)
-        {
-            smokeBomb[0].transform.position = Vector3.MoveTowards(smokeBomb[0].transform.position, closestEnemy.transform.position, 2 * Time.deltaTime);
-        }
+        smokeBomb.SetActive(true);
+        smokeBomb.transform.forward = potionThrowPos.forward;
+        smokeBomb.GetComponent<SphereCollider>().isTrigger = true;
+        smokeBomb.GetComponent<Rigidbody>().AddForce((potionThrowPos.forward).normalized * _shotForce, ForceMode.Impulse);
+        smokeBomb.transform.parent = null;
+        StartCoroutine(activateSmokeBomb(smokeBomb));
+        base.HatAbility();
+
     }
     IEnumerator activateSmokeBomb(GameObject bomb)
     {
@@ -103,31 +64,4 @@ public class WizardHat : BaseHatScript
         return SkillLevel;
     }
 
-    /**void detectNextClosestEnemy()
-    {
-        foreach (GameObject gO in Enemies)
-        {
-            if (!gO.activeInHierarchy)
-            {
-                continue;
-            }
-            if (nextClosestEnemy == null)
-            {
-                nextClosestEnemy = gO;
-                continue;
-            }
-            if (gO == closestEnemy)
-            {
-                continue;
-            }
-            if (Vector3.Distance(gO.transform.position, transform.position) < Vector3.Distance(nextClosestEnemy.transform.position, transform.position))
-            {
-                nextClosestEnemy = gO;
-            }
-        }
-        if (Vector3.Distance(nextClosestEnemy.transform.position, transform.position) < Vector3.Distance(closestEnemy.transform.position, transform.position))
-        {
-            findCloseEnemy = true;
-        }
-    }**/
 }
