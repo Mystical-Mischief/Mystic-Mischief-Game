@@ -21,4 +21,12 @@ public class SmokeScreenReset : MonoBehaviour
         gameObject.SetActive(false);
         GetComponentInChildren<ParticleSystem>().Stop();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("enemy"))
+        {
+            other.GetComponent<BaseEnemyAI>().Stun(timer);
+        }
+    }
 }
