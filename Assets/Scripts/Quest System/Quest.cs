@@ -85,7 +85,7 @@ public class Quest : MonoBehaviour
                         activeQuest.active = false;
                     }
                     activeQuest = currquest;
-                    if (!activeQuest.NPC.activeInHierarchy)
+                    if (activeQuest.NPC != null && !activeQuest.NPC.activeInHierarchy)
                     {
                         activeQuest.NPC.SetActive(true);
                     }
