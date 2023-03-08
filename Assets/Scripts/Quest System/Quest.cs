@@ -29,6 +29,7 @@ public class QuestInfo
     [Header("Use only if input quest")]
     public UnityEngine.InputSystem.InputAction input;
     public GameObject[] rewards;
+    public MonoBehaviour[] scriptsToActivate;
     [SerializeField]
     public GameObject[] ObjToDeactivate;
     public bool priorityQuest;
@@ -84,6 +85,10 @@ public class Quest : MonoBehaviour
                         activeQuest.active = false;
                     }
                     activeQuest = currquest;
+                    if (!activeQuest.NPC.activeInHierarchy)
+                    {
+                        activeQuest.NPC.SetActive(true);
+                    }
                     print(activeQuest.questName);
                     processQuest(activeQuest);
                 }
@@ -146,45 +151,55 @@ public class Quest : MonoBehaviour
     //moves onto the next quest and sees if its ready to turn in or not
     public void NextQuest()
     {
-            //if there are rewards activate them
-            if(activeQuest.rewards.Length != 0)
+        //if there are rewards activate them
+        if(activeQuest.rewards.Length != 0)
+        {
+            foreach(GameObject gO in activeQuest.rewards)
             {
-                foreach(GameObject gO in activeQuest.rewards)
-                {
-                    if(gO != null)
-                    {
-                        gO.SetActive(true);
-                    }
-                }
-            }
-            if(activeQuest.ObjToDeactivate.Length != 0)
-            {
-                foreach(GameObject gO in activeQuest.ObjToDeactivate)
-                {
-                    if (gO != null)
-                    {
-                        gO.SetActive(false);
-                    }
-                }
-            }
-            //remove the quest from the list
-            currentQuests.Remove(activeQuest);
-            //if there is another quest activate the next quest on the list
-            if (currentQuests.Count != 0)
-            {
-                activeQuest = currentQuests[0];
-                activeQuest.active = true;
-                processQuest(activeQuest);
-                print(activeQuest.questName);
-            }
-            //otherwise turn on all the side quests
-            else
-            {
-                foreach(GameObject gO in sideQuests)
+                if(gO != null)
                 {
                     gO.SetActive(true);
                 }
             }
+        }
+        if (activeQuest.scriptsToActivate.Length != 0)
+        {
+            foreach (MonoBehaviour mB in activeQuest.scriptsToActivate)
+            {
+                if (mB != null)
+                {
+                    mB.enabled = true;
+                }
+            }
+        }
+        if (activeQuest.ObjToDeactivate.Length != 0)
+        {
+            foreach(GameObject gO in activeQuest.ObjToDeactivate)
+            {
+                if (gO != null)
+                {
+                    gO.SetActive(false);
+                }
+            }
+        }
+        //remove the quest from the list
+        currentQuests.Remove(activeQuest);
+        //if there is another quest activate the next quest on the list
+        if (currentQuests.Count != 0)
+        {
+            activeQuest = currentQuests[0];
+            activeQuest.active = true;
+            processQuest(activeQuest);
+            print(activeQuest.questName);
+        }
+        //otherwise turn on all the side quests
+        else
+        {
+            foreach(GameObject gO in sideQuests)
+            {
+                gO.SetActive(true);
+            }
+        }
         UpdateText();
     }
     //Update the text of both the active quests and the other quests
