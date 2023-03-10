@@ -45,6 +45,18 @@ public static class SaveSystem
 
     }
 
+    public static void SaveHats (PlayerHatLogic hat)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/Hats" + SceneManager.GetActiveScene().name;
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        HatData data = new HatData(hat);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
         //Saves the enemies.
         public static void SaveEnemy (BaseEnemyAI enemy)
     {
@@ -110,6 +122,26 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
 
            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+            stream.Close();
+           return data;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+    //Loads the hats.
+    public static HatData LoadHats(PlayerHatLogic hat)
+    {
+        string path = Application.persistentDataPath + "/Hats" + SceneManager.GetActiveScene().name;
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+           HatData data = formatter.Deserialize(stream) as HatData;
             stream.Close();
            return data;
         }

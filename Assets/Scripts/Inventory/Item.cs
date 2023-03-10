@@ -22,6 +22,7 @@ public class Item : MonoBehaviour
     private int value = 1;
     public ParticleSystem ps;
     private Rigidbody rb;
+    public float fallDistance = 1f;
 
     [SerializeField] private GameObject itemEffect;
 
@@ -68,7 +69,7 @@ public class Item : MonoBehaviour
     }
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "enemy" && rb.velocity.magnitude >= 5)
+        if (other.gameObject.tag == "enemy" && rb.velocity.magnitude >= fallDistance)
         {
             other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
         }
