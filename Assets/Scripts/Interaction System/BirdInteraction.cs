@@ -42,9 +42,8 @@ public class BirdInteraction : MonoBehaviour
             {
                 dialouge.enabled = true;
                 Hat.SetActive(true);
-                Destroy(GetComponent<Chest>());
-                ticketText.SetActive(false);
-                Destroy(this);
+                // Invoke(nameof(Destroy), 0.2f);
+                inRange = false;
             }
             if (ticketCount > 0 && ticketCount < TicketAmount)
             {
@@ -62,6 +61,12 @@ public class BirdInteraction : MonoBehaviour
                     items.SetActive(false);
                 }
             }
+        }
+        void Destroy()
+        {
+            Destroy(GetComponent<Chest>());
+            ticketText.SetActive(false);
+            Destroy(this);
         }
 
         void BirdAction()

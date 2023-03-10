@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MouseSensitivity : MonoBehaviour
 {
     public float mouseSensitivity;
     public CameraLogic cameraScript;
     [SerializeField] Slider sensitivitySlider;
+    private Scene scene;
+    private static float booted = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
+        if (scene.name != "Main Menu")
+        {
         sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
+        }
+        if (scene.name == "Main Menu" && booted < 1)
+        {
+            sensitivitySlider.value = 0.5f;
+            booted = 1;
+        }
+        if (scene.name == "Main Menu" && booted > 1)
+        {
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
+        }
         // mouseSensitivity = sensitivitySlider.value;
         // if(!PlayerPrefs.HasKey("Sensitivity")){
         //     PlayerPrefs.SetFloat("Sensitivity", 0.3f);
@@ -29,7 +45,10 @@ public class MouseSensitivity : MonoBehaviour
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
+        if(cameraScript != null)
+        {
         cameraScript.sensitivity = mouseSensitivity;
+        }
         // Update();
         // Save();
         SetFloat("Sensitivity", sensitivitySlider.value);
