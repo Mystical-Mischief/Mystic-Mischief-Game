@@ -13,10 +13,12 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button defaultBtn;
 
     private ControlsforPlayer playerControls;
+    private Reload reload;
 
     private void Awake()
     {
         playerControls = new ControlsforPlayer();
+        reload = GameObject.Find("Saves").GetComponent<Reload>();
     }
 
     void Update()
@@ -74,6 +76,19 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Level 1")
+        {
+            SetFloat("LastLevel", 1);
+        }
+        if (scene.name == "Level 2")
+        {
+            SetFloat("LastLevel", 2);
+        }
+        if (scene.name == "Level 3")
+        {
+            SetFloat("LastLevel", 3);
+        }
         SceneManager.LoadScene("Main Menu");
         if (FindObjectOfType<ActivateQuest>())
         {
@@ -111,5 +126,20 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
+    }
+
+    public void SetFloat(string KeyName, float Value)
+    {
+        PlayerPrefs.SetFloat(KeyName, Value);
+    }
+
+    public float GetFloat(string KeyName)
+    {
+        return PlayerPrefs.GetFloat(KeyName);
+        // if(cameraScript != null)
+        // {
+        //     cameraScript.sensitivity = sensitivitySlider.value;
+        // }
+        // Save();
     }
 }

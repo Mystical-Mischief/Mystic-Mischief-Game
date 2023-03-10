@@ -16,15 +16,16 @@ public class GameOverMenu : MonoBehaviour
     {
         // ReloadNum.LastLevelNum;
         reload.retry = true;
-        if (ReloadNum.LastLevelNum == 1)
+        float lastLevel = PlayerPrefs.GetFloat("LastLevel", 1f);
+        if (lastLevel == 1)
         {
             SceneManager.LoadScene("Level 1");
         }
-        if (ReloadNum.LastLevelNum == 2)
+        if (lastLevel == 2)
         {
             SceneManager.LoadScene("Level 2");
         }
-        if (ReloadNum.LastLevelNum == 3)
+        if (lastLevel == 3)
         {
             SceneManager.LoadScene("Level 3");
         }
@@ -40,5 +41,15 @@ public class GameOverMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         Debug.Log("In quit function");
+    }
+
+        public float GetFloat(string KeyName)
+    {
+        return PlayerPrefs.GetFloat(KeyName);
+        // if(cameraScript != null)
+        // {
+        //     cameraScript.sensitivity = sensitivitySlider.value;
+        // }
+        // Save();
     }
 }

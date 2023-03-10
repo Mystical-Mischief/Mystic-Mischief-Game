@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
         _firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
         if(_firstPlayInt == 0)
         {
-            _backgroundFloat = 1f;
+            _backgroundFloat = .5f;
             _soundEffectsFloat = .5f;
             BackgroundSlider.value =_backgroundFloat;
             SoundEffectsSlider.value = _soundEffectsFloat;
