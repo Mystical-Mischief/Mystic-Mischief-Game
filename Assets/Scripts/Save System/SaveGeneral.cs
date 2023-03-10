@@ -18,7 +18,7 @@ public class SaveGeneral : MonoBehaviour
     public GameObject q;
     public static List<QuestInfo> currentQuests = new List<QuestInfo>();
     public List<QuestInfo> Quests = new List<QuestInfo>();
-    // public PlayerHatLogic Hats;
+    public PlayerHatLogic Hats;
        
        void Awake()
        {
@@ -37,6 +37,7 @@ public class SaveGeneral : MonoBehaviour
     void Start()
     {
         q = GameObject.Find("QuestTracker");
+        Hats = GameObject.Find("Hats").GetComponent<PlayerHatLogic>();
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("enemy"))
         {
             if (gO.activeSelf == true)
@@ -134,7 +135,7 @@ public class SaveGeneral : MonoBehaviour
             //   currentQuests.Add(quests); 
             // }
         }
-        // Hats.SaveHats();
+        Hats.SaveHats();
         // questNum = q.GetComponent<Quest>().
     }
     //Saves everything when the player reaches a checkpoint.
@@ -206,7 +207,7 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         }
-        // Hats.LoadHats();
+        Hats.LoadHats();
     }
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
@@ -239,7 +240,7 @@ public class SaveGeneral : MonoBehaviour
         }
         q.GetComponent<Quest>().currentQuests.Clear();
         q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
-        // Hats.LoadHats();
+        Hats.LoadHats();
     }
     public virtual void Loadmenu()
     {
