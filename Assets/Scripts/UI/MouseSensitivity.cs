@@ -29,7 +29,10 @@ public class MouseSensitivity : MonoBehaviour
     public void OnSliderChange()
     {
         mouseSensitivity = sensitivitySlider.value;
+        if(cameraScript != null)
+        {
         cameraScript.sensitivity = mouseSensitivity;
+        }
         // Update();
         // Save();
         SetFloat("Sensitivity", sensitivitySlider.value);
