@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 705782220495552150}
   - component: {fileID: 1027322425337115457}
-  - component: {fileID: 1027322425337115458}
   - component: {fileID: 1027322425337115456}
   - component: {fileID: 1027322425337115471}
   - component: {fileID: 1027322425337115469}
   - component: {fileID: 1027322425337115460}
   - component: {fileID: 1027322425337115459}
   - component: {fileID: 5904533983049128167}
+  - component: {fileID: 730960050706852479}
   m_Layer: 0
   m_Name: Kobold_Prefab
   m_TagString: enemy
@@ -59,20 +59,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!136 &1027322425337115458
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180321677418964012}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1027322425337115456
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -149,7 +135,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 95
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.105716705
   MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
@@ -234,7 +220,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 180321677418964012}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.71
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -272,8 +258,8 @@ MonoBehaviour:
   stunned: 0
   targetPosition: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  ai_Rb: {fileID: 0}
   ps: {fileID: 4141517846231348307}
-  stunTime: 3
   timer: 0
   attackedPlayer: 0
   knockbackForce: 300
@@ -295,11 +281,24 @@ MonoBehaviour:
   Player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   PlayerDetected: 0
+--- !u!65 &730960050706852479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180321677418964012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7592583, y: 2.6005726, z: 3.4004393}
+  m_Center: {x: 0.09042334, y: 1.271924, z: -0.009188116}
 --- !u!1 &7001620512148059269
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +730,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8269171479560395657, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1014ac54ba07b4c49b5ebb9a3f4d4c7a, type: 3}
       propertyPath: m_Name
