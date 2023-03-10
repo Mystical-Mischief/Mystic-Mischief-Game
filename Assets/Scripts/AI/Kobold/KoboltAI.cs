@@ -19,7 +19,7 @@ public class KoboltAI : BaseEnemyAI
     new void Start()
     {
         base.Start();
-        player = FindObjectOfType<PlayerController>();
+        player = Player.GetComponent<PlayerController>();
         currentAttack = attackCooldown;
     } 
 
@@ -66,10 +66,11 @@ public class KoboltAI : BaseEnemyAI
     // Start is called before the first frame update
     private void OnCollisionEnter (Collision collision)
     {
-        if(!attackedPlayer && collision.gameObject.tag == "Player")
+        if(!attackedPlayer && collision.gameObject.CompareTag("Player"))
         {
             if(!stunned)
             {
+                anim.SetTrigger("Bite");
                 attackedPlayer = true;
                 LostPlayer();
                 player.TakeDamage(1);
