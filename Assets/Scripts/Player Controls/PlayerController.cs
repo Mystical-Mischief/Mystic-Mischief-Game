@@ -230,6 +230,11 @@ public class PlayerController : MonoBehaviour
         forward.y = 0;
         return forward.normalized;
     }
+
+    public void SetFloat(string KeyName, float Value)
+    {
+        PlayerPrefs.SetFloat(KeyName, Value);
+    }
     //logic for taking damage -CC
     public void TakeDamage(int damage)
     {
@@ -246,15 +251,15 @@ public class PlayerController : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 if (scene.name == "Level 1")
                 {
-                    ReloadNum.LastLevelNum = 1;
+                    SetFloat("LastLevel", 1);
                 }
                 if (scene.name == "Level 2")
                 {
-                    ReloadNum.LastLevelNum = 2;
+                    SetFloat("LastLevel", 2);
                 }
                 if (scene.name == "Level 3")
                 {
-                    ReloadNum.LastLevelNum = 3;
+                    SetFloat("LastLevel", 3);
                 }
                 SceneManager.LoadScene("Lose Screen");
             }
