@@ -113,7 +113,10 @@ public class SaveGeneral : MonoBehaviour
         //Saves the items.
         foreach (GameObject items in Items)
         {
+            if (items != null)
+            {
             items.GetComponent<Item>().SaveItem();
+            }
         }
         //Saves the player usings the players save function.
         Player.GetComponent<PlayerController>().SavePlayer();
@@ -189,6 +192,8 @@ public class SaveGeneral : MonoBehaviour
         //Loads the players inventory.
         foreach (GameObject items in Items)
         {
+            if (items != null)
+            {
             items.GetComponent<Item>().LoadItem();
             if (items.GetComponent<Item>().inInventory == true)
             {
@@ -198,6 +203,7 @@ public class SaveGeneral : MonoBehaviour
                     items.GetComponent<Item>().inInventory = false;
                 }
 
+            }
             }
         }
         // Loads the player usings the players load function
@@ -220,6 +226,8 @@ public class SaveGeneral : MonoBehaviour
         //Loads the players inventory.
         foreach (GameObject items in Items)
         {
+            if (items != null)
+            {
             items.GetComponent<Item>().LoadItem();
             if (items.GetComponent<Item>().inInventory == true)
             {
@@ -229,6 +237,7 @@ public class SaveGeneral : MonoBehaviour
                     items.GetComponent<Item>().inInventory = false;
                 }
 
+            }
             }
         }
         // Loads the player usings the players load function
