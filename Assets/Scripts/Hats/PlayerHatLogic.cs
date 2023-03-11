@@ -67,4 +67,15 @@ public class PlayerHatLogic : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         canSwitchHat = true;
     }
+
+    public void SaveHats()
+    {
+        SaveSystem.SaveHats(this);
+    }
+    public void LoadHats()
+    {
+        HatData data = SaveSystem.LoadHats(this);
+
+        // hats = data.hats;
+    }
 }
