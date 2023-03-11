@@ -4,13 +4,17 @@ using UnityEngine;
 public class Nest : MonoBehaviour
 {
     public float treasure;
+   
 
     [SerializeField] ParticleSystem storeVFX;
-
+    Item item;
+    bool CanDropItem;
 
     private void Start()
     {
        storeVFX.Stop();
+       
+        CanDropItem = false;
     }
 
 
@@ -23,19 +27,34 @@ public class Nest : MonoBehaviour
     {
         if(other.gameObject.tag=="PickUp")
         {
-            Item item = other.gameObject.GetComponent<Item>();
-            float value = item.Weight;
-            if(item.dropped)
-            {
- 
-                storeVFX.Play();
-                
+            item = other.gameObject.GetComponent<Item>();
+            //if(item.dropped)
+            // {
 
-                item = null;
-                Treasure.AddValue(value);
+            //storeVFX.Play();
+            CanDropItem = true;
+            dropItem();
+                //item = null;
+                //Loot.AddToLoot(value);
                 Destroy(other.gameObject);
-            }
+            //}
         }
+    }
+
+    private void dropItem()
+    {
+        
+        if(CanDropItem)
+        {
+            float value = item.Weight;
+            storeVFX.Play();
+            item = null;
+            CanDropItem = false;
+            Treasure.AddValue(value);
+            //CanDropItem=false;
+            
+        }
+        
     }
 
 }
