@@ -8,11 +8,11 @@ public class Chest : MonoBehaviour, IInteractable
     public string questToFinish;
     public string questToActivate;
     private bool questAccepted;
-    public bool finishQuest;
+    public bool hideText;
     [SerializeField] private string _prompt;
-    [SerializeField] private bool _displayText;
     public bool dissapear;
 
+    public GameObject GetGameObject { get { return gameObject; } }
     public string InteractionPrompt => _prompt;
     public virtual bool Interact(Interactor interactor)
     {
