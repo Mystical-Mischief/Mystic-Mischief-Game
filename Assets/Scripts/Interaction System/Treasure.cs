@@ -21,6 +21,10 @@ public class Treasure : MonoBehaviour
     }
     public static void AddValue(float value)
     {
-        treasureValue+=value;
+        treasureValue+=(value);
+    }
+    public static void SetValue(float value)
+    {
+        treasureValue = (value);
     }
 }

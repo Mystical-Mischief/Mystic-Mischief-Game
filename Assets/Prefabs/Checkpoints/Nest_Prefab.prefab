@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 174940325356003100}
   - component: {fileID: 174940325356003090}
   - component: {fileID: 174940325356003101}
-  - component: {fileID: 5321307322211290455}
   m_Layer: 6
   m_Name: Nest_Prefab
   m_TagString: Goal
@@ -36,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4455491531125520072}
+  - {fileID: 2016876134571343014}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   questToActivate: 
   finishQuest: 0
   _prompt: Depost items and send them back home
+  _displayText: 0
   dissapear: 0
 --- !u!114 &174940325356003101
 MonoBehaviour:
@@ -149,20 +150,67 @@ MonoBehaviour:
   StoredItems: []
   goal: {fileID: 174940325356003100}
   TurnsOff: 0
---- !u!114 &5321307322211290455
+--- !u!1 &3868275308608265882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2016876134571343014}
+  - component: {fileID: 2088096489889832133}
+  - component: {fileID: 5395917526532229937}
+  m_Layer: 6
+  m_Name: DropItems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2016876134571343014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868275308608265882}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 425372675737687680}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088096489889832133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057477974572452922}
+  m_GameObject: {fileID: 3868275308608265882}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 284e1773bdd91804285421915396483c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   treasure: 0
+  Loot: {fileID: 0}
   storeVFX: {fileID: 4455491531125520073}
+--- !u!65 &5395917526532229937
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868275308608265882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 44.336716, y: 28.586056, z: 61.92514}
+  m_Center: {x: 2.9117198, y: 1.9249663, z: 0.40302363}
 --- !u!1001 &663621719137694453
 PrefabInstance:
   m_ObjectHideFlags: 0
