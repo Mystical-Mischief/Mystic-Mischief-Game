@@ -29,12 +29,15 @@ public class Item : MonoBehaviour
     private static InvisibilityHat _invisibilityHat;
 
     public bool Invisible;
+    ControlsforPlayer controls;
 
     void Start()
     {
         Player = GameObject.Find("Player");
         dropped = false;
         rb = GetComponent<Rigidbody>();
+        controls = new ControlsforPlayer();
+        controls.Enable();
     }
     
     public void SaveItem()
