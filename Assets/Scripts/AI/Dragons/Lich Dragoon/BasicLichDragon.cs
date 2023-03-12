@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicLichDragon : MonoBehaviour
 {
     public List<GameObject> teleportPoints = new List<GameObject>();
+    public List<Transform> teleportPoints2 = new List<Transform>();
     public bool Teleport;
     public GameObject tpDestination;
     public float Speed;
@@ -16,7 +17,7 @@ public class BasicLichDragon : MonoBehaviour
     public float meleeDist;
     public float attackTimes;
     public float chaseTime;
-    public Transform startPosition;
+    public Transform WarpLocation;
     public bool ChasingPlayer;
     public float maxAttackTimes;
     public bool CanAttack;
@@ -24,6 +25,7 @@ public class BasicLichDragon : MonoBehaviour
     public bool closeToPlayer;
     public float timeUntilChase;
     public float resetChaseTime;
+    public int randomNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +93,14 @@ public class BasicLichDragon : MonoBehaviour
         transform.position = tpDestination.transform.position;
         Teleport = false;
     }
+
+    public void WarpAfterAttack()
+    {
+        Debug.Log("Teleporting");
+        WarpLocation = teleportPoints2[randomNumber];
+        transform.position = WarpLocation.position;
+        Teleport = false;
+    }
     
     void OnCollisionEnter(Collision other)
     {
@@ -142,7 +152,9 @@ public class BasicLichDragon : MonoBehaviour
         Invoke(nameof(ResetAttackRanged), resetChaseTime);
         int LayerDragon = LayerMask.NameToLayer("Dragon");
         gameObject.layer = LayerDragon;
-        transform.position = startPosition.position;
+        NewRandomNumber();
+        // transform.position = startPosition.position;
+        WarpAfterAttack();
         attackTimes = 0;
         ChasingPlayer = false;
     }
@@ -156,5 +168,17 @@ public class BasicLichDragon : MonoBehaviour
     {
         attacked = false;
         // Speed = startSpeed;
+    }
+
+    int lastNumber;
+    //This is the random number generator. This is used for selecting patrol points at random.
+    public virtual void NewRandomNumber()
+    {
+        randomNumber = UnityEngine.Random.Range(1, 3);
+        if (randomNumber == lastNumber)
+        {
+            randomNumber = UnityEngine.Random.Range(1, 3);
+        }
+        lastNumber = randomNumber;
     }
 }
