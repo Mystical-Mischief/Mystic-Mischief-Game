@@ -131,7 +131,8 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, base.PatrolPoints[0].position, Speed * Time.deltaTime);
+                airToGround = true;
+                // transform.position = Vector3.MoveTowards(transform.position, base.PatrolPoints[0].position, Speed * Time.deltaTime);
             }
             lastPosition = base.PatrolPoints.Count - 1;
             patrolNum = 0;
@@ -278,16 +279,9 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
                 print(patrolNum);
                 target = PatrolPoints[patrolNum];
             }
-            //if the player is at the last point go to the first one
-            if(patrolNum == PatrolPoints.Count - 1)
+            else
             {
-                // patrolNum = 0;
                 finishedPatrolling = true;
-            }
-            if (target != null)
-            {
-                // atDestination = false;
-                // transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
             }
         }
         else
@@ -316,6 +310,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             onGround = true;
             NewRandomNumber();
             airToGround = false;
+            finishedPatrolling = true;
         }
         // }
     }
@@ -385,10 +380,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     //This is the random number generator. This is used for selecting patrol points at random.
     public virtual void NewRandomNumber()
     {
-        randomNumber = UnityEngine.Random.Range(1, 3);
+        randomNumber = UnityEngine.Random.Range(0, 2);
         if (randomNumber == lastNumber)
         {
-            randomNumber = UnityEngine.Random.Range(1, 3);
+            randomNumber = UnityEngine.Random.Range(0, 2);
         }
         lastNumber = randomNumber;
     }
