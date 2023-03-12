@@ -30,7 +30,8 @@ Transform:
   m_LocalPosition: {x: -7.19, y: -4.966666, z: -0.79}
   m_LocalScale: {x: 96.31397, y: 96.31397, z: 96.31397}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2751729854322968028}
   m_Father: {fileID: 7854404057082582948}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 15.306, z: 0}
@@ -99,9 +100,8 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: This looks like it could fit on the crown!
-  _displayText: 0
   dissapear: 0
 --- !u!1 &7854404057082582952
 GameObject:
@@ -168,9 +168,8 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: This looks like it could fit on the crown!
-  _displayText: 0
   dissapear: 0
 --- !u!135 &7854404057082582947
 SphereCollider:
@@ -224,3 +223,77 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1001 &6254986057079283301
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1350693944}
+    m_Modifications:
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0318
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0162
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142005737853901754, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+      propertyPath: m_Name
+      value: Sparkle_Collectables
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+--- !u!4 &2751729854322968028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8142005737853901753, guid: a21b17b553e89594a9fde025c5ef1166, type: 3}
+  m_PrefabInstance: {fileID: 6254986057079283301}
+  m_PrefabAsset: {fileID: 0}
