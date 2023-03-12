@@ -33,28 +33,24 @@ public class FireBreathScript : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (hurtPlayer == false)
-            {
-            player.TakeDamage(1);
-            hurtPlayer = true;
-            }
-        }
         // part.Play(false);
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
-        Rigidbody rb2 = other.GetComponent<Rigidbody>();
+        Rigidbody rb = other.GetComponent<Rigidbody>();
         int i = 0;
 
         while (i < numCollisionEvents)
         {
-            if (rb2)
+            if (rb)
             {
                 Vector3 pos = collisionEvents[i].intersection;
                 Vector3 force = collisionEvents[i].velocity * 2;
-                rb2.AddForce(force);
+                rb.AddForce(force);
                 Debug.Log("Hit");
             }
+            // if (other.gameObject.CompareTag("Player"))
+            // {
+                player.TakeDamage(1);
+            // }
             i++;
         }
     }
