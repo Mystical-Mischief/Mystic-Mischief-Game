@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] float powerValue;
     [SerializeField] private Vector3 diveSpeed;
+   
 
     //Input actions -CC
     private InputAction move;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     Vector3 forceDirection = Vector3.zero;
     bool diving;
     bool Saved;
+    private bool hasJumped; //A check for whether the player has already jumped once. - Emilie
 
 
     public event EventHandler GotHurt;    
@@ -64,7 +66,7 @@ public class PlayerController : MonoBehaviour
         //Sets up controls for jump, caw and godmode
         controls = new ControlsforPlayer();
         controls.Enable();
-        controls.Actions.Jump.started += DoJump;
+        controls.Actions.Jump.performed += DoJump;
         controls.Actions.GodMode.started += GodMode;
         move = controls.Actions.Movement;
     }
@@ -105,6 +107,8 @@ public class PlayerController : MonoBehaviour
         DivingLogic();
         //Gliding Logic - CC
         GlidingLogic();
+
+        Debug.Log(hasJumped);
     }
 
     float bufferDistance = 0.1f;
@@ -119,6 +123,9 @@ public class PlayerController : MonoBehaviour
             //if the raycast hits the ground, you are on the ground and regen stamina faster -CC
             onGround = true;
             jumpInAir = false;
+
+            hasJumped = false;
+
             stamina += Time.fixedDeltaTime;
             if (stamina >= 4)
             {
@@ -129,6 +136,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             onGround = false;
+            hasJumped = true;
         }
     }
     //Look at adjusts the players direction so they move forward and glide forwad based on where the camera is facing -CC
@@ -204,10 +212,12 @@ public class PlayerController : MonoBehaviour
         if (onGround == false && canMove && jumpInAir == true)
         {
             stamina += (Time.fixedDeltaTime * 0.5f);
+
             if (stamina >= 4)
             {
                 stamina = 4;
             }
+
             GetComponent<ConstantForce>().relativeForce = glideSpeed;
         }
         //This makes the flying stop. 
@@ -242,50 +252,59 @@ public class PlayerController : MonoBehaviour
         if (!godMode)
         {
             //take damage
-            currentHealth -= damage;
 
-
-
-            if(currentHealth < 1)
+            if (damaged != true) 
             {
-                Scene scene = SceneManager.GetActiveScene();
-                if (scene.name == "Level 1")
+
+                currentHealth -= damage;
+
+
+                if (currentHealth < 1)
                 {
-                    SetFloat("LastLevel", 1);
+                    Scene scene = SceneManager.GetActiveScene();
+                    if (scene.name == "Level 1")
+                    {
+                        SetFloat("LastLevel", 1);
+                    }
+                    if (scene.name == "Level 2")
+                    {
+                        SetFloat("LastLevel", 2);
+                    }
+                    if (scene.name == "Level 3")
+                    {
+                        SetFloat("LastLevel", 3);
+                    }
+                    SceneManager.LoadScene("Lose Screen");
                 }
-                if (scene.name == "Level 2")
-                {
-                    SetFloat("LastLevel", 2);
-                }
-                if (scene.name == "Level 3")
-                {
-                    SetFloat("LastLevel", 3);
-                }
-                SceneManager.LoadScene("Lose Screen");
+
+                damaged = true;
+                StartCoroutine(tookDamage());
             }
-            damaged = true;
-            StartCoroutine(tookDamage());
         }
 
     }
     //timer so you dont take damage constantly -CC
     IEnumerator tookDamage()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4); //This represents time spent invincible -Emilie 
         damaged = false;
     }
     //jump function that only triggers when you use jump -CC
+
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if (canMove)
+        if (canMove && stamina > 0)
         {
             //if you have stamina - CC
-            if (stamina > 0)
+            if (!hasJumped)
             {
                 //jump
                 forceDirection += Vector3.up * jumpForce;
+                hasJumped = true;
+            }
+            else
+            {
                 //jump for when you jump the 2nd time and start gliding - CC
-                if (stamina > 0 && onGround == false)
                 {
                     forceDirection += Vector3.up * jumpForce;
                     if (!godMode)

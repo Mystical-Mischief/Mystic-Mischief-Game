@@ -14,7 +14,7 @@ public class Interactor : MonoBehaviour
    private readonly Collider[] _colliders = new Collider[3];
    [SerializeField] private int _numFound;
 
-   private IInteractable _interactable;
+    private IInteractable _interactable;
     ControlsforPlayer controls;
     PlayerController PC;
     private void Start()
@@ -36,7 +36,7 @@ public class Interactor : MonoBehaviour
             }
             if(_interactable != null)
             {
-                if (!_interactionpromptUI.IsDisplayed) _interactionpromptUI.Setup(_interactable.InteractionPrompt);
+                if (!_interactable.GetGameObject.GetComponent<Chest>().hideText && !_interactionpromptUI.IsDisplayed) _interactionpromptUI.Setup(_interactable.InteractionPrompt);
 
                 if(controls.Actions.Interact.WasPerformedThisFrame()) _interactable.Interact(this);
             }
