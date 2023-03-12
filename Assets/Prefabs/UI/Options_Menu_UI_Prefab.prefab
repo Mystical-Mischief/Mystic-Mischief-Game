@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1069976861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3392,6 +3392,7 @@ RectTransform:
   - {fileID: 5948527856770270679}
   - {fileID: 962066380026978924}
   - {fileID: 1069976861}
+  - {fileID: 8057271910005796269}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4552,6 +4553,58 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000091552734, y: -0.000015258789}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4841319489517868310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8057271910005796269}
+  - component: {fileID: 6602839624128682528}
+  m_Layer: 0
+  m_Name: DifficultySetings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8057271910005796269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841319489517868310}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1058.9631, y: -190.52652, z: 679.9666}
+  m_LocalScale: {x: 1.0582011, y: 1.0582011, z: 1.0582011}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2646156831672302513}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6602839624128682528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841319489517868310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0081301ced4d1745a3ceb1a6a6d8f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySpeedToggle: {fileID: 3309137936576959281}
+  EnemySpeedDiff: 0
+  DragonDMGToggle: {fileID: 6389470927479017069}
+  DragonDMG: 0
+  StaminaToggle: {fileID: 3074808922437486595}
+  StaminaDiff: 0
+  PlayerSpeedToggle: {fileID: 7372532755013875462}
+  PlayerSpeedDiff: 0
 --- !u!1 &4873579095002261798
 GameObject:
   m_ObjectHideFlags: 0
