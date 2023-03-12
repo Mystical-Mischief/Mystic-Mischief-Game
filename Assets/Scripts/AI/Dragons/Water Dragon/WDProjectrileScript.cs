@@ -33,7 +33,7 @@ public class WDProjectrileScript : MonoBehaviour
     {
             if (other.gameObject.tag == "Player")
         {  
-            // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
+            // other.gameObject.GetComponent<PlayerController>().TakeDamage(1);
             Destroy(gameObject);
         }
         if (other.gameObject.tag == "Untagged")

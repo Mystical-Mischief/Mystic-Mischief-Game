@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
     bool Saved;
     private bool hasJumped; //A check for whether the player has already jumped once. - Emilie
 
+    float easyMoveForce;
+    float easyMaxSpeed;
+
 
     public event EventHandler GotHurt;    
 
@@ -53,8 +56,18 @@ public class PlayerController : MonoBehaviour
     {
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
+        easyMaxSpeed = maxSpeed*2;
+        easyMoveForce = moveForce*2;
         rb = GetComponent<Rigidbody>();
         controls.Enable();
+        if (DifficultySettings.PlayerSpeedDiff == true)
+        {
+            maxStamina = 8;
+        }
+        else
+        {
+            maxStamina = 4;
+        }
         stamina = maxStamina;
         move = controls.Actions.Movement;
         jump = controls.Actions.Jump;
@@ -82,6 +95,24 @@ public class PlayerController : MonoBehaviour
     Vector3 horizontalVelocity;
     private void FixedUpdate()
     {
+        if(DifficultySettings.StaminaDiff == true)
+        {
+            maxStamina = 8;
+        }
+        else
+        {
+            maxStamina = 4;
+        }
+
+        if(DifficultySettings.PlayerSpeedDiff == true)
+        {
+            maxSpeed = easyMaxSpeed;
+            moveForce = easyMoveForce;
+        }
+        else
+        {
+            SetSpeedToNormal();
+        }
         //basic playermovement like walking -CC
         if (canMove)
         {
@@ -127,9 +158,9 @@ public class PlayerController : MonoBehaviour
             hasJumped = false;
 
             stamina += Time.fixedDeltaTime;
-            if (stamina >= 4)
+            if (stamina >= maxStamina)
             {
-                stamina = 4;
+                stamina = maxStamina;
             }
         }
         //otherwise you are not on the ground -CC
@@ -213,9 +244,9 @@ public class PlayerController : MonoBehaviour
         {
             stamina += (Time.fixedDeltaTime * 0.5f);
 
-            if (stamina >= 4)
+            if (stamina >= maxStamina)
             {
-                stamina = 4;
+                stamina = maxStamina;
             }
 
             GetComponent<ConstantForce>().relativeForce = glideSpeed;
@@ -322,14 +353,20 @@ public class PlayerController : MonoBehaviour
         if (!godMode)
         {
             godMode = true;
-            maxSpeed *= 2;
-            moveForce *= 2;
+            if(DifficultySettings.PlayerSpeedDiff == false)
+            {
+                maxSpeed *= 2;
+                moveForce *= 2;
+            }
         }
         else
         {
             maxSpeed /= 2;
-            moveForce /= 2;
-            godMode = false;
+            if (DifficultySettings.PlayerSpeedDiff == false)
+            {
+                maxSpeed /= 2;
+                moveForce /= 2;
+            }
         }
     }
     void OnCollisionEnter(Collision other)
@@ -360,11 +397,25 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             other.gameObject.GetComponentInParent<WaterDragonAi>().ResetBite();
-            TakeDamage(2);
+            if (DifficultySettings.DragonDMG == true)
+            {
+                TakeDamage(1);
+            }
+            else
+            {
+                TakeDamage(2);
+            }
         }
         if (other.gameObject.CompareTag("Dragon"))
         {
-            TakeDamage(2);
+            if(DifficultySettings.DragonDMG == true)
+            {
+                TakeDamage(1);
+            }
+            else
+            {
+                TakeDamage(2);
+            }
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))
