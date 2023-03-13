@@ -9,24 +9,28 @@ public class ControllerRemapper : MonoBehaviour
 {
     public GameObject[] ControllerButtons;
     public GameObject[] KeyboardButtons;
-    public InputActionAsset controlForPlayer;
 
     [SerializeField] private InputActionReference[] controls;
 
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
-    public void ButtonCtrl()
+    public void ButtonCtrl(int buttonNumber)
     {
-        ControllerButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "Waiting for input...";
+        ControllerButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "...";
 
-        rebindingOperation = controls[0].action.PerformInteractiveRebinding()
-            .WithExpectedControlType("Mouse").OnMatchWaitForAnother(0.1f)
-            .OnComplete(operation => rebindComplete())
+        controls[buttonNumber].action.Disable();
+
+        rebindingOperation = controls[buttonNumber].action.PerformInteractiveRebinding(0)
+            .WithControlsHavingToMatchPath("<Keyboard>")
+            .WithBindingGroup("Keyboard")
+            .OnComplete(operation => rebindComplete(buttonNumber))
             .Start();
     }
-    private void rebindComplete() 
+    private void rebindComplete(int buttonNumber) 
     {
-        ControllerButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(controls[0].action.bindings[0].effectivePath,InputControlPath.HumanReadableStringOptions.OmitDevice);
         rebindingOperation.Dispose();
+        controls[buttonNumber].action.Enable();
+
+        ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(controls[buttonNumber].action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
     }
 }
