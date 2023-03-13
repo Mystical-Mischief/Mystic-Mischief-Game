@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] float powerValue;
     [SerializeField] private Vector3 diveSpeed;
-   
+
 
     //Input actions -CC
     private InputAction move;
@@ -50,14 +50,14 @@ public class PlayerController : MonoBehaviour
     float easyMaxSpeed;
 
 
-    public event EventHandler GotHurt;    
+    public event EventHandler GotHurt;
 
     private void Start()
     {
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
-        easyMaxSpeed = maxSpeed*2;
-        easyMoveForce = moveForce*2;
+        easyMaxSpeed = maxSpeed * 2;
+        easyMoveForce = moveForce * 2;
         rb = GetComponent<Rigidbody>();
         controls.Enable();
         if (DifficultySettings.PlayerSpeedDiff == true)
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     Vector3 horizontalVelocity;
     private void FixedUpdate()
     {
-        if(DifficultySettings.StaminaDiff == true)
+        if (DifficultySettings.StaminaDiff == true)
         {
             maxStamina = 8;
         }
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             maxStamina = 4;
         }
 
-        if(DifficultySettings.PlayerSpeedDiff == true)
+        if (DifficultySettings.PlayerSpeedDiff == true)
         {
             maxSpeed = easyMaxSpeed;
             moveForce = easyMoveForce;
@@ -277,19 +277,17 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat(KeyName, Value);
     }
     //logic for taking damage -CC
+    [SerializeField] private InteractionpromptUI Interactionprompt;
     public void TakeDamage(int damage)
     {
         //if you arent in godmode
         if (!godMode)
         {
             //take damage
-
             if (damaged != true) 
             {
-
                 currentHealth -= damage;
-
-
+                Interactionprompt.Setup("Ouch! That Hurt");
                 if (currentHealth < 1)
                 {
                     Scene scene = SceneManager.GetActiveScene();
@@ -315,9 +313,10 @@ public class PlayerController : MonoBehaviour
 
     }
     //timer so you dont take damage constantly -CC
+    [SerializeField] float IFrames;
     IEnumerator tookDamage()
     {
-        yield return new WaitForSeconds(4); //This represents time spent invincible -Emilie 
+        yield return new WaitForSeconds(IFrames); //This represents time spent invincible -Emilie 
         damaged = false;
     }
     //jump function that only triggers when you use jump -CC
