@@ -121,10 +121,10 @@ public class PlayerAnimation : MonoBehaviour
         {
             PlaySound(PlayerCaw);
         }
-        if (waitOnSFX || Player.damaged)
+        if (waitOnSFX || !Player.damaged)
         {
             waitOnSFX = true;
-            if(Player.damaged == false)
+            if(Player.damaged == true)
             {
                 PlaySound(HurtClip);
                 waitOnSFX = false;
