@@ -12,6 +12,7 @@ public class BasicLichDragon : MonoBehaviour
     public GameObject Player;
     public Rigidbody  projectile;
     public bool attacked;
+    public bool attacked2;
     public float resetAttackTime;
     public float projectileSpeed;
     public float meleeDist;
@@ -26,6 +27,8 @@ public class BasicLichDragon : MonoBehaviour
     public float timeUntilChase;
     public float resetChaseTime;
     public int randomNumber;
+    public int randomNumber2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,9 +75,16 @@ public class BasicLichDragon : MonoBehaviour
         // }
         if (attackTimes >= maxAttackTimes)
         {
+            if (randomNumber2 == 1)
+            {
             ChasingPlayer = true;
             CanAttack = false;
             Invoke(nameof(ChasePlayer), timeUntilChase);
+            }
+            if (randomNumber2 == 3 || randomNumber2 == 4 || randomNumber2 == 2)
+            {
+                WarpAfterAttack();
+            }
         }
         // Transform.LookAt(Player.transform.position);
     }
@@ -100,6 +110,7 @@ public class BasicLichDragon : MonoBehaviour
         WarpLocation = teleportPoints2[randomNumber];
         transform.position = WarpLocation.position;
         Teleport = false;
+        attacked2 = false;
     }
     
     void OnCollisionEnter(Collision other)
@@ -127,6 +138,7 @@ public class BasicLichDragon : MonoBehaviour
         Invoke(nameof(ResetAttack), resetAttackTime);
         attacked = true;
         attackTimes++;
+        NewRandomNumber2();
     }
 
     public void Melee()
@@ -149,6 +161,7 @@ public class BasicLichDragon : MonoBehaviour
     //This is for reseting the melee attack.
     void ResetAttackChase()
     {
+        attacked2 = false;
         Invoke(nameof(ResetAttackRanged), resetChaseTime);
         int LayerDragon = LayerMask.NameToLayer("Dragon");
         gameObject.layer = LayerDragon;
@@ -180,5 +193,17 @@ public class BasicLichDragon : MonoBehaviour
             randomNumber = UnityEngine.Random.Range(1, 3);
         }
         lastNumber = randomNumber;
+    }
+
+    int lastNumber2;
+    //This is the random number generator. This is used for selecting patrol points at random.
+    public virtual void NewRandomNumber2()
+    {
+        randomNumber2 = UnityEngine.Random.Range(1, 4);
+        if (randomNumber2 == lastNumber2)
+        {
+            randomNumber = UnityEngine.Random.Range(1, 4);
+        }
+        lastNumber2 = randomNumber2;
     }
 }

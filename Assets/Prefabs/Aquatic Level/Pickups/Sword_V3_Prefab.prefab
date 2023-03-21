@@ -83,7 +83,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 328197830922048359, guid: d5c86dc3b894cf640a9a2875f7590d3b, type: 3}
       propertyPath: m_Name
-      value: Sword_3 Variant
+      value: Sword_V3_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 598019847448119594, guid: d5c86dc3b894cf640a9a2875f7590d3b, type: 3}
       propertyPath: ps
@@ -91,6 +91,10 @@ PrefabInstance:
       objectReference: {fileID: 1734922077949986883}
     - target: {fileID: 598019847448119594, guid: d5c86dc3b894cf640a9a2875f7590d3b, type: 3}
       propertyPath: canDrop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 598019847448119594, guid: d5c86dc3b894cf640a9a2875f7590d3b, type: 3}
+      propertyPath: canKill
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 598019847448119594, guid: d5c86dc3b894cf640a9a2875f7590d3b, type: 3}
@@ -196,7 +200,7 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
 --- !u!1001 &8390855613880547111

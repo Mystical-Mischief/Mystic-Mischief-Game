@@ -291,6 +291,7 @@ public class Inventory : MonoBehaviour
         Whip.GetComponent<CowboyHat>().closestItem = null;
         }
         Item.GetComponent<Item>().inInventory = false;
+        Item.GetComponent<Item>().Dropped();
         // Item.gameObject.tag="PickUp";
         MassText = MassText - Item.GetComponent<Item>().Weight;
         rb.mass = rb.mass - (Item.GetComponent<Item>().Weight * 0.2f);
