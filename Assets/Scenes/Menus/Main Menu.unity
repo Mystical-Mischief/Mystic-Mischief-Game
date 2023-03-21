@@ -4448,7 +4448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 3, y: 3}
+  m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
 --- !u!114 &638620736
 MonoBehaviour:
@@ -5716,7 +5716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -72.999985}
+  m_AnchoredPosition: {x: 0, y: -16}
   m_SizeDelta: {x: 231.3888, y: 58.2861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921965821
@@ -5964,7 +5964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &973894206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5983,7 +5983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -18}
+  m_AnchoredPosition: {x: 329, y: -148}
   m_SizeDelta: {x: 231.3888, y: 58.2861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973894207
@@ -7634,7 +7634,6 @@ GameObject:
   - component: {fileID: 1237643436}
   - component: {fileID: 1237643435}
   - component: {fileID: 1237643434}
-  - component: {fileID: 1237643437}
   m_Layer: 5
   m_Name: Jump/Fly
   m_TagString: Untagged
@@ -7710,7 +7709,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1916774591}
         m_TargetAssemblyTypeName: ControllerRemapper, Assembly-CSharp
         m_MethodName: ButtonCtrl
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7757,18 +7756,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237643432}
   m_CullTransparentMesh: 1
---- !u!114 &1237643437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237643432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cf73b2673c92a499c5d97bcf2cd537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1250951159
 GameObject:
   m_ObjectHideFlags: 0
@@ -11484,7 +11471,6 @@ MonoBehaviour:
   ControllerButtons:
   - {fileID: 1237643432}
   KeyboardButtons: []
-  controlForPlayer: {fileID: -944628639613478452, guid: ca40b3a1baaa81544890a2ce859ec27e, type: 3}
   controls:
   - {fileID: 1354117857966322311, guid: ca40b3a1baaa81544890a2ce859ec27e, type: 3}
 --- !u!1 &1922945535
@@ -11779,7 +11765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -182.99998}
+  m_AnchoredPosition: {x: 0, y: -122}
   m_SizeDelta: {x: 231.3888, y: 58.2861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952643593
@@ -12960,7 +12946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -127.999985}
+  m_AnchoredPosition: {x: 0, y: -68}
   m_SizeDelta: {x: 231.3888, y: 58.2861}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077953311

@@ -15,6 +15,7 @@ public class DragonLockOn : MonoBehaviour
 
     private void Start()
     {
+        lockOnCamera = false;
         controls = new ControlsforPlayer();
         controls.Enable();
         controls.Actions.DragonLockOn.started += LockOnCamera;
@@ -32,15 +33,15 @@ public class DragonLockOn : MonoBehaviour
     }
     private void LockOnCamera(InputAction.CallbackContext obj)
     {
-        lockOnCamera = !lockOnCamera;
-        if (CanLockOn && lockOnCamera == false)
+        
+        if (lockOnCamera == false)
         {
-            //lockOnCamera = true; //locks camera to the dragon
+            lockOnCamera = true; //locks camera to the dragon
             LockOnVisual.SetActive(true);
         }
         else
         {
-            //lockOnCamera = false;
+            lockOnCamera = false;
             LockOnVisual.SetActive(false);
         }
     }

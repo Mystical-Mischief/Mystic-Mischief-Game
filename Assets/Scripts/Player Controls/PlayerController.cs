@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] float powerValue;
     [SerializeField] private Vector3 diveSpeed;
-   
+
 
     //Input actions -CC
     private InputAction move;
@@ -46,15 +46,28 @@ public class PlayerController : MonoBehaviour
     bool Saved;
     private bool hasJumped; //A check for whether the player has already jumped once. - Emilie
 
+    float easyMoveForce;
+    float easyMaxSpeed;
 
-    public event EventHandler GotHurt;    
+
+    public event EventHandler GotHurt;
 
     private void Start()
     {
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
+        easyMaxSpeed = maxSpeed * 2;
+        easyMoveForce = moveForce * 2;
         rb = GetComponent<Rigidbody>();
         controls.Enable();
+        if (DifficultySettings.PlayerSpeedDiff == true)
+        {
+            maxStamina = 8;
+        }
+        else
+        {
+            maxStamina = 4;
+        }
         stamina = maxStamina;
         move = controls.Actions.Movement;
         jump = controls.Actions.Jump;
@@ -82,6 +95,24 @@ public class PlayerController : MonoBehaviour
     Vector3 horizontalVelocity;
     private void FixedUpdate()
     {
+        if (DifficultySettings.StaminaDiff == true)
+        {
+            maxStamina = 8;
+        }
+        else
+        {
+            maxStamina = 4;
+        }
+
+        if (DifficultySettings.PlayerSpeedDiff == true)
+        {
+            maxSpeed = easyMaxSpeed;
+            moveForce = easyMoveForce;
+        }
+        else
+        {
+            SetSpeedToNormal();
+        }
         //basic playermovement like walking -CC
         if (canMove)
         {
@@ -127,9 +158,9 @@ public class PlayerController : MonoBehaviour
             hasJumped = false;
 
             stamina += Time.fixedDeltaTime;
-            if (stamina >= 4)
+            if (stamina >= maxStamina)
             {
-                stamina = 4;
+                stamina = maxStamina;
             }
         }
         //otherwise you are not on the ground -CC
@@ -213,9 +244,9 @@ public class PlayerController : MonoBehaviour
         {
             stamina += (Time.fixedDeltaTime * 0.5f);
 
-            if (stamina >= 4)
+            if (stamina >= maxStamina)
             {
-                stamina = 4;
+                stamina = maxStamina;
             }
 
             GetComponent<ConstantForce>().relativeForce = glideSpeed;
@@ -246,19 +277,17 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat(KeyName, Value);
     }
     //logic for taking damage -CC
+    [SerializeField] private InteractionpromptUI Interactionprompt;
     public void TakeDamage(int damage)
     {
         //if you arent in godmode
         if (!godMode)
         {
             //take damage
-
             if (damaged != true) 
             {
-
                 currentHealth -= damage;
-
-
+                Interactionprompt.Setup("Ouch! That Hurt");
                 if (currentHealth < 1)
                 {
                     Scene scene = SceneManager.GetActiveScene();
@@ -284,9 +313,10 @@ public class PlayerController : MonoBehaviour
 
     }
     //timer so you dont take damage constantly -CC
+    [SerializeField] float IFrames;
     IEnumerator tookDamage()
     {
-        yield return new WaitForSeconds(4); //This represents time spent invincible -Emilie 
+        yield return new WaitForSeconds(IFrames); //This represents time spent invincible -Emilie 
         damaged = false;
     }
     //jump function that only triggers when you use jump -CC
@@ -322,14 +352,20 @@ public class PlayerController : MonoBehaviour
         if (!godMode)
         {
             godMode = true;
-            maxSpeed *= 2;
-            moveForce *= 2;
+            if(DifficultySettings.PlayerSpeedDiff == false)
+            {
+                maxSpeed *= 2;
+                moveForce *= 2;
+            }
         }
         else
         {
             maxSpeed /= 2;
-            moveForce /= 2;
-            godMode = false;
+            if (DifficultySettings.PlayerSpeedDiff == false)
+            {
+                maxSpeed /= 2;
+                moveForce /= 2;
+            }
         }
     }
     void OnCollisionEnter(Collision other)
@@ -360,11 +396,25 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             other.gameObject.GetComponentInParent<WaterDragonAi>().ResetBite();
-            TakeDamage(2);
+            if (DifficultySettings.DragonDMG == true)
+            {
+                TakeDamage(1);
+            }
+            else
+            {
+                TakeDamage(2);
+            }
         }
         if (other.gameObject.CompareTag("Dragon"))
         {
-            TakeDamage(2);
+            if(DifficultySettings.DragonDMG == true)
+            {
+                TakeDamage(1);
+            }
+            else
+            {
+                TakeDamage(2);
+            }
         }
         //This makes the player take damage when they are hit by a projectile.
         if (other.gameObject.CompareTag("Projectile"))

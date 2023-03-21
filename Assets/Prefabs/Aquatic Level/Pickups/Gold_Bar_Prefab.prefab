@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6225669455701436051}
   - component: {fileID: 6225669455701436049}
   - component: {fileID: 560147784611987421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gold_Bar_Prefab
   m_TagString: PickUp
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0.037411295, z: 0}
 --- !u!114 &6225669455701436049
 MonoBehaviour:
@@ -151,7 +151,9 @@ MonoBehaviour:
   canDrop: 1
   dropped: 0
   ps: {fileID: 183632904171246999}
+  fallDistance: 1
   itemEffect: {fileID: 0}
+  Invisible: 0
 --- !u!114 &560147784611987421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +169,7 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
 --- !u!1001 &3959471963105554776

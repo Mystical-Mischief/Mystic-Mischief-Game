@@ -35,6 +35,8 @@ public class BaseEnemyAI : MonoBehaviour
     internal float stunTime =3;
     public float timer;
 
+    internal float originalSpeed;
+    internal float easySpeed;
     
     
     //To note ANY OF THESE CAN BE OVERRIDDEN. This is a template for the AI not all ai will do this. change and override what you need in the inheritied script
@@ -54,10 +56,20 @@ public class BaseEnemyAI : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         ai_Rb = GetComponent<Rigidbody>();
         timer = stunTime;
+        originalSpeed = ai.speed;
+        easySpeed = ai.speed - 2;
     }
 
     public void Update()
     {
+        if(DifficultySettings.EnemySpeedDiff == true)
+        {
+            ai.speed = easySpeed;
+        }
+        else
+        {
+            ai.speed = originalSpeed;
+        }
         if(!stunned)
         {
             if (target == Player)
