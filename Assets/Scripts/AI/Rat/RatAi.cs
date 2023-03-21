@@ -48,6 +48,7 @@ public class RatAi : BaseEnemyAI
             Player.GetComponent<Inventory>().DropItem(Player.GetComponent<Inventory>().currentHeldItem);
             heldItem.transform.parent = this.gameObject.transform;
             heldItem.transform.localPosition = Vector3.zero;
+            heldItem.GetComponent<Rigidbody>().isKinematic = true;
             if (heldItem != null)
             {
                 Attacked = true;

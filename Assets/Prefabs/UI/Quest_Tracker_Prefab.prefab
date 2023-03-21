@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3902544299311345686}
   - component: {fileID: 8340303615475355860}
   - component: {fileID: 6481651515438773035}
+  - component: {fileID: 2525360993050085907}
   m_Layer: 0
   m_Name: Quest_Tracker_Prefab
   m_TagString: Untagged
@@ -60,15 +61,6 @@ MonoBehaviour:
   - Pick up wizard food
   - chase rat
   - go back to wizard
-  questsToActivate:
-  - How to move
-  - How to fly
-  - How to dive
-  - Tracker Hat
-  - pick up/drop items
-  - Pick up wizard food
-  - chase rat
-  - go back to wizard
   questScript: {fileID: 3902544299311345684}
 --- !u!114 &3902544299311345684
 MonoBehaviour:
@@ -91,15 +83,17 @@ MonoBehaviour:
   - {fileID: 8340303615475355860}
   - {fileID: 6481651515438773035}
   text: {fileID: 0}
-  nextQuestText: {fileID: 0}
+  questImage: {fileID: 0}
+  sideQuestText: {fileID: 0}
   allQuests:
   - questName: How to move
     questDescription: Go to the wizard. WASD/ control stick.
+    questImage: {fileID: 0}
     questType: 3
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -111,18 +105,21 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: How to Fly
     questDescription: Space bar & mouse/ A & joy sticks to fly to the tree near the
       mast
+    questImage: {fileID: 0}
     questType: 3
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -134,17 +131,20 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: How to dive
     questDescription: Hold shift/Press B
+    questImage: {fileID: 0}
     questType: 4
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -165,15 +165,18 @@ MonoBehaviour:
       m_Flags: 0
     rewards:
     - {fileID: 0}
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: Pick Up/Drop Items
     questDescription: E/X  to drop and pick up. Go find tracker hat.
+    questImage: {fileID: 0}
     questType: 4
     objectiveItems: []
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -193,19 +196,22 @@ MonoBehaviour:
         m_Flags: 0
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: Tracker Hat
     questDescription: Press Tab/Right D-Pad to switch to the explorers hat.  Use
       this to focus on where you need to go by pressing 1/LT. if you can't figure
       out where to go next! Look for the tree to go to.
+    questImage: {fileID: 0}
     questType: 3
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -218,16 +224,19 @@ MonoBehaviour:
       m_Flags: 0
     rewards:
     - {fileID: 0}
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: Pick up wizard food
     questDescription: Go to his room and get food
+    questImage: {fileID: 0}
     questType: 2
     objectiveItems:
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -239,17 +248,20 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: Chase Rat
     questDescription: Get the item from the rat.
+    questImage: {fileID: 0}
     questType: 3
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -261,17 +273,20 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   - questName: Go back to wizard
     questDescription: Go bring the item to the wizard
+    questImage: {fileID: 0}
     questType: 3
     objectiveItems:
     - {fileID: 0}
     - {fileID: 0}
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
       m_Name: Input
@@ -283,32 +298,38 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
   currentQuests: []
   activeQuest:
     questName: 
     questDescription: 
+    questImage: {fileID: 0}
     questType: 0
     objectiveItems: []
-    turnInQuest: 0
+    mainQuest: 0
     NPC: {fileID: 0}
     input:
-      m_Name: 
+      m_Name: Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 65d6690f-7d96-486c-900a-4612f2907ee5
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     rewards: []
+    scriptsToActivate: []
+    ObjToDeactivate: []
+    priorityQuest: 0
     active: 0
     completed: 0
     submitQuest: 0
-    priorityQuest: 0
+  sideQuests: []
 --- !u!114 &3902544299311345768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,3 +415,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74159593292fe884ba2ebfa387de5bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2525360993050085907
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902544299311345682}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 01c32545dff2e58458530790046a89d3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.215
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
