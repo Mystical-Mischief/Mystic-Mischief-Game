@@ -2413,6 +2413,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221092354}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &221814405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221814406}
+  m_Layer: 0
+  m_Name: HEad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221814406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221814405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 580327962}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &222961123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4575,11 +4606,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.018138118
+      value: 0.00023174797
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.002034491
+      value: -0.000039464925
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4652,6 +4683,10 @@ PrefabInstance:
     - target: {fileID: 126314368587031470, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 156196868395271320, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.8800001
       objectReference: {fileID: 0}
     - target: {fileID: 182387968671320975, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_Layer
@@ -7456,9 +7491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff90e3b069c684478c68a16e433ea74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueCanvas: {fileID: 0}
-  dialogueScript: {fileID: 0}
-  killDialouge: 0
+  dialogueCanvas: {fileID: 1403436904}
+  dialogueScript: {fileID: 580327964}
+  killDialouge: 1
 --- !u!114 &580327964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7466,7 +7501,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580327959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc64fae093d19274cb7907c92df2bdf4, type: 3}
   m_Name: 
@@ -7476,7 +7511,7 @@ MonoBehaviour:
   DialogueIsRandom: 0
   Characters:
   - CharacterName: Wizard
-    CharacterObject: {fileID: 580327959}
+    CharacterObject: {fileID: 221814405}
   - CharacterName: Mammon
     CharacterObject: {fileID: 654670048}
   AllDialogues:
@@ -7484,13 +7519,44 @@ MonoBehaviour:
     - Line: "Can you go grab the hat I left in my library? Should be really helpful
         for your missions. It\u2019ll always point you in the right direction."
       TalkingCharacter: 1
-      CameraPosition: {x: 0, y: 0, z: 0}
+      CameraPosition: {x: 3, y: 4, z: 3}
   - Interaction:
     - Line: "I\u2019m SO hungry I can\u2019t move. Make use of that hat and fetch
         me some cake I left in my fridge would ya?"
       TalkingCharacter: 1
-      CameraPosition: {x: 0, y: 0, z: 0}
-  textSpeed: 0
+      CameraPosition: {x: 3, y: 5, z: 3}
+  textSpeed: 0.0125
+--- !u!135 &580327967
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580327959}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &580327968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580327959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 1519102592}
+  questToFinish: Return to the Wizard
+  questToActivate: 
+  hideText: 1
+  _prompt: 
+  dissapear: 0
 --- !u!1001 &580373850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15836,9 +15902,8 @@ MonoBehaviour:
   quest: {fileID: 1519102592}
   questToFinish: Start Snatching!
   questToActivate: 
-  finishQuest: 1
+  hideText: 0
   _prompt: Pick me up with E!
-  _displayText: 0
   dissapear: 0
 --- !u!1 &1224138057 stripped
 GameObject:
@@ -18386,6 +18451,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6512252220762147724, guid: 5f84205ce3972f747884feec8dc34af3, type: 3}
   m_PrefabInstance: {fileID: 1396202345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1403436904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4533753702645289554, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+  m_PrefabInstance: {fileID: 1312725869}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1406931885
 PrefabInstance:
@@ -31093,7 +31163,7 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].NPC
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 580327959}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].questName
       value: Move In Day
@@ -31124,7 +31194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].questType
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].questName
@@ -31324,7 +31394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].objectiveItems.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.size
@@ -31379,13 +31449,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1976636242}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].scriptsToActivate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].objectiveItems.Array.data[0]
       value: 
-      objectReference: {fileID: 654670048}
+      objectReference: {fileID: 580327959}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].objectiveItems.Array.data[1]
       value: 
-      objectReference: {fileID: 580327959}
+      objectReference: {fileID: 654670048}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.data[0]
       value: 
@@ -31393,6 +31467,10 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].objectiveItems.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[5].scriptsToActivate.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].objectiveItems.Array.data[0]
@@ -31422,6 +31500,14 @@ PrefabInstance:
       propertyPath: allQuests.Array.data[9].objectiveItems.Array.data[0]
       value: 
       objectReference: {fileID: 1997149606}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[3].scriptsToActivate.Array.data[0]
+      value: 
+      objectReference: {fileID: 580327963}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[5].scriptsToActivate.Array.data[0]
+      value: 
+      objectReference: {fileID: 580327963}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.size
       value: 2
@@ -34634,6 +34720,10 @@ PrefabInstance:
     - target: {fileID: 3797056400877369289, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
       propertyPath: m_Name
       value: Wizard_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797056400877369289, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4610008169402035571, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
       propertyPath: m_RootOrder
