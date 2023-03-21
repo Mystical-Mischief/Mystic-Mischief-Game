@@ -29,6 +29,5 @@ public class PickUpQuest : MonoBehaviour
         enabled = false;
         questScript.NextQuest();
         itemToHold = null;
-
     }
 }

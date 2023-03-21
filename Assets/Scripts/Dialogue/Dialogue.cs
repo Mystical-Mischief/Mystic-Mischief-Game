@@ -27,9 +27,11 @@ public class AllDialogue
 }
 public class Dialogue : MonoBehaviour
 {
+    public AudioSource audioSource;
     public Camera mainCamera;
     public TextMeshProUGUI textComponent;
     public bool DialogueIsRandom;
+    public GameObject reward;
     public Character[] Characters;
     public AllDialogue[] AllDialogues;
     [Header("Speed of text for each letter goes here. Use decimals")]
@@ -55,11 +57,13 @@ public class Dialogue : MonoBehaviour
         //if you press the interact button run the dialogue 
         if (controls.Actions.Interact.WasPerformedThisFrame())
         {
+           
             DialogueLines[] currentConversation = AllDialogues[convoNumber-1].Interaction;
             //shows the talking character sprite as well as the line they are saying
             string currentDialogue = $"{Characters[currentConversation[index].TalkingCharacter-1].CharacterName}: {currentConversation[index].Line}";
             if (textComponent.text == currentDialogue)
             {
+                audioSource.Play();
                 NextLine(currentConversation);
             }
             else
@@ -72,6 +76,7 @@ public class Dialogue : MonoBehaviour
     //choses the proper dialogue option out of the list. if its random it will choose a random option. if its not then it will go to the next conversation listed
     void StartDialogue()
     {
+        audioSource.Play();
         index = 0;
         GetComponent<SphereCollider>().enabled = false;
         mainCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
@@ -125,6 +130,8 @@ public class Dialogue : MonoBehaviour
             GetComponent<ActivateDialogue>().dialogueCanvas.SetActive(false);
             StartCoroutine(delayDialogueBox());
             this.enabled = false;
+            if (convoNumber == AllDialogues.Length)
+                reward.SetActive(true);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
         }
     }

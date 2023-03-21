@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool canMove;
     public bool godMode;
     public SaveGeneral save;
+    public float maxStamina;
+
     //public but doesnt need to be seen in the inspector -CC
     [HideInInspector] public bool onGround;
     [HideInInspector] public float stamina;
@@ -21,7 +23,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool jumpInAir;
 
     //private but can see in editor -CC
-    [SerializeField] float maxStamina;
     [SerializeField] float moveForce;
     [SerializeField] float jumpForce;
     [SerializeField] float maxSpeed;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     float diveTim;
     private float originalMoveForce;
     private float originalMaxSpeed;
+    private float oldMaxStamina;
     Vector3 forceDirection = Vector3.zero;
     bool diving;
     bool Saved;
@@ -54,20 +56,21 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        oldMaxStamina = maxStamina;
+        if (DifficultySettings.StaminaDiff == true)
+        {
+            maxStamina = maxStamina * 2;
+        }
+        else
+        {
+            maxStamina = 6;
+        }
         originalMaxSpeed = maxSpeed;
         originalMoveForce = moveForce;
         easyMaxSpeed = maxSpeed * 2;
         easyMoveForce = moveForce * 2;
         rb = GetComponent<Rigidbody>();
         controls.Enable();
-        if (DifficultySettings.PlayerSpeedDiff == true)
-        {
-            maxStamina = 8;
-        }
-        else
-        {
-            maxStamina = 4;
-        }
         stamina = maxStamina;
         move = controls.Actions.Movement;
         jump = controls.Actions.Jump;
@@ -97,13 +100,12 @@ public class PlayerController : MonoBehaviour
     {
         if (DifficultySettings.StaminaDiff == true)
         {
-            maxStamina = 8;
+            maxStamina = oldMaxStamina * 2;
         }
         else
         {
-            maxStamina = 4;
+            maxStamina = 6;
         }
-
         if (DifficultySettings.PlayerSpeedDiff == true)
         {
             maxSpeed = easyMaxSpeed;
