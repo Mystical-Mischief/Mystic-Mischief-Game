@@ -151,6 +151,7 @@ public class Quest : MonoBehaviour
     //moves onto the next quest and sees if its ready to turn in or not
     public void NextQuest()
     {
+
         //if there are rewards activate them
         if(activeQuest.rewards.Length != 0)
         {
@@ -182,6 +183,7 @@ public class Quest : MonoBehaviour
                 }
             }
         }
+        GetComponent<AudioSource>().Play();
         //remove the quest from the list
         currentQuests.Remove(activeQuest);
         //if there is another quest activate the next quest on the list

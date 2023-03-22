@@ -30,7 +30,7 @@ public class Chest : MonoBehaviour, IInteractable
         }
         if (dissapear)
         {
-            gameObject.SetActive(false);
+            Destroy(this);
         }
         return true;
     }
