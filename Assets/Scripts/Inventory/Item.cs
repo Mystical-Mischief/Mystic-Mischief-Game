@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     public ParticleSystem ps;
     private Rigidbody rb;
     public float fallDistance = 1f;
+    public bool canKill;
 
     [SerializeField] private GameObject itemEffect;
 
@@ -69,13 +70,22 @@ public class Item : MonoBehaviour
                 other.gameObject.GetComponent<BirdInteraction>().StoredItems.Add(this.gameObject);
             }
         }
+
+        if (other.gameObject.tag == "PlayerOnly" && rb.velocity.magnitude >= fallDistance && dropped == true)
+        {
+            if (canKill == false)
+            {
+            other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
+            }
+            if (canKill == true)
+            {
+                Destroy(other.gameObject.transform.parent.gameObject, 1f);
+            }
+        }
     }
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "enemy" && rb.velocity.magnitude >= fallDistance)
-        {
-            other.gameObject.GetComponent<BaseEnemyAI>().stunned = true;
-        }
+
     }
 
     public static void FindInvisibilityHat(InvisibilityHat hat)
@@ -93,5 +103,14 @@ public class Item : MonoBehaviour
         {
             Invisible = false;
         }
+    }
+    public void Dropped()
+    {
+        dropped = true;
+        Invoke(nameof(ResetDropped), 2f);
+    }
+    public void ResetDropped()
+    {
+        dropped = false;
     }
 }
