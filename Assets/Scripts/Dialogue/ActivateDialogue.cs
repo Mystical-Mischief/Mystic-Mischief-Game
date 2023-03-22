@@ -23,7 +23,7 @@ public class ActivateDialogue : MonoBehaviour
             dialogueCanvas.SetActive(true);
             dialogueScript.enabled = true;
             player.GetComponent<PlayerController>().canMove = false;
-
+            inArea = false;
             if (killDialouge)
             {
                 this.enabled = false;

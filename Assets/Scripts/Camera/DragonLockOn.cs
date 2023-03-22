@@ -13,6 +13,8 @@ public class DragonLockOn : MonoBehaviour
     public GameObject LockOnVisual;
     public bool lockOnCamera;
 
+    
+
     private void Start()
     {
         lockOnCamera = false;
@@ -34,7 +36,7 @@ public class DragonLockOn : MonoBehaviour
     private void LockOnCamera(InputAction.CallbackContext obj)
     {
         
-        if (lockOnCamera == false)
+        if (CanLockOn && lockOnCamera == false)
         {
             lockOnCamera = true; //locks camera to the dragon
             LockOnVisual.SetActive(true);
@@ -47,10 +49,10 @@ public class DragonLockOn : MonoBehaviour
     }
     void Update()
     {
-        if (water != null)
-            CanLockOn = water.PlayerDetect();
-        else if (dragon != null)
+        if(dragon != null)
+        {
             CanLockOn = dragon.PlayerDetected;
+        }
 
     }
 }

@@ -103,7 +103,10 @@ public class SaveGeneral : MonoBehaviour
         //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
+            if (enemy != null)
+            {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
+            }
         }
         //Saves the players inventory.
         foreach (GameObject Item in PickedUpItems)
@@ -148,7 +151,10 @@ public class SaveGeneral : MonoBehaviour
         //Saves the enemies.
         foreach (GameObject enemy in Enemies)
         {
+            if (enemy != null)
+            {
             enemy.GetComponent<BaseEnemyAI>().SaveEnemy();
+            }
         }
         //Saves the players inventory.
         foreach (GameObject Inv in PickedUpItems)
@@ -187,7 +193,10 @@ public class SaveGeneral : MonoBehaviour
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
+            if (enemy != null)
+            {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
+            }
         }
         //Loads the players inventory.
         foreach (GameObject items in Items)
@@ -221,7 +230,10 @@ public class SaveGeneral : MonoBehaviour
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
+            if (enemy != null)
+            {
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
+            }
         }
         //Loads the players inventory.
         foreach (GameObject items in Items)
