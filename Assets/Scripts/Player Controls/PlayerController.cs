@@ -24,10 +24,11 @@ public class PlayerController : MonoBehaviour
 
     //private but can see in editor -CC
     [SerializeField] float moveForce;
+    public float pushForce;
     [SerializeField] float jumpForce;
     [SerializeField] float maxSpeed;
     [SerializeField] Camera playerCam;
-    [SerializeField] float powerValue;
+    public float powerValue;
     [SerializeField] private Vector3 diveSpeed;
 
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     //Private variables -CC
     ControlsforPlayer controls;
-    Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     float diveTim;
     private float originalMoveForce;
     private float originalMaxSpeed;
@@ -384,7 +385,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
-            rb.AddForce((-transform.forward * 1000) * powerValue);
+            rb.AddForce((-transform.forward) * pushForce);
         }
         //This stops the player from moving when they are in the water
         if (other.gameObject.CompareTag("Water"))
