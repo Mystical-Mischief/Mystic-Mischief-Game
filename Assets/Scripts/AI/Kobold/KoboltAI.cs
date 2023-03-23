@@ -9,6 +9,7 @@ public class KoboltAI : BaseEnemyAI
 
     [SerializeField]
     bool attackedPlayer = false;
+    public float pushForce = 20;
 
     PlayerController player;
 
@@ -75,7 +76,7 @@ public class KoboltAI : BaseEnemyAI
                 LostPlayer();
                 player.TakeDamage(1);
                 //Knockback
-                collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+                // player.rb.AddForce((-transform.forward) * pushForce);
             } 
         }
         if (collision.gameObject.tag == "Poop")
