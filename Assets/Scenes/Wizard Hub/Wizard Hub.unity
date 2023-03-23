@@ -3530,6 +3530,7 @@ MonoBehaviour:
   dropped: 0
   ps: {fileID: 0}
   fallDistance: 1
+  canKill: 0
   itemEffect: {fileID: 0}
   Invisible: 0
 --- !u!65 &265941551
@@ -4844,11 +4845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0012328582
+      value: 0.00032011693
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00013079902
+      value: -0.000056306017
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30468,6 +30469,7 @@ GameObject:
   - component: {fileID: 1869235516}
   - component: {fileID: 1869235519}
   - component: {fileID: 1869235520}
+  - component: {fileID: 1869235521}
   m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -30635,6 +30637,23 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1869235521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869235515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: de4a029501318e94ba5c4559ae71b6e0, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1001 &1871466202
 PrefabInstance:
   m_ObjectHideFlags: 0
