@@ -12,6 +12,7 @@ public class SpiderAI : BaseEnemyAI
     public float wanderRange;
     private Transform stunLocation;
     private float Speed;
+    // private float knockbackForce = 20;
 
     new void Start()
     {
