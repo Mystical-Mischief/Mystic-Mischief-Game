@@ -28,6 +28,7 @@ public class BasicLichDragon : MonoBehaviour
     public float resetChaseTime;
     public int randomNumber;
     public int randomNumber2;
+    public Animator anim;
 
 
     // Start is called before the first frame update
@@ -91,6 +92,7 @@ public class BasicLichDragon : MonoBehaviour
 
     public void WarpToNewLocation()
     {
+        anim.SetTrigger("Teleport");
         Debug.Log("Teleporting");
         foreach(GameObject tpPoint in teleportPoints)
         {
@@ -106,6 +108,7 @@ public class BasicLichDragon : MonoBehaviour
 
     public void WarpAfterAttack()
     {
+        anim.SetTrigger("Teleport");
         Debug.Log("Teleporting");
         WarpLocation = teleportPoints2[randomNumber];
         transform.position = WarpLocation.position;
@@ -128,6 +131,7 @@ public class BasicLichDragon : MonoBehaviour
 
         void Ranged()
     {
+        anim.SetTrigger("Attack");
         // anim.SetTrigger("Spit");
         Rigidbody clone;
         clone = Instantiate(projectile, transform.position, Player.transform.rotation);
