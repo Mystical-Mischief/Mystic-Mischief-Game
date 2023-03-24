@@ -28,8 +28,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(SkillTreeLeveling.OpenSkilltree == false)
-        {
+        
             if (GameIsPaused == true)
             {
                 Paused = true;
@@ -56,7 +55,7 @@ public class PauseMenu : MonoBehaviour
             {
                 QuitGame();
             }
-        }
+        
     }
 
     public void Resume()

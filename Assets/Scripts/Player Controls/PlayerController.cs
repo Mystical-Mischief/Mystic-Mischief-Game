@@ -326,25 +326,28 @@ public class PlayerController : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext obj)
     {
-        if (canMove && stamina > 0)
+        if (!PauseMenu.GameIsPaused)
         {
-            //if you have stamina - CC
-            if (!hasJumped)
+            if (canMove && stamina > 0)
             {
-                //jump
-                forceDirection += Vector3.up * jumpForce;
-                hasJumped = true;
-            }
-            else
-            {
-                //jump for when you jump the 2nd time and start gliding - CC
+                //if you have stamina - CC
+                if (!hasJumped)
                 {
+                    //jump
                     forceDirection += Vector3.up * jumpForce;
-                    if (!godMode)
+                    hasJumped = true;
+                }
+                else
+                {
+                    //jump for when you jump the 2nd time and start gliding - CC
                     {
-                        stamina -= 1;
+                        forceDirection += Vector3.up * jumpForce;
+                        if (!godMode)
+                        {
+                            stamina -= 1;
+                        }
+                        jumpInAir = true;
                     }
-                    jumpInAir = true;
                 }
             }
         }
