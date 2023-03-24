@@ -32,6 +32,7 @@ public class BaseEnemyAI : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem death;
     ParticleSystem.Particle[] _Particles;
+    public bool Die;
 
     internal float stunTime =3;
     public float timer;
@@ -44,6 +45,7 @@ public class BaseEnemyAI : MonoBehaviour
     //start used to set up nav mesh and set target if its null
     public void Start()
     {
+        Die = false;
         EnemyVision = GetComponent<EnemyVision>();
         Saved = false;
         // controls = new ControlsforPlayer();
@@ -94,6 +96,11 @@ public class BaseEnemyAI : MonoBehaviour
         {
             Stun(timer);
             timer-=Time.fixedDeltaTime;
+        }
+
+        if (Die == true)
+        {
+            Death();
         }
             
     }
@@ -219,6 +226,7 @@ public class BaseEnemyAI : MonoBehaviour
         if(death !=null)
         {
             death.Play(true);
+            Die = false;
         }
     }
 }
