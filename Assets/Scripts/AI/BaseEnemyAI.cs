@@ -30,6 +30,7 @@ public class BaseEnemyAI : MonoBehaviour
     [HideInInspector]
     public Rigidbody ai_Rb;
     public ParticleSystem ps;
+    public ParticleSystem death;
     ParticleSystem.Particle[] _Particles;
 
     internal float stunTime =3;
@@ -213,5 +214,11 @@ public class BaseEnemyAI : MonoBehaviour
         spottedPlayer = data.spottedPlayer;
     }
 
-
+    public void Death()
+    {
+        if(death !=null)
+        {
+            death.Play(true);
+        }
+    }
 }
