@@ -41,6 +41,13 @@ public class PlayerHatLogic : MonoBehaviour
         {
             hats = playerHats;
         }
+        if (hats[currentHatNum].name == "Empty")
+        {
+            ChangeHat();
+        }
+        {
+
+        }
         //if the player switches their hat run the hat change corotine so the players cant spam it
         switchHat = controls.Actions.SwitchHat.IsPressed();
         if (switchHat && canSwitchHat)

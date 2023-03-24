@@ -17,8 +17,7 @@ public class InvisibilityHat : BaseHatScript
     [SerializeField]
     private float _timer = 3;
 
-    static int SkillLevel = 1;
-    public int currentLevel = SkillLevel;
+    
 
     new void Start()
     {
@@ -32,15 +31,7 @@ public class InvisibilityHat : BaseHatScript
         base.OnEnable();
         Player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(HatCooldown(SwitchCooldownTime));
-        if (SkillLevel == 4)
-        {
-            ItemProtectAi.FindInvisibilityHat(this);
-        }
-        if (SkillLevel ==5)
-        {
-            Item.FindInvisibilityHat(this);
-            ItemProtectAi.FindInvisibilityHat(this);
-        }
+       
     }
     void OnDisable()
     {
@@ -74,11 +65,7 @@ public class InvisibilityHat : BaseHatScript
         models[1].GetComponent<MeshRenderer>().material = InvisMaterials[1];
         Player.transform.tag = "Untagged";
         Player.layer = 0;
-        if(SkillLevel > 1)
-        {
-            PlayerController playerController = Player.GetComponent<PlayerController>();
-            playerController.IncreaseSpeed(2);
-        }
+       
     }
     //changes materials to look visible and changes tag so enemies can see player again
     void becomeVisible()
@@ -88,16 +75,12 @@ public class InvisibilityHat : BaseHatScript
         models[1].GetComponent<MeshRenderer>().material = NormalMaterials[1];
         Player.transform.tag = "Player";
         Player.layer = 8;
-        if (SkillLevel > 1)
-        {
-            PlayerController playerController = Player.GetComponent<PlayerController>();
-            playerController.SetSpeedToNormal();
-        }
+        
     }
 
     private new void Update()
     {
-        currentLevel = SkillLevel;
+        
         base.Update();
         _snatching = controls.Actions.Snatch.IsPressed();
         if(isInvisible)
@@ -116,10 +99,7 @@ public class InvisibilityHat : BaseHatScript
     }
     IEnumerator TimeInvisible(float time)
     {
-        if(SkillLevel>1 && SkillLevel!=5)
-        {
-            time +=time;
-        }
+        
         yield return new WaitForSeconds(time);
         becomeVisible();
     }
@@ -129,12 +109,4 @@ public class InvisibilityHat : BaseHatScript
         return isInvisible;
     }
 
-    public virtual void LevelUp()
-    {
-        SkillLevel++;
-    }
-    public int getLevel()
-    {
-        return SkillLevel;
-    }
 }
