@@ -20,6 +20,7 @@ public class ActivateDialogue : MonoBehaviour
     {
         if(inArea && controls.Actions.Interact.WasPerformedThisFrame())
         {
+            print(player);
             dialogueCanvas.SetActive(true);
             dialogueScript.enabled = true;
             player.GetComponent<PlayerController>().canMove = false;
