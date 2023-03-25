@@ -32,6 +32,7 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public bool DialogueIsRandom;
     public GameObject reward;
+    public GameObject deactivate;
     public Character[] Characters;
     public AllDialogue[] AllDialogues;
     [Header("Speed of text for each letter goes here. Use decimals")]
@@ -131,7 +132,16 @@ public class Dialogue : MonoBehaviour
             StartCoroutine(delayDialogueBox());
             this.enabled = false;
             if (convoNumber == AllDialogues.Length)
-                reward.SetActive(true);
+            {
+                if(reward != null)
+                {
+                    reward.SetActive(true);
+                }
+                if(deactivate != null)
+                {
+                    deactivate.SetActive(false);
+                }
+            }
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
         }
     }
