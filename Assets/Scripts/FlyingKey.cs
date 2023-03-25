@@ -37,11 +37,17 @@ public class FlyingKey : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerExit(Collider collision)
     {
-        if(collision.gameObject.tag=="Whip")
+        if(collision.gameObject.tag=="PickUp")
         {
-            _canMove = false;
+            StartCoroutine(DestroyKey());
         }
+    }
+
+    private IEnumerator DestroyKey()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 }

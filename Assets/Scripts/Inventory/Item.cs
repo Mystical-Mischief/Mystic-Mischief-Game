@@ -79,6 +79,7 @@ public class Item : MonoBehaviour
             }
             if (canKill == true)
             {
+                other.gameObject.GetComponentInParent<BaseEnemyAI>().Die = true;
                 Destroy(other.gameObject.transform.parent.gameObject, 1f);
             }
         }

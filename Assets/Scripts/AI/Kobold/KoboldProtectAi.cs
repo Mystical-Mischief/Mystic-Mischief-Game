@@ -36,7 +36,7 @@ public class KoboldProtectAi : BaseEnemyAI
     private Transform fleeLocation;
 
     [SerializeField]
-    private float knockbackForce;
+    private float knockbackForce = 20;
 
     public bool flee;
 
@@ -131,7 +131,7 @@ public class KoboldProtectAi : BaseEnemyAI
             attackedPlayer = true;
             playerController.currentHealth--;
             //Knockback
-            collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+            // collision.gameObject.GetComponent<PlayerController>().rb.AddForce((-transform.forward) * knockbackForce);
 
         }
         if (collision.gameObject.tag == "Whip")

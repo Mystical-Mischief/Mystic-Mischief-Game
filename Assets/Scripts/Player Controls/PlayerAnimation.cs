@@ -58,8 +58,10 @@ public class PlayerAnimation : MonoBehaviour
     }
     void Update()
     {
-        Animations();
-
+        if (!PauseMenu.GameIsPaused)
+        {
+            Animations();
+        }
         SoundFXs();
     }
     void Animations()
