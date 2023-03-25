@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4055404369743915611}
   - component: {fileID: 4055404369743915609}
   - component: {fileID: 4723271052912183853}
+  - component: {fileID: 3217219770478101314}
   m_Layer: 0
   m_Name: Gold_Bar_Protect_Prefab
   m_TagString: PickUp
@@ -136,7 +137,10 @@ MonoBehaviour:
   canDrop: 0
   dropped: 0
   ps: {fileID: 4526353183180239684}
+  fallDistance: 1
+  canKill: 0
   itemEffect: {fileID: 0}
+  Invisible: 0
 --- !u!114 &4723271052912183853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,9 +156,25 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
+--- !u!54 &3217219770478101314
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784951235269127302}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5260066398784362999
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kobold: {fileID: 0}
+  Invisible: 0
 --- !u!1001 &769673395139745675
 PrefabInstance:
   m_ObjectHideFlags: 0
