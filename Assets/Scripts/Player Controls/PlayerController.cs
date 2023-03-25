@@ -90,10 +90,15 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //takes away controls
-        controls.Disable();
         controls.Actions.Jump.started -= DoJump;
         controls.Actions.GodMode.started -= GodMode;
         controls.Disable();
+    }
+    public void UpdateControls()
+    {
+        var rebinds = PlayerPrefs.GetString("rebinds");
+        print(rebinds);
+        controls.asset.LoadBindingOverridesFromJson(rebinds);
     }
     //Variables only used in this function
     Vector3 horizontalVelocity;
