@@ -10,12 +10,13 @@ public class ControllerRemapper : MonoBehaviour
     public GameObject[] ControllerButtons;
     public GameObject[] KeyboardButtons;
 
+    [SerializeField] private InputActionAsset actions;
     [SerializeField] private InputActionReference[] controls;
 
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
-
     private void Start()
     {
+        PlayerPrefs.SetString("rebinds", string.Empty);
         int x = 0;
         foreach(GameObject button in ControllerButtons)
         {
@@ -44,7 +45,7 @@ public class ControllerRemapper : MonoBehaviour
             .WithControlsExcluding("<Gamepad>")
             .WithTargetBinding(0)
             .OnMatchWaitForAnother(0.1f)
-            .OnComplete(operation => rebindComplete(buttonNumber, 0))
+            .OnComplete(operation => rebindCompleteKeyB(buttonNumber, 0))
             .Start();
     }
     public void ButtonCtrl(int buttonNumber)
@@ -59,17 +60,35 @@ public class ControllerRemapper : MonoBehaviour
             .WithControlsExcluding("<Keyboard>")
             .WithTargetBinding(1)
             .OnMatchWaitForAnother(0.1f)
-            .OnComplete(operation => rebindComplete(buttonNumber, 1))
+            .OnComplete(operation => rebindCompleteCtrl(buttonNumber, 1))
             .Start();
     }
-    private void rebindComplete(int buttonNumber, int binding)
+    private void rebindCompleteCtrl(int buttonNumber, int binding)
     {
         rebindingOperation.Dispose();
         controls[buttonNumber].action.Enable();
-        print("this is working!!!");
+        InputBinding inputBinding = controls[buttonNumber].action.bindings[binding];
+        actions.FindAction(controls[buttonNumber].action.name).ApplyBindingOverride(binding, inputBinding);
+        var rebinds = actions.SaveBindingOverridesAsJson();
+
+        PlayerPrefs.SetString("rebinds", rebinds);
 
         ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
             controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        FindObjectOfType<PlayerController>().UpdateControls();
+    }
+    private void rebindCompleteKeyB(int buttonNumber, int binding)
+    {
+        rebindingOperation.Dispose();
+        controls[buttonNumber].action.Enable();
+        InputBinding inputBinding = controls[buttonNumber].action.bindings[binding];
+        actions.FindAction(controls[buttonNumber].action.name).ApplyBindingOverride(binding, inputBinding);
+        var rebinds = actions.SaveBindingOverridesAsJson();
 
+        PlayerPrefs.SetString("rebinds", rebinds);
+
+        KeyboardButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
+            controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        FindObjectOfType<PlayerController>().UpdateControls();
     }
 }

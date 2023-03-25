@@ -58,7 +58,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     void Update()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (Player.canMove && !PauseMenu.GameIsPaused)
         {
             Animations();
         }
