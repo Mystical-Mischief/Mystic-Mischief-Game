@@ -118,7 +118,10 @@ public class SaveGeneral : MonoBehaviour
         {
             if (items != null)
             {
-            items.GetComponent<Item>().SaveItem();
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().SaveItem();
+                }
             }
         }
         //Saves the player usings the players save function.
@@ -171,6 +174,16 @@ public class SaveGeneral : MonoBehaviour
         foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
         {
             currentQuests.Add(quests);
+        }
+        foreach (GameObject items in Items)
+        {
+            if (items != null)
+            {
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().SaveItem();
+                }
+            }
         }
         // Hats.SaveHats();
     }
@@ -240,7 +253,9 @@ public class SaveGeneral : MonoBehaviour
         {
             if (items != null)
             {
-            items.GetComponent<Item>().LoadItem();
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().LoadItem();
             if (items.GetComponent<Item>().inInventory == true)
             {
                 if (!PickedUpItems.Contains(items))
@@ -249,6 +264,7 @@ public class SaveGeneral : MonoBehaviour
                     items.GetComponent<Item>().inInventory = false;
                 }
 
+            }
             }
             }
         }
