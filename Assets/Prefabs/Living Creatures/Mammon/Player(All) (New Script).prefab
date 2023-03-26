@@ -1904,7 +1904,6 @@ MonoBehaviour:
   - {fileID: 5155797966299961028}
   isInvisible: 0
   _timer: 3
-  currentLevel: 1
 --- !u!1 &678203797363992023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,9 +2559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2022a379f476154c915360f9b3443ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CowboyHat: {fileID: 8754964315113281166}
-  InvisibilityHat: {fileID: 5014290344424160533}
-  WizardHat: {fileID: 776129141222339480}
   SkillTree: {fileID: 0}
   Text: {fileID: 0}
 --- !u!114 &916845150355414322
@@ -2642,11 +2638,13 @@ MonoBehaviour:
   inWater: 0
   jumpInAir: 0
   moveForce: 5
+  pushForce: 10000
   jumpForce: 10
   maxSpeed: 5
   playerCam: {fileID: 0}
   powerValue: 10
   diveSpeed: {x: 0, y: -100, z: 10}
+  rb: {fileID: 0}
   Interactionprompt: {fileID: 2340667124428667932}
   IFrames: 4
 --- !u!114 &1658966539584756804
