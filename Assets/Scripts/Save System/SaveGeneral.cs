@@ -175,6 +175,16 @@ public class SaveGeneral : MonoBehaviour
         {
             currentQuests.Add(quests);
         }
+        foreach (GameObject items in Items)
+        {
+            if (items != null)
+            {
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().SaveItem();
+                }
+            }
+        }
         // Hats.SaveHats();
     }
     //Loads everything from the savve file (not the checkpoint save).
