@@ -8,9 +8,14 @@ public class Teleport_Wizard_Hub : MonoBehaviour
     public GameObject TeleportTo;
     public GameObject StartTeleporter;
     public bool teleported;
+    private Treasure treasure;
     // public GameObject TeleportHub;
     // public GameObject HubTeleport; 
- 
+
+    private void Start()
+    {
+        treasure = FindObjectOfType<Treasure>();
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Teleporter"))
@@ -18,7 +23,7 @@ public class Teleport_Wizard_Hub : MonoBehaviour
             if (teleported == false)
             {
             Teleport();
-            Invoke(nameof(ResetTeleport), 5f);
+            Invoke(nameof(ResetTeleport), 2f);
             }
         }
  
@@ -28,13 +33,13 @@ public class Teleport_Wizard_Hub : MonoBehaviour
             {
             Player.transform.position = StartTeleporter.transform.position;
             teleported = true;
-            Invoke(nameof(ResetTeleport), 5f);
+            Invoke(nameof(ResetTeleport), 2f);
             }
         }
    }
-
    public void Teleport()
    {
+        treasure.PlaySound();
         Player.transform.position = TeleportTo.transform.position;
         teleported = true;
    }

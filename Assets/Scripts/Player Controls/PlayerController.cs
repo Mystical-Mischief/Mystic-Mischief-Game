@@ -146,8 +146,6 @@ public class PlayerController : MonoBehaviour
         DivingLogic();
         //Gliding Logic - CC
         GlidingLogic();
-
-        Debug.Log(hasJumped);
     }
 
     float bufferDistance = 0.1f;
