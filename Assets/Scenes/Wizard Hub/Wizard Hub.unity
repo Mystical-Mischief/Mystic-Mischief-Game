@@ -4845,11 +4845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00015665726
+      value: 0.024751017
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000024019682
+      value: -0.0027630925
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7821,6 +7821,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5958818024712471594, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
+      propertyPath: m_Size.x
+      value: 0.06107705
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958818024712471594, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
+      propertyPath: m_Size.z
+      value: 0.109130226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958818024712471594, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0013353692
+      objectReference: {fileID: 0}
+    - target: {fileID: 5958818024712471594, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0034844081
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1948757021639321315, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
     - {fileID: 4390894627231420969, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
@@ -7842,8 +7858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0368843851c7f59458567dd8fb6fee57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 5
-  viewAngle: 0
+  viewRadius: 8
+  viewAngle: 360
   Player: {fileID: 0}
   obstacleMask:
     serializedVersion: 2
@@ -7895,7 +7911,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 134284157}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.07
+  m_Radius: 0.06
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -7904,8 +7920,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.02220446
-  m_BaseOffset: 0.01110223
+  m_Height: 0.06
+  m_BaseOffset: 0.025
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &569565249
