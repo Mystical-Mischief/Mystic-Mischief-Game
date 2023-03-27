@@ -331,7 +331,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
-            if (canMove && stamina > 0)
+            if (stamina > 0)
             {
                 //if you have stamina - CC
                 if (!hasJumped)
@@ -379,6 +379,15 @@ public class PlayerController : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
+        //This stops the player from moving when they are in the water
+        if (other.gameObject.CompareTag("Water"))
+        {
+            moveForce = 0f;
+            canMove = false;
+            onGround = false;
+            inWater = true;
+            Debug.Log("Inwater");
+        }
         //This pushes the player back when they hit a wall.
         if (other.gameObject.CompareTag("wall"))
         {
@@ -386,19 +395,13 @@ public class PlayerController : MonoBehaviour
             direction = -direction.normalized;
             rb.AddForce((-transform.forward * 1000) * powerValue);
         }
+
         //This pushes the player back when they hit an enemy.
         if (other.gameObject.CompareTag("enemy"))
         {
             Vector3 direction = other.contacts[0].point - transform.position;
             direction = -direction.normalized;
             rb.AddForce((-transform.forward) * pushForce);
-        }
-        //This stops the player from moving when they are in the water
-        if (other.gameObject.CompareTag("Water"))
-        {
-            moveForce = moveForce * 0.5f;
-            onGround = false;
-            inWater = true;
         }
         //This makes the player take damage when they run into the Attackpos gameobject of the dragon.
         if (other.gameObject.CompareTag("attackpos"))
@@ -431,6 +434,10 @@ public class PlayerController : MonoBehaviour
             TakeDamage(1);
         }
     }
+    void OnCollisionStay(Collision other)
+    {
+
+    }
     void OnCollisionExit(Collision other)
     {
         //This lets the player move again when they jump out of water.
@@ -438,6 +445,7 @@ public class PlayerController : MonoBehaviour
         {
             inWater = false;
             moveForce = moveForce * 2f;
+            canMove = true;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -481,7 +489,7 @@ public class PlayerController : MonoBehaviour
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        currentHealth = data.health;
+        currentHealth = maxHealth;
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
@@ -505,7 +513,7 @@ public class PlayerController : MonoBehaviour
     public void LoadCheckpoint()
     {
         PlayerData data = SaveSystem.LoadCheckpoint();
-        currentHealth = data.health;
+        currentHealth = maxHealth;
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];

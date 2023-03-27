@@ -47,10 +47,10 @@ public class FireBreathScript : MonoBehaviour
                 rb.AddForce(force);
                 Debug.Log("Hit");
             }
-            // if (other.gameObject.CompareTag("Player"))
-            // {
+             if (other.gameObject.CompareTag("Player"))
+             {
                 player.TakeDamage(1);
-            // }
+             }
             i++;
         }
     }
