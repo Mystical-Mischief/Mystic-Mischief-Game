@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData {
 
     //public int level;
-    public int health;
+    // public int health;
     public float[] position;
     public float Stamina;
     public bool jumpInAir;
@@ -14,7 +14,7 @@ public class PlayerData {
     
     public PlayerData (PlayerController player)
     {
-        health = player.currentHealth;
+        // health = player.currentHealth;
         Stamina = player.stamina;
 
         position = new float[3];
