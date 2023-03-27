@@ -23,13 +23,7 @@ public class RatAi : BaseEnemyAI
     // Update is called once per frame
     new void Update()
     {
-        float dist = Vector3.Distance(base.Player.transform.position, transform.position);
-        //If the player is close enough it chases the player
-        if (dist < 10 && Attacked == false)
-        {
-            target = Player.transform;
-            UpdateDestination(target.position);
-        }
+        base.Update();
         //If it took an item it escapes
         if (Attacked == true)
         {
@@ -40,8 +34,9 @@ public class RatAi : BaseEnemyAI
         {
             Patrol();
         }
+        
         //This calls the update function from base.
-        base.Update();
+        
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -65,9 +60,11 @@ public class RatAi : BaseEnemyAI
         if (other.gameObject.CompareTag("Escape"))
         {
             Attacked = false;
-            LostPlayer();
-            target = PatrolPoints[0];
+            //LostPlayer();
+            //target = PatrolPoints[0];
+            Patrol();
 
         }
+
     }
 }
