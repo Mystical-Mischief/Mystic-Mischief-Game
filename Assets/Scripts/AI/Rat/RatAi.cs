@@ -36,6 +36,10 @@ public class RatAi : BaseEnemyAI
             target = Escape;
             UpdateDestination(target.position);
         }
+        else
+        {
+            Patrol();
+        }
         //This calls the update function from base.
         base.Update();
     }
@@ -54,10 +58,16 @@ public class RatAi : BaseEnemyAI
                 Attacked = true;
             }
         }
-        //If it stole an item from the player it tries to escape and if it reaches the escape gameobject it reloads a checkpoint.
-        if (other.gameObject.tag == "Escape")
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Escape"))
         {
             Attacked = false;
+            LostPlayer();
+            target = PatrolPoints[0];
+
         }
     }
 }
