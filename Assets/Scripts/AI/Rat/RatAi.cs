@@ -12,6 +12,7 @@ public class RatAi : BaseEnemyAI
     public bool Attacked;
     public Transform Escape;
     private GameObject heldItem;
+    public bool isPeaceful;
 
     // Start is called before the first frame update
     new void Start()
@@ -25,7 +26,7 @@ public class RatAi : BaseEnemyAI
     {
         base.Update();
         //If it took an item it escapes
-        if (Attacked == true)
+        if (Attacked == true && !isPeaceful)
         {
             target = Escape;
             UpdateDestination(target.position);
@@ -41,7 +42,7 @@ public class RatAi : BaseEnemyAI
     private void OnCollisionEnter(Collision other)
     {
         //If it collides with the player and it hasnt yet it will steal an item.
-        if (other.gameObject.tag == "Player" && Attacked == false)
+        if (other.gameObject.tag == "Player" && Attacked == false && !isPeaceful)
         {
             heldItem = Player.GetComponent<Inventory>().currentHeldItem;
             Player.GetComponent<Inventory>().DropItem(Player.GetComponent<Inventory>().currentHeldItem);
