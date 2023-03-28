@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    public void GoToLevel1(string name)
+    public void GoToLevel1()
     {
         //SceneManager.LoadScene(2);
         StartCoroutine(LoadLevelASync("Level 1"));
