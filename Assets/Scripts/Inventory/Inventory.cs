@@ -261,6 +261,10 @@ public class Inventory : MonoBehaviour
         Whip.GetComponent<CowboyHat>().findCloseItem = true;
         Whip.GetComponent<CowboyHat>().closestItem = null;
         }
+        if(Item.GetComponent<Item>().itemType == global::Item.ItemType.WhipOnly)
+        {
+            Item.GetComponent<Item>().itemType = global::Item.ItemType.Collectable;
+        }
         Item.GetComponent<SphereCollider>().enabled = false;
         Item.GetComponent<BoxCollider>().enabled = false;
         Item.GetComponent<Item>().inInventory = true;

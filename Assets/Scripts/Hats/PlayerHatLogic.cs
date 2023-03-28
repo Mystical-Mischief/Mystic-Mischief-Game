@@ -13,6 +13,7 @@ public class PlayerHatLogic : MonoBehaviour
     private int currentHatNum;
     public GameObject currentHatObject;
     private bool canSwitchHat = true;
+    public bool dontAutoSwitch;
 
     private PlayerController player;
 
@@ -41,7 +42,7 @@ public class PlayerHatLogic : MonoBehaviour
         {
             hats = playerHats;
         }
-        if (hats[currentHatNum].name == "Empty")
+        if (hats[currentHatNum].name == "Empty" && dontAutoSwitch == false)
         {
             ChangeHat();
         }
