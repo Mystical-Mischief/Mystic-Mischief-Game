@@ -11,6 +11,7 @@ public class PortalLogic : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(SceneName);
+            GetComponent<PortalDetector>().UpdatePortal();
         }
     }
 }
