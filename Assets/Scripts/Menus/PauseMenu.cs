@@ -20,9 +20,9 @@ public class PauseMenu : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         playerControls = new ControlsforPlayer();
-        if (scene.name != "Wizard Hub")
+        if (GameObject.Find("Saves"))
         {
-        reload = GameObject.Find("Saves").GetComponent<Reload>();
+            reload = GameObject.Find("Saves").GetComponent<Reload>();
         }
     }
 
