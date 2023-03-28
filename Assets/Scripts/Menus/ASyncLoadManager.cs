@@ -26,6 +26,7 @@ public class ASyncLoadManager : MonoBehaviour
     }
     public void PlayGame()
     {
+        PlayerPrefs.SetInt("Completed", 0);
         if (_loadScreen != null)
         {
             _loadScreen.SetActive(true);
