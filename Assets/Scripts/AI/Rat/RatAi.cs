@@ -12,6 +12,7 @@ public class RatAi : BaseEnemyAI
     public bool Attacked;
     public Transform Escape;
     private GameObject heldItem;
+    public bool isPeaceful;
 
     // Start is called before the first frame update
     new void Start()
@@ -23,15 +24,9 @@ public class RatAi : BaseEnemyAI
     // Update is called once per frame
     new void Update()
     {
-        float dist = Vector3.Distance(base.Player.transform.position, transform.position);
-        //If the player is close enough it chases the player
-        if (dist < 10 && Attacked == false)
-        {
-            target = Player.transform;
-            UpdateDestination(target.position);
-        }
+        base.Update();
         //If it took an item it escapes
-        if (Attacked == true)
+        if (Attacked == true && !isPeaceful)
         {
             target = Escape;
             UpdateDestination(target.position);
@@ -40,13 +35,14 @@ public class RatAi : BaseEnemyAI
         {
             Patrol();
         }
+        
         //This calls the update function from base.
-        base.Update();
+        
     }
     private void OnCollisionEnter(Collision other)
     {
         //If it collides with the player and it hasnt yet it will steal an item.
-        if (other.gameObject.tag == "Player" && Attacked == false)
+        if (other.gameObject.tag == "Player" && Attacked == false && !isPeaceful)
         {
             heldItem = Player.GetComponent<Inventory>().currentHeldItem;
             Player.GetComponent<Inventory>().DropItem(Player.GetComponent<Inventory>().currentHeldItem);
@@ -65,9 +61,11 @@ public class RatAi : BaseEnemyAI
         if (other.gameObject.CompareTag("Escape"))
         {
             Attacked = false;
-            LostPlayer();
-            target = PatrolPoints[0];
+            //LostPlayer();
+            //target = PatrolPoints[0];
+            Patrol();
 
         }
+
     }
 }
