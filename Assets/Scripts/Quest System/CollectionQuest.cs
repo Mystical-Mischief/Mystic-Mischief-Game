@@ -6,7 +6,7 @@ using TMPro;
 public class CollectionQuest : MonoBehaviour
 {
     private int totalNumberOfItems;
-    private int currentNumberOfItems = 0;
+    public int currentNumberOfItems = 0;
     private List<GameObject> allItems = new List<GameObject>();
     private bool updateList;
     Quest questScript;
@@ -55,7 +55,7 @@ public class CollectionQuest : MonoBehaviour
             }
             updateList = false;
         }
-        if (NPC.GetComponent<BirdInteraction>().ticketCount >= NPC.GetComponent<BirdInteraction>().TicketAmount)
+        if (NPC != null && NPC.GetComponent<BirdInteraction>().ticketCount >= NPC.GetComponent<BirdInteraction>().TicketAmount)
         {
             questComplete();
             Destroy(NPC.GetComponent<BirdInteraction>());
