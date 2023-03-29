@@ -120,7 +120,7 @@ public class BasicLichDragon : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player") && ChasingPlayer == false)
         {
-        Teleport = true;
+        WarpAfterAttack();
         }
         if (other.gameObject.CompareTag("Player") && ChasingPlayer == true)
         {
