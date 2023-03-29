@@ -355,6 +355,11 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
+    public void updatePlayerMove(bool move)
+    {
+        canMove = move;
+    }
     //enables god mode which makes the player faster and invincible - CC
     private void GodMode(InputAction.CallbackContext obj)
     {
