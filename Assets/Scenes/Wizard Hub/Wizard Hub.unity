@@ -3720,7 +3720,7 @@ MonoBehaviour:
   questToFinish: Don't be Nosey Challenge (Impossible)
   questToActivate: 
   hideText: 0
-  _prompt: Press E to Interact
+  _prompt: Press the Interact key. Please leve this sword in the birdhouse.
   dissapear: 0
 --- !u!1 &282386420
 GameObject:
@@ -4868,11 +4868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00037323002
+      value: 0.0022885585
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000061889354
+      value: -0.0002592767
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8118,6 +8118,10 @@ MonoBehaviour:
   - Interaction:
     - Line: "I\u2019m SO hungry I can\u2019t move. Make use of that hat and fetch
         me some cake I left in my fridge would ya?"
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 5, z: 3}
+    - Line: Use your hat to track the food by using the hat switch key. It could
+        help you out later on as well.
       TalkingCharacter: 1
       CameraPosition: {x: 3, y: 5, z: 3}
   - Interaction:
@@ -18132,27 +18136,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04390344
+      value: 0.5685495
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04390344
+      value: 0.5685495
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04390344
+      value: 0.5685495
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.21
+      value: 27.856
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.68
+      value: -35.304
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 148.8
+      value: 134.3
       objectReference: {fileID: 0}
     - target: {fileID: 981771124027305041, guid: a63595e3e9e696e40b34bfaa5b439922, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31262,8 +31266,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5746491, y: 3.8396194, z: 1.6184872}
-  m_Center: {x: 0.002913801, y: 0.6972282, z: 0.6176638}
+  m_Size: {x: 1.5746489, y: 16.851294, z: 1.6184872}
+  m_Center: {x: 0.002913835, y: -5.8085995, z: 0.61766386}
 --- !u!1 &1900940164
 GameObject:
   m_ObjectHideFlags: 0
@@ -33373,7 +33377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].questDescription
-      value: I really want to grab something.
+      value: I really want to grab something in the birdhouse.
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].questDescription
