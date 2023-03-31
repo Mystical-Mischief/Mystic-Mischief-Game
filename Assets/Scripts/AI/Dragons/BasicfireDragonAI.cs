@@ -45,7 +45,8 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     public float chaseTime;
     public bool airToGround;
     public bool groundToAir;
-    float dist;
+    [HideInInspector] 
+    public float dist;
     private Transform targetPos;
     public float meleeDist;
     [HideInInspector]
