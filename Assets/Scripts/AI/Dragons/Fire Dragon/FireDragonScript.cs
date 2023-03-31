@@ -24,6 +24,10 @@ public class FireDragonScript : BasicfireDragonAI
     public bool fireBreath;
     public EnemyVision ev;
     public ItemCollector iCollector;
+    public Rigidbody  projectile;
+    public bool fireAttack;
+    public float resetAttackTime;
+    public float projectileSpeed;
 
     // Start is called before the first frame update
     new void Start()
@@ -49,33 +53,8 @@ public class FireDragonScript : BasicfireDragonAI
         spotsPlayer = ev.PlayerDetected;
         // float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
-        // RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
-        // if (spottedPlayer == true)
-        // {
-            // transform.LookAt(target);
-            // float maxRange = 5;
-        // if (Physics.Raycast(transform.position, (base.target.position - transform.position), out hit, maxRange, layerMask))
-        // {
-        //     Debug.DrawRay(transform.position, (base.target.position - transform.position) * maxDistance, Color.yellow);
-        //     // Debug.Log("Hit Wall");
-        //     if (hit.transform.tag == "Player")
-        //     {
-        //         SeesPlayer = true;
-        //     }
-        //     else
-        //     {
-        //         SeesPlayer = false;
-        //     }
-        // }
-        // else
-        // {
-        //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-        //     // Debug.Log("Hit Player");
-        // }
-        //dist <= attackDist && 
         //If the dragon is in the air and spots the player it shoots fire breath.
-        if (base.inAir == true && base.spottedPlayer == true)
+        if (base.inAir == true && base.spottedPlayer == true && dist < attackDist)
         {
             ps.Play(true);
             fireBreath = true;
@@ -85,18 +64,26 @@ public class FireDragonScript : BasicfireDragonAI
             ps.Stop(true);
             fireBreath = false;
         }
+        if (dist > 15 && dist < agressionMeter && fireAttack == false && fireBreath == false)
+        {
+            Ranged();
+        }
+    }
 
-        // If it is close to the dragon it sets the attack to true.
-        //  if (dist > 2f && dist <= meleeDist)
-        //  {
-        //     //transform.LookAt(PlayerPos);
-        //     if (meleeAttack == false)
-        //     {
-        //     attackPos.SetActive(true);
-        //     meleeAttack = true;
-        //     attacked = true;
-        //     }
-            // else {anim.SetBool("Bite 0", false);}
-        //  }
+    void Ranged()
+    {
+        Rigidbody clone;
+        clone = Instantiate(projectile, transform.position, Player.transform.rotation);
+        // Speed = 0;
+        //projectile.LookAt(Player.transform);
+
+        clone.velocity = (Player.transform.position - clone.position).normalized * projectileSpeed;
+        Invoke(nameof(ResetAttack), resetAttackTime);
+        fireAttack = true;
+    }
+
+    public void ResetAttack()
+    {
+        fireAttack = false;
     }
 }
