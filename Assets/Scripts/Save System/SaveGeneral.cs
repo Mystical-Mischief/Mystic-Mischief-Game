@@ -61,6 +61,11 @@ public class SaveGeneral : MonoBehaviour
                 SaveEnemyCheckPoint();
                 reload.reloaded = true;
             }
+            if (reload.Loading == true)
+            {
+                LoadEnemy();
+                reload.Loaded = true;
+            }
         }
         controls.Enable();
     }
@@ -73,6 +78,11 @@ public class SaveGeneral : MonoBehaviour
         {
             LoadEnemy();
             reload.reloaded = true;
+        }
+        if (reload.Loading == true)
+        {
+            LoadEnemy();
+            reload.Loaded = true;
         }
         PickedUpItems = Player.GetComponent<Inventory>().PickedUpItems;
         // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
@@ -190,19 +200,6 @@ public class SaveGeneral : MonoBehaviour
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
-        q.GetComponent<Quest>().currentQuests.Clear();
-        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
-        // foreach(QuestInfo quests in currentQuests)
-        // {
-        //     q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
-        //     // q.GetComponent<Quest>().currentQuests.Add(quests);
-        //         // if (quests.questName == q.GetComponent<Quest>().activeQuest.currentQuests)
-        //         // {
-        //         // q.GetComponent<Quest>().activeQuest.completed = true;
-        //         // q.GetComponent<Quest>().UpdateQuest();
-        //         // }
-        // }
-        // Player.GetComponent<Inventory>().PickedUpItems = null;
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -216,7 +213,9 @@ public class SaveGeneral : MonoBehaviour
         {
             if (items != null)
             {
-            items.GetComponent<Item>().LoadItem();
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().LoadItem();
             if (items.GetComponent<Item>().inInventory == true)
             {
                 if (!PickedUpItems.Contains(items))
@@ -227,6 +226,7 @@ public class SaveGeneral : MonoBehaviour
 
             }
             }
+            }
         }
         // Loads the player usings the players load function
         Player.GetComponent<PlayerController>().LoadPlayer();
@@ -235,6 +235,8 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         }
+        q.GetComponent<Quest>().currentQuests.Clear();
+        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         Hats.LoadHats();
     }
     //Loads the last checkpoint.
