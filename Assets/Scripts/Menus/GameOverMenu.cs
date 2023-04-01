@@ -31,6 +31,25 @@ public class GameOverMenu : MonoBehaviour
         }
         Debug.Log("In retry function");
     }
+    public void Load()
+    {
+        // ReloadNum.LastLevelNum;
+        reload.Load = true;
+        float lastLevel = PlayerPrefs.GetFloat("LastLevel", 1f);
+        if (lastLevel == 1)
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+        if (lastLevel == 2)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        if (lastLevel == 3)
+        {
+            SceneManager.LoadScene("Level 3");
+        }
+        Debug.Log("In Loading reload function");
+    }
 
     void Update()
     {
