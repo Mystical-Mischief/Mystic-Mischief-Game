@@ -114,6 +114,7 @@ public class BasicLichDragon : MonoBehaviour
         transform.position = WarpLocation.position;
         Teleport = false;
         attacked2 = false;
+        NewRandomNumber2();
     }
     
     void OnCollisionEnter(Collision other)
