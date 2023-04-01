@@ -9,6 +9,7 @@ public class ControllerRemapper : MonoBehaviour
 {
     public GameObject[] ControllerButtons;
     public GameObject[] KeyboardButtons;
+    private PlayerController pc;
 
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private InputActionReference[] controls;
@@ -16,7 +17,9 @@ public class ControllerRemapper : MonoBehaviour
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
     private void Start()
     {
-        PlayerPrefs.SetString("rebinds", string.Empty);
+        pc = FindObjectOfType<PlayerController>();
+        if(PlayerPrefs.GetString("rebinds") == null)
+            PlayerPrefs.SetString("rebinds", string.Empty);
         int x = 0;
         foreach(GameObject button in ControllerButtons)
         {
@@ -47,6 +50,7 @@ public class ControllerRemapper : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => rebindCompleteKeyB(buttonNumber, 0))
             .Start();
+        pc.UpdateControls();
     }
     public void ButtonCtrl(int buttonNumber)
     {
@@ -62,6 +66,7 @@ public class ControllerRemapper : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => rebindCompleteCtrl(buttonNumber, 1))
             .Start();
+        pc.UpdateControls();
     }
     private void rebindCompleteCtrl(int buttonNumber, int binding)
     {
