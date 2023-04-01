@@ -14,6 +14,10 @@ public class Reload : MonoBehaviour
     public bool retry;
     public bool retrying;
     public bool reloaded;
+    public static bool loadFromLastSave;
+    public bool Load;
+    public bool Loading;
+    public bool Loaded;
 
     // public static int LastLevelNum;
 
@@ -39,6 +43,20 @@ public class Reload : MonoBehaviour
             retry = false;
             loadFromCheckPoint = false;
             retrying = false;
+        }
+        if (Load == true)
+        {
+            loadFromLastSave = true;
+        }
+        if (loadFromLastSave == true)
+        {
+            Loading = true;
+        }
+        if (Loaded == true)
+        {
+            Load = false;
+            loadFromLastSave = false;
+            Loading = false;
         }
     }
 
