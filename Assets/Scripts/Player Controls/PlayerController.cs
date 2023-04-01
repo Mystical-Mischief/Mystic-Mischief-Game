@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         jump = controls.Actions.Jump;
         flying = controls.Actions.Glide;
         currentHealth = maxHealth;
+        UpdateControls();
     }
     private void OnEnable()
     {
