@@ -76,5 +76,9 @@ public class FireDragonAnimations : MonoBehaviour
         {
             anim.SetBool("Stunned", false);
         }
+        if (dragon.fireAttack == true)
+        {
+            anim.SetTrigger("Spit");
+        }
     }
 }
