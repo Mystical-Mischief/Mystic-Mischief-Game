@@ -465,6 +465,11 @@ public class PlayerController : MonoBehaviour
         {
             other.GetComponent<FireDragonPerch>().playerInRoom = true;
         }
+        if (other.gameObject.CompareTag("Wind Gust"))
+        {
+            // glideSpeed.y = other.GetComponent<WindGust>().force + glideSpeed.y;
+            GetComponent<ConstantForce>().force = new Vector3(0, other.GetComponent<WindGust>().force * 10, 0);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
