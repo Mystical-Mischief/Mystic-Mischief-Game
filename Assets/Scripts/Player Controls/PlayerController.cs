@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public SaveGeneral save;
     public float maxStamina;
 
+    private Transform _latestCheckPoint;
+
+    public GameObject GameOverMenu;
+
     //public but doesnt need to be seen in the inspector -CC
     [HideInInspector] public bool onGround;
     [HideInInspector] public float stamina;
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
         flying = controls.Actions.Glide;
         currentHealth = maxHealth;
         UpdateControls();
+        _latestCheckPoint = transform;
     }
     private void OnEnable()
     {
@@ -297,20 +302,25 @@ public class PlayerController : MonoBehaviour
                 Interactionprompt.Setup("Ouch! That Hurt");
                 if (currentHealth < 1)
                 {
-                    Scene scene = SceneManager.GetActiveScene();
-                    if (scene.name == "Level 1")
-                    {
-                        SetFloat("LastLevel", 1);
-                    }
-                    if (scene.name == "Level 2")
-                    {
-                        SetFloat("LastLevel", 2);
-                    }
-                    if (scene.name == "Level 3")
-                    {
-                        SetFloat("LastLevel", 3);
-                    }
-                    SceneManager.LoadScene("Lose Screen");
+                    /*
+                     Scene scene = SceneManager.GetActiveScene();
+                     if (scene.name == "Level 1")
+                     {
+                         SetFloat("LastLevel", 1);
+                     }
+                     if (scene.name == "Level 2")
+                     {
+                         SetFloat("LastLevel", 2);
+                     }
+                     if (scene.name == "Level 3")
+                     {
+                         SetFloat("LastLevel", 3);
+                     }
+                     SceneManager.LoadScene("Lose Screen");
+                    */
+                    Reset();
+                    transform.position = _latestCheckPoint.position;
+                   GameOverMenu.SetActive(true);
                 }
 
                 damaged = true;
@@ -460,6 +470,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Checkpoint")
         {
             Checkpoint();
+            _latestCheckPoint = other.transform;
         }
         //In the fire level this lets the dragon know what room the player is in.
         if (other.gameObject.CompareTag("RoomEnter"))
@@ -540,5 +551,11 @@ public class PlayerController : MonoBehaviour
     public void Heal()
     {
         currentHealth++;
+    }
+
+    public void Reset()
+    {
+        currentHealth = maxHealth;
+        stamina = maxStamina;
     }
 }
