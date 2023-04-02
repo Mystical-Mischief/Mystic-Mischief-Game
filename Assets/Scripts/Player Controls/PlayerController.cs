@@ -536,4 +536,9 @@ public class PlayerController : MonoBehaviour
         //staminaBar.GetComponent<StaminaBar>().UpdateStamina(Stamina);
         //healthBar?.GetComponent<HealthBar>().SetHealth(currentHealth);
     }
+
+    public void Heal()
+    {
+        currentHealth++;
+    }
 }
