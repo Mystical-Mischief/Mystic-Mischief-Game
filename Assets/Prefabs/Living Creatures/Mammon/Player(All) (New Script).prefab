@@ -2317,16 +2317,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hats:
+  - {fileID: 7926990229802134450}
   - {fileID: 2340667125529323397}
   - {fileID: 4114034642606119313}
   - {fileID: 5088516195170616250}
-  - {fileID: 7926990229802134450}
   godModeHats:
   - {fileID: 126314368587031470}
   - {fileID: 1351633595405457893}
   - {fileID: 481802694556577186}
   - {fileID: 7926990229802134450}
   currentHatObject: {fileID: 0}
+  dontAutoSwitch: 0
 --- !u!1 &916845149209328519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2632,7 @@ MonoBehaviour:
   godMode: 0
   save: {fileID: 0}
   maxStamina: 6
+  GameOverMenu: {fileID: 0}
   onGround: 0
   stamina: 0
   damaged: 0
@@ -2639,7 +2641,7 @@ MonoBehaviour:
   jumpInAir: 0
   moveForce: 5
   pushForce: 10000
-  jumpForce: 10
+  jumpForce: 25
   maxSpeed: 5
   playerCam: {fileID: 0}
   powerValue: 10
