@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
     float easyMoveForce;
     float easyMaxSpeed;
 
+    public GameObject originalStaminaBar;
+    public GameObject doubleStaminaBar;
+
 
     public event EventHandler GotHurt;
 
@@ -113,10 +116,14 @@ public class PlayerController : MonoBehaviour
         if (DifficultySettings.StaminaDiff == true)
         {
             maxStamina = oldMaxStamina * 2;
+            doubleStaminaBar.SetActive(true);
+            originalStaminaBar.SetActive(false);
         }
         else
         {
             maxStamina = 6;
+            doubleStaminaBar.SetActive(false);
+            originalStaminaBar.SetActive(true);
         }
         if (DifficultySettings.PlayerSpeedDiff == true)
         {
