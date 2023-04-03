@@ -142,7 +142,7 @@ public class BasicLichDragon : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("DragonOnly"))
         {
             Debug.Log("HitPlayer");
             ResetAttackChase();
