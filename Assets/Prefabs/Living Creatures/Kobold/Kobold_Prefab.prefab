@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 1027322425337115459}
   - component: {fileID: 5904533983049128167}
   - component: {fileID: 730960050706852479}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Kobold_Prefab
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -306,8 +306,11 @@ MonoBehaviour:
   target: {fileID: 0}
   ai_Rb: {fileID: 0}
   ps: {fileID: 4141517846231348307}
+  death: {fileID: 0}
+  Die: 0
   timer: 0
   attackedPlayer: 0
+  pushForce: 20
   knockbackForce: 300
   anim: {fileID: 1326769306198214029}
 --- !u!114 &5904533983049128167
