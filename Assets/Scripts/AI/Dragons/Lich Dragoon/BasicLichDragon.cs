@@ -29,6 +29,7 @@ public class BasicLichDragon : MonoBehaviour
     public int randomNumber;
     public int randomNumber2;
     public Animator anim;
+    public int teleportTimes;
 
 
     // Start is called before the first frame update
@@ -65,6 +66,8 @@ public class BasicLichDragon : MonoBehaviour
         {
             Ranged();
         }
+        var q = Quaternion.LookRotation(new Vector3(Player.transform.position.x,  transform.position.y, Player.transform.position.z) - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, q, Speed * Time.deltaTime);
         // else
         // {
         //     Speed = startSpeed;
@@ -110,7 +113,7 @@ public class BasicLichDragon : MonoBehaviour
     {
         anim.SetTrigger("Teleport");
         Debug.Log("Teleporting");
-        WarpLocation = teleportPoints2[randomNumber];
+        WarpLocation = teleportPoints2[teleportTimes];
         transform.position = WarpLocation.position;
         Teleport = false;
         attacked2 = false;
@@ -143,7 +146,7 @@ public class BasicLichDragon : MonoBehaviour
         Invoke(nameof(ResetAttack), resetAttackTime);
         attacked = true;
         attackTimes++;
-        NewRandomNumber2();
+        // NewRandomNumber2();
     }
 
     public void Melee()
@@ -204,11 +207,19 @@ public class BasicLichDragon : MonoBehaviour
     //This is the random number generator. This is used for selecting patrol points at random.
     public virtual void NewRandomNumber2()
     {
-        randomNumber2 = UnityEngine.Random.Range(1, 4);
-        if (randomNumber2 == lastNumber2)
+        // randomNumber2 = UnityEngine.Random.Range(1, 4);
+        // if (randomNumber2 == lastNumber2)
+        // {
+        //     randomNumber = UnityEngine.Random.Range(1, 4);
+        // }
+        // lastNumber2 = randomNumber2;
+        if (teleportTimes <= teleportPoints2.Count - 1)
         {
-            randomNumber = UnityEngine.Random.Range(1, 4);
+            teleportTimes = teleportTimes + 1;
         }
-        lastNumber2 = randomNumber2;
+        if (teleportTimes > teleportPoints2.Count - 1)
+        {
+            teleportTimes = 0;
+        }
     }
 }
