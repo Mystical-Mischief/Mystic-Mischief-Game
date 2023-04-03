@@ -33,7 +33,7 @@ public class PaperScraps : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Inside collider");
-        if (other.gameObject.tag == "Lore")
+        if (other.gameObject.tag == "Player")
         {
             canOpenPaper = true;
         }
@@ -44,7 +44,7 @@ public class PaperScraps : MonoBehaviour
         if (PauseMenu.GameIsPaused == false)
         {
             OpenPaper = true;
-            Text.SetActive(false);
+            Text.SetActive(true);
             PaperUI.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -61,7 +61,7 @@ public class PaperScraps : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Lore")
+        if (other.gameObject.tag == "Player")
         {
             canOpenPaper = false;
         }

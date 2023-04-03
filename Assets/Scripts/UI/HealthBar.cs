@@ -34,6 +34,7 @@ public class HealthBar : MonoBehaviour
 
         if(CurrentHealth == 4)
         {
+            faces[3].gameObject.SetActive(false);
             faces[0].gameObject.SetActive(true);
         }
         if (CurrentHealth == 3)
