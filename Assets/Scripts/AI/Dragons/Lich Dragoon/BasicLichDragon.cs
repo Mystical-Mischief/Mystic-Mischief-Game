@@ -19,17 +19,19 @@ public class BasicLichDragon : MonoBehaviour
     public float attackTimes;
     public float chaseTime;
     public Transform WarpLocation;
-    public bool ChasingPlayer;
+    private bool ChasingPlayer;
     public float maxAttackTimes;
-    public bool CanAttack;
+    private bool CanAttack;
     private float startSpeed;
     public bool closeToPlayer;
     public float timeUntilChase;
     public float resetChaseTime;
-    public int randomNumber;
-    public int randomNumber2;
+    private int randomNumber;
+    private int randomNumber2;
     public Animator anim;
     public int teleportTimes;
+    public bool Die;
+    public ParticleSystem death;
 
 
     // Start is called before the first frame update
@@ -122,11 +124,25 @@ public class BasicLichDragon : MonoBehaviour
     
     void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("Player") && ChasingPlayer == false)
+        if (!other.gameObject.CompareTag("Player") && ChasingPlayer == false && Die == false)
         {
-        WarpAfterAttack();
+        Teleport = true;
         }
-        if (other.gameObject.CompareTag("Player") && ChasingPlayer == true)
+        if (!other.gameObject.CompareTag("Player") && ChasingPlayer == false && Die == true)
+        {
+            if (!other.gameObject.CompareTag("PickUp"))
+            {
+                Teleport = true;
+            }
+            if (other.gameObject.CompareTag("PickUp"))
+            {
+                if (other.gameObject.GetComponent<Item>().canKill == true)
+                {
+                    SwordDroppedOnTheHead();
+                }
+            }
+        }
+        if (other.gameObject.CompareTag("DragonOnly"))
         {
             Debug.Log("HitPlayer");
             ResetAttackChase();
@@ -220,6 +236,14 @@ public class BasicLichDragon : MonoBehaviour
         if (teleportTimes > teleportPoints2.Count - 1)
         {
             teleportTimes = 0;
+        }
+    }
+    public void SwordDroppedOnTheHead()
+    {
+        if(death !=null)
+        {
+            death.Play(true);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
