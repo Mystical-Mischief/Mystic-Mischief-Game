@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PaperScraps : MonoBehaviour
 {
     public GameObject PaperUI;
     public GameObject Text;
+    public Button button;
 
     private ControlsforPlayer playerControls;
 
@@ -43,6 +45,7 @@ public class PaperScraps : MonoBehaviour
     {
         if (PauseMenu.GameIsPaused == false)
         {
+            button.Select();
             OpenPaper = true;
             Text.SetActive(true);
             PaperUI.SetActive(true);
