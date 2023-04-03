@@ -28,6 +28,7 @@ public class FireDragonScript : BasicfireDragonAI
     public bool fireAttack;
     public float resetAttackTime;
     public float projectileSpeed;
+    public Transform firePosition;
 
     // Start is called before the first frame update
     new void Start()
@@ -54,7 +55,7 @@ public class FireDragonScript : BasicfireDragonAI
         // float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
         //If the dragon is in the air and spots the player it shoots fire breath.
-        if (base.inAir == true && base.spottedPlayer == true && dist < attackDist)
+        if (base.inAir == true && base.spottedPlayer == true && dist < attackDist && fireAttack != true)
         {
             ps.Play(true);
             fireBreath = true;
@@ -64,7 +65,7 @@ public class FireDragonScript : BasicfireDragonAI
             ps.Stop(true);
             fireBreath = false;
         }
-        if (dist > 15 && dist < agressionMeter && fireAttack == false && fireBreath == false)
+        if (dist > attackDist && base.spottedPlayer == true && fireAttack == false && fireBreath == false)
         {
             Ranged();
         }
@@ -73,7 +74,7 @@ public class FireDragonScript : BasicfireDragonAI
     void Ranged()
     {
         Rigidbody clone;
-        clone = Instantiate(projectile, transform.position, Player.transform.rotation);
+        clone = Instantiate(projectile, firePosition.position, Player.transform.rotation);
         // Speed = 0;
         //projectile.LookAt(Player.transform);
 
