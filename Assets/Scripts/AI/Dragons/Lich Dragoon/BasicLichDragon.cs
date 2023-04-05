@@ -97,6 +97,7 @@ public class BasicLichDragon : MonoBehaviour
 
     public void WarpToNewLocation()
     {
+        death.Play(true);
         anim.SetTrigger("Teleport");
         Debug.Log("Teleporting");
         foreach(GameObject tpPoint in teleportPoints)
@@ -113,6 +114,7 @@ public class BasicLichDragon : MonoBehaviour
 
     public void WarpAfterAttack()
     {
+        death.Play(true);
         anim.SetTrigger("Teleport");
         Debug.Log("Teleporting");
         WarpLocation = teleportPoints2[teleportTimes];
