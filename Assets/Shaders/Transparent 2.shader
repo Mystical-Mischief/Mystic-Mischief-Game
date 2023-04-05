@@ -4,12 +4,13 @@ Shader "Unlit/Light_Shader"
     {
         _MainTex ("Texture", 2D) = "clear" {}
         _Tint ("TintColor", Color) = (0,0,0,0)
+        _Intensity("Light Intensity", Range(0,1) ) = 1
     }
     SubShader
     {
         Tags {"Queue"="Transparent" "RenderType"="Transparent"  }
-        Blend SrcAlpha OneMinusSrcAlpha
-        AlphaToMask On
+        Blend One One
+        //AlphaToMask On
         Cull front
         LOD 100
 
@@ -39,7 +40,7 @@ Shader "Unlit/Light_Shader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _Tint;
-
+            float _Intensity;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -56,7 +57,7 @@ Shader "Unlit/Light_Shader"
             col.rgb*= _Tint;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                return col* _Intensity;
             }
             ENDCG
         }
