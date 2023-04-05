@@ -52,12 +52,14 @@ Shader "Unlit/Light_Shader"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
             col.rgb*= _Tint;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col* _Intensity;
+                //col *= _Intensity * lerp(0.8,1.5,_CosTime.y);
+                return  lerp(col * 0.85, col*1.1, cos(_Time.y*2));
             }
             ENDCG
         }
