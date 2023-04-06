@@ -55,20 +55,32 @@ public class FireDragonScript : BasicfireDragonAI
         // float closeDist = Vector3.Distance(base.target.position, transform.position);
         base.Update();
         //If the dragon is in the air and spots the player it shoots fire breath.
-        if (base.inAir == true && base.spottedPlayer == true && dist < attackDist && fireAttack != true)
+        if (base.inAir == true && base.spottedPlayer == true)
         {
-            ps.Play(true);
-            fireBreath = true;
+            if (dist < attackDist)
+            {
+                ps.Play(true);
+                fireBreath = true;
+            }
+            if (dist > attackDist && fireAttack == false)
+            {
+                    Ranged();
+            }
+            if (dist > attackDist || base.spottedPlayer == false)
+            {
+                ps.Stop(true);
+                fireBreath = false;
+            }
+
         }
-        else 
-        {
-            ps.Stop(true);
-            fireBreath = false;
-        }
-        if (dist > attackDist && base.spottedPlayer == true && fireAttack == false && fireBreath == false)
-        {
-            Ranged();
-        }
+        // else 
+        // {
+
+        // }
+        // if (dist > attackDist && base.spottedPlayer == true && fireAttack == false && fireBreath == false)
+        // {
+        //     Ranged();
+        // }
     }
 
     void Ranged()
