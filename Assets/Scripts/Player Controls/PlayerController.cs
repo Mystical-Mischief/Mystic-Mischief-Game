@@ -93,14 +93,14 @@ public class PlayerController : MonoBehaviour
         controls = new ControlsforPlayer();
         controls.Enable();
         controls.Actions.Jump.performed += DoJump;
-        controls.Actions.GodMode.started += GodMode;
+        
         move = controls.Actions.Movement;
     }
     private void OnDisable()
     {
         //takes away controls
         controls.Actions.Jump.started -= DoJump;
-        controls.Actions.GodMode.started -= GodMode;
+        
         controls.Disable();
     }
     public void UpdateControls()
@@ -299,9 +299,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InteractionpromptUI Interactionprompt;
     public void TakeDamage(int damage)
     {
-        //if you arent in godmode
-        if (!godMode)
-        {
+       
+        
             //take damage
             if (damaged != true) 
             {
@@ -333,7 +332,7 @@ public class PlayerController : MonoBehaviour
                 damaged = true;
                 StartCoroutine(tookDamage());
             }
-        }
+        
 
     }
     //timer so you dont take damage constantly -CC
@@ -379,27 +378,7 @@ public class PlayerController : MonoBehaviour
         canMove = move;
     }
     //enables god mode which makes the player faster and invincible - CC
-    private void GodMode(InputAction.CallbackContext obj)
-    {
-        if (!godMode)
-        {
-            godMode = true;
-            if(DifficultySettings.PlayerSpeedDiff == false)
-            {
-                maxSpeed *= 2;
-                moveForce *= 2;
-            }
-        }
-        else
-        {
-            maxSpeed /= 2;
-            if (DifficultySettings.PlayerSpeedDiff == false)
-            {
-                maxSpeed /= 2;
-                moveForce /= 2;
-            }
-        }
-    }
+  
     void OnCollisionEnter(Collision other)
     {
         //This stops the player from moving when they are in the water
