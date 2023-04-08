@@ -745,6 +745,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a55956d3-6e32-4681-88c3-7fe358288c69"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5626e33e-33be-4c74-978e-96f88ad01565"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
