@@ -277,8 +277,8 @@ public class SaveGeneral : MonoBehaviour
         {
         Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         }
-        q.GetComponent<Quest>().currentQuests.Clear();
-        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
+        // q.GetComponent<Quest>().currentQuests.Clear();
+        // q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         Hats.LoadHats();
     }
     public virtual void Loadmenu()
