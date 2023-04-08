@@ -300,15 +300,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""GodMode"",
-                    ""type"": ""Button"",
-                    ""id"": ""77b87bea-4344-450a-b560-f5a08e9be83e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -633,17 +624,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ca551b7b-b0ba-403b-8146-9e8a466ccef8"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GodMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e5b55a03-797b-4aa7-95b7-5f2ab2459fca"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -756,6 +736,17 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5b797ba8-50c2-41a4-9d7f-69700f101236"",
                     ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a55956d3-6e32-4681-88c3-7fe358288c69"",
+                    ""path"": ""<DualShockGamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -995,7 +986,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_Poop = m_Actions.FindAction("Poop", throwIfNotFound: true);
         m_Actions_DragonLockOn = m_Actions.FindAction("DragonLockOn", throwIfNotFound: true);
-        m_Actions_GodMode = m_Actions.FindAction("GodMode", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
@@ -1152,7 +1142,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Look;
     private readonly InputAction m_Actions_Poop;
     private readonly InputAction m_Actions_DragonLockOn;
-    private readonly InputAction m_Actions_GodMode;
     public struct ActionsActions
     {
         private @ControlsforPlayer m_Wrapper;
@@ -1173,7 +1162,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Actions_Look;
         public InputAction @Poop => m_Wrapper.m_Actions_Poop;
         public InputAction @DragonLockOn => m_Wrapper.m_Actions_DragonLockOn;
-        public InputAction @GodMode => m_Wrapper.m_Actions_GodMode;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1231,9 +1219,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @DragonLockOn.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
                 @DragonLockOn.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
                 @DragonLockOn.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnDragonLockOn;
-                @GodMode.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGodMode;
-                @GodMode.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGodMode;
-                @GodMode.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnGodMode;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1286,9 +1271,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                 @DragonLockOn.started += instance.OnDragonLockOn;
                 @DragonLockOn.performed += instance.OnDragonLockOn;
                 @DragonLockOn.canceled += instance.OnDragonLockOn;
-                @GodMode.started += instance.OnGodMode;
-                @GodMode.performed += instance.OnGodMode;
-                @GodMode.canceled += instance.OnGodMode;
             }
         }
     }
@@ -1474,7 +1456,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPoop(InputAction.CallbackContext context);
         void OnDragonLockOn(InputAction.CallbackContext context);
-        void OnGodMode(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {

@@ -20,8 +20,15 @@ public class Treasure : MonoBehaviour
     {
         if (add)
         {
-            AddValue(1);
-            currentSize = (int)treasureValue / treasures.Length;
+            //AddValue(1);
+            if((int)treasureValue / treasures.Length<treasures.Length)
+            {
+                currentSize = (int)treasureValue / treasures.Length;
+            }
+            else
+            {
+                currentSize = treasures.Length - 1;
+            }
             add = false;
         }
     }

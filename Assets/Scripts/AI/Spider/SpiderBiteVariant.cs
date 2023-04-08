@@ -50,14 +50,21 @@ public class SpiderBiteVariant : BaseEnemyAI
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!attackedPlayer && collision.gameObject.tag == "Player")
+        if (!attackedPlayer && collision.gameObject.CompareTag("Player"))
         {
-            attackedPlayer = true;
-            LostPlayer();
-            player.currentHealth--;
-
-            //Knockback
-            collision.transform.position += transform.forward * Time.deltaTime * knockbackForce;
+            if (!stunned)
+            {
+                anim.SetTrigger("Bite");
+                attackedPlayer = true;
+                LostPlayer();
+                player.TakeDamage(1);
+                //Knockback
+                // player.rb.AddForce((-transform.forward) * pushForce);
+            }
+        }
+        if (collision.gameObject.tag == "Poop")
+        {
+            stunned = true;
         }
     }
 

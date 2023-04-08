@@ -138,7 +138,7 @@ public class BasicLichDragon : MonoBehaviour
             }
             if (other.gameObject.CompareTag("PickUp"))
             {
-                if (other.gameObject.GetComponent<Item>().canKill == true)
+                if (other.gameObject.GetComponent<Item>().canKill == true && Die == true)
                 {
                     SwordDroppedOnTheHead();
                 }
