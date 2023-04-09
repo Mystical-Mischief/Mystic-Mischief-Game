@@ -15,6 +15,7 @@ public class ExplorersHat : BaseHatScript
     private bool findCloseItem;
     public Quest quest;
     private bool updateList = true;
+    bool cameraUpdated = true;
     new void Start()
     {
         quest = FindObjectOfType<Quest>();
@@ -39,14 +40,21 @@ public class ExplorersHat : BaseHatScript
         if (!activateHat)
         {
             circleTool.SetActive(false);
+            if (!cameraUpdated)
+            {
+                cameraForward.GetComponent<CameraLogic>().enabled = true;
+                cameraUpdated = true;
+            }
+            
             updateList = true;
             timeElapsed = 0;
-            cameraForward.GetComponent<CameraLogic>().enabled = true;
+            
         }
         if (activateHat)
         {
             circleTool.SetActive(true);
             updateList = true;
+            cameraUpdated = false;
         }
         if (closestItem == null || !closestItem.activeInHierarchy)
         {
