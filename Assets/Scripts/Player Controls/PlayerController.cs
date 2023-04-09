@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         //takes away controls
-        controls.Actions.Jump.started -= DoJump;
+        controls.Actions.Jump.performed -= DoJump;
         
         controls.Disable();
     }
@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
         DivingLogic();
         //Gliding Logic - CC
         GlidingLogic();
+        
     }
 
     float bufferDistance = 0.1f;
@@ -360,14 +361,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     //jump for when you jump the 2nd time and start gliding - CC
-                    {
-                        forceDirection += Vector3.up * jumpForce;
-                        if (!godMode)
-                        {
-                            stamina -= 1;
-                        }
-                        jumpInAir = true;
-                    }
+                    forceDirection += Vector3.up * jumpForce;
+                    stamina--;
+                    jumpInAir = true;
                 }
             }
         }
