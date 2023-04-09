@@ -13,12 +13,14 @@ public class RatAi : BaseEnemyAI
     public Transform Escape;
     private GameObject heldItem;
     public bool isPeaceful;
+    public Animator anim;
 
     // Start is called before the first frame update
     new void Start()
     {
         //Calls the start from BaseEnemyAi
         base.Start();
+        // anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,14 @@ public class RatAi : BaseEnemyAI
         else
         {
             Patrol();
+        }
+        if (isPeaceful == true)
+        {
+            anim.SetBool("Idle", true);
+        }
+        if (isPeaceful == false)
+        {
+            anim.SetBool("Idle", false);
         }
         
         //This calls the update function from base.
