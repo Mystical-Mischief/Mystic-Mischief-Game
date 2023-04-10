@@ -3532,6 +3532,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   fallDistance: 1
   canKill: 0
+  ItemProjectionLine: {fileID: 0}
   itemEffect: {fileID: 0}
   Invisible: 0
 --- !u!65 &265941551
@@ -33592,6 +33593,10 @@ PrefabInstance:
       value: Move In Day
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].questType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[1].questName
       value: Move In Day Continued
       objectReference: {fileID: 0}
@@ -33912,6 +33917,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1731521774}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].objectiveItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].objectiveItems.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -34100,6 +34109,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 580327963}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -34110,6 +34123,26 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 3a6aa68a-ddec-40af-9577-f03342c02b24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 3e5fa8d9-3903-4b32-8cac-f84a49a658f0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[2].m_Id
+      value: b41714cc-e70e-46af-a700-ef0a31b34257
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[3].m_Id
+      value: 11400d48-c9ee-4b2a-8d25-0157a2f1fca9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[4].m_Id
+      value: 2efd9318-0580-4ecd-aa33-ec728985da34
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[1].m_Id
@@ -34124,6 +34157,26 @@ PrefabInstance:
       value: 8eebee0a-32e2-495e-8ccf-dcf7109d060a
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Joystick>/stick/left
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/w
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/a
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/s
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[1].m_Path
       value: <Gamepad>/buttonEast
       objectReference: {fileID: 0}
@@ -34134,6 +34187,26 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].input.m_SingletonActionBindings.Array.data[0].m_Path
       value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
+      propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[2].input.m_SingletonActionBindings.Array.data[1].m_Action
