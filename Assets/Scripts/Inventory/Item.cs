@@ -95,6 +95,10 @@ public class Item : MonoBehaviour
                 Destroy(other.gameObject.transform.parent.gameObject, 1f);
             }
         }
+        if (other.gameObject.tag == "Dragon" && rb.velocity.magnitude >= fallDistance && dropped == true)
+        {
+            other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
+        }
     }
     public void OnCollisionEnter(Collision other)
     {
