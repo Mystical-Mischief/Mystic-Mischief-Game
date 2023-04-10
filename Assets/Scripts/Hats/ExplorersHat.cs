@@ -6,6 +6,7 @@ public class ExplorersHat : BaseHatScript
 {
     public List<GameObject> currentDestinationItems = new List<GameObject>();
     public GameObject cameraForward;
+    public GameObject cameraGround;
     [SerializeField]
     private GameObject circleTool;
     [SerializeField]
@@ -146,6 +147,7 @@ public class ExplorersHat : BaseHatScript
         {
             print(timeElapsed / lerpDuration);
             cameraForward.transform.forward = Vector3.Lerp(cameraForward.transform.forward, closestItem.transform.position - (transform.position + offsetHeight), (timeElapsed / lerpDuration));
+            cameraGround.transform.forward = Vector3.Lerp(cameraGround.transform.forward, closestItem.transform.position - (transform.position + offsetHeight), (timeElapsed / lerpDuration));
             timeElapsed += Time.deltaTime;
         }
         else

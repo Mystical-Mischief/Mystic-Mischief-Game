@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 5, z: -12}
+  m_FollowOffset: {x: 0, y: 5, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685038174}
   m_LocalRotation: {x: -0, y: 0.6691241, z: -0, w: 0.7431507}
-  m_LocalPosition: {x: 0.000019431114, y: 5, z: -11.999961}
+  m_LocalPosition: {x: -0.000022649765, y: 5, z: -9.999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -230,13 +230,13 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 150
+    m_MaxSpeed: 1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -180
+    m_InvertInput: 0
+    m_MinValue: 180
     m_MaxValue: 180
     m_Wrap: 1
     m_Recentering:
@@ -259,11 +259,11 @@ MonoBehaviour:
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 14
-    m_Radius: 10
+    m_Radius: 5
   - m_Height: 5
-    m_Radius: 12
-  - m_Height: -1.59
     m_Radius: 10
+  - m_Height: 1
+    m_Radius: 5
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1111482252}
@@ -300,16 +300,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 65549
+    m_Bits: 589824
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 8
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 2
   m_AvoidObstacles: 1
-  m_DistanceLimit: 0
+  m_DistanceLimit: 2
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 1
+  m_CameraRadius: 3
   m_Strategy: 1
   m_MaximumEffort: 6
   m_SmoothingTime: 0.5
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685038174}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
   m_Name: 
@@ -448,8 +448,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111482250}
-  m_LocalRotation: {x: 0.18140766, y: -0.64888215, z: 0.16333732, w: 0.7206693}
-  m_LocalPosition: {x: 0.00024349813, y: 0, z: -0.0000006648188}
+  m_LocalRotation: {x: 0.18140803, y: -0.6488826, z: 0.16333792, w: 0.7206687}
+  m_LocalPosition: {x: 1.9890133, y: 0, z: -0.20904648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 5, z: -12}
+  m_FollowOffset: {x: 0, y: 5, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -805,7 +805,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672481753}
-  m_LocalRotation: {x: 0.1682694, y: -0.65174633, z: 0.15150802, w: 0.7238492}
+  m_LocalRotation: {x: 0.19695804, y: -0.64519536, z: 0.17733827, w: 0.7165763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 5, z: -12}
+  m_FollowOffset: {x: 0, y: 5, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1010,7 +1010,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111472469}
-  m_LocalRotation: {x: 0.15511003, y: -0.6543876, z: 0.13965948, w: 0.7267827}
+  m_LocalRotation: {x: 0.18392582, y: -0.64830637, z: 0.16560426, w: 0.72003144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14975,6 +14975,7 @@ MonoBehaviour:
   activateHat: 0
   currentDestinationItems: []
   cameraForward: {fileID: 4910193800978414866}
+  cameraGround: {fileID: 0}
   circleTool: {fileID: 2340667125400171981}
   offsetHeight: {x: 0, y: 5, z: 0}
   closestItem: {fileID: 0}
