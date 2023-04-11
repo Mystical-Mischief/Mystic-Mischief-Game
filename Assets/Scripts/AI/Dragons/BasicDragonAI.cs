@@ -75,6 +75,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
         else
         {
             Stun(timer);
+            // anim.SetFloat("Speed", 0f);
             timer -= Time.fixedDeltaTime;
         }
         IsGrounded();
