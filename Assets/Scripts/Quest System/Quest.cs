@@ -61,6 +61,8 @@ public class Quest : MonoBehaviour
     private void Start()
     {
         interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<Interactor>();
+        if(allQuests.Length == 0)
+            UpdateText();
         //currentColor = questItem.color;
     }
     //activates the quest based off the name
@@ -214,7 +216,7 @@ public class Quest : MonoBehaviour
         }
         if(currentQuests.Count == 0)
         {
-            text.text = "No Active Quests.\nMaybe theres some sidequests around!";
+            text.text = "No Active Quests.\nMaybe take some time to explore or go through the portal!";
         }
     }
 }
