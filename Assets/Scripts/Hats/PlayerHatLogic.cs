@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHatLogic : MonoBehaviour
 {
     public GameObject[] hats;
     public GameObject[] godModeHats;
+    public Sprite[] hatImages;
+    public Image hatUIImage;
     GameObject[] playerHats;
 
     ControlsforPlayer controls;
@@ -29,6 +32,14 @@ public class PlayerHatLogic : MonoBehaviour
             hat.SetActive(false);
         }
         hats[currentHatNum].SetActive(true);
+        currentHatObject = hats[currentHatNum];
+        for (int i = 0; i < hats.Length; i++)
+        {
+            if (currentHatObject == hats[i])
+            {
+                hatUIImage.sprite = hatImages[i];
+            }
+        }
         playerHats = hats;
     }
 
@@ -45,9 +56,6 @@ public class PlayerHatLogic : MonoBehaviour
         if (hats[currentHatNum].name == "Empty" && dontAutoSwitch == false)
         {
             ChangeHat();
-        }
-        {
-
         }
         //if the player switches their hat run the hat change corotine so the players cant spam it
         switchHat = controls.Actions.SwitchHat.IsPressed();
@@ -67,6 +75,14 @@ public class PlayerHatLogic : MonoBehaviour
             currentHatNum = 0;
         }
         hats[currentHatNum].SetActive(true);
+        currentHatObject = hats[currentHatNum];
+        for (int i = 0; i < hats.Length; i++)
+        {
+            if (currentHatObject == hats[i])
+            {
+                hatUIImage.sprite = hatImages[i];
+            }
+        }
     }
     //changes hat and starts a short cooldown so hat changing is easier to use
     IEnumerator ChangeHatCooldown()
