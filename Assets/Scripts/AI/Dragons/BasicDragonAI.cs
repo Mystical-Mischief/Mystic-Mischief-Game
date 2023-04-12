@@ -67,10 +67,16 @@ public abstract class BasicDragonAI : BaseEnemyAI
             base.PatrolPoints.AddRange(PatrolPoints3);
         }
         //if the ai doesnt see the player then it will patrol and look for it
-        if (!spottedPlayer)
+        if (!spottedPlayer && !stunned)
         {
             EnemyDetection();
             Patrol();
+        }
+        else
+        {
+            Stun(timer);
+            // anim.SetFloat("Speed", 0f);
+            timer -= Time.fixedDeltaTime;
         }
         IsGrounded();
         if (finishedPatrolling)
@@ -114,6 +120,8 @@ public abstract class BasicDragonAI : BaseEnemyAI
     //if the ai found the player it will run this. This follows the player until the enemy cant see them with the raycast.
     public override void FoundPlayer()
     {
+        if (stunned != true)
+        {
         Debug.DrawRay(transform.position, (target.position - transform.position).normalized * SightDistance, Color.green);
         RaycastHit hit;
 
@@ -131,6 +139,7 @@ public abstract class BasicDragonAI : BaseEnemyAI
         else
         {
             LostPlayer();
+        }
         }
     }
 

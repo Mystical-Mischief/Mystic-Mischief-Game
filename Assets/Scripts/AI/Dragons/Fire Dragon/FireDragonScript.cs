@@ -57,16 +57,21 @@ public class FireDragonScript : BasicfireDragonAI
         //If the dragon is in the air and spots the player it shoots fire breath.
         if (base.inAir == true && base.spottedPlayer == true)
         {
-            if (dist < attackDist)
+            if (dist < attackDist && !stunned)
             {
                 ps.Play(true);
                 fireBreath = true;
             }
-            if (dist > attackDist && fireAttack == false)
+            if (dist > attackDist && fireAttack == false && stunned == false)
             {
                     Ranged();
             }
             if (dist > attackDist || base.spottedPlayer == false)
+            {
+                ps.Stop(true);
+                fireBreath = false;
+            }
+            if (base.stunned == true)
             {
                 ps.Stop(true);
                 fireBreath = false;

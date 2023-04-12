@@ -40,7 +40,7 @@ public class BirdInteraction : MonoBehaviour
             }
             if (ticketCount >= TicketAmount)
             {
-                dialouge.enabled = true;
+                Invoke("enableDialouge", 0.5f);
                 Hat.SetActive(true);
                 // Invoke(nameof(Destroy), 0.2f);
                 inRange = false;
@@ -61,6 +61,10 @@ public class BirdInteraction : MonoBehaviour
                     items.SetActive(false);
                 }
             }
+        }
+        void enableDialouge()
+        {
+            dialouge.enabled = true;
         }
         void Destroy()
         {

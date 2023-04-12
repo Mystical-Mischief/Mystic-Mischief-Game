@@ -25,6 +25,10 @@ public class Item : MonoBehaviour
     public float fallDistance = 1f;
     public bool canKill;
 
+    Transform itemThrowPos;
+    DrawPotionProjection TrajectoryLine;
+    public GameObject ItemProjectionLine;
+
     [SerializeField] private GameObject itemEffect;
 
     private static InvisibilityHat _invisibilityHat;
@@ -39,8 +43,13 @@ public class Item : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         // controls = new ControlsforPlayer();
         // controls.Enable();
+        ItemProjectionLine = GameObject.FindGameObjectWithTag("ItemProjection");
+        itemThrowPos = transform;
+        TrajectoryLine = ItemProjectionLine.GetComponent<DrawPotionProjection>();
     }
-    
+
+   
+
     public void SaveItem()
     {
         SaveSystem.SaveItem(this);
@@ -86,6 +95,10 @@ public class Item : MonoBehaviour
                 Destroy(other.gameObject.transform.parent.gameObject, 1f);
             }
         }
+        if (other.gameObject.tag == "Dragon" && rb.velocity.magnitude >= (fallDistance/0.5f) && dropped == true)
+        {
+            other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
+        }
     }
     public void OnCollisionEnter(Collision other)
     {
@@ -106,6 +119,11 @@ public class Item : MonoBehaviour
         else
         {
             Invisible = false;
+        }
+
+        if(canDrop)
+        {
+            TrajectoryLine.ShowTrajectoryLine(itemThrowPos.position, (itemThrowPos.forward).normalized * rb.mass);
         }
     }
     public void Dropped()

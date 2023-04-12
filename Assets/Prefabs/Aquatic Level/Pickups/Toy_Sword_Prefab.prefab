@@ -32,12 +32,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623472156358092158}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -56.924618, y: 0, z: -53.87049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 336479568185714416}
+  - {fileID: 5576296098047844617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,7 +121,7 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: Collect
   dissapear: 0
 --- !u!54 &5610389160175868781
@@ -180,12 +181,16 @@ MonoBehaviour:
   itemType: 1
   Weight: 0.5
   inInventory: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 7482667652216324306, guid: e4b829a6fcc761442839c30e0d8b92d6, type: 3}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
   canDrop: 1
   dropped: 0
   ps: {fileID: 336479567297864405}
+  fallDistance: 1
+  canKill: 0
+  ItemProjectionLine: {fileID: 0}
   itemEffect: {fileID: 0}
+  Invisible: 0
 --- !u!114 &1086666986258765217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +206,7 @@ MonoBehaviour:
   quest: {fileID: 0}
   questToFinish: 
   questToActivate: 
-  finishQuest: 0
+  hideText: 0
   _prompt: Press E/LMB to pick up. Press G to drop
   dissapear: 0
 --- !u!1001 &3518949035031545370
@@ -282,4 +287,66 @@ ParticleSystem:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3782667319061291242, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
   m_PrefabInstance: {fileID: 3518949035031545370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8181974003633539839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 282834196112768964}
+    m_Modifications:
+    - target: {fileID: 3389665799869419259, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_Name
+      value: Nest Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7005513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70050246
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.029331211
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13290565
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -76.825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -85.755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 94.211
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+--- !u!4 &5576296098047844617 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4390672911628184566, guid: e37dcb4c03be1f1458c7b016e47c7fcd, type: 3}
+  m_PrefabInstance: {fileID: 8181974003633539839}
   m_PrefabAsset: {fileID: 0}
