@@ -14,8 +14,8 @@ public class InvisibilityHat : BaseHatScript
     private GameObject Player;
     public bool isInvisible;
     private bool _snatching;
-    [SerializeField]
-    private float _timer = 3;
+
+    private float _timer = 5;
 
     
 
@@ -43,6 +43,7 @@ public class InvisibilityHat : BaseHatScript
     }
     public override void HatAbility()
     {
+        
         //flips like a toggle. if player is invisible become visible. if player is visible become invisible
         isInvisible = !isInvisible;
         if (isInvisible)
