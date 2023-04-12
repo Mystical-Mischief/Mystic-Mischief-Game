@@ -21,14 +21,18 @@ public class CameraSphere : MonoBehaviour
         {
             if(hit.collider.tag=="Player")
             {
-                Debug.Log("I Hit Mammon");
+                
                 Mask.gameObject.SetActive(false);
             }
             if(hit.collider.tag=="wall")
             {
-                Debug.Log("I hit something else");
+               
                 Mask.gameObject.SetActive(true);
                 
+            }
+            else
+            {
+                Mask.gameObject.SetActive(false);
             }
         }
         else
