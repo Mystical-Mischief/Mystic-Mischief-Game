@@ -29,7 +29,10 @@ public class Gamma : MonoBehaviour
     // }
     public Rect SliderLocation;
     public void Update() {
+        if (cameraBrightness != null)
+        {
         colorgrading.brightness.value = lightSlider.value;
+        }
     //    cameraBrightness.ColorGrading.brightness = lightSlider.value;
         // myLight.intensity = lightSlider.value + 0.5f;
         // Screen.brightness = 0;
@@ -38,7 +41,10 @@ public class Gamma : MonoBehaviour
 
         public void OnSliderChange()
     {
+        if (cameraBrightness != null)
+        {
         colorgrading.brightness.value = lightSlider.value;
+        }
         Update();
         SetFloat("Gamma", lightSlider.value);
     }

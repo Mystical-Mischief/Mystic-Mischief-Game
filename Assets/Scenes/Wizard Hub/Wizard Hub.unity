@@ -4871,11 +4871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00034225275
+      value: 0.0004259792
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00003729679
+      value: -0.000052690913
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8913,6 +8913,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3476505816857348743, guid: 73d4e5007fe846b4fa29fae1037344e5, type: 3}
   m_PrefabInstance: {fileID: 662423801}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &673238178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4296373481839979042, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+  m_PrefabInstance: {fileID: 1312725869}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679692072
 GameObject:
   m_ObjectHideFlags: 0
@@ -18560,6 +18571,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4296373481839979042, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1321806570}
+    - target: {fileID: 4296373481839979042, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSliderChange
+      objectReference: {fileID: 0}
     - target: {fileID: 4533753702412629225, guid: a86b28fa2b24a3340bcc82f728920844, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -18940,6 +18959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321806569}
   - component: {fileID: 1321806568}
+  - component: {fileID: 1321806570}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -19024,6 +19044,30 @@ Transform:
   m_Father: {fileID: 499721757}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1321806570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321806567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b619b1720382684b99f977794958d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraBrightness: {fileID: 1869235521}
+  GammaCorrection: 1
+  myLight: {fileID: 1321806568}
+  lightSlider: {fileID: 673238178}
+  brightnessValue: 1
+  colorgrading: {fileID: 0}
+  SliderLocation:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1330772664
 GameObject:
   m_ObjectHideFlags: 0

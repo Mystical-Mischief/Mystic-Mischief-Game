@@ -33,8 +33,8 @@ public class CowboyHat : BaseHatScript
     public Rigidbody bullet;
     public float projectileSpeed;
     public float speed;
-    static int SkillLevel = 1;
-    public int currentLevel = SkillLevel;
+    static int SkillLevel;
+    public int currentLevel;
 
     new void Start()
     {
@@ -46,6 +46,8 @@ public class CowboyHat : BaseHatScript
         rb = GetComponent<Rigidbody>();
         //adds all objects the player can use the whip on in a list for later
         _increasedWhipDistance = maxWhipDistance * 2;
+        currentLevel = 3;
+        SkillLevel = currentLevel;
 
     }
     //enables and disables the circle object tool when the object is activated or disabled
