@@ -6,13 +6,21 @@ public class HubPortalLogic : MonoBehaviour
 {
     static string levelName;
     public GameObject levelSelector;
+    public GameObject level2Object;
+    public GameObject level3Object;
     private void Start()
     {
         if(levelName != null)
             GetComponent<PortalLogic>().SceneName = levelName;
-        if(PlayerPrefs.GetInt("Completed") == 1)
+        if(levelName == "Intro Level 3")
+        {
+            level2Object.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("Completed") == 1)
         {
             addLevelSelector();
+            level2Object.SetActive(true);
+            level3Object.SetActive(true);
         }
     }
     private void OnCollisionEnter(Collision collision)
