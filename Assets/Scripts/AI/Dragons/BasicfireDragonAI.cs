@@ -99,7 +99,7 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         // targetPos.position.y = transform.position.y;
 
         //if the ai doesnt see the player then it will patrol and look for it
-        if (!base.spottedPlayer)
+        if (!base.spottedPlayer && !stunned)
         {
             // EnemyDetection();
             if(canMove == true && onGround == true && inAir == false && active == true)
@@ -114,8 +114,13 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
                 PatrolAir();
             }
         }
+        else
+        {
+            Stun(timer);
+            timer -= Time.fixedDeltaTime;
+        }
         //If the enemy detection works the dragon chases the player.
-        if (base.spottedPlayer == true)
+        if (base.spottedPlayer == true && !stunned)
         {
             FoundPlayer();
             active = true;
@@ -178,10 +183,31 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
         }
     }
 
-    // public void ResetAttack()
-    // {
-    //     HitPlayer = false;
-    // }
+    //stun function to be used to stun enemies for a specified amount of time
+    public override void Stun(float time)
+    {
+        if(stunned && time > 0)
+        {
+            if(ps != null)
+                ps.Play(true);
+            Debug.Log("Stunned");
+            Transform stunnedPos = ai_Rb.transform;
+            targetPosition = stunnedPos.position;
+            if (inAir == false)
+            {
+            UpdateDestination(targetPosition);
+            }
+            if (inAir == true)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            timer = stunTime;
+            stunned = false;
+        }
+    }
 
     public override void FoundPlayer()
     {
@@ -347,12 +373,6 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
     {
         Speed = previousSpeed;
         ai.speed = previousAISpeed;
-    }
-    
-    //This is kept empty so that the stun function from base enemy ai is not used. KEEP IT EMPTY.
-    public override void Stun(float time)
-    {
-
     }
 
 
