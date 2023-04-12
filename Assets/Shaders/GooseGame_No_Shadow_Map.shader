@@ -11,37 +11,12 @@ Shader "Unlit/GooseGame_No_Shadow_Map"
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
-        Pass
-       {
-        Name "Shadow Caster"
-        Tags{"RenderType"="Opaque" "LightMode"="ShadowCaster"}
-        ZWrite On
-
-        CGPROGRAM
-        #pragma vertex vert
-        #pragma fragment frag
-        #pragma multi_compile_shadowcaster
-        
-        #include "UnityCg.cginc"
-
-
-        
-        struct v2f
+       Stencil
         {
-            V2F_SHADOW_CASTER;
-        };
-        v2f vert(appdata_full v)
-        {
-            v2f o;
-            TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
-            return o;
+            Ref 2
+            Comp NotEqual
+            Pass Keep
         }
-        fixed4 frag(v2f i) : SV_Target
-        {
-            SHADOW_CASTER_FRAGMENT(i)
-        }
-        ENDCG
-       }
 
         Pass
         {
@@ -79,6 +54,8 @@ Shader "Unlit/GooseGame_No_Shadow_Map"
             float4 _LightColor0;
             float _ShadowThreshold;
             float _ShadowIntensity;
+
+
 
             float4 NDC(float4 pos)
             {

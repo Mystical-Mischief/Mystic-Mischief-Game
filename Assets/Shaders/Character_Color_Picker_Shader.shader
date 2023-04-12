@@ -13,6 +13,12 @@ Shader "Unlit/Color_Picker_Shader"
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+        Stencil
+        {
+            Ref 2
+            Comp NotEqual
+            Pass Keep
+        }
         Pass
        {
         Name "Shadow Caster"
