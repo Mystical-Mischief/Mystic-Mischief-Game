@@ -29,12 +29,6 @@ public class GameOver : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Retry()
     {
         gameObject.SetActive(false);
@@ -46,6 +40,6 @@ public class GameOver : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 }

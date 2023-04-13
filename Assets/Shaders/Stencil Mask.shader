@@ -3,6 +3,7 @@ Shader "Unlit/Stencil Mask"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _TexColor("Tint", Color) = (1,1,1,0)
     }
     SubShader
     {
@@ -10,6 +11,7 @@ Shader "Unlit/Stencil Mask"
         LOD 100
         
         Cull Front
+        ZWrite ON
         
         Stencil
         {
@@ -42,6 +44,7 @@ Shader "Unlit/Stencil Mask"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _TexColor;
 
             v2f vert (appdata v)
             {
@@ -58,7 +61,7 @@ Shader "Unlit/Stencil Mask"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                return col * _TexColor;
             }
             ENDCG
         }
