@@ -5,26 +5,30 @@ using UnityEngine;
 public class CameraSphere : MonoBehaviour
 {
     public GameObject Mask;
+    public Transform Mammon;
+    private Vector3 facingplayer;
     // Start is called before the first frame update
     void Start()
     {
-        //LayerMask mask = LayerMask.GetMask("Default");
+       
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+       //transform.LookAt(Mammon, Vector3.up);
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Default");
-        // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 30))
+       
+        
+        
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Vector3.Distance(Mammon.position, transform.position)))
         {
             if(hit.collider.tag=="Player")
             {
                 
                 Mask.gameObject.SetActive(false);
             }
-            if(hit.collider.tag=="wall")
+            if(hit.collider.tag=="StaticObstacle")
             {
                
                 Mask.gameObject.SetActive(true);
@@ -34,6 +38,7 @@ public class CameraSphere : MonoBehaviour
             {
                 Mask.gameObject.SetActive(false);
             }
+            
         }
         else
         {
