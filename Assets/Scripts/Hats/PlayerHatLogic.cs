@@ -33,11 +33,19 @@ public class PlayerHatLogic : MonoBehaviour
         }
         hats[currentHatNum].SetActive(true);
         currentHatObject = hats[currentHatNum];
-        for (int i = 0; i < hats.Length; i++)
+        if (hats[currentHatNum].name == "Empty")
         {
-            if (currentHatObject == hats[i])
+            hatUIImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            hatUIImage.gameObject.SetActive(true);
+            for (int i = 0; i < hats.Length; i++)
             {
-                hatUIImage.sprite = hatImages[i];
+                if (currentHatObject == hats[i])
+                {
+                    hatUIImage.sprite = hatImages[i];
+                }
             }
         }
         playerHats = hats;
@@ -76,13 +84,22 @@ public class PlayerHatLogic : MonoBehaviour
         }
         hats[currentHatNum].SetActive(true);
         currentHatObject = hats[currentHatNum];
-        for (int i = 0; i < hats.Length; i++)
+        if(hats[currentHatNum].name == "Empty")
         {
-            if (currentHatObject == hats[i])
+            hatUIImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            hatUIImage.gameObject.SetActive(true);
+            for (int i = 0; i < hats.Length; i++)
             {
-                hatUIImage.sprite = hatImages[i];
+                if (currentHatObject == hats[i])
+                {
+                    hatUIImage.sprite = hatImages[i];
+                }
             }
         }
+        
     }
     //changes hat and starts a short cooldown so hat changing is easier to use
     IEnumerator ChangeHatCooldown()
