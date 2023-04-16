@@ -19,6 +19,7 @@ public class SaveGeneral : MonoBehaviour
     public static List<QuestInfo> currentQuests = new List<QuestInfo>();
     public List<QuestInfo> Quests = new List<QuestInfo>();
     public PlayerHatLogic Hats;
+    public 
        
        void Awake()
        {
@@ -48,7 +49,7 @@ public class SaveGeneral : MonoBehaviour
 
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("PickUp"))
         {
-            if (item.activeSelf == true)
+            if (item.activeSelf == true && item.gameObject.GetComponent<Item>().itemType != Item.ItemType.Objective)
             {
                 Items.Add(item);
             }
