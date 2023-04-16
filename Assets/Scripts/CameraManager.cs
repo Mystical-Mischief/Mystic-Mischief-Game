@@ -33,6 +33,7 @@ public class CameraManager : MonoBehaviour
             if (!dragonLO.lockOnCamera && currentCamera != GroundCam)
             {
                 ChangeCamera(GroundCam);
+                GroundCam.GetComponent<CinemachineFreeLook>().m_XAxis.Value = FlyingCam.transform.rotation.eulerAngles.x;
                 camLogic.enabled = false;
             }
             if (dragonLO.lockOnCamera && currentCamera != DragonGroundCam)
