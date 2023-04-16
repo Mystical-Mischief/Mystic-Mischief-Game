@@ -10,6 +10,8 @@ public class ControllerRemapper : MonoBehaviour
     public GameObject[] ControllerButtons;
     public GameObject[] KeyboardButtons;
     private PlayerController pc;
+    public Sprite[] controllerImages;
+    public Sprite defaultImage;
 
     [SerializeField] private InputActionAsset actions;
     [SerializeField] private InputActionReference[] controls;
@@ -25,6 +27,7 @@ public class ControllerRemapper : MonoBehaviour
         {
             button.GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
             controls[x].action.bindings[1].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            updateButtonIcons(button, x);
             x++;
         }
         x = 0;
@@ -55,6 +58,7 @@ public class ControllerRemapper : MonoBehaviour
     public void ButtonCtrl(int buttonNumber)
     {
         ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = "...";
+        ControllerButtons[buttonNumber].GetComponent<Image>().sprite = null;
 
         controls[buttonNumber].action.Disable();
 
@@ -78,9 +82,12 @@ public class ControllerRemapper : MonoBehaviour
 
         PlayerPrefs.SetString("rebinds", rebinds);
 
-        ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
-            controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        updateButtonIcons(ControllerButtons[buttonNumber], buttonNumber);
+        /*ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
+            controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);*/
         FindObjectOfType<PlayerController>().UpdateControls();
+
+
     }
     private void rebindCompleteKeyB(int buttonNumber, int binding)
     {
@@ -95,5 +102,51 @@ public class ControllerRemapper : MonoBehaviour
         KeyboardButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
             controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
         FindObjectOfType<PlayerController>().UpdateControls();
+    }
+    private void updateButtonIcons(GameObject button ,int x)
+    {
+        int buttonNum = 0;
+        bool updateImage = true;
+        switch (InputControlPath.ToHumanReadableString(controls[x].action.bindings[1].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice))
+        {
+            case "Button North":
+                buttonNum = 0;
+                break;
+            case "Button East":
+                buttonNum = 1;
+                break;
+            case "Button South":
+                buttonNum = 2;
+                break;
+            case "Button West":
+                buttonNum = 3;
+                break;
+            case "Left Shoulder":
+                buttonNum = 4;
+                break;
+            case "Right Shoulder":
+                buttonNum = 5;
+                break;
+            case "Left Trigger":
+                buttonNum = 6;
+                break;
+            case "Right Trigger":
+                buttonNum = 7;
+                break;
+            default:
+                updateImage = false;
+                break;
+        }
+        if (updateImage)
+        {
+            button.GetComponent<Image>().sprite = controllerImages[buttonNum];
+            button.GetComponentInChildren<TextMeshProUGUI>().text = string.Empty;
+        }
+        else
+        {
+            button.GetComponent<Image>().sprite = defaultImage;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
+            controls[x].action.bindings[1].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        }
     }
 }
