@@ -11,8 +11,8 @@ public class SaveGeneral : MonoBehaviour
     public static bool LoadMenu;
     public List<GameObject> Items = new List<GameObject>();
     public GameObject Camera;
-    public GameObject Dragon;
-    public string DragonType;
+    // public GameObject Dragon;
+    // public string DragonType;
     public Reload reload;
     private float questNum;
     public GameObject q;
@@ -53,6 +53,7 @@ public class SaveGeneral : MonoBehaviour
                 Items.Add(item);
             }
         }
+        SaveEnemyCheckPoint();
         if (reload != null)
         {
             if (reload.retrying == true)
@@ -137,10 +138,10 @@ public class SaveGeneral : MonoBehaviour
         //Saves the player usings the players save function.
         Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
-        if (DragonType == "Water Dragon")
-        {
-        Dragon.GetComponent<WaterDragonAi>().SaveDragon();
-        }
+        // if (DragonType == "Water Dragon")
+        // {
+        // Dragon.GetComponent<WaterDragonAi>().SaveDragon();
+        // }
         foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
         {
             currentQuests.Add(quests);
@@ -177,10 +178,10 @@ public class SaveGeneral : MonoBehaviour
         //Saves the player usings the players save function.
         Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
-        if (DragonType == "Water Dragon")
-        {
-        Dragon.GetComponent<WaterDragonAi>().SaveDragon();
-        }
+        // if (DragonType == "Water Dragon")
+        // {
+        // Dragon.GetComponent<WaterDragonAi>().SaveDragon();
+        // }
         foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
         {
             currentQuests.Add(quests);
@@ -231,10 +232,10 @@ public class SaveGeneral : MonoBehaviour
         // Loads the player usings the players load function
         Player.GetComponent<PlayerController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
-        if (DragonType == "Water Dragon")
-        {
-        Dragon.GetComponent<WaterDragonAi>().LoadDragon();
-        }
+        // if (DragonType == "Water Dragon")
+        // {
+        // Dragon.GetComponent<WaterDragonAi>().LoadDragon();
+        // }
         q.GetComponent<Quest>().currentQuests.Clear();
         q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         Hats.LoadHats();
@@ -273,10 +274,10 @@ public class SaveGeneral : MonoBehaviour
         // Loads the player usings the players load function
         Player.GetComponent<PlayerController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
-        if (DragonType == "Water Dragon")
-        {
-        Dragon.GetComponent<WaterDragonAi>().LoadDragon();
-        }
+        // if (DragonType == "Water Dragon")
+        // {
+        // Dragon.GetComponent<WaterDragonAi>().LoadDragon();
+        // }
         // q.GetComponent<Quest>().currentQuests.Clear();
         // q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         Hats.LoadHats();
