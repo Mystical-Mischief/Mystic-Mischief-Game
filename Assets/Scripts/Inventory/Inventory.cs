@@ -41,6 +41,18 @@ public class Inventory : MonoBehaviour
     private float UITime = 3f;
     public float HoldTime;
     private float Holding;
+
+    [SerializeField]
+    private GameObject _itemThrowPos;
+
+    private LineRenderer _trajectoryLine;
+    private DrawPotionProjection _trajectory;
+    private Transform _trajectoryTransform;
+
+    private float _heldItemWeight;
+    private Rigidbody _itemRb;
+
+    private float _itemSpeed;
     public IntegerControl tapCount { get; set; }
     // public bool showinventory;
     // public List<GameObject> InventorySlots = new List<GameObject>();
@@ -51,6 +63,11 @@ public class Inventory : MonoBehaviour
         rb = GetComponentInParent<Rigidbody>();
         controls = new ControlsforPlayer();
         startMass = rb.mass;
+
+        _trajectory = _itemThrowPos.GetComponent<DrawPotionProjection>();
+        _trajectoryTransform = _itemThrowPos.transform;
+        _trajectoryLine = _itemThrowPos.GetComponent<LineRenderer>();
+        _trajectoryLine.enabled = false;
 
     }
     public void OnEnable()
@@ -74,6 +91,25 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
+        if(currentHeldItem != null)
+        {
+            
+            _heldItemWeight = currentHeldItem.GetComponent<Item>().Weight;
+            _itemSpeed = rb.velocity.magnitude * 0.7f;
+            if (_itemSpeed > 0.1)
+            {
+                _trajectory.ShowTrajectoryLine(_trajectoryTransform.position, (_trajectoryTransform.forward).normalized * _itemSpeed);
+                _trajectoryLine.enabled = true;
+            }
+            else
+            {
+                _trajectoryLine.enabled = false;
+            }
+        }
+        else
+        {
+            _trajectoryLine.enabled = false;
+        }
         // if (showinventory == true)
         // {
         //     InventoryUI.SetActive(true);
