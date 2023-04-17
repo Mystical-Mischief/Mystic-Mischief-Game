@@ -35,22 +35,30 @@ public class HealthBar : MonoBehaviour
         if(CurrentHealth == 4)
         {
             faces[3].gameObject.SetActive(false);
+            faces[2].gameObject.SetActive(false);
+            faces[1].gameObject.SetActive(false);
             faces[0].gameObject.SetActive(true);
         }
         if (CurrentHealth == 3)
         {
-            faces[0].gameObject.SetActive(false);
+            faces[3].gameObject.SetActive(false);
+            faces[2].gameObject.SetActive(false);
             faces[1].gameObject.SetActive(true);
+            faces[0].gameObject.SetActive(false);
         }
         if (CurrentHealth == 2)
         {
-            faces[1].gameObject.SetActive(false);
+            faces[3].gameObject.SetActive(false);
             faces[2].gameObject.SetActive(true);
+            faces[1].gameObject.SetActive(false);
+            faces[0].gameObject.SetActive(false);
         }
         if (CurrentHealth == 1)
         {
-            faces[2].gameObject.SetActive(false);
             faces[3].gameObject.SetActive(true);
+            faces[2].gameObject.SetActive(false);
+            faces[1].gameObject.SetActive(false);
+            faces[0].gameObject.SetActive(false);
         }
     }
 
