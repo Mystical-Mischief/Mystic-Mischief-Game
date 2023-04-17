@@ -7,6 +7,7 @@ public class GameOverMenu : MonoBehaviour
 {
     public Reload reload;
     public int LastScene;
+    public string lastLevel;
 
     private void Start()
     {
@@ -16,38 +17,39 @@ public class GameOverMenu : MonoBehaviour
     {
         // ReloadNum.LastLevelNum;
         reload.retry = true;
-        float lastLevel = PlayerPrefs.GetFloat("LastLevel", 1f);
-        if (lastLevel == 1)
-        {
-            SceneManager.LoadScene("Level 1");
-        }
-        if (lastLevel == 2)
-        {
-            SceneManager.LoadScene("Level 2");
-        }
-        if (lastLevel == 3)
-        {
-            SceneManager.LoadScene("Level 3");
-        }
+        lastLevel = PlayerPrefs.GetString("SceneName", "Level 1");
+        // if (lastLevel == 1)
+        // {
+        //     SceneManager.LoadScene("Level 1");
+        // }
+        // if (lastLevel == 2)
+        // {
+        //     SceneManager.LoadScene("Level 2");
+        // }
+        // if (lastLevel == 3)
+        // {
+            SceneManager.LoadScene(lastLevel);
+        // }
         Debug.Log("In retry function");
     }
     public void Load()
     {
         // ReloadNum.LastLevelNum;
         reload.Load = true;
-        float lastLevel = PlayerPrefs.GetFloat("LastLevel", 1f);
-        if (lastLevel == 1)
-        {
-            SceneManager.LoadScene("Level 1");
-        }
-        if (lastLevel == 2)
-        {
-            SceneManager.LoadScene("Level 2");
-        }
-        if (lastLevel == 3)
-        {
-            SceneManager.LoadScene("Level 3");
-        }
+        lastLevel = PlayerPrefs.GetString("SceneName", "Level 1");
+        // if (lastLevel == 1)
+        // {
+        //     SceneManager.LoadScene("Level 1");
+        // }
+        // if (lastLevel == 2)
+        // {
+        //     SceneManager.LoadScene("Level 2");
+        // }
+        // if (lastLevel == 3)
+        // {
+        //     SceneManager.LoadScene("Level 3");
+        // }
+        SceneManager.LoadScene(lastLevel);
         Debug.Log("In Loading reload function");
     }
 
@@ -62,13 +64,13 @@ public class GameOverMenu : MonoBehaviour
         Debug.Log("In quit function");
     }
 
-        public float GetFloat(string KeyName)
+    public void SetString(string KeyName, string Text)
     {
-        return PlayerPrefs.GetFloat(KeyName);
-        // if(cameraScript != null)
-        // {
-        //     cameraScript.sensitivity = sensitivitySlider.value;
-        // }
-        // Save();
+        PlayerPrefs.SetString(KeyName, Text);
+    }
+
+    public string GetString(string KeyName)
+    {
+        return PlayerPrefs.GetString(KeyName);
     }
 }
