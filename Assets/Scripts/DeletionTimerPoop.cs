@@ -8,22 +8,27 @@ public class DeletionTimerPoop : MonoBehaviour
     public float time;
     public ParticleSystem ps;
     public ParticleSystem ps2;
+
+    [SerializeField] MeshRenderer poopMesh; 
     void Start()
     {
+        poopMesh.enabled = true;
         StartCoroutine(deletionTimer());
     }
     IEnumerator deletionTimer()
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
-        ps.Play(true);
-        ps2.Play(true);
+       // ps.Play(true);
+       // ps2.Play(true);
     }
 
     public void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject,0.2f);
+        poopMesh.enabled = false; 
         ps.Play(true);
         ps2.Play(true);
+        StartCoroutine(deletionTimer());
+        //Destroy(gameObject, 0.2f);
     }
 }
