@@ -100,11 +100,6 @@ public class PauseMenu : MonoBehaviour
 
 
         SceneManager.LoadScene("Main Menu");
-
-        if (FindObjectOfType<ActivateQuest>())
-        {
-            FindObjectOfType<ActivateQuest>().changeSceneName("Main Menu");
-        }
         Debug.Log("Loading menu...");
     }
 
