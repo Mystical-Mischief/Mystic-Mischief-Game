@@ -25,9 +25,7 @@ public class Item : MonoBehaviour
     public float fallDistance = 1f;
     public bool canKill;
 
-    Transform itemThrowPos;
-    DrawPotionProjection TrajectoryLine;
-    public GameObject ItemProjectionLine;
+   
 
     [SerializeField] private GameObject itemEffect;
 
@@ -43,9 +41,7 @@ public class Item : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         // controls = new ControlsforPlayer();
         // controls.Enable();
-        ItemProjectionLine = GameObject.FindGameObjectWithTag("ItemProjection");
-        itemThrowPos = transform;
-        TrajectoryLine = ItemProjectionLine.GetComponent<DrawPotionProjection>();
+        
     }
 
    
@@ -121,10 +117,6 @@ public class Item : MonoBehaviour
             Invisible = false;
         }
 
-        if(canDrop)
-        {
-            TrajectoryLine.ShowTrajectoryLine(itemThrowPos.position, (itemThrowPos.forward).normalized * rb.mass);
-        }
     }
     public void Dropped()
     {
