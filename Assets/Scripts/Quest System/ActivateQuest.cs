@@ -7,19 +7,18 @@ public class ActivateQuest : MonoBehaviour
 {
     public string[] startQuests;
     public Quest questScript;
-    static string sceneName;
+    static bool activatedQuests;
 
     void Start()
     {
         questScript = FindObjectOfType<Quest>();
-        if(sceneName != SceneManager.GetActiveScene().name)
+        if(!activatedQuests)
         {
-            print(sceneName);
             foreach (string currquest in startQuests)
             {
                 questScript.ActivateQuest(currquest);
             }
-            sceneName = SceneManager.GetActiveScene().name;
+            activatedQuests = true;
         }
     }
     public void activateQuest(List<QuestInfo> quests)
@@ -29,8 +28,8 @@ public class ActivateQuest : MonoBehaviour
             questScript.ActivateQuest(currquest.questName);
         }
     }
-    public void changeSceneName(string newName)
+    public void ResetActivateQuests()
     {
-        sceneName = newName;
+        activatedQuests = false;
     }
 }
