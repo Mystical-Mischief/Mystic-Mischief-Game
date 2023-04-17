@@ -58,7 +58,7 @@ public class PaperScraps : MonoBehaviour
     {
         PaperUI.SetActive(false);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         OpenPaper = false;
     }
 
