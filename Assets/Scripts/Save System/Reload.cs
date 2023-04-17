@@ -24,7 +24,7 @@ public class Reload : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        // SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -60,13 +60,13 @@ public class Reload : MonoBehaviour
         }
     }
 
-     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        PlayerPrefs.SetString("_last_scene_", scene.name);
-    }
-     public static void LoadLastScene()
-    {
-        SceneManager.LoadScene(PlayerPrefs.GetString("_last_scene_"));
-    }
+    //  private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     PlayerPrefs.SetString("_last_scene_", scene.name);
+    // }
+    //  public static void LoadLastScene()
+    // {
+    //     SceneManager.LoadScene(PlayerPrefs.GetString("_last_scene_"));
+    // }
 
 }

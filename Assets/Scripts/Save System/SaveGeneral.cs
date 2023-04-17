@@ -54,21 +54,20 @@ public class SaveGeneral : MonoBehaviour
                 Items.Add(item);
             }
         }
-        SaveEnemyCheckPoint();
-        if (reload != null)
-        {
-            if (reload.retrying == true)
-            {
-                //Saves the checkpoint when the level starts.
-                SaveEnemyCheckPoint();
-                reload.reloaded = true;
-            }
+        // SaveEnemyCheckPoint();
+        // if (reload != null)
+        // {
+            // if (reload.retrying == true)
+            // {
+            //     //Saves the checkpoint when the level starts.
+            //     // SaveEnemyCheckPoint();
+            //     reload.reloaded = true;
+            // }
             if (reload.Loading == true)
             {
                 LoadEnemy();
-                reload.Loaded = true;
             }
-        }
+        // }
         controls.Enable();
     }
 
@@ -76,11 +75,11 @@ public class SaveGeneral : MonoBehaviour
     void Update()
     {
         Quests = currentQuests;
-        if (reload.retrying == true)
-        {
-            LoadEnemy();
-            reload.reloaded = true;
-        }
+        // if (reload.retrying == true)
+        // {
+        //     LoadEnemy();
+        //     reload.reloaded = true;
+        // }
         if (reload.Loading == true)
         {
             LoadEnemy();
@@ -90,16 +89,16 @@ public class SaveGeneral : MonoBehaviour
         // bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
         // bool Save = controls.MenuActions.Save.ReadValue<float>() > 0.1f;
         //Saves everything on button press.
-        if (controls.MenuActions.Save.triggered)
-        {
-            Debug.Log("Saved");
-            SaveEnemy();
-        }
-        //Loads everything on button press.
-        if (controls.MenuActions.Load.triggered)
-        {
-            LoadCheckpoint();
-        }
+        // if (controls.MenuActions.Save.triggered)
+        // {
+        //     Debug.Log("Saved");
+        //     SaveEnemy();
+        // }
+        // //Loads everything on button press.
+        // if (controls.MenuActions.Load.triggered)
+        // {
+        //     LoadCheckpoint();
+        // }
         //If the player selects Load from the menu it loads the save.
         if (LoadMenu == true)
         {
@@ -139,25 +138,11 @@ public class SaveGeneral : MonoBehaviour
         //Saves the player usings the players save function.
         Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
-        // if (DragonType == "Water Dragon")
-        // {
-        // Dragon.GetComponent<WaterDragonAi>().SaveDragon();
-        // }
         foreach(QuestInfo quests in q.GetComponent<Quest>().currentQuests)
         {
             currentQuests.Add(quests);
-            // if (quests.completed)
-            // {
-            // currentQuests.Add(quests);
-            // // quests.completed = true;
-            // }
-            // if (!quests.completed)
-            // {
-            //   currentQuests.Add(quests); 
-            // }
         }
-        Hats.SaveHats();
-        // questNum = q.GetComponent<Quest>().
+        // Hats.SaveHats();
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
@@ -218,28 +203,30 @@ public class SaveGeneral : MonoBehaviour
                 if (items.GetComponent<Item>() != null)
                 {
                     items.GetComponent<Item>().LoadItem();
-            if (items.GetComponent<Item>().inInventory == true)
-            {
-                if (!PickedUpItems.Contains(items))
-                {
-                    Player.GetComponent<Inventory>().PickedUpItems.Add(items);
-                    items.GetComponent<Item>().inInventory = false;
-                }
+                    if (items.GetComponent<Item>().inInventory == true)
+                    {
+                        if (!PickedUpItems.Contains(items))
+                        {
+                            Player.GetComponent<Inventory>().PickedUpItems.Add(items);
+                            items.GetComponent<Item>().inInventory = false;
+                        }
 
-            }
-            }
+                                    }
+                }
             }
         }
-        // Loads the player usings the players load function
+        // // Loads the player usings the players load function
         Player.GetComponent<PlayerController>().LoadPlayer();
         Camera.GetComponent<CameraLogic>().LoadCamera();
         // if (DragonType == "Water Dragon")
         // {
         // Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         // }
+        // q.GetComponent<ActivateQuest>().startQuests.Clear();
         q.GetComponent<Quest>().currentQuests.Clear();
         q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         Hats.LoadHats();
+        reload.Loaded = true;
     }
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
@@ -281,7 +268,7 @@ public class SaveGeneral : MonoBehaviour
         // }
         // q.GetComponent<Quest>().currentQuests.Clear();
         // q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
-        Hats.LoadHats();
+        // Hats.LoadHats();
     }
     public virtual void Loadmenu()
     {
