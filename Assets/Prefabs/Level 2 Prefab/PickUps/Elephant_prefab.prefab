@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 774554868522390206}
   - component: {fileID: 774554868522390205}
   - component: {fileID: 774554868522390204}
+  - component: {fileID: -5279341001219381918}
   m_Layer: 0
   m_Name: Elephant_prefab
   m_TagString: PickUp
@@ -186,7 +187,30 @@ MonoBehaviour:
   ps: {fileID: 0}
   fallDistance: 1
   canKill: 0
-  ItemProjectionLine: {fileID: 0}
+  itemEffect: {fileID: 0}
+  Invisible: 0
+--- !u!114 &-5279341001219381918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468000928627077104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  Weight: 0
+  inInventory: 0
+  sprite: {fileID: 0}
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  dropped: 0
+  ps: {fileID: 0}
+  fallDistance: 1
+  canKill: 0
   itemEffect: {fileID: 0}
   Invisible: 0
 --- !u!1001 &3415416785754396154

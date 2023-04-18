@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 6592859836467203385}
   - component: {fileID: 6592859836467203390}
   - component: {fileID: 6592859836467203391}
+  - component: {fileID: 4120716307317402098}
+  - component: {fileID: 483788330706586149}
+  - component: {fileID: 1424565688820397844}
   m_Layer: 0
   m_Name: gloves_prefab
-  m_TagString: Untagged
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -350,6 +353,56 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &4120716307317402098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592859836467203389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  Weight: 0
+  inInventory: 0
+  sprite: {fileID: 0}
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  dropped: 0
+  ps: {fileID: 0}
+  fallDistance: 1
+  canKill: 0
+  itemEffect: {fileID: 0}
+  Invisible: 0
+--- !u!65 &483788330706586149
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592859836467203389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.932335, y: 0.43716198, z: 1}
+  m_Center: {x: 0.80995685, y: 0.11385144, z: -3.0148304e-26}
+--- !u!135 &1424565688820397844
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592859836467203389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9963281
+  m_Center: {x: 0.8357845, y: 0.1203008, z: -1.872566e-26}
 --- !u!1001 &374890847049890756
 PrefabInstance:
   m_ObjectHideFlags: 0
