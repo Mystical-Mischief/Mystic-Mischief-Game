@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
+
 
 public class Reputation : MonoBehaviour
 {
@@ -14,6 +13,9 @@ public class Reputation : MonoBehaviour
     public int level;
     public float EXPraise;
     public int LastLevel;
+
+    [SerializeField] Animator textAnimator;
+    [SerializeField] float endAnimationTimer = 5f;
 
     [SerializeField]
     private string[] reputationTitles;
@@ -27,6 +29,7 @@ public class Reputation : MonoBehaviour
     {
         // ps = GetComponentInChildren<ReputationLevelUp>();
         reputationImages[level].SetActive(true);
+        PlayAnimation();
     }
 
     // Update is called once per frame
@@ -52,5 +55,20 @@ public class Reputation : MonoBehaviour
         reputationImages[level].SetActive(true);
         reputationText.text = reputation;
         nextLevel = nextLevel + EXPraise;
+        PlayAnimation();
     }
+
+    public void PlayAnimation()
+    {
+        textAnimator.Play("ReputaionText_Slide_In");
+        StartCoroutine(endAnimation(endAnimationTimer));
+
+    }
+
+    IEnumerator endAnimation(float time)
+    {
+        yield return new WaitForSeconds(time);
+        textAnimator.SetTrigger("End");
+    }
+ 
 }
