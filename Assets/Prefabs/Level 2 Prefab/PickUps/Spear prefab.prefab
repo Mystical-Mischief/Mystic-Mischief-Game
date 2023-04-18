@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3510743912261333834}
   - component: {fileID: 3510743912261333835}
   - component: {fileID: 3510743912261333832}
+  - component: {fileID: 1460456114990606604}
+  - component: {fileID: 6498234139000941697}
   m_Layer: 0
   m_Name: Spear prefab
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3510743912261333838}
-  m_LocalRotation: {x: 7.971164e-18, y: -0.6960654, z: 7.727881e-18, w: 0.71797836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 298.773, y: -40.442, z: 11.067}
   m_LocalScale: {x: 0.88392556, y: 0.6313754, z: 0.6313754}
   m_ConstrainProportionsScale: 0
@@ -41,7 +43,7 @@ Transform:
   - {fileID: 6582117431539752822}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -88.224, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3510743912261333828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,11 +347,37 @@ MeshCollider:
   m_GameObject: {fileID: 3510743912261333838}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &1460456114990606604
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510743912261333838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4683197
+  m_Center: {x: -0.5606524, y: 0.12647572, z: 0.08728597}
+--- !u!65 &6498234139000941697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510743912261333838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9023154, y: 0.24762535, z: 0.17457151}
+  m_Center: {x: -0.5834729, y: 0.123812675, z: 0.087285995}
 --- !u!1001 &1629279049803569180
 PrefabInstance:
   m_ObjectHideFlags: 0
