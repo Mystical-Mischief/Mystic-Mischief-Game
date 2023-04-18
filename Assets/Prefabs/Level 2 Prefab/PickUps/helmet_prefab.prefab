@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 8953541550139289630}
   - component: {fileID: 8953541550139289625}
   - component: {fileID: 8953541550139289624}
+  - component: {fileID: 1036325848404453410}
+  - component: {fileID: 2781846456837531271}
   m_Layer: 0
   m_Name: helmet_prefab
-  m_TagString: Untagged
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -345,11 +347,37 @@ MeshCollider:
   m_GameObject: {fileID: 8953541550139289626}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &1036325848404453410
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953541550139289626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7150257
+  m_Center: {x: 0.59924316, y: 0.5236571, z: -0.4077528}
+--- !u!65 &2781846456837531271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953541550139289626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9743218, y: 1.1080418, z: 0.81550217}
+  m_Center: {x: 0.57837886, y: 0.5540207, z: -0.407753}
 --- !u!1001 &2429068633506858133
 PrefabInstance:
   m_ObjectHideFlags: 0
