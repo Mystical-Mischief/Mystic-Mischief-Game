@@ -336,6 +336,15 @@ public class WaterDragonAi : BasicDragonAI
                 anim.SetBool("InWater", false);
         } 
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            base.ai.speed = waterSpeed;
+            inWater = true;
+            anim.SetBool("InWater", true);
+        }
+    }
     void Ranged()
     {
         base.Speed = 0;
