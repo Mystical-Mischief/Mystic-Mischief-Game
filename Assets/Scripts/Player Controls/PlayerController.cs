@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour
     void GlidingLogic()
     {
         //This lets the player fly after jumping in the air.
-        if (onGround == false && canMove && jumpInAir == true)
+        if (onGround == false && canMove)
         {
             stamina += (Time.fixedDeltaTime * 0.5f);
 

@@ -40,6 +40,7 @@ public class Dialogue : MonoBehaviour
     
     private int index;
     private int convoNumber;
+    public MonoBehaviour ratAI;
     ControlsforPlayer controls;
 
     void Start()
@@ -51,6 +52,13 @@ public class Dialogue : MonoBehaviour
     {
         textComponent.text = string.Empty;
         StartDialogue();
+        if (ratAI != null)
+            ratAI.enabled = false;
+    }
+    private void OnDisable()
+    {
+        if (ratAI != null)
+            ratAI.enabled = true;
     }
 
     void Update()
