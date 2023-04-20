@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
-            if (stamina > 0)
+            if (stamina > 0 && canMove)
             {
                 //if you have stamina - CC
                 if (!hasJumped)
