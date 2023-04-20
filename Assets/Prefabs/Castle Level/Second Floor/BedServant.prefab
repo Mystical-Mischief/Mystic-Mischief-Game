@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9193432519972953052}
   - component: {fileID: 7583348319008488070}
   - component: {fileID: 1501880760055629046}
+  - component: {fileID: 4588761547811460271}
   m_Layer: 0
   m_Name: Pillow3
   m_TagString: Untagged
@@ -93,11 +94,24 @@ MeshCollider:
   m_GameObject: {fileID: 2245228357799945188}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7083911764370652363, guid: 123240fa620bbe84995e1e7a9ad88ad0, type: 3}
+--- !u!65 &4588761547811460271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245228357799945188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 105.76633, y: 20.292221, z: 164.99986}
+  m_Center: {x: 86.64856, y: 128.10175, z: 86.73286}
 --- !u!1 &4431564010728823261
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +158,7 @@ GameObject:
   - component: {fileID: 5374254725393075594}
   - component: {fileID: 956654600023471314}
   - component: {fileID: 4241346400764719387}
+  - component: {fileID: 324043861683047040}
   m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
@@ -225,11 +240,24 @@ MeshCollider:
   m_GameObject: {fileID: 7318355702309916389}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6360558719573625917, guid: 123240fa620bbe84995e1e7a9ad88ad0, type: 3}
+--- !u!65 &324043861683047040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318355702309916389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 356.8906, y: 164.71516, z: 219.62498}
+  m_Center: {x: 182.4453, y: 77.25366, z: 103.31251}
 --- !u!1 &8866769649697334784
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +270,7 @@ GameObject:
   - component: {fileID: 6650711649553854507}
   - component: {fileID: 895728060903024269}
   - component: {fileID: 8141617732985049937}
+  - component: {fileID: 3840088730288084089}
   m_Layer: 0
   m_Name: Mattress
   m_TagString: Untagged
@@ -323,8 +352,21 @@ MeshCollider:
   m_GameObject: {fileID: 8866769649697334784}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -750983471305183444, guid: 123240fa620bbe84995e1e7a9ad88ad0, type: 3}
+--- !u!65 &3840088730288084089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866769649697334784}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 311.2006, y: 34.567528, z: 215.6022}
+  m_Center: {x: -123.77534, y: -3.2357254, z: -110.84584}
