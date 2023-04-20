@@ -3,13 +3,14 @@ Shader "Unlit/Explorers_Hat_Icons"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _TexColor("Tint", Color) = (1,1,1,0)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Alpha" "Queue" = "Overlay"}
         LOD 100
         AlphaToMask On
-        ZWrite On
+        //ZWrite On
         ZTest Always
 
         Pass
@@ -37,7 +38,7 @@ Shader "Unlit/Explorers_Hat_Icons"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-
+            float4 _TexColor;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -49,11 +50,12 @@ Shader "Unlit/Explorers_Hat_Icons"
 
             fixed4 frag (v2f i) : SV_Target
             {
+
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                return lerp(col,col*_TexColor,sin(_Time.y*6));
             }
             ENDCG
         }
