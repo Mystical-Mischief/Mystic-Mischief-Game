@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour
     void GlidingLogic()
     {
         //This lets the player fly after jumping in the air.
-        if (onGround == false && canMove && jumpInAir == true)
+        if (onGround == false && canMove)
         {
             stamina += (Time.fixedDeltaTime * 0.5f);
 
@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!PauseMenu.GameIsPaused)
         {
-            if (stamina > 0)
+            if (stamina > 0 && canMove)
             {
                 //if you have stamina - CC
                 if (!hasJumped)

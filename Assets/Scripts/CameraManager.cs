@@ -64,6 +64,7 @@ public class CameraManager : MonoBehaviour
     }
     public void updateSensitivity()
     {
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity");
         GroundCam.GetComponent<CinemachineFreeLook>().m_XAxis.m_MaxSpeed = sensitivity * oldSpeed;
     }
 }

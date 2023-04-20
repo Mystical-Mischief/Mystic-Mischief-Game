@@ -9,6 +9,10 @@ public class LoadSceneOnEnable : MonoBehaviour
 
     private void OnEnable()
     {
+        if (FindObjectOfType<ActivateQuest>())
+        {
+            FindObjectOfType<ActivateQuest>().ResetActivateQuests();
+        }
         SceneManager.LoadScene(SceneToLoad);
     }
 }

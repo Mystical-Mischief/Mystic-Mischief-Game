@@ -17,6 +17,10 @@ public class PortalLogic : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            if (FindObjectOfType<ActivateQuest>())
+            {
+                FindObjectOfType<ActivateQuest>().ResetActivateQuests();
+            }
             SceneManager.LoadScene(SceneName);
         }
     }

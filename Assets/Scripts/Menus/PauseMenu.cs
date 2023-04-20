@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     private ControlsforPlayer playerControls;
     private Reload reload;
     private Scene scene;
+    public string activeScene;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        
+        activeScene = PlayerPrefs.GetString("sceneName", "Level 1");
             if (GameIsPaused == true)
             {
                 Paused = true;
@@ -85,25 +86,20 @@ public class PauseMenu : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "Level 1")
         {
-            SetFloat("LastLevel", 1);
+            SetString("SceneName", scene.name);
         }
 
         if (scene.name == "Level 2")
         {
-            SetFloat("LastLevel", 2);
+            SetString("SceneName", scene.name);
         }
-
         if (scene.name == "Level 3")
         {
-            SetFloat("LastLevel", 3);
+            SetString("SceneName", scene.name);
         }
+
 
         SceneManager.LoadScene("Main Menu");
-
-        if (FindObjectOfType<ActivateQuest>())
-        {
-            FindObjectOfType<ActivateQuest>().changeSceneName("Main Menu");
-        }
         Debug.Log("Loading menu...");
     }
 
@@ -138,18 +134,13 @@ public class PauseMenu : MonoBehaviour
         playerControls.Disable();
     }
 
-    public void SetFloat(string KeyName, float Value)
+    public void SetString(string KeyName, string Text)
     {
-        PlayerPrefs.SetFloat(KeyName, Value);
+        PlayerPrefs.SetString(KeyName, Text);
     }
 
-    public float GetFloat(string KeyName)
+    public string GetString(string KeyName)
     {
-        return PlayerPrefs.GetFloat(KeyName);
-        // if(cameraScript != null)
-        // {
-        //     cameraScript.sensitivity = sensitivitySlider.value;
-        // }
-        // Save();
+        return PlayerPrefs.GetString(KeyName);
     }
 }
