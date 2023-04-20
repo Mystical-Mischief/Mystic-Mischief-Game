@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4864236963331874575}
   - component: {fileID: 4864236963331874560}
   - component: {fileID: 4864236963331874561}
+  - component: {fileID: 6004883423746858066}
   m_Layer: 0
   m_Name: Forge_Wall_V3_Prefab
   m_TagString: Untagged
@@ -339,8 +340,21 @@ MeshCollider:
   m_GameObject: {fileID: 4864236963331874563}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &6004883423746858066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864236963331874563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.254961, y: 16.194242, z: 28.876743}
+  m_Center: {x: 9.683969, y: 8.097121, z: 14.438372}
