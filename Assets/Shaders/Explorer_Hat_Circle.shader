@@ -7,10 +7,10 @@ Shader "Unlit/Explorers_Hat_Icons"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Alpha" "Queue" = "Overlay"}
         LOD 100
         AlphaToMask On
-        ZWrite On
+        //ZWrite On
         ZTest Always
 
         Pass
