@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5422133116764402489}
   - component: {fileID: 8975835422685969564}
   - component: {fileID: 6590003802986793046}
-  - component: {fileID: 7156542949460796122}
   - component: {fileID: 7880395619005442338}
   m_Layer: 0
   m_Name: Arm_Prefab
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7156542949460796122
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4644506419430680963}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6614388343539733272, guid: 98cb31d4903a7ea4fb8fb3e573726b36, type: 3}
 --- !u!136 &7880395619005442338
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -108,7 +93,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4644506419430680963}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.33130988
   m_Height: 1.1604989
   m_Direction: 1
