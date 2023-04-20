@@ -20,7 +20,7 @@ public class RatAi : BaseEnemyAI
     {
         //Calls the start from BaseEnemyAi
         base.Start();
-        // anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
