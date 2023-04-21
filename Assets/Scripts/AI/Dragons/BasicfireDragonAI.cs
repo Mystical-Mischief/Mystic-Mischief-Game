@@ -125,6 +125,10 @@ public abstract class BasicfireDragonAI : BaseEnemyAI
             FoundPlayer();
             active = true;
         }
+        if(!spottedPlayer)
+        {
+            LostPlayer();
+        }
         //If the Dragon is at the last spot it will generate a new path to follow based on the random number generator.
         if (finishedPatrolling)
         {
