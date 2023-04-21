@@ -25,6 +25,12 @@ public class Reputation : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI reputationText;
+
+    [SerializeField]
+    private GameObject[] pauseReputationImages;
+
+    [SerializeField]
+    private TextMeshProUGUI pauseReputationText;
     public void Start()
     {
         // ps = GetComponentInChildren<ReputationLevelUp>();
@@ -47,6 +53,18 @@ public class Reputation : MonoBehaviour
             UpdateReputation();
         }
 
+    }
+    private void Update()
+    {
+        if (PauseMenu.GameIsPaused == true)
+        {
+            pauseReputationImages[level].SetActive(true);
+            pauseReputationText.text = reputationText.text;
+        }
+        else
+        {
+            pauseReputationImages[level].SetActive(false);
+        }
     }
     public void UpdateReputation()
     {
