@@ -23,8 +23,11 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+            if (other.gameObject.GetComponent<Item>().itemType != Item.ItemType.Objective)
+            {
             other.gameObject.SetActive(false);
             StoredItems.Add(other.gameObject);
+            }
         }
     }
 }

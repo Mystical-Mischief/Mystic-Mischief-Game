@@ -142,7 +142,7 @@ public class SaveGeneral : MonoBehaviour
         {
             currentQuests.Add(quests);
         }
-        // Hats.SaveHats();
+        Hats.SaveHats();
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
