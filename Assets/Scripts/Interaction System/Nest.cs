@@ -27,6 +27,8 @@ public class Nest : MonoBehaviour
     {
         if(other.gameObject.tag=="PickUp")
         {
+            if (other.gameObject.GetComponent<Item>().itemType != Item.ItemType.Objective)
+            {
             item = other.gameObject.GetComponent<Item>();
             //if(item.dropped)
             // {
@@ -38,6 +40,7 @@ public class Nest : MonoBehaviour
                 //Loot.AddToLoot(value);
                 Destroy(other.gameObject);
             //}
+            }
         }
     }
 

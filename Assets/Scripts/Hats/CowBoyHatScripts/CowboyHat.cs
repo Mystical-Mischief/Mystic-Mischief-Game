@@ -347,7 +347,8 @@ public class CowboyHat : BaseHatScript
         {
         Player.GetComponent<Inventory>().rb.mass = Player.GetComponent<Inventory>().rb.mass + (Item.GetComponent<Item>().Weight * 0.2f);
         }
-        Item.transform.parent = gameObject.transform;
+        Item.GetComponent<Item>().inInventory = true;
+        Item.transform.parent = HoldItemPosition;
         Item.transform.position = HoldItemPosition.position;
         Item.transform.rotation = HoldItemPosition.rotation;
         Item.GetComponent<Rigidbody>().isKinematic = true;
