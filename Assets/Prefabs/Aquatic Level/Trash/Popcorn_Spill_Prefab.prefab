@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9180274763391512856}
   - component: {fileID: 6377682064057026002}
   - component: {fileID: 6964628144163680094}
+  - component: {fileID: 5274335951715950486}
   m_Layer: 0
   m_Name: Popcorn_Spill_Prefab
   m_TagString: Untagged
@@ -93,8 +94,21 @@ MeshCollider:
   m_GameObject: {fileID: 4864706165861278727}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3749398320276191661, guid: 5d0eea9acbe82a448b0aed2dba680f65, type: 3}
+--- !u!65 &5274335951715950486
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864706165861278727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.88, y: 0.2526326, z: 0.82}
+  m_Center: {x: 0, y: 0.12622078, z: -0.0005694926}

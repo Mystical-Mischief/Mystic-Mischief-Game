@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7319578998283857980}
   - component: {fileID: 4787512326990234870}
   - component: {fileID: 8815208542888865402}
+  - component: {fileID: 1550521222512472366}
   m_Layer: 0
   m_Name: Popcorn_Bucket_Empty_Prefab
   m_TagString: Untagged
@@ -93,8 +94,22 @@ MeshCollider:
   m_GameObject: {fileID: 6444744974861935907}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 30
+  m_CookingOptions: 0
   m_Mesh: {fileID: 9197979341709547517, guid: 8d7e651868b0b194580354c473300fa7, type: 3}
+--- !u!136 &1550521222512472366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444744974861935907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.53
+  m_Height: 1.06
+  m_Direction: 1
+  m_Center: {x: 9.6054044e-14, y: 0.42245016, z: 0.000061035156}

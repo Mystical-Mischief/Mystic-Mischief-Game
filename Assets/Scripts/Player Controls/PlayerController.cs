@@ -304,8 +304,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InteractionpromptUI Interactionprompt;
     public void TakeDamage(int damage)
     {
-       
-        
             //take damage
             if (damaged != true) 
             {
