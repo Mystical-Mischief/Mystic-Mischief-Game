@@ -21,7 +21,18 @@ public class ControllerRemapper : MonoBehaviour
     {
         pc = FindObjectOfType<PlayerController>();
         if(PlayerPrefs.GetString("rebinds") == null)
+        {
             PlayerPrefs.SetString("rebinds", string.Empty);
+        }   
+        else
+        {
+            if(pc != null)
+                pc.UpdateControls();
+            foreach(InputActionReference IAR in controls)
+            {
+                IAR.asset.LoadBindingOverridesFromJson(PlayerPrefs.GetString("rebinds"));
+            }
+        }
         int x = 0;
         foreach(GameObject button in ControllerButtons)
         {
@@ -53,7 +64,8 @@ public class ControllerRemapper : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => rebindCompleteKeyB(buttonNumber, 0))
             .Start();
-        pc.UpdateControls();
+        if(pc != null)
+            pc.UpdateControls();
     }
     public void ButtonCtrl(int buttonNumber)
     {
@@ -70,7 +82,8 @@ public class ControllerRemapper : MonoBehaviour
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => rebindCompleteCtrl(buttonNumber, 1))
             .Start();
-        pc.UpdateControls();
+        if (pc != null)
+            pc.UpdateControls();
     }
     private void rebindCompleteCtrl(int buttonNumber, int binding)
     {
@@ -85,9 +98,8 @@ public class ControllerRemapper : MonoBehaviour
         updateButtonIcons(ControllerButtons[buttonNumber], buttonNumber);
         /*ControllerButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
             controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);*/
-        FindObjectOfType<PlayerController>().UpdateControls();
-
-
+        if (pc != null)
+            pc.UpdateControls();
     }
     private void rebindCompleteKeyB(int buttonNumber, int binding)
     {
@@ -101,7 +113,8 @@ public class ControllerRemapper : MonoBehaviour
 
         KeyboardButtons[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = InputControlPath.ToHumanReadableString(
             controls[buttonNumber].action.bindings[binding].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
-        FindObjectOfType<PlayerController>().UpdateControls();
+        if (pc != null)
+            pc.UpdateControls();
     }
     private void updateButtonIcons(GameObject button ,int x)
     {
