@@ -96,10 +96,10 @@ public class Item : MonoBehaviour
             other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
         }
     }
-    public void OnCollisionEnter(Collision other)
-    {
-
-    }
+   // public void OnCollisionEnter(Collision other)
+   // {
+   //
+   // }
 
     public static void FindInvisibilityHat(InvisibilityHat hat)
     {

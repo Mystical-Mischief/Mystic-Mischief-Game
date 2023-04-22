@@ -19,7 +19,11 @@ public class SaveGeneral : MonoBehaviour
     public static List<QuestInfo> currentQuests = new List<QuestInfo>();
     public List<QuestInfo> Quests = new List<QuestInfo>();
     public PlayerHatLogic Hats;
-    public 
+    public List<GameObject> TurnsOn = new List<GameObject>();
+    public static bool SavedManualLast;
+    public static bool SavedCheckpointLast;
+    public bool CheckpointSave;
+    public bool ManualSave;
        
        void Awake()
        {
@@ -65,7 +69,14 @@ public class SaveGeneral : MonoBehaviour
             // }
             if (reload.Loading == true)
             {
+                if (SavedCheckpointLast == true)
+                {
+                    LoadCheckpoint();
+                }
+                if (SavedManualLast == true)
+                {
                 LoadEnemy();
+                }
             }
         // }
         controls.Enable();
@@ -74,6 +85,8 @@ public class SaveGeneral : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ManualSave = SavedManualLast;
+        CheckpointSave = SavedCheckpointLast;
         Quests = currentQuests;
         // if (reload.retrying == true)
         // {
@@ -104,6 +117,17 @@ public class SaveGeneral : MonoBehaviour
         {
             LoadCheckpoint();
             LoadMenu = false;
+        }
+    }
+    public void Load()
+    {
+        if (SavedCheckpointLast == true)
+        {
+            LoadCheckpoint();
+        }
+        if (SavedManualLast == true)
+        {
+            LoadEnemy();
         }
     }
 
@@ -143,6 +167,8 @@ public class SaveGeneral : MonoBehaviour
             currentQuests.Add(quests);
         }
         Hats.SaveHats();
+        SavedCheckpointLast = false;
+        SavedManualLast = true;
     }
     //Saves everything when the player reaches a checkpoint.
     public void SaveEnemyCheckPoint()
@@ -183,10 +209,19 @@ public class SaveGeneral : MonoBehaviour
             }
         }
         // Hats.SaveHats();
+        SavedCheckpointLast = true;
+        SavedManualLast = false;
     }
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
+        foreach (GameObject turnson in TurnsOn)
+        {
+                if (turnson.GetComponent<Turnsnn>().isActivated == true)
+                {
+                    turnson.SetActive(true);
+                }
+        }
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -231,6 +266,14 @@ public class SaveGeneral : MonoBehaviour
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
     {
+        foreach (GameObject turnson in TurnsOn)
+        {
+                    turnson.SetActive(true);
+                    if (turnson.name == "CleverBird")
+                    {
+                    turnson.GetComponent<ActivateDialogue>().enabled = true;
+                    }
+        }
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -266,9 +309,19 @@ public class SaveGeneral : MonoBehaviour
         // {
         // Dragon.GetComponent<WaterDragonAi>().LoadDragon();
         // }
-        // q.GetComponent<Quest>().currentQuests.Clear();
-        // q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
+        q.GetComponent<Quest>().currentQuests.Clear();
+        q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         // Hats.LoadHats();
+        foreach (GameObject turnson in TurnsOn)
+        {
+            if (turnson.GetComponent<Turnsnn>() != null)
+            {
+                if (turnson.GetComponent<Turnsnn>().isActivated != true)
+                {
+                    turnson.SetActive(false);
+                }
+            }
+        }
     }
     public virtual void Loadmenu()
     {
