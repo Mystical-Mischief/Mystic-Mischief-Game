@@ -88,6 +88,14 @@ public class PauseMenu : MonoBehaviour
         {
             SetString("SceneName", scene.name);
         }
+        if (scene.name == "Wizard Hub")
+        {
+            SetString("SceneName", scene.name);
+        }
+        if (scene.name == "Wiz Hub Variant")
+        {
+            SetString("SceneName", scene.name);
+        }
 
         if (scene.name == "Level 2")
         {
