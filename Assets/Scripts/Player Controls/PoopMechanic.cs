@@ -1,46 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PoopMechanic : MonoBehaviour
 {
     public Rigidbody poop;
     public Transform poopPosition;
     public float resetPoopTime;
-    public bool Pooped;
-    private bool isPooping;
+    public static bool isPooping;
     ControlsforPlayer controls;
-
+    bool Pooped;
     public AudioSource poopSound;
     public AudioClip PoopClip;
-
+    PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         poopSound = GetComponent<AudioSource>();
         controls = new ControlsforPlayer();
         controls.Enable();
+        controls.Actions.Poop.canceled += Poop;
     }
+  
 
     // Update is called once per frame
     void Update()
     {
-        isPooping = controls.Actions.Poop.IsPressed();
+        //isPooping = controls.Actions.Poop.WasReleasedThisFrame();
 
-        if (isPooping && Pooped == false)
+       // if (isPooping && Pooped == false)
         {
-            Poop();
+        //    Poop();
         }
         
     }
 
-    public void Poop()
+    public void Poop(InputAction.CallbackContext obj)
     {
-        PlaySound(PoopClip);
-        Rigidbody clone;
-        clone = Instantiate(poop, poopPosition.position, transform.rotation);
-        Invoke(nameof(ResetPoop), resetPoopTime);
-        Pooped = true;
+        if(playerController.onGround ==false)
+        {
+            PlaySound(PoopClip);
+            Rigidbody clone;
+            clone = Instantiate(poop, poopPosition.position, transform.rotation);
+            Invoke(nameof(ResetPoop), resetPoopTime);
+        }
+        
     }
 
     public virtual void ResetPoop()

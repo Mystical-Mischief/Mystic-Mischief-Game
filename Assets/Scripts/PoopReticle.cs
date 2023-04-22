@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PoopReticle : MonoBehaviour
 {
@@ -11,9 +13,20 @@ public class PoopReticle : MonoBehaviour
     [SerializeField]
     private PlayerController playerController;
 
+    ControlsforPlayer controls;
+    private void Start()
+    {
+        controls = new ControlsforPlayer();
+        controls.Enable();
+        controls.Actions.Poop.started += Reticle;
+        controls.Actions.Poop.canceled += stop;
+    }
+
     void FixedUpdate()
     {
-        if(!playerController.onGround)
+        controls.Actions.Poop.started += Reticle;
+        bool poop = false;
+        if (poop)
         {
             groundCheck = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 50f);
             reticlePoint = hit.point;
@@ -23,8 +36,25 @@ public class PoopReticle : MonoBehaviour
         }
         else
         {
-            reticle.SetActive(false);
+            //reticle.SetActive(false);
         }
 
+    }
+    void Reticle(InputAction.CallbackContext obj)
+    {
+        if(!playerController.onGround)
+        {
+            groundCheck = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 50f);
+            reticlePoint = hit.point;
+            reticlePoint.y += 0.2f;
+            reticle.transform.position = reticlePoint;
+            reticle.SetActive(true);
+            
+        }
+
+    }
+    void stop(InputAction.CallbackContext obj)
+    {
+        reticle.SetActive(false);
     }
 }

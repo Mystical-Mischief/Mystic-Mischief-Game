@@ -3,11 +3,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     public Reload reload;
     [SerializeField] EventSystem eventSystem;
+    [SerializeField] Button firstSelect;
+
 
     public void PlayGame()
     {
