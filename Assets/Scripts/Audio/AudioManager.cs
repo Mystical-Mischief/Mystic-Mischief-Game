@@ -61,11 +61,15 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateSound()
     {
-        BackgroundAudio.volume = BackgroundSlider.value;
-        for (int i = 0; i < SoundEffectsAudio.Length; i++)
+        if(BackgroundAudio != null) //Added this to stop the missing object reference message. 
         {
-            SoundEffectsAudio[i].volume = SoundEffectsSlider.value;
+            BackgroundAudio.volume = BackgroundSlider.value;
+            for (int i = 0; i < SoundEffectsAudio.Length; i++)
+            {
+                SoundEffectsAudio[i].volume = SoundEffectsSlider.value;
+            }
         }
+
     }
 
 }

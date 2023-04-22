@@ -62,6 +62,11 @@ public class PlayerController : MonoBehaviour
 
     public event EventHandler GotHurt;
 
+    private void Awake()
+    {
+        controls = new ControlsforPlayer();
+    }
+
     private void Start()
     {
         oldMaxStamina = maxStamina;
@@ -90,10 +95,9 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         //Sets up controls for jump, caw and godmode
-        controls = new ControlsforPlayer();
+
         controls.Enable();
         controls.Actions.Jump.performed += DoJump;
-        
         move = controls.Actions.Movement;
     }
     private void OnDisable()
@@ -307,6 +311,10 @@ public class PlayerController : MonoBehaviour
             {
                 currentHealth -= damage;
                 Interactionprompt.Setup("Ouch! That Hurt");
+
+
+                GotHurt?.Invoke(this, EventArgs.Empty);
+
                 if (currentHealth < 1)
                 {
                     /*
@@ -384,7 +392,7 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             onGround = false;
             inWater = true;
-            Debug.Log("Inwater");
+            //Debug.Log("Inwater");
         }
         //This pushes the player back when they hit a wall.
         if (other.gameObject.CompareTag("wall"))
@@ -432,10 +440,10 @@ public class PlayerController : MonoBehaviour
             TakeDamage(1);
         }
     }
-    void OnCollisionStay(Collision other)
-    {
-
-    }
+  // void OnCollisionStay(Collision other)
+  // {
+  //
+  // }
     void OnCollisionExit(Collision other)
     {
         //This lets the player move again when they jump out of water.
@@ -512,7 +520,7 @@ public class PlayerController : MonoBehaviour
         SaveSystem.SavePlayer(this);
         // SaveSystem.Checkpoint(this);
         // Saved = true;
-        Debug.Log("Saved");
+       // Debug.Log("Saved");
     }
     public void LoadCheckpoint()
     {
