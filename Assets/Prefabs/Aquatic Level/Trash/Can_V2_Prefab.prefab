@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2224134620625705296}
   - component: {fileID: 4123399426995383706}
   - component: {fileID: 79940545924056854}
+  - component: {fileID: 8230930213473381230}
   m_Layer: 0
   m_Name: Can_V2_Prefab
   m_TagString: Untagged
@@ -93,8 +94,22 @@ MeshCollider:
   m_GameObject: {fileID: 2466210759809715279}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6168650812902891753, guid: 4e33ed56c3f1cc84db50afed94df425d, type: 3}
+--- !u!136 &8230930213473381230
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2466210759809715279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18205395
+  m_Height: 0.687573
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.34390858, z: -0.0000038205476}
