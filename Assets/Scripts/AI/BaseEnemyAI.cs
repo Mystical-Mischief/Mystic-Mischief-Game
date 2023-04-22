@@ -205,7 +205,7 @@ public class BaseEnemyAI : MonoBehaviour
     public void SaveEnemy ()
     {
         SaveSystem.SaveEnemy(this);
-        Debug.Log("Saved");
+        //Debug.Log("Saved");
     }
     public void LoadEnemy ()
     {

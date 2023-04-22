@@ -7,6 +7,9 @@ public class RoosterRotator : MonoBehaviour
     public ExplorersHat expHat;
     void Update()
     {
-        transform.forward = new Vector3(expHat.closestItem.transform.position.x - transform.position.x, 0, expHat.closestItem.transform.position.z - transform.position.z); 
+        if(expHat.closestItem != null)
+        {
+            transform.forward = new Vector3(expHat.closestItem.transform.position.x - transform.position.x, 0, expHat.closestItem.transform.position.z - transform.position.z);
+        }
     }
 }
