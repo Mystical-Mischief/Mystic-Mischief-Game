@@ -80,7 +80,7 @@ public class SpiderBiteVariant : BaseEnemyAI
                 UnityEngine.AI.NavMeshHit hit;
                 UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, wanderRange, 1);
                 Vector3 finalPosition = hit.position;
-                print(finalPosition);
+                //print(finalPosition); - Remember to always remove debug messages, it slows down the game
                 UpdateDestination(finalPosition);
             }
             else
