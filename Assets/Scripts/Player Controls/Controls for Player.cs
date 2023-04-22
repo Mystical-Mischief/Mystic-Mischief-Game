@@ -24,136 +24,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     ""name"": ""Controls for Player"",
     ""maps"": [
         {
-            ""name"": ""Inv"",
-            ""id"": ""fd34008b-80e7-426d-97d4-7c82c44f2dfd"",
-            ""actions"": [
-                {
-                    ""name"": ""Store"",
-                    ""type"": ""Value"",
-                    ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""5ed0ff00-4926-4efc-a969-e399a0c91f33"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""OpenInv"",
-                    ""type"": ""Button"",
-                    ""id"": ""a9ceb8b1-28ce-4566-8655-620797abb12d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PressPick"",
-                    ""type"": ""Button"",
-                    ""id"": ""137fa85d-f5ab-4b53-b7f3-1da9092e75c7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""HoldItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""e3efaabd-f84c-4644-914b-028932e17948"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Hold"",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
-                    ""path"": ""<XInputController>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fire1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1442667d-a526-4eb4-9b71-7e1666b28729"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c6d45c2d-d454-4498-bf21-9142a5e2efa1"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HoldItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""63821ca2-e76a-4d73-bbeb-8b2c381fb53a"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OpenInv"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cc4da418-3b38-4c79-a1a8-3a7f05eb0048"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OpenInv"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PressPick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PressPick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Actions"",
             ""id"": ""e0f5a95b-511f-4b07-a28e-fa89eb759e3c"",
             ""actions"": [
@@ -199,8 +69,8 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
                     ""id"": ""76884bb7-09ba-4323-a932-4b7fb3bddc23"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(pressPoint=0.1,behavior=2)"",
-                    ""initialStateCheck"": true
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""SwitchHat"",
@@ -680,6 +550,136 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Inv"",
+            ""id"": ""fd34008b-80e7-426d-97d4-7c82c44f2dfd"",
+            ""actions"": [
+                {
+                    ""name"": ""Store"",
+                    ""type"": ""Value"",
+                    ""id"": ""fd1e9d33-dc43-4419-b81d-74f46283fac0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ed0ff00-4926-4efc-a969-e399a0c91f33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInv"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9ceb8b1-28ce-4566-8655-620797abb12d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PressPick"",
+                    ""type"": ""Button"",
+                    ""id"": ""137fa85d-f5ab-4b53-b7f3-1da9092e75c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HoldItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3efaabd-f84c-4644-914b-028932e17948"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""25af452b-f432-46da-8bd2-79f6244aeeed"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1442667d-a526-4eb4-9b71-7e1666b28729"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6d45c2d-d454-4498-bf21-9142a5e2efa1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63821ca2-e76a-4d73-bbeb-8b2c381fb53a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInv"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc4da418-3b38-4c79-a1a8-3a7f05eb0048"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInv"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad86e4db-23c8-4aac-9036-2eff151e3b10"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2643c2af-f640-46b5-b5a6-51cfe754008e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PressPick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Pause"",
             ""id"": ""16c4472a-5611-435b-835b-4a121f3e8be4"",
             ""actions"": [
@@ -961,13 +961,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Inv
-        m_Inv = asset.FindActionMap("Inv", throwIfNotFound: true);
-        m_Inv_Store = m_Inv.FindAction("Store", throwIfNotFound: true);
-        m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
-        m_Inv_OpenInv = m_Inv.FindAction("OpenInv", throwIfNotFound: true);
-        m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
-        m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_Glide = m_Actions.FindAction("Glide", throwIfNotFound: true);
@@ -986,6 +979,13 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         m_Actions_Look = m_Actions.FindAction("Look", throwIfNotFound: true);
         m_Actions_Poop = m_Actions.FindAction("Poop", throwIfNotFound: true);
         m_Actions_DragonLockOn = m_Actions.FindAction("DragonLockOn", throwIfNotFound: true);
+        // Inv
+        m_Inv = asset.FindActionMap("Inv", throwIfNotFound: true);
+        m_Inv_Store = m_Inv.FindAction("Store", throwIfNotFound: true);
+        m_Inv_Drop = m_Inv.FindAction("Drop", throwIfNotFound: true);
+        m_Inv_OpenInv = m_Inv.FindAction("OpenInv", throwIfNotFound: true);
+        m_Inv_PressPick = m_Inv.FindAction("PressPick", throwIfNotFound: true);
+        m_Inv_HoldItem = m_Inv.FindAction("HoldItem", throwIfNotFound: true);
         // Pause
         m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
         m_Pause_PauseGame = m_Pause.FindAction("PauseGame", throwIfNotFound: true);
@@ -1057,71 +1057,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
     {
         return asset.FindBinding(bindingMask, out action);
     }
-
-    // Inv
-    private readonly InputActionMap m_Inv;
-    private IInvActions m_InvActionsCallbackInterface;
-    private readonly InputAction m_Inv_Store;
-    private readonly InputAction m_Inv_Drop;
-    private readonly InputAction m_Inv_OpenInv;
-    private readonly InputAction m_Inv_PressPick;
-    private readonly InputAction m_Inv_HoldItem;
-    public struct InvActions
-    {
-        private @ControlsforPlayer m_Wrapper;
-        public InvActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Store => m_Wrapper.m_Inv_Store;
-        public InputAction @Drop => m_Wrapper.m_Inv_Drop;
-        public InputAction @OpenInv => m_Wrapper.m_Inv_OpenInv;
-        public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
-        public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
-        public InputActionMap Get() { return m_Wrapper.m_Inv; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InvActions set) { return set.Get(); }
-        public void SetCallbacks(IInvActions instance)
-        {
-            if (m_Wrapper.m_InvActionsCallbackInterface != null)
-            {
-                @Store.started -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
-                @Store.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
-                @Store.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
-                @Drop.started -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
-                @Drop.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
-                @Drop.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
-                @OpenInv.started -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
-                @OpenInv.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
-                @OpenInv.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
-                @PressPick.started -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
-                @PressPick.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
-                @PressPick.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
-                @HoldItem.started -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
-                @HoldItem.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
-                @HoldItem.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
-            }
-            m_Wrapper.m_InvActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Store.started += instance.OnStore;
-                @Store.performed += instance.OnStore;
-                @Store.canceled += instance.OnStore;
-                @Drop.started += instance.OnDrop;
-                @Drop.performed += instance.OnDrop;
-                @Drop.canceled += instance.OnDrop;
-                @OpenInv.started += instance.OnOpenInv;
-                @OpenInv.performed += instance.OnOpenInv;
-                @OpenInv.canceled += instance.OnOpenInv;
-                @PressPick.started += instance.OnPressPick;
-                @PressPick.performed += instance.OnPressPick;
-                @PressPick.canceled += instance.OnPressPick;
-                @HoldItem.started += instance.OnHoldItem;
-                @HoldItem.performed += instance.OnHoldItem;
-                @HoldItem.canceled += instance.OnHoldItem;
-            }
-        }
-    }
-    public InvActions @Inv => new InvActions(this);
 
     // Actions
     private readonly InputActionMap m_Actions;
@@ -1275,6 +1210,71 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         }
     }
     public ActionsActions @Actions => new ActionsActions(this);
+
+    // Inv
+    private readonly InputActionMap m_Inv;
+    private IInvActions m_InvActionsCallbackInterface;
+    private readonly InputAction m_Inv_Store;
+    private readonly InputAction m_Inv_Drop;
+    private readonly InputAction m_Inv_OpenInv;
+    private readonly InputAction m_Inv_PressPick;
+    private readonly InputAction m_Inv_HoldItem;
+    public struct InvActions
+    {
+        private @ControlsforPlayer m_Wrapper;
+        public InvActions(@ControlsforPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Store => m_Wrapper.m_Inv_Store;
+        public InputAction @Drop => m_Wrapper.m_Inv_Drop;
+        public InputAction @OpenInv => m_Wrapper.m_Inv_OpenInv;
+        public InputAction @PressPick => m_Wrapper.m_Inv_PressPick;
+        public InputAction @HoldItem => m_Wrapper.m_Inv_HoldItem;
+        public InputActionMap Get() { return m_Wrapper.m_Inv; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InvActions set) { return set.Get(); }
+        public void SetCallbacks(IInvActions instance)
+        {
+            if (m_Wrapper.m_InvActionsCallbackInterface != null)
+            {
+                @Store.started -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Store.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnStore;
+                @Drop.started -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnDrop;
+                @OpenInv.started -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
+                @OpenInv.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
+                @OpenInv.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnOpenInv;
+                @PressPick.started -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
+                @PressPick.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
+                @PressPick.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnPressPick;
+                @HoldItem.started -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
+                @HoldItem.performed -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
+                @HoldItem.canceled -= m_Wrapper.m_InvActionsCallbackInterface.OnHoldItem;
+            }
+            m_Wrapper.m_InvActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Store.started += instance.OnStore;
+                @Store.performed += instance.OnStore;
+                @Store.canceled += instance.OnStore;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
+                @OpenInv.started += instance.OnOpenInv;
+                @OpenInv.performed += instance.OnOpenInv;
+                @OpenInv.canceled += instance.OnOpenInv;
+                @PressPick.started += instance.OnPressPick;
+                @PressPick.performed += instance.OnPressPick;
+                @PressPick.canceled += instance.OnPressPick;
+                @HoldItem.started += instance.OnHoldItem;
+                @HoldItem.performed += instance.OnHoldItem;
+                @HoldItem.canceled += instance.OnHoldItem;
+            }
+        }
+    }
+    public InvActions @Inv => new InvActions(this);
 
     // Pause
     private readonly InputActionMap m_Pause;
@@ -1430,14 +1430,6 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         }
     }
     public TestActions @Test => new TestActions(this);
-    public interface IInvActions
-    {
-        void OnStore(InputAction.CallbackContext context);
-        void OnDrop(InputAction.CallbackContext context);
-        void OnOpenInv(InputAction.CallbackContext context);
-        void OnPressPick(InputAction.CallbackContext context);
-        void OnHoldItem(InputAction.CallbackContext context);
-    }
     public interface IActionsActions
     {
         void OnGlide(InputAction.CallbackContext context);
@@ -1456,6 +1448,14 @@ public partial class @ControlsforPlayer : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPoop(InputAction.CallbackContext context);
         void OnDragonLockOn(InputAction.CallbackContext context);
+    }
+    public interface IInvActions
+    {
+        void OnStore(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
+        void OnOpenInv(InputAction.CallbackContext context);
+        void OnPressPick(InputAction.CallbackContext context);
+        void OnHoldItem(InputAction.CallbackContext context);
     }
     public interface IPauseActions
     {

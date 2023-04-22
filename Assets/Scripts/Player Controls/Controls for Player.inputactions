@@ -2,136 +2,6 @@
     "name": "Controls for Player",
     "maps": [
         {
-            "name": "Inv",
-            "id": "fd34008b-80e7-426d-97d4-7c82c44f2dfd",
-            "actions": [
-                {
-                    "name": "Store",
-                    "type": "Value",
-                    "id": "fd1e9d33-dc43-4419-b81d-74f46283fac0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Drop",
-                    "type": "Button",
-                    "id": "5ed0ff00-4926-4efc-a969-e399a0c91f33",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "OpenInv",
-                    "type": "Button",
-                    "id": "a9ceb8b1-28ce-4566-8655-620797abb12d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PressPick",
-                    "type": "Button",
-                    "id": "137fa85d-f5ab-4b53-b7f3-1da9092e75c7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "HoldItem",
-                    "type": "Button",
-                    "id": "e3efaabd-f84c-4644-914b-028932e17948",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "25af452b-f432-46da-8bd2-79f6244aeeed",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1442667d-a526-4eb4-9b71-7e1666b28729",
-                    "path": "<Keyboard>/g",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c6d45c2d-d454-4498-bf21-9142a5e2efa1",
-                    "path": "<Keyboard>/r",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HoldItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "63821ca2-e76a-4d73-bbeb-8b2c381fb53a",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenInv",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cc4da418-3b38-4c79-a1a8-3a7f05eb0048",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "OpenInv",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ad86e4db-23c8-4aac-9036-2eff151e3b10",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressPick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2643c2af-f640-46b5-b5a6-51cfe754008e",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressPick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Actions",
             "id": "e0f5a95b-511f-4b07-a28e-fa89eb759e3c",
             "actions": [
@@ -177,8 +47,8 @@
                     "id": "76884bb7-09ba-4323-a932-4b7fb3bddc23",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(pressPoint=0.1,behavior=2)",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SwitchHat",
@@ -652,6 +522,136 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActivateHat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inv",
+            "id": "fd34008b-80e7-426d-97d4-7c82c44f2dfd",
+            "actions": [
+                {
+                    "name": "Store",
+                    "type": "Value",
+                    "id": "fd1e9d33-dc43-4419-b81d-74f46283fac0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "5ed0ff00-4926-4efc-a969-e399a0c91f33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInv",
+                    "type": "Button",
+                    "id": "a9ceb8b1-28ce-4566-8655-620797abb12d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PressPick",
+                    "type": "Button",
+                    "id": "137fa85d-f5ab-4b53-b7f3-1da9092e75c7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HoldItem",
+                    "type": "Button",
+                    "id": "e3efaabd-f84c-4644-914b-028932e17948",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "25af452b-f432-46da-8bd2-79f6244aeeed",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1442667d-a526-4eb4-9b71-7e1666b28729",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6d45c2d-d454-4498-bf21-9142a5e2efa1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HoldItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63821ca2-e76a-4d73-bbeb-8b2c381fb53a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInv",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc4da418-3b38-4c79-a1a8-3a7f05eb0048",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInv",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad86e4db-23c8-4aac-9036-2eff151e3b10",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressPick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2643c2af-f640-46b5-b5a6-51cfe754008e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressPick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
