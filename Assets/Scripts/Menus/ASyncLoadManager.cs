@@ -36,6 +36,8 @@ public class ASyncLoadManager : MonoBehaviour
 
     public void GoToLevel(string name)
     {
+        Debug.Log("Going places...");
+
         if (_loadScreen != null)
         {
             _loadScreen.SetActive(true);
@@ -49,10 +51,11 @@ public class ASyncLoadManager : MonoBehaviour
 
         transitionMask.SetTrigger("Shrink");
 
-        yield return new WaitForSeconds(transitionDelay);    //Gives time for the trasition animation to fully play -Emilie 
+        yield return new WaitForSecondsRealtime(transitionDelay);    //Gives time for the trasition animation to fully play -Emilie 
 
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelName);
-
+        Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
         loadOperation.allowSceneActivation = false; //Gives control on when to activate the level -Emilie 
 
         while (!loadOperation.isDone)
@@ -62,6 +65,7 @@ public class ASyncLoadManager : MonoBehaviour
                 loadOperation.allowSceneActivation = true;
                 yield return new WaitForSeconds(transitionDelay);
                 transitionMask.SetTrigger("Grow");
+                AudioListener.pause = false;
             }
 
             yield return null;
