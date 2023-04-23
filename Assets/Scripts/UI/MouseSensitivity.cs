@@ -12,13 +12,17 @@ public class MouseSensitivity : MonoBehaviour
     private Scene scene;
     private static float booted = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         scene = SceneManager.GetActiveScene();
+      
+    }
+    void Update()
+    {
+        
         if (scene.name != "Main Menu")
         {
-        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
+            sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
         }
         if (scene.name == "Main Menu" && booted < 1)
         {
@@ -27,9 +31,9 @@ public class MouseSensitivity : MonoBehaviour
         }
         if (scene.name == "Main Menu" && booted > 1)
         {
-        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
+            sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 0.1f);
         }
-        // mouseSensitivity = sensitivitySlider.value;
+         mouseSensitivity = sensitivitySlider.value;
         // if(!PlayerPrefs.HasKey("Sensitivity")){
         //     PlayerPrefs.SetFloat("Sensitivity", 0.3f);
         //     Load();
