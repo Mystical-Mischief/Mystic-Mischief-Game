@@ -17,8 +17,11 @@ public class PauseMenu : MonoBehaviour
     private Scene scene;
     public string activeScene;
 
+    //public ASyncLoadManager asyncLoadManager; 
+
     private void Awake()
     {
+       //asyncLoadManager = new ASyncLoadManager();
         scene = SceneManager.GetActiveScene();
         playerControls = new ControlsforPlayer();
         if (GameObject.Find("Saves"))
@@ -107,7 +110,8 @@ public class PauseMenu : MonoBehaviour
         }
 
 
-        SceneManager.LoadScene("Main Menu");
+        //SceneManager.LoadScene("Main Menu");
+        //asyncLoadManager.GoToLevel("Main Menu");
         Debug.Log("Loading menu...");
     }
 
