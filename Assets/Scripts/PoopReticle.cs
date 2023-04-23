@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,20 +22,8 @@ public class PoopReticle : MonoBehaviour
 
     void FixedUpdate()
     {
-        controls.Actions.Poop.started += Reticle;
-        bool poop = false;
-        if (poop)
-        {
-            groundCheck = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 50f);
-            reticlePoint = hit.point;
-            reticlePoint.y += 0.2f;
-            reticle.transform.position = reticlePoint;
-            reticle.SetActive(true);
-        }
-        else
-        {
-            //reticle.SetActive(false);
-        }
+        //controls.Actions.Poop.started += Reticle;
+        
 
     }
     void Reticle(InputAction.CallbackContext obj)
