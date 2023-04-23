@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class SaveGeneral : MonoBehaviour
 {
@@ -148,17 +149,10 @@ public class SaveGeneral : MonoBehaviour
         {
             Item.GetComponent<Item>().inInventory = true;
         }
+
         //Saves the items.
-        foreach (GameObject items in Items)
-        {
-            if (items != null)
-            {
-                if (items.GetComponent<Item>() != null)
-                {
-                    items.GetComponent<Item>().SaveItem();
-                }
-            }
-        }
+        SaveLotsOfItems(); //Run an asyc function so that items can save in the background instead of freezing the game to do it all at once. 
+
         //Saves the player usings the players save function.
         Player.GetComponent<PlayerController>().SavePlayer();
         Camera.GetComponent<CameraLogic>().SaveCamera();
@@ -326,5 +320,19 @@ public class SaveGeneral : MonoBehaviour
     public virtual void Loadmenu()
     {
         LoadMenu = true;
+    }
+   async void SaveLotsOfItems()
+    {
+        foreach (GameObject items in Items)
+        {
+            if (items != null)
+            {
+                if (items.GetComponent<Item>() != null)
+                {
+                    items.GetComponent<Item>().SaveItem();
+                }
+            }
+            await Task.Yield();
+        }
     }
 }
