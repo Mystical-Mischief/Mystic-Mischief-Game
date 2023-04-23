@@ -19,13 +19,6 @@ public class PoopReticle : MonoBehaviour
         controls.Actions.Poop.started += Reticle;
         controls.Actions.Poop.canceled += stop;
     }
-
-    void FixedUpdate()
-    {
-        //controls.Actions.Poop.started += Reticle;
-        
-
-    }
     void Reticle(InputAction.CallbackContext obj)
     {
         if(!playerController.onGround)
