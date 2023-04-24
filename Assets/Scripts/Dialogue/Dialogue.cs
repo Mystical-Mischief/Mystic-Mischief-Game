@@ -35,6 +35,7 @@ public class Dialogue : MonoBehaviour
     public GameObject deactivate;
     public Character[] Characters;
     public AllDialogue[] AllDialogues;
+    public string[] allQuests;
     [Header("Speed of text for each letter goes here. Use decimals")]
     public float textSpeed;
     
@@ -138,7 +139,6 @@ public class Dialogue : MonoBehaviour
             mainCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = true;
             GetComponent<ActivateDialogue>().dialogueCanvas.SetActive(false);
             StartCoroutine(delayDialogueBox());
-            this.enabled = false;
             if (convoNumber == AllDialogues.Length)
             {
                 if(reward != null)
@@ -150,7 +150,19 @@ public class Dialogue : MonoBehaviour
                     deactivate.SetActive(false);
                 }
             }
+            Quest questScript = FindObjectOfType<Quest>();
+            string currQuestName = questScript.activeQuest.questName;
+            print(currQuestName);
+            foreach (string quest in allQuests)
+            {
+                print(quest);
+                if (quest == currQuestName)
+                {
+                    questScript.NextQuest();
+                }
+            }
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
+            this.enabled = false;
         }
     }
     //delays the dialogue so you can walk away from it without activating it again by accident. 
