@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class CutsceneLeave : MonoBehaviour
 {
     public string sceneToLoad;
+    public ASyncLoadManager asyncLoadManager;
+
     private void OnTriggerExit(Collider other)
     {
-        SceneManager.LoadScene(sceneToLoad);
+        asyncLoadManager.GoToLevel(sceneToLoad);
     }
 }
