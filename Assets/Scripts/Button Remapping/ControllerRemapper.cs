@@ -146,6 +146,12 @@ public class ControllerRemapper : MonoBehaviour
             case "Right Trigger":
                 buttonNum = 7;
                 break;
+            case "Menu": case "Options":
+                    buttonNum = 8;
+                break;
+            case "Right Stick Press":
+                buttonNum = 9;
+                break;
             default:
                 updateImage = false;
                 break;
