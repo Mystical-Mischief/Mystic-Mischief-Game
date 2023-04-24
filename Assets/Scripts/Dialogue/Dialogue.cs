@@ -18,6 +18,7 @@ public class DialogueLines
     public string Line;
     public int TalkingCharacter;
     public Vector3 CameraPosition;
+    public AudioClip voiceLine;
 }
 //this holds all the dialogue interactions between the characters
 [Serializable]
@@ -73,11 +74,11 @@ public class Dialogue : MonoBehaviour
             string currentDialogue = $"{Characters[currentConversation[index].TalkingCharacter-1].CharacterName}: {currentConversation[index].Line}";
             if (textComponent.text == currentDialogue)
             {
-                audioSource.Play();
                 NextLine(currentConversation);
             }
             else
             {
+                audioSource.Stop();
                 StopAllCoroutines();
                 textComponent.text = currentDialogue;
             }
@@ -86,7 +87,6 @@ public class Dialogue : MonoBehaviour
     //choses the proper dialogue option out of the list. if its random it will choose a random option. if its not then it will go to the next conversation listed
     void StartDialogue()
     {
-        audioSource.Play();
         index = 0;
         GetComponent<SphereCollider>().enabled = false;
         mainCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
@@ -104,6 +104,11 @@ public class Dialogue : MonoBehaviour
             }
         }
         DialogueLines[] currentConversation = AllDialogues[convoNumber - 1].Interaction;
+        if (currentConversation[index].voiceLine != null)
+        {
+            audioSource.clip = currentConversation[index].voiceLine;
+            audioSource.Play();
+        }
         updateCamera(currentConversation);
         //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
@@ -130,6 +135,11 @@ public class Dialogue : MonoBehaviour
         if (index < currentConversation.Length - 1)
         {
             index++;
+            if (currentConversation[index].voiceLine != null)
+            {
+                audioSource.clip = currentConversation[index].voiceLine;
+                audioSource.Play();
+            }
             textComponent.text = string.Empty;
             updateCamera(currentConversation);
             StartCoroutine(TypeLine(currentConversation));
