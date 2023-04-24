@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4055404369743915609}
   - component: {fileID: 4723271052912183853}
   - component: {fileID: 3217219770478101314}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gold_Bar_Protect_Prefab
   m_TagString: PickUp
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   questToFinish: 
   questToActivate: 
   hideText: 0
-  _prompt: Press E/LMB to pick up. Press G to drop
+  _prompt: press E on keyboard or X on controller to pick up/Drop items
   dissapear: 0
 --- !u!54 &3217219770478101314
 Rigidbody:
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 5260066398784362998}
   - component: {fileID: 5260066398784363000}
   - component: {fileID: 5260066398784363001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProtectArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +303,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup_Effect
       objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291243, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319915947865, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667320488699082, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667320575354452, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
 --- !u!198 &4526353183180239684 stripped
@@ -370,6 +386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
 --- !u!4 &1080094673573063590 stripped
@@ -431,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_Name
       value: Item_Effect_Particle_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
