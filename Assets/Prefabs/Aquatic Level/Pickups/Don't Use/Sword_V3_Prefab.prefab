@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 598019847448119597}
   - component: {fileID: 598019847448119596}
   - component: {fileID: 598019847448119594}
+  - component: {fileID: 1393355830}
   m_Layer: 0
   m_Name: Sword_V3_Prefab
   m_TagString: PickUp
@@ -142,8 +143,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 1
   Weight: 0.9
+  inInventory: 0
+  sprite: {fileID: 0}
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
+  canDrop: 0
+  dropped: 0
+  ps: {fileID: 0}
+  fallDistance: 1
+  canKill: 0
+  itemEffect: {fileID: 0}
+  Invisible: 0
+--- !u!114 &1393355830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328197830922048359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d794b357fdd8044bc3a2d0a2a1b400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  Weight: 0
   inInventory: 0
   sprite: {fileID: 0}
   spriteColor: {r: 0, g: 0, b: 0, a: 0}
@@ -191,19 +216,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.489926
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.72698677
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.39896497
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.26886758
       objectReference: {fileID: 0}
     - target: {fileID: 3067558129796463721, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
