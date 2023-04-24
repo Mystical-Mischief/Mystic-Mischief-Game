@@ -315,22 +315,6 @@ public class PlayerController : MonoBehaviour
 
                 if (currentHealth < 1)
                 {
-                    /*
-                     Scene scene = SceneManager.GetActiveScene();
-                     if (scene.name == "Level 1")
-                     {
-                         SetFloat("LastLevel", 1);
-                     }
-                     if (scene.name == "Level 2")
-                     {
-                         SetFloat("LastLevel", 2);
-                     }
-                     if (scene.name == "Level 3")
-                     {
-                         SetFloat("LastLevel", 3);
-                     }
-                     SceneManager.LoadScene("Lose Screen");
-                    */
                     Reset();
                     transform.position = _latestCheckPoint.position;
                    GameOverMenu.SetActive(true);
