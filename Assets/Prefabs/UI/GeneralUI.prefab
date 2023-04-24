@@ -975,7 +975,6 @@ GameObject:
   - component: {fileID: 4533753702412629224}
   - component: {fileID: 4533753702412629231}
   - component: {fileID: 4533753702412629230}
-  - component: {fileID: 7344092209472361946}
   m_Layer: 5
   m_Name: GeneralUI
   m_TagString: Untagged
@@ -1069,20 +1068,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7344092209472361946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4533753702412629229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94eb6117008c5ec42a7b05741ccea4c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipText: {fileID: 0}
-  tipWindow: {fileID: 0}
 --- !u!1 &4533753702645289554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,7 +2873,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1207942701147866330, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1207942701989572276, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_Pivot.x
@@ -2994,13 +2979,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaveGeneral, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 1207942702129096525, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1207942702643031068, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1843041230003549164, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3013,10 +2994,6 @@ PrefabInstance:
     - target: {fileID: 1843041230003549164, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480978343487147617, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2756933682245477253, guid: 2eb50fc42031f0a4eb9126ef4dec0f60, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

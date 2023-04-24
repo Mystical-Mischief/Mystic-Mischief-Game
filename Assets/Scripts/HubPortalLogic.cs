@@ -8,6 +8,7 @@ public class HubPortalLogic : MonoBehaviour
     public GameObject levelSelector;
     public GameObject level2Object;
     public GameObject level3Object;
+
     private void Start()
     {
         if(levelName != null)
