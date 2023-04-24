@@ -9,7 +9,6 @@ public class PortalLogic : MonoBehaviour
     public string SceneName;
     private void Start()
     {
-        asyncLoadManager = new ASyncLoadManager(); 
         if(PlayerPrefs.GetInt("Completed") == 1)
         {
             SceneName = "Wiz Hub Variant";
@@ -23,8 +22,10 @@ public class PortalLogic : MonoBehaviour
             {
                 FindObjectOfType<ActivateQuest>().ResetActivateQuests();
             }
-            SceneManager.LoadScene(SceneName);
-            //asyncLoadManager.GoToLevel(SceneName);
+
+            Time.timeScale = 0f;
+            //SceneManager.LoadScene(SceneName);
+            asyncLoadManager.GoToLevel(SceneName);
         }
     }
 }
