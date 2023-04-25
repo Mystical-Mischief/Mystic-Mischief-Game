@@ -1,5 +1,164 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &221814405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221814406}
+  m_Layer: 0
+  m_Name: HEad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221814406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221814405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4610008169402035571}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1178190638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178190639}
+  - component: {fileID: 1178190641}
+  - component: {fileID: 1178190640}
+  m_Layer: 6
+  m_Name: Wizard prt2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1178190639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178190638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4699998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4610008169402035571}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1178190641
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178190638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1178190640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178190638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 0}
+  questToFinish: Return to the Wizard. Again.
+  questToActivate: 
+  hideText: 1
+  _prompt: 
+  dissapear: 0
+--- !u!1 &1731521774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731521777}
+  - component: {fileID: 1731521776}
+  - component: {fileID: 1731521775}
+  m_Layer: 6
+  m_Name: Wizard prt3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1731521777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731521774}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4699998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4610008169402035571}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1731521776
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731521774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1731521775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731521774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 0}
+  questToFinish: Talk to the Wizard Again
+  questToActivate: 
+  hideText: 1
+  _prompt: 
+  dissapear: 0
 --- !u!1 &56628631890998819
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +956,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6358970622535935887}
   - component: {fileID: 4541564416468584794}
+  - component: {fileID: 736986488}
+  - component: {fileID: 736986490}
   m_Layer: 8
   m_Name: Wizard
   m_TagString: Untagged
@@ -936,6 +1097,40 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.39381516, y: -0.037219882, z: 0.001317203}
     m_Extent: {x: 1.6105937, y: 0.7990388, z: 1.8596787}
   m_DirtyAABB: 0
+--- !u!114 &736986488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435590413169199948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac36d4a0e3c20864a97722b6ae7e0b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiPanel: {fileID: 0}
+  _promptText: {fileID: 0}
+  IsDisplayed: 0
+--- !u!114 &736986490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435590413169199948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e36be205fa66c479a9c2ea0983da49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 6358970622535935887}
+  _interactionPointRadius: 0.5
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _interactionpromptUI: {fileID: 0}
+  _numFound: 0
 --- !u!1 &1436235433068300813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2419,12 @@ GameObject:
   - component: {fileID: 4610008169402035571}
   - component: {fileID: 4066947809436736327}
   - component: {fileID: 617406011877220323}
-  m_Layer: 8
+  - component: {fileID: 580327967}
+  - component: {fileID: 580327969}
+  - component: {fileID: 580327963}
+  - component: {fileID: 580327964}
+  - component: {fileID: 580327968}
+  m_Layer: 6
   m_Name: Wizard_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2238,7 +2438,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3797056400877369289}
-  m_LocalRotation: {x: -0, y: 0.6670787, z: -0, w: 0.7449872}
+  m_LocalRotation: {x: 0, y: 0.6670788, z: 0, w: 0.74498725}
   m_LocalPosition: {x: -14.98, y: 6.928428, z: -7.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2247,6 +2447,9 @@ Transform:
   - {fileID: 4518969214373894398}
   - {fileID: 5166697600353214693}
   - {fileID: 6358970622535935887}
+  - {fileID: 221814406}
+  - {fileID: 1178190639}
+  - {fileID: 1731521777}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 83.684, z: 0}
@@ -2284,6 +2487,207 @@ CapsuleCollider:
   m_Height: 2.98
   m_Direction: 1
   m_Center: {x: 0.06000006, y: 1.52, z: -0.2788005}
+--- !u!135 &580327967
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797056400877369289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &580327969
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797056400877369289}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.55
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 75
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &580327963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797056400877369289}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff90e3b069c684478c68a16e433ea74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueCanvas: {fileID: 0}
+  dialogueScript: {fileID: 580327964}
+  killDialouge: 1
+--- !u!114 &580327964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797056400877369289}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc64fae093d19274cb7907c92df2bdf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 580327969}
+  mainCamera: {fileID: 0}
+  textComponent: {fileID: 0}
+  DialogueIsRandom: 0
+  reward: {fileID: 0}
+  deactivate: {fileID: 0}
+  Characters:
+  - CharacterName: Wizard
+    CharacterObject: {fileID: 221814405}
+  - CharacterName: Mammon
+    CharacterObject: {fileID: 0}
+  AllDialogues:
+  - Interaction:
+    - Line: Can you go grab the hat I left in my library? Should be helpful for your
+        missions.
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 4, z: 3}
+      voiceLine: {fileID: 8300000, guid: 12b70338d7640644bb5aac7e260bea1c, type: 3}
+    - Line: "It\u2019ll always point you in the right direction!"
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 4, z: 3}
+      voiceLine: {fileID: 8300000, guid: 58fa8210c06265045a5134bd9f9dffc4, type: 3}
+  - Interaction:
+    - Line: "I\u2019m SO hungry I can\u2019t move! Make use of that hat and fetch
+        me some cake I left in my fridge would ya?"
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 5, z: 3}
+      voiceLine: {fileID: 8300000, guid: acdb5a5444abdb84b85377f136b8bd5c, type: 3}
+    - Line: Use your hat to track the food by using the hat ability key. It could
+        help you out later on as well.
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 5, z: 3}
+      voiceLine: {fileID: 0}
+  - Interaction:
+    - Line: Oh by the way, you can protect yourself by dropping items on enemies,
+        you might even be able to kill some of em!
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 5, z: 3}
+      voiceLine: {fileID: 8300000, guid: 2272e6a03a743d9419fd4faadc443996, type: 3}
+    - Line: There are also nests around where you can drop things in, those items
+        will be sent to your tree house!
+      TalkingCharacter: 1
+      CameraPosition: {x: 3, y: 5, z: 3}
+      voiceLine: {fileID: 8300000, guid: d3119235eb9fcb448b9aa9e706b2e922, type: 3}
+  allQuests: []
+  textSpeed: 0.045
+  ratAI: {fileID: 0}
+--- !u!114 &580327968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797056400877369289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 0}
+  questToFinish: Return to the Wizard
+  questToActivate: 
+  hideText: 0
+  _prompt: Press E to Interact
+  dissapear: 1
 --- !u!1 &3804452307477322389
 GameObject:
   m_ObjectHideFlags: 0
