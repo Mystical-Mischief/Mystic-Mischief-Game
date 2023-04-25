@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class MouseSensitivity : MonoBehaviour
 {
@@ -52,6 +53,10 @@ public class MouseSensitivity : MonoBehaviour
         if(cameraScript != null)
         {
         cameraScript.sensitivity = mouseSensitivity;
+        }
+        if (FindObjectOfType<CameraManager>())
+        {
+            FindObjectOfType<CameraManager>().updateSensitivity();
         }
         // Update();
         // Save();

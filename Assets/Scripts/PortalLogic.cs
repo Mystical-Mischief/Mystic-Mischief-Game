@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PortalLogic : MonoBehaviour
 {
+    public ASyncLoadManager asyncLoadManager; 
     public string SceneName;
     private void Start()
     {
@@ -21,7 +22,10 @@ public class PortalLogic : MonoBehaviour
             {
                 FindObjectOfType<ActivateQuest>().ResetActivateQuests();
             }
-            SceneManager.LoadScene(SceneName);
+
+            Time.timeScale = 0f;
+            //SceneManager.LoadScene(SceneName);
+            asyncLoadManager.GoToLevel(SceneName);
         }
     }
 }

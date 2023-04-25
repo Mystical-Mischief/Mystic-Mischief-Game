@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 4224428474195424718}
   - component: {fileID: -7397669084855439332}
   - component: {fileID: 993935636}
-  m_Layer: 0
+  - component: {fileID: 5025887226766789898}
+  m_Layer: 6
   m_Name: Toy_Chest_Prefab
   m_TagString: PickUp
   m_Icon: {fileID: 0}
@@ -171,6 +172,24 @@ MonoBehaviour:
   canKill: 0
   itemEffect: {fileID: 0}
   Invisible: 0
+--- !u!114 &5025887226766789898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644373201503908071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 0}
+  questToFinish: 
+  questToActivate: 
+  hideText: 0
+  _prompt: press E on keyboard or X on controller to pick up/Drop items
+  dissapear: 0
 --- !u!1001 &3838026625990200151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +244,10 @@ PrefabInstance:
     - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_Name
       value: Item_Effect_Particle_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
@@ -287,6 +310,10 @@ PrefabInstance:
     - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
       propertyPath: m_Name
       value: ItemEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067558129796463726, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde1b146eb198ea449fc88c8e0f8b990, type: 3}
@@ -361,6 +388,22 @@ PrefabInstance:
     - target: {fileID: 3782667319061291243, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
       propertyPath: m_Name
       value: Pickup_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319061291243, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667319915947865, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667320488699082, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782667320575354452, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6449796cd6779b3449ed2b46825746ac, type: 3}
