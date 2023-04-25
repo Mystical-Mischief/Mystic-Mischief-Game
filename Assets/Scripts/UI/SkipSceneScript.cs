@@ -7,7 +7,7 @@ public class SkipSceneScript : MonoBehaviour
 {
     ControlsforPlayer controls;
     public string SceneName;
-
+    [SerializeField] ASyncLoadManager aSyncLoadManager;
 
     private void Start()
     {
@@ -18,7 +18,8 @@ public class SkipSceneScript : MonoBehaviour
     {
         if (controls.MenuActions.SkipScene.WasPerformedThisFrame())
         {
-            SceneManager.LoadScene(SceneName);
+            //SceneManager.LoadScene(SceneName);
+            aSyncLoadManager.GoToLevel(SceneName);
             //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
         }
 

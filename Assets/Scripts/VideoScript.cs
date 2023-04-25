@@ -8,7 +8,7 @@ public class VideoScript : MonoBehaviour
 {
     VideoPlayer video;
     public string SceneName;
-
+    [SerializeField] ASyncLoadManager aSyncLoadManager; 
 
     [SerializeField] private float delayTime = 3f;
 
@@ -31,7 +31,9 @@ public class VideoScript : MonoBehaviour
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
         //the scene that you want to load after the video has ended.
-        SceneManager.LoadScene(SceneName);
+       // SceneManager.LoadScene(SceneName);
+        aSyncLoadManager.GoToLevel(SceneName);
+
         //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
     }
     IEnumerator LoadLevelASync(int levelIndex)
