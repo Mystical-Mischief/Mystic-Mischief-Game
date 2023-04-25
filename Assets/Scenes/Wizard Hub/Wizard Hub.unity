@@ -567,7 +567,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-227560
+  m_Name: pb_Mesh-93906
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5759,27 +5759,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0007583624
+      value: 0.00058090285
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00010177586
+      value: -0.00008407992
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7204932
+      value: 0.72167766
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18210569
+      value: 0.17735359
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.64872366
+      value: -0.64979017
       objectReference: {fileID: 0}
     - target: {fileID: 1111482251, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.16396584
+      value: 0.15968707
       objectReference: {fileID: 0}
     - target: {fileID: 1672481754, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5815,7 +5815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2111472470, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7276437
+      value: 0.7276438
       objectReference: {fileID: 0}
     - target: {fileID: 2111472470, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5823,7 +5823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2111472470, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6551619
+      value: -0.65516186
       objectReference: {fileID: 0}
     - target: {fileID: 2111472470, guid: b1f5c1f063e32bf4da49fa263b41bbfa, type: 3}
       propertyPath: m_LocalRotation.z
@@ -9048,6 +9048,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4177394902199493355, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5958818024712471594, guid: 38e8bc36c6623ef4ca86073e8d221c15, type: 3}
       propertyPath: m_Size.x
       value: 0.06107705
@@ -9451,11 +9455,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4610008169402035571, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
   m_PrefabInstance: {fileID: 4066947809311617884}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &580327963
+--- !u!114 &580327965 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 580327963, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+  m_PrefabInstance: {fileID: 4066947809311617884}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580327959}
   m_Enabled: 0
@@ -9463,186 +9466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff90e3b069c684478c68a16e433ea74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueCanvas: {fileID: 1403436904}
-  dialogueScript: {fileID: 580327964}
-  killDialouge: 1
---- !u!114 &580327964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580327959}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc64fae093d19274cb7907c92df2bdf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 580327969}
-  mainCamera: {fileID: 1869235517}
-  textComponent: {fileID: 1312725873}
-  DialogueIsRandom: 0
-  reward: {fileID: 1198817831}
-  deactivate: {fileID: 0}
-  Characters:
-  - CharacterName: Wizard
-    CharacterObject: {fileID: 221814405}
-  - CharacterName: Mammon
-    CharacterObject: {fileID: 654670048}
-  AllDialogues:
-  - Interaction:
-    - Line: "Can you go grab the hat I left in my library? Should be really helpful
-        for your missions. It\u2019ll always point you in the right direction."
-      TalkingCharacter: 1
-      CameraPosition: {x: 3, y: 4, z: 3}
-  - Interaction:
-    - Line: "I\u2019m SO hungry I can\u2019t move. Make use of that hat and fetch
-        me some cake I left in my fridge would ya?"
-      TalkingCharacter: 1
-      CameraPosition: {x: 3, y: 5, z: 3}
-    - Line: Use your hat to track the food by using the hat switch key. It could
-        help you out later on as well.
-      TalkingCharacter: 1
-      CameraPosition: {x: 3, y: 5, z: 3}
-  - Interaction:
-    - Line: Oh by the way, you can protect yourself by dropping items on enemies,
-        you might even be able to kill some of them with different items.
-      TalkingCharacter: 1
-      CameraPosition: {x: 3, y: 5, z: 3}
-    - Line: There are also nests around where you can drop things in, those items
-        will be sent to your tree house.
-      TalkingCharacter: 1
-      CameraPosition: {x: 3, y: 5, z: 3}
-  allQuests: []
-  textSpeed: 0.0125
-  ratAI: {fileID: 0}
---- !u!135 &580327967
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580327959}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &580327968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580327959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c050ac27f0f70b41915e0e7fab580a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quest: {fileID: 1519102592}
-  questToFinish: Return to the Wizard
-  questToActivate: 
-  hideText: 0
-  _prompt: Press E to Interact
-  dissapear: 1
---- !u!82 &580327969
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580327959}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &580373850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14463,7 +14286,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-231684
+  m_Name: pb_Mesh-98022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39403,31 +39226,31 @@ PrefabInstance:
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[3].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 580327965}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[4].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[5].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[6].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 580327965}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[8].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[9].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[10].scriptsToActivate.Array.data[0]
       value: 
-      objectReference: {fileID: 580327963}
+      objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345684, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: allQuests.Array.data[0].input.m_SingletonActionBindings.Array.size
       value: 9
@@ -39670,7 +39493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: startQuests.Array.data[9]
-      value: DoorDash with no tips
+      value: Sharing is Caring
       objectReference: {fileID: 0}
     - target: {fileID: 3902544299311345771, guid: 136ba8a62ebaf1449ac436bdc2336f1a, type: 3}
       propertyPath: startQuests.Array.data[10]
@@ -43366,6 +43189,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1163440151}
     m_Modifications:
+    - target: {fileID: 580327963, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: dialogueCanvas
+      value: 
+      objectReference: {fileID: 1403436904}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: reward
+      value: 
+      objectReference: {fileID: 1198817831}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1869235517}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: textComponent
+      value: 
+      objectReference: {fileID: 1312725873}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: allQuests.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: allQuests.Array.data[0]
+      value: Return to the Wizard
+      objectReference: {fileID: 0}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: allQuests.Array.data[1]
+      value: Return to the Wizard. Again.
+      objectReference: {fileID: 0}
+    - target: {fileID: 580327964, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
+      propertyPath: allQuests.Array.data[2]
+      value: Talk to the Wizard Again
+      objectReference: {fileID: 0}
     - target: {fileID: 3797056400877369289, guid: 7f4b85740e91bde479a3986aa9e3b4c8, type: 3}
       propertyPath: m_Name
       value: Wizard_Prefab
