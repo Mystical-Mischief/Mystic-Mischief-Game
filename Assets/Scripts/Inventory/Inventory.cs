@@ -40,13 +40,13 @@ public class Inventory : MonoBehaviour
     public GameObject hat3;
     public GameObject hat4;
     
-    public GameObject InventoryUI;
-    public GameObject InventoryImages;
+    //public GameObject InventoryUI;
+    //public GameObject InventoryImages;
     
     public float HoldTime;
     private float Holding;
 
-    [SerializeField]
+    /*[SerializeField]
     private GameObject _itemThrowPos;
 
     private LineRenderer _trajectoryLine;
@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
     private float _heldItemWeight;
     
 
-    private float _itemSpeed;
+    private float _itemSpeed;*/
     public IntegerControl tapCount { get; set; }
    
     void Awake()
@@ -65,10 +65,10 @@ public class Inventory : MonoBehaviour
         controls = new ControlsforPlayer();
         startMass = rb.mass;
 
-        _trajectory = _itemThrowPos.GetComponent<DrawPotionProjection>();
+        /*_trajectory = _itemThrowPos.GetComponent<DrawPotionProjection>();
         _trajectoryTransform = _itemThrowPos.transform;
         _trajectoryLine = _itemThrowPos.GetComponent<LineRenderer>();
-        _trajectoryLine.enabled = false;
+        _trajectoryLine.enabled = false;*/
 
     }
     public void OnEnable()
@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if(currentHeldItem != null)
+        /*if(currentHeldItem != null)
         {
             
             _heldItemWeight = currentHeldItem.GetComponent<Item>().Weight;
@@ -110,7 +110,7 @@ public class Inventory : MonoBehaviour
         else
         {
             _trajectoryLine.enabled = false;
-        }
+        }*/
         
         weightFloat = rb.mass;
         bool Load = controls.MenuActions.Load.ReadValue<float>() > 0.1f;
