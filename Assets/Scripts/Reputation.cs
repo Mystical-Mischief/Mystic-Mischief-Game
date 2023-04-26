@@ -31,11 +31,15 @@ public class Reputation : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI pauseReputationText;
+
+    [SerializeField]
+    private int[] levelUpValues;
     public void Start()
     {
         // ps = GetComponentInChildren<ReputationLevelUp>();
         reputationImages[level].SetActive(true);
-        PlayAnimation();
+        nextLevel = levelUpValues[level];
+        //PlayAnimation();
     }
 
     // Update is called once per frame
@@ -72,7 +76,7 @@ public class Reputation : MonoBehaviour
         level = level + 1;
         reputationImages[level].SetActive(true);
         reputationText.text = reputation;
-        nextLevel = nextLevel + EXPraise;
+        nextLevel = levelUpValues[level];
         PlayAnimation();
     }
 
