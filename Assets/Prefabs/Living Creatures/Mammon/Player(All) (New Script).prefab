@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685038174}
   m_LocalRotation: {x: -0, y: 0.6691241, z: -0, w: 0.7431507}
-  m_LocalPosition: {x: -0.000022649765, y: 5, z: -9.999992}
+  m_LocalPosition: {x: 0.000029027462, y: 8.437756, z: -8.977047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 180
+    m_MaxSpeed: 200
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -450,9 +450,9 @@ GameObject:
   - component: {fileID: 1003418086}
   - component: {fileID: 1003418088}
   - component: {fileID: 1003418087}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: HurtBox
-  m_TagString: Untagged
+  m_TagString: DragonOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003418085}
   m_LocalRotation: {x: -0, y: -0, z: 8.881784e-16, w: 1}
-  m_LocalPosition: {x: 0.11599836, y: -0.84401226, z: -3.012971}
+  m_LocalPosition: {x: -0.184, y: -0.84401226, z: -0.176}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -498,7 +498,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1025110662
 GameObject:
@@ -600,7 +600,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111482250}
-  m_LocalRotation: {x: 0.20995915, y: -0.6418639, z: 0.18904476, w: 0.7128745}
+  m_LocalRotation: {x: 0.3008664, y: -0.611836, z: 0.27089742, w: 0.67952245}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -957,7 +957,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672481753}
-  m_LocalRotation: {x: 0.19695799, y: -0.6451954, z: 0.17733829, w: 0.71657634}
+  m_LocalRotation: {x: 0.28845653, y: -0.6166622, z: 0.2597237, w: 0.6848826}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1162,7 +1162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111472469}
-  m_LocalRotation: {x: 0.18392584, y: -0.64830637, z: 0.16560426, w: 0.72003144}
+  m_LocalRotation: {x: 0.27598423, y: -0.62127256, z: 0.24849376, w: 0.690003}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2555,20 +2555,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hats:
+  - {fileID: 7926990229802134450}
   - {fileID: 126314368587031470}
   - {fileID: 1351633595405457893}
-  - {fileID: 481802694556577186}
-  - {fileID: 7926990229802134450}
+  - {fileID: 5088516195170616250}
   godModeHats:
   - {fileID: 126314368587031470}
   - {fileID: 1351633595405457893}
   - {fileID: 481802694556577186}
   - {fileID: 7926990229802134450}
   hatImages:
+  - {fileID: 21300000, guid: 02ba245ba9c17ef4498719f34af2bdd2, type: 3}
   - {fileID: 21300000, guid: 976c89272e21e3c43990eaf52c6d4303, type: 3}
   - {fileID: 21300000, guid: 43cb38fad81f32e46a39eb520e5e7e7b, type: 3}
   - {fileID: 21300000, guid: b9162d8ac9bd2f24d8ee76dad64f265b, type: 3}
-  - {fileID: 21300000, guid: 02ba245ba9c17ef4498719f34af2bdd2, type: 3}
   hatUIImage: {fileID: 892500019}
   currentHatObject: {fileID: 0}
   dontAutoSwitch: 0
@@ -2856,10 +2856,7 @@ MonoBehaviour:
   hat2: {fileID: 1351633595405457893}
   hat3: {fileID: 481802694556577186}
   hat4: {fileID: 7926990229802134450}
-  InventoryUI: {fileID: 0}
-  InventoryImages: {fileID: 0}
   HoldTime: 0
-  _itemThrowPos: {fileID: 0}
   playerHatLogic: {fileID: 134208860233621526}
 --- !u!114 &1658966539584756803
 MonoBehaviour:
@@ -3207,6 +3204,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   pauseReputationText: {fileID: 0}
+  levelUpValues: 320000007d000000fa000000a9010000a3020000e80300005f05000068100000
 --- !u!1 &951899675124240966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3766,7 +3764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1840326504610792287
 Transform:
   m_ObjectHideFlags: 0
@@ -5232,7 +5230,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 2500
+    FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -10890,8 +10888,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3502847437821664434}
-  m_LocalRotation: {x: 0, y: 0.000000029802322, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.88000107, z: 0}
+  m_LocalRotation: {x: -0, y: 0.6883516, z: -0, w: 0.72537726}
+  m_LocalPosition: {x: -22.991816, y: 4.5149994, z: 2.4950047}
   m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10910,14 +10908,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionMode: 0
+  m_PositionMode: 1
   m_RotationMode: 1
   m_UpdateMethod: 2
   m_Targets:
   - target: {fileID: 686421478}
-    weight: 1.5
+    weight: 1
     radius: 1
-  - target: {fileID: 686421478}
+  - target: {fileID: 0}
     weight: 1
     radius: 1
 --- !u!114 &5543519425669820980
@@ -12731,8 +12729,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4910193802093039627}
-  m_LocalRotation: {x: -0.0500407, y: 0.03215623, z: 0.0016119797, w: 0.99822813}
-  m_LocalPosition: {x: 0.49999708, y: -0.7599124, z: -10.001525}
+  m_LocalRotation: {x: -0.08850713, y: -0.024875011, z: -0.0022109856, w: 0.99576247}
+  m_LocalPosition: {x: 0.49999976, y: -0.7599144, z: -10.001436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15155,7 +15153,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 2500
+    FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -15529,7 +15527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7298508921565180168
 Transform:
   m_ObjectHideFlags: 0
