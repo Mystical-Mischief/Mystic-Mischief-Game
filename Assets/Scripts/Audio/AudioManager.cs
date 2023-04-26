@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource BackgroundAudio;
     public AudioSource[] SoundEffectsAudio;
 
+    public AudioListener[] audioListener;
+
     void Start()
     {
         _firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
@@ -36,6 +38,8 @@ public class AudioManager : MonoBehaviour
             _soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectsPref);
             SoundEffectsSlider.value = _soundEffectsFloat;
         }
+
+        
         
     }
 
@@ -61,14 +65,16 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateSound()
     {
-        if(BackgroundAudio != null) //Added this to stop the missing object reference message. 
-        {
-            BackgroundAudio.volume = BackgroundSlider.value;
-            for (int i = 0; i < SoundEffectsAudio.Length; i++)
-            {
-                SoundEffectsAudio[i].volume = SoundEffectsSlider.value;
-            }
-        }
+        AudioListener.volume = BackgroundSlider.value;
+
+       //if(BackgroundAudio != null) //Added this to stop the missing object reference message. 
+       //{
+       //    BackgroundAudio.volume = BackgroundSlider.value;
+       //    for (int i = 0; i < SoundEffectsAudio.Length; i++)
+       //    {
+       //        SoundEffectsAudio[i].volume = SoundEffectsSlider.value;
+       //    }
+       //}
 
     }
 
