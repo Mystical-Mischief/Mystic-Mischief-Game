@@ -8,6 +8,7 @@ public class GameOverMenu : MonoBehaviour
     public Reload reload;
     public int LastScene;
     public string lastLevel;
+    public ASyncLoadManager aSyncLoadManager;
 
     private void Start()
     {
@@ -28,7 +29,8 @@ public class GameOverMenu : MonoBehaviour
         // }
         // if (lastLevel == 3)
         // {
-            SceneManager.LoadScene(lastLevel);
+        //SceneManager.LoadScene(lastLevel);
+        aSyncLoadManager.GoToLevel(lastLevel);
         // }
         Debug.Log("In retry function");
     }
@@ -49,7 +51,8 @@ public class GameOverMenu : MonoBehaviour
         // {
         //     SceneManager.LoadScene("Level 3");
         // }
-        SceneManager.LoadScene(lastLevel);
+        //SceneManager.LoadScene(lastLevel);
+        aSyncLoadManager.GoToLevel(lastLevel);
         Debug.Log("In Loading reload function");
     }
 
@@ -60,7 +63,8 @@ public class GameOverMenu : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        aSyncLoadManager.GoToLevel("Main Menu");
         Debug.Log("In quit function");
     }
 
