@@ -69,10 +69,10 @@ public class CollectionQuest : MonoBehaviour
     }
     public void questComplete()
     {
-        questScript.NextQuest();
         totalNumberOfItems = 0;
         currentNumberOfItems = 0;
         allItems.Clear();
         this.enabled = false;
+        questScript.NextQuest();
     }
 }
