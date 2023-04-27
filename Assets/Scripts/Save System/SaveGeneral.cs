@@ -52,13 +52,13 @@ public class SaveGeneral : MonoBehaviour
             }
         }
 
-        foreach (GameObject item in GameObject.FindGameObjectsWithTag("PickUp"))
-        {
-            if (item.activeSelf == true && item.gameObject.GetComponent<Item>().itemType != Item.ItemType.Objective)
-            {
-                Items.Add(item);
-            }
-        }
+        // foreach (GameObject item in GameObject.FindGameObjectsWithTag("PickUp"))
+        // {
+        //     if (item.activeSelf == true && item.gameObject.GetComponent<Item>().itemType != Item.ItemType.Objective)
+        //     {
+        //         Items.Add(item);
+        //     }
+        // }
         // SaveEnemyCheckPoint();
         // if (reload != null)
         // {
@@ -192,16 +192,8 @@ public class SaveGeneral : MonoBehaviour
         {
             currentQuests.Add(quests);
         }
-        foreach (GameObject items in Items)
-        {
-            if (items != null)
-            {
-                if (items.GetComponent<Item>() != null)
-                {
-                    items.GetComponent<Item>().SaveItem();
-                }
-            }
-        }
+         //Saves the items.
+        SaveLotsOfItems(); //Run an asyc function so that items can save in the background instead of freezing the game to do it all at once. 
         // Hats.SaveHats();
         SavedCheckpointLast = true;
         SavedManualLast = false;
@@ -209,13 +201,13 @@ public class SaveGeneral : MonoBehaviour
     //Loads everything from the savve file (not the checkpoint save).
     public void LoadEnemy ()
     {
-        foreach (GameObject turnson in TurnsOn)
-        {
-                if (turnson.GetComponent<Turnsnn>().isActivated == true)
-                {
-                    turnson.SetActive(true);
-                }
-        }
+        // foreach (GameObject turnson in TurnsOn)
+        // {
+        //         if (turnson.GetComponent<Turnsnn>().isActivated == true)
+        //         {
+        //             turnson.SetActive(true);
+        //         }
+        // }
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -224,7 +216,7 @@ public class SaveGeneral : MonoBehaviour
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
             }
         }
-        //Loads the players inventory.
+        // //Loads the players inventory.
         foreach (GameObject items in Items)
         {
             if (items != null)
@@ -260,14 +252,14 @@ public class SaveGeneral : MonoBehaviour
     //Loads the last checkpoint.
         public void LoadCheckpoint ()
     {
-        foreach (GameObject turnson in TurnsOn)
-        {
-                    turnson.SetActive(true);
-                    if (turnson.name == "CleverBird")
-                    {
-                    turnson.GetComponent<ActivateDialogue>().enabled = true;
-                    }
-        }
+        // foreach (GameObject turnson in TurnsOn)
+        // {
+        //             turnson.SetActive(true);
+        //             if (turnson.name == "CleverBird")
+        //             {
+        //             turnson.GetComponent<ActivateDialogue>().enabled = true;
+        //             }
+        // }
         //Loads all of the enemies.
         foreach (GameObject enemy in Enemies)
         {
@@ -276,7 +268,7 @@ public class SaveGeneral : MonoBehaviour
             enemy.GetComponent<BaseEnemyAI>().LoadEnemy();
             }
         }
-        //Loads the players inventory.
+        // //Loads the players inventory.
         foreach (GameObject items in Items)
         {
             if (items != null)
@@ -306,16 +298,16 @@ public class SaveGeneral : MonoBehaviour
         q.GetComponent<Quest>().currentQuests.Clear();
         q.GetComponent<ActivateQuest>().activateQuest(currentQuests);
         // Hats.LoadHats();
-        foreach (GameObject turnson in TurnsOn)
-        {
-            if (turnson.GetComponent<Turnsnn>() != null)
-            {
-                if (turnson.GetComponent<Turnsnn>().isActivated != true)
-                {
-                    turnson.SetActive(false);
-                }
-            }
-        }
+        // foreach (GameObject turnson in TurnsOn)
+        // {
+        //     if (turnson.GetComponent<Turnsnn>() != null)
+        //     {
+        //         if (turnson.GetComponent<Turnsnn>().isActivated != true)
+        //         {
+        //             turnson.SetActive(false);
+        //         }
+        //     }
+        // }
     }
     public virtual void Loadmenu()
     {
