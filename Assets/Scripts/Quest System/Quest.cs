@@ -51,6 +51,7 @@ public class Quest : MonoBehaviour
     public TextMeshProUGUI text;
     public Image questImage;
     public TextMeshProUGUI sideQuestText;
+    public Sprite defaultImage;
 
     public QuestInfo[] allQuests;
     public List<QuestInfo> currentQuests = new List<QuestInfo>();
@@ -217,6 +218,7 @@ public class Quest : MonoBehaviour
         if(currentQuests.Count == 0)
         {
             text.text = "No Active Quests.\nMaybe take some time to explore or go through the portal!";
+            questImage.sprite = defaultImage;
         }
     }
 }
