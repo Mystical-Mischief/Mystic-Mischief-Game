@@ -12,13 +12,17 @@ public class ActivateQuest : MonoBehaviour
     void Start()
     {
         questScript = FindObjectOfType<Quest>();
-        if(!activatedQuests)
+        if(!activatedQuests && PlayerPrefs.GetInt("Completed") != 1)
         {
             foreach (string currquest in startQuests)
             {
                 questScript.ActivateQuest(currquest);
             }
             activatedQuests = true;
+        }
+        if(PlayerPrefs.GetInt("Completed") == 1)
+        {
+            questScript.UpdateText();
         }
     }
     public void activateQuest(List<QuestInfo> quests)

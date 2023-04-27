@@ -7,7 +7,7 @@ public class PortalLogic : MonoBehaviour
 {
     public ASyncLoadManager asyncLoadManager; 
     public string SceneName;
-    private void Start()
+    private void OnEnable()
     {
         if(PlayerPrefs.GetInt("Completed") == 1)
         {
