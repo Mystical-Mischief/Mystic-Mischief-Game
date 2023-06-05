@@ -99,7 +99,7 @@ public class BasicLichDragon : MonoBehaviour
     {
         death.Play(true);
         anim.SetTrigger("Teleport");
-        Debug.Log("Teleporting");
+        //Debug.Log("Teleporting");
         foreach(GameObject tpPoint in teleportPoints)
         {
             if (tpPoint.GetComponent<TeleportPoints>().Colliding == false)
@@ -116,7 +116,7 @@ public class BasicLichDragon : MonoBehaviour
     {
         death.Play(true);
         anim.SetTrigger("Teleport");
-        Debug.Log("Teleporting");
+        //Debug.Log("Teleporting");
         WarpLocation = teleportPoints2[teleportTimes];
         transform.position = WarpLocation.position;
         Teleport = false;
@@ -146,7 +146,7 @@ public class BasicLichDragon : MonoBehaviour
         }
         if (other.gameObject.CompareTag("DragonOnly"))
         {
-            Debug.Log("HitPlayer");
+            //Debug.Log("HitPlayer");
             ResetAttackChase();
         }
     }
@@ -167,10 +167,10 @@ public class BasicLichDragon : MonoBehaviour
         // NewRandomNumber2();
     }
 
-    public void Melee()
-    {
-
-    }
+   // public void Melee() //Empty delete if unused
+   // {
+   //
+   // }
 
         void ChasePlayer()
     {
