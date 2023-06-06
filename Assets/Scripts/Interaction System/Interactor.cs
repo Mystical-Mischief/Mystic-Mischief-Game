@@ -44,7 +44,7 @@ public class Interactor : MonoBehaviour
        else
        {
         if (_interactable != null) _interactable = null;
-        if(_interactionpromptUI.IsDisplayed) _interactionpromptUI.Close();
+        if(_interactionpromptUI != null && _interactionpromptUI.IsDisplayed) _interactionpromptUI.Close(); //added in a null check, is this an incomplete feature? -Emilie
        }
     }
 
