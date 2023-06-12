@@ -76,25 +76,25 @@ public class Item : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "PlayerOnly" && rb.velocity.magnitude >= fallDistance && dropped == true)
-        {
-            if (canKill == false)
-            {
-            other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
-            }
-            if (canKill == true)
-            {
-                if (other.gameObject.GetComponentInParent<BaseEnemyAI>() != null)
-                {
-                other.gameObject.GetComponentInParent<BaseEnemyAI>().Die = true;
-                }
-                Destroy(other.gameObject.transform.parent.gameObject, 1f);
-            }
-        }
-        if (other.gameObject.tag == "Dragon" && rb.velocity.magnitude >= (fallDistance/0.5f) && dropped == true)
-        {
-            other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
-        }
+       //if (other.gameObject.tag == "PlayerOnly" && rb.velocity.magnitude >= fallDistance && dropped == true)
+       //{
+       //    if (canKill == false)
+       //    {
+       //    //other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
+       //    }
+       //    if (canKill == true)
+       //    {
+       //        if (other.gameObject.GetComponentInParent<BaseEnemyAI>() != null)
+       //        {
+       //        //other.gameObject.GetComponentInParent<BaseEnemyAI>().Die = true;
+       //        }
+       //        Destroy(other.gameObject.transform.parent.gameObject, 1f);
+       //    }
+       //}
+       //if (other.gameObject.tag == "Dragon" && rb.velocity.magnitude >= (fallDistance/0.5f) && dropped == true)
+       //{
+       //    //other.gameObject.GetComponentInParent<BaseEnemyAI>().stunned = true;
+       //}
     }
    // public void OnCollisionEnter(Collision other)
    // {
