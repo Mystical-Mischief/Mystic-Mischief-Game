@@ -6,13 +6,17 @@ public class CompleteGameManager : MonoBehaviour
 {
     public GameObject[] objectsToRemove;
     public GameObject[] objectsToAdd;
+    public bool deleteItems;
     void Start()
     {
         if (PlayerPrefs.GetInt("Completed") == 1) 
         {
-            foreach(GameObject gO in objectsToRemove)
+            if(deleteItems) 
             {
-                Destroy(gO);
+                foreach (GameObject gO in objectsToRemove)
+                {
+                    Destroy(gO);
+                }
             }
             foreach(GameObject gO in objectsToAdd)
             {
