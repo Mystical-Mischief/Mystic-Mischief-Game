@@ -8,11 +8,13 @@ public class WDProjectrileScript : MonoBehaviour
     public int TimeToDestroy = 2;
     private GameObject Player;
     public float speed;
+    public bool canDestroy;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ExecuteAfterTime(5));
         Player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(ExecuteAfterTime2(0.3f));
 
     }
     void Update()
@@ -28,6 +30,12 @@ public class WDProjectrileScript : MonoBehaviour
         // Instantiate(particles, transform.position, transform.rotation);
         Destroy(gameObject, TimeToDestroy);
     }
+            IEnumerator ExecuteAfterTime2(float time2)
+    {
+        yield return new WaitForSeconds(time2);
+        // Instantiate(particles, transform.position, transform.rotation);
+        canDestroy = true;
+    }
 
         private void OnCollisionEnter(Collision other)
     {
@@ -36,14 +44,10 @@ public class WDProjectrileScript : MonoBehaviour
             // other.gameObject.GetComponent<PlayerController>().TakeDamage(1);
             Destroy(gameObject);
         }
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player" && canDestroy == true)
         {  
             // other.gameObject.GetComponent<ThirdPersonController>().TakeDamage(1);
             Destroy(gameObject);
         }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
     }
 }
