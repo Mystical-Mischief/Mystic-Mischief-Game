@@ -19,7 +19,7 @@ public class CameraLogic : MonoBehaviour
         turn = inputs.PlayerOnGround.Look.ReadValue<Vector2>();
         sensitivity = PlayerPrefs.GetFloat("Sensitivity");
     }
-    void FixedUpdate()
+    void Update()
     {
         isFlying = !player.onGround;
         //if the player is flying use the fly camera
