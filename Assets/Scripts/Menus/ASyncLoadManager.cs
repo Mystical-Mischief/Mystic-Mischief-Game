@@ -54,6 +54,7 @@ public class ASyncLoadManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(transitionDelay);    //Gives time for the trasition animation to fully play -Emilie 
 
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelName);
+       //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         Time.timeScale = 1f;
         PauseMenu.GameIsPaused = false;
         loadOperation.allowSceneActivation = false; //Gives control on when to activate the level -Emilie 
@@ -73,7 +74,7 @@ public class ASyncLoadManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionDelay);  //Reusing delay before destroying objects below -Emilie 
         Destroy(this.gameObject);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
-        Destroy(loadCanvas.gameObject);
+        Destroy(loadCanvas);
 
     }
 
@@ -102,7 +103,7 @@ public class ASyncLoadManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(transitionDelay);  //Reusing delay before destroying objects below -Emilie 
-        Destroy(this);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
+        Destroy(this.gameObject);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
         Destroy(loadCanvas);
     }
 }
