@@ -14,14 +14,11 @@ public class VideoScript : MonoBehaviour
 
     private Animator videoAnimator; //Added a fade in animation so the cutscene doesn't jumpcut on screen. 
 
-    public static bool canSkipVideo = true; 
-
     void Awake()
     {
         video = GetComponent<VideoPlayer>();
         videoAnimator = video.GetComponent<Animator>();
         video.Pause();
-        canSkipVideo = true;
     }
 
 
@@ -34,9 +31,7 @@ public class VideoScript : MonoBehaviour
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
         //the scene that you want to load after the video has ended.
-        // SceneManager.LoadScene(SceneName);
-
-        canSkipVideo = false;
+       // SceneManager.LoadScene(SceneName);
         aSyncLoadManager.GoToLevel(SceneName);
 
         //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
@@ -58,7 +53,6 @@ public class VideoScript : MonoBehaviour
 
         video.Play();
     }
-
 }
 
 
