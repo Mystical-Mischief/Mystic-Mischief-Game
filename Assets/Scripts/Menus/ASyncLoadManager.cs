@@ -102,7 +102,7 @@ public class ASyncLoadManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(transitionDelay);  //Reusing delay before destroying objects below -Emilie 
-        Destroy(this);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
+        Destroy(this.gameObject);                                     //Since each level will need a load screen, will we want to consider keeping these objects in the future? 
         Destroy(loadCanvas);
     }
 }
