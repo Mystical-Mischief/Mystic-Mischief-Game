@@ -13,18 +13,37 @@ public class SkipSceneScript : MonoBehaviour
     {
         controls = new ControlsforPlayer();
         controls.Enable();
+        controls.MenuActions.SkipScene.performed += _ => SkipCutscene();
     }
-    private void Update()
+
+
+
+    void SkipCutscene()
     {
-        if (controls.MenuActions.SkipScene.WasPerformedThisFrame() && !loadedLevel)
-        {
-            loadedLevel = true;
-            //SceneManager.LoadScene(SceneName);
-            aSyncLoadManager.GoToLevel(SceneName);
-            //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
-        }
+            if (VideoScript.canSkipVideo == true)
+            {
+                if (controls.MenuActions.SkipScene.WasPerformedThisFrame() && !loadedLevel)
+                {
+                    loadedLevel = true;
+                    //SceneManager.LoadScene(SceneName);
+                    aSyncLoadManager.GoToLevel(SceneName);
+                    //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
+                }
+            }
 
     }
+
+    // private void Update()
+    // {
+    //     if (controls.MenuActions.SkipScene.WasPerformedThisFrame() && !loadedLevel)
+    //     {
+    //         loadedLevel = true;
+    //         //SceneManager.LoadScene(SceneName);
+    //         aSyncLoadManager.GoToLevel(SceneName);
+    //         //StartCoroutine(LoadLevelASync(SceneManager.GetActiveScene().buildIndex + 1));
+    //     }
+    //
+    // }
     IEnumerator LoadLevelASync(int levelIndex)
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(levelIndex);
