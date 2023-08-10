@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: health effect
       objectReference: {fileID: 0}
+    - target: {fileID: 3496200178154202098, guid: 8247686503d4cfb4298247e7ddbb3fab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3496200178154202103, guid: 8247686503d4cfb4298247e7ddbb3fab, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -289,18 +293,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3496200178154202098, guid: 8247686503d4cfb4298247e7ddbb3fab, type: 3}
   m_PrefabInstance: {fileID: 4570839836925056264}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3571685364341771506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146761029399000826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6033daca91c6f684b9d22bb1943e7e03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &7160430402505981121
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -315,6 +307,18 @@ CapsuleCollider:
   m_Height: 25.523035
   m_Direction: 1
   m_Center: {x: 2.4997566, y: 0, z: 3.7500017}
+--- !u!114 &3571685364341771506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146761029399000826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6033daca91c6f684b9d22bb1943e7e03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1146761029399000831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3496200178154202103, guid: 8247686503d4cfb4298247e7ddbb3fab, type: 3}
