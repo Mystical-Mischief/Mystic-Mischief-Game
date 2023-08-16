@@ -26,6 +26,15 @@ public class PortalLogic : MonoBehaviour
             Time.timeScale = 0f;
             //SceneManager.LoadScene(SceneName);
             asyncLoadManager.GoToLevel(SceneName);
+
+            GetComponent<Collider>().enabled = false;
+            StartCoroutine(EnableCollision(3));
         }
+    }
+
+    private IEnumerator EnableCollision(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GetComponent<Collider>().enabled = true;
     }
 }
