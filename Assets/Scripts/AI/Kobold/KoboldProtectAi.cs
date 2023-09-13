@@ -7,7 +7,7 @@ public class KoboldProtectAi : BaseEnemyAI
 {
     float attackCooldown = 1f;
     float currentAttack = 1f;
-
+    
     [SerializeField]
     bool attackedPlayer = false;
 
@@ -80,10 +80,10 @@ public class KoboldProtectAi : BaseEnemyAI
             else if(flee)
             {
                 Flee();
-                flee = false;
+                ContinuePatrol();
             }
             
-            else
+            if(flee==false)
             {
                 Patrol();
                 // anim.SetBool("HasItem", false);
@@ -110,7 +110,7 @@ public class KoboldProtectAi : BaseEnemyAI
             anim.SetTrigger("Bite");
         }
 
-        if (ItemToProtect != null &&  Vector3.Distance(this.transform.position, ItemToProtect.transform.position) < 1)
+        if (ItemToProtect != null &&  Vector3.Distance(this.transform.position, ItemToProtect.transform.position) < 1 && flee ==false)
         {
             anim.SetTrigger("Bite");
             Protect = false;
@@ -119,7 +119,8 @@ public class KoboldProtectAi : BaseEnemyAI
             flee = true;
             HeldItem.SetActive(true);
         }
-
+        
+        //test = Vector3.Distance(transform.position, fleeLocation.position);
 
     }
     // Start is called before the first frame update
@@ -167,20 +168,25 @@ public class KoboldProtectAi : BaseEnemyAI
     {
         if (holdingItem)
         {
-            if (Vector3.Distance(transform.position, fleeLocation.position) <= 1)
-            {
-                //ContinuePatrol();
-                //flee = false;
-                ai.isStopped = true;
-                return;
-            }
-            targetPosition = fleeLocation.position;
-            UpdateDestination(targetPosition);
-            if(Vector3.Distance(transform.position, fleeLocation.position) <= 1)
+            if (Vector3.Distance(transform.position, fleeLocation.position) < 3)
             {
                 ContinuePatrol();
                 flee = false;
+                //ai.isStopped = true;
+                //return;
+                LostPlayer();
             }
+            else
+            {
+                targetPosition = fleeLocation.position;
+                UpdateDestination(target.position);
+            }
+            
+            //if(Vector3.Distance(transform.position, fleeLocation.position) <= 1)
+            //{
+            //    ContinuePatrol();
+           //     flee = false;
+            //}
         }
     }
 
@@ -189,7 +195,7 @@ public class KoboldProtectAi : BaseEnemyAI
         if(transform.position == fleeLocation.transform.position)
         {
             LostPlayer();
-            UpdateDestination(targetPosition);
+            UpdateDestination(target.position);
             Patrol();
         }
     }
