@@ -35,8 +35,8 @@ public class RatAi : BaseEnemyAI
         //If it took an item it escapes
         if (Attacked == true && !isPeaceful)
         {
-            target = Escape;
-            UpdateDestination(target.position);
+            Escape = target;
+            UpdateDestination(Escape.position);
         }
         else
         {
