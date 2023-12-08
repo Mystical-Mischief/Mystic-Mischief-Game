@@ -43,9 +43,9 @@ public class TalkingRat : BaseEnemyAI
         }
         else
         {
-            tempTarget = target;
             target = ai_Rb.transform;
-            UpdateDestination(target.position);
+            tempTarget = target;
+            UpdateDestination(tempTarget.position);
         }
         //If it took an item it escapes
         // if (Attacked == true && !isPeaceful)
