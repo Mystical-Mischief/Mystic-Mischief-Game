@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,7 @@ public class KoboldProtectAi : BaseEnemyAI
 {
     float attackCooldown = 1f;
     float currentAttack = 1f;
-    
+
     [SerializeField]
     bool attackedPlayer = false;
 
@@ -43,17 +44,24 @@ public class KoboldProtectAi : BaseEnemyAI
     new void Start()
     {
         base.Start();
+        fleeLocation = PatrolPoints.First();   
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         Protect = false;
         holdingItem = false;
         flee = false;
-        ItemToProtectPos = HeldItem.transform;
-        ItemToProtect = Instantiate(HeldItem, ItemToProtectPos.position, Quaternion.identity);
-        HeldItem.transform.SetParent(this.transform, false);
-        HeldItem.transform.position = ObjectNewLocation.position;
-        HeldItem.SetActive(false);
-        
+        if (HeldItem != null)
+        {
+            ItemToProtectPos = HeldItem.transform;
+            ItemToProtect = Instantiate(HeldItem, ItemToProtectPos.position, Quaternion.identity);
+
+            HeldItem.transform.SetParent(this.transform, false);
+            HeldItem.transform.position = ObjectNewLocation.position;
+            HeldItem.SetActive(false);
+        }
+
+
+
     }
 
     new void Update()
@@ -68,39 +76,41 @@ public class KoboldProtectAi : BaseEnemyAI
             {
                 currentAttack = attackCooldown;
                 attackedPlayer = false;
+                ContinuePatrol();
             }
         }
         if (HeldItem != null)
         {
-            if (Protect)
+            if (Protect && ItemToProtect != null)
             {
                 anim.SetBool("HasItem", true);
                 ProtectObject(ItemToProtect);
             }
-            else if(flee)
+            else if (flee)
             {
                 Flee();
                 ContinuePatrol();
             }
-            
-            if(flee==false)
+
+            if (flee == false)
             {
                 Patrol();
                 // anim.SetBool("HasItem", false);
             }
-            
+
         }
 
-        if(base.stunned == true)
+        if (base.stunned == true)
         {
             anim.SetTrigger("Hurt");
         }
-        
-                if (base.spottedPlayer == true)
+
+        if (base.spottedPlayer == true)
         {
             anim.SetBool("FoundPlayer", true);
         }
-        else {anim.SetBool("FoundPlayer", false);}
+        else { anim.SetBool("FoundPlayer", false); }
+
         if (base.ai.speed > 0.1)
         {
             anim.SetFloat("RunSpeed", 1f);
@@ -110,7 +120,7 @@ public class KoboldProtectAi : BaseEnemyAI
             anim.SetTrigger("Bite");
         }
 
-        if (ItemToProtect != null &&  Vector3.Distance(this.transform.position, ItemToProtect.transform.position) < 1 && flee ==false)
+        if (ItemToProtect != null && Vector3.Distance(this.transform.position, ItemToProtect.transform.position) < 1 && flee == false)
         {
             anim.SetTrigger("Bite");
             Protect = false;
@@ -119,14 +129,14 @@ public class KoboldProtectAi : BaseEnemyAI
             flee = true;
             HeldItem.SetActive(true);
         }
-        
+
         //test = Vector3.Distance(transform.position, fleeLocation.position);
 
     }
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
-        
+
         if (!attackedPlayer && collision.gameObject.tag == "Player")
         {
             attackedPlayer = true;
@@ -140,7 +150,7 @@ public class KoboldProtectAi : BaseEnemyAI
             stunned = true;
             // base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
         }
-           
+
         if (collision.gameObject.tag == "Poop")
         {
             stunned = true;
@@ -155,12 +165,12 @@ public class KoboldProtectAi : BaseEnemyAI
             base.ai_Rb.AddForce(Player.transform.position * ai.speed, ForceMode.Impulse);
         }
     }
-   
+
     private void ProtectObject(GameObject obj)
     {
         Vector3 itemDirection = obj.transform.position;
         UpdateDestination(itemDirection);
-        
+
 
     }
 
@@ -181,18 +191,18 @@ public class KoboldProtectAi : BaseEnemyAI
                 targetPosition = fleeLocation.position;
                 UpdateDestination(target.position);
             }
-            
+
             //if(Vector3.Distance(transform.position, fleeLocation.position) <= 1)
             //{
             //    ContinuePatrol();
-           //     flee = false;
+            //     flee = false;
             //}
         }
     }
 
     private void ContinuePatrol()
     {
-        if(transform.position == fleeLocation.transform.position)
+        if (transform.position == fleeLocation.transform.position)
         {
             LostPlayer();
             UpdateDestination(target.position);
