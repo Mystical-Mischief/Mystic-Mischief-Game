@@ -173,13 +173,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5260441629367834860, guid: 4907803f1c73143449389c74ade16e1a, type: 2}
   m_audioClip: {fileID: 8300000, guid: 578489742c6069e4688c8f38f1833c81, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.396
+  m_Volume: 0.248
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 95
+  Priority: 55
   DopplerLevel: 1
   MinDistance: 0.105716705
   MaxDistance: 30
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 827609950427303711}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,6 +672,10 @@ PrefabInstance:
     - target: {fileID: 1058567613500773290, guid: f421b78fdac0604418d03c434151b311, type: 3}
       propertyPath: m_Name
       value: Stun_Stars_Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058567613500773290, guid: f421b78fdac0604418d03c434151b311, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1058567613500773295, guid: f421b78fdac0604418d03c434151b311, type: 3}
       propertyPath: m_RootOrder

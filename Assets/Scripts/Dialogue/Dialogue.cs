@@ -112,6 +112,7 @@ public class Dialogue : MonoBehaviour
         updateCamera(currentConversation);
         //characterImage.sprite = Characters[currentConversation[index].TalkingCharacter - 1].CharacterSprite;
         StartCoroutine(TypeLine(currentConversation));
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canTakeDamage = false;
     }
     //types the lines letter by letter to look nice
     IEnumerator TypeLine(DialogueLines[] currentConversation)
@@ -172,6 +173,7 @@ public class Dialogue : MonoBehaviour
                 }
             }
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canMove = true;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().canTakeDamage = true;
             this.enabled = false;
         }
     }

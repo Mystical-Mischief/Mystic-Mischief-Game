@@ -302,10 +302,14 @@ public class PlayerController : MonoBehaviour
     }
     //logic for taking damage -CC
     [SerializeField] private InteractionpromptUI Interactionprompt;
+
+    [HideInInspector] public bool canTakeDamage = true;
     public void TakeDamage(int damage)
     {
+        if(canTakeDamage)
+        {
             //take damage
-            if (damaged != true) 
+            if (damaged != true)
             {
                 currentHealth -= damage;
                 Interactionprompt.Setup("Ouch! That Hurt");
@@ -317,13 +321,13 @@ public class PlayerController : MonoBehaviour
                 {
                     Reset();
                     transform.position = _latestCheckPoint.position;
-                   GameOverMenu.SetActive(true);
+                    GameOverMenu.SetActive(true);
                 }
 
                 damaged = true;
                 StartCoroutine(tookDamage());
             }
-        
+        }
 
     }
     //timer so you dont take damage constantly -CC
