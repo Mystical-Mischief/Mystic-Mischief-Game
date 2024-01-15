@@ -12,7 +12,8 @@ public enum QuestType
     Collection,
     Escort,
     Input,
-    PickUp
+    PickUp,
+    Destroy
 }
 [Serializable]
 public class QuestInfo
@@ -144,6 +145,10 @@ public class Quest : MonoBehaviour
             case QuestType.PickUp:
                 questScript[5].enabled = true;
                 questScript[5].GetComponent<PickUpQuest>().startQuest(currquest, this);
+                break;
+            case QuestType.Destroy:
+                questScript[6].enabled = true;
+                questScript[6].GetComponent<DestroyedQuest>().startQuest(currquest, this);
                 break;
             default:
                 print("quest not found");
